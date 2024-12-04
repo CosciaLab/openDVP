@@ -22,49 +22,68 @@ def filter_adata_by_gates(adata: ad.AnnData, gates: pd.DataFrame, sample_id=None
     logger.info(f" ---- filter_adata_by_gates is done, took {int(time.time() - time_start)}s  ----")
     return adata
 
-def filter_by_abs_value(adata, marker, value=None, quantile=None, direction='above') -> ad.AnnData:
-    """ Filter cells by absolute value """
+def filter_by_abs_value(adata, marker, value=None, quantile=None, direction='above', plot=False) -> ad.AnnData:
+    """ 
+    Filter cells by absolute value 
+    Args:
+        adata: anndata object
+        marker: name of the marker to filter, string present in adata.var_names
+        value: value to use as threshold
+        quantile: quantile to use as threshold
+        direction: 'above' or 'below', denoting which cells are kept
+    """
 
-    logger.info(" ---- filter_by_abs_value : version number 1.0.0 ----")
+    logger.info(" ---- filter_by_abs_value : version number 1.1.0 ----")
     time_start = time.time()
 
-    # Create a DataFrame for easier manipulation
-    df = pd.DataFrame(data=adata.X, columns=adata.var_names)
+    # checks
+    assert type(adata) is ad.AnnData, "adata should be an AnnData object"
+    assert marker in adata.var_names, f"Marker {marker} not found in adata.var_names"
+    # value or quantile
+    if value is not None:
+        assert quantile is None, "Only one of value or quantile should be provided"
+        assert isinstance(value, (int, float)), "Value should be a number"
+    elif quantile is not None:
+        assert value is None, "Only one of value or quantile should be provided"
+        assert isinstance(quantile, float), "Quantile should be a float"
+        assert 0 < quantile < 1, "Quantile should be between 0 and 1"
+    else:
+        raise ValueError("Either value or quantile should be provided")
+    # direction
+    assert direction in ['above', 'below'], "Direction should be either 'above' or 'below'"
 
-    #set threshold
-    
+    # set objects up 
+    adata_copy = adata.copy()
+    df = pd.DataFrame(data=adata_copy.X, columns=adata_copy.var_names)
+
+    # calculate threshold
     if value is None:
         threshold = df[marker].quantile(quantile)
     else:
         threshold = value
 
-    if direction == 'above':
-        df[f'{marker}_abs_above_value'] = df[marker] > threshold
-        adata.obs[f'{marker}_abs_above_value'] = df[f'{marker}_abs_above_value'].values
-        logger.info(f"Number of cells with {marker} {direction} {threshold}: {sum(df[f'{marker}_abs_above_value'])}")
+    # Filter
+    label = f"{marker}_{direction}_{threshold}"
+    operator = '>' if direction == 'above' else '<'
+    df[label] = df.eval(f"{marker} {operator} @threshold")
+    adata_copy.obs[label] = df[label].values
+    logger.info(f"Number of cells with {marker} {direction} {threshold}: {sum(df[label])}")
 
-    elif direction == 'below':
-        df[f'{marker}_abs_below_value'] = df[marker] < threshold
-        adata.obs[f'{marker}_abs_below_value'] = df[f'{marker}_abs_below_value'].values
-        logger.info(f"Number of cells with {marker} {direction} {threshold}: {sum(df[f'{marker}_abs_below_value'])}")
+    if plot:
+        sns.histplot(df[marker], bins=500)
+        plt.yscale('log')
+        plt.xscale('log')
+        plt.title(f'{marker} distribution')
+        plt.axvline(threshold, color='black', linestyle='--', alpha=0.5)
 
-    else:
-        raise ValueError("Direction should be either 'above' or 'below'")
-
-    sns.histplot(df[marker], bins=500)
-    plt.yscale('log')
-    plt.xscale('log')
-    plt.title(f'{marker} distribution')
-    plt.axvline(threshold, color='black', linestyle='--', alpha=0.5)
-
-    if direction == 'above':
-        plt.text(threshold + 10, 1000, f"cells with {marker} > {threshold}", fontsize=9, color='black')
-    elif direction == 'below':
-        plt.text(threshold - 10, 1000, f"cells with {marker} < {threshold}", fontsize=9, color='black', horizontalalignment='right')
-    plt.show()
+        if direction == 'above':
+            plt.text(threshold + 10, 1000, f"cells with {marker} > {threshold}", fontsize=9, color='black')
+        elif direction == 'below':
+            plt.text(threshold - 10, 1000, f"cells with {marker} < {threshold}", fontsize=9, color='black', horizontalalignment='right')
+        plt.show()
 
     logger.info(f" ---- filter_by_abs_value is done, took {int(time.time() - time_start)}s  ----")
-    return adata
+    return adata_copy
 
 def filter_by_ratio(adata, end_cycle, start_cycle, label="DAPI", min_ratio=0.5, max_ratio=1.05) -> ad.AnnData:
     """ Filter cells by ratio """

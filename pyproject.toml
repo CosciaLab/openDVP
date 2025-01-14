@@ -1,10 +1,10 @@
 [project]
 authors = [{name = "Jose Nimo", email = "nimojose@gmail.com"}]
-dependencies = []
 description = "Add a short description here"
 name = "openDVP"
 requires-python = ">= 3.11"
 version = "0.1.0"
+dependencies = ["pyqt5"]
 
 [build-system]
 build-backend = "hatchling.build"
@@ -37,3 +37,4 @@ rich = "*"
 tabulate = "*"
 scanpy = "*"
 spatial-image = "*"
+jupyter = ">=1.1.1,<2"

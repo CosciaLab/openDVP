@@ -1,0 +1,39 @@
+[project]
+authors = [{name = "Jose Nimo", email = "nimojose@gmail.com"}]
+dependencies = []
+description = "Add a short description here"
+name = "openDVP"
+requires-python = ">= 3.11"
+version = "0.1.0"
+
+[build-system]
+build-backend = "hatchling.build"
+requires = ["hatchling"]
+
+[tool.pixi.project]
+channels = ["conda-forge"]
+platforms = ["osx-arm64"]
+
+[tool.pixi.pypi-dependencies]
+opendvp = { path = ".", editable = true }
+
+[tool.pixi.tasks]
+
+[tool.pixi.dependencies]
+anndata = "*"
+python = "*"
+dask = "*"
+dask-image = "*"
+geopandas = "*"
+ipykernel = "*"
+napari-spatialdata = "*"
+spatialdata = "*"
+numpy = "*"
+pandas = "*"
+matplotlib = "*"
+seaborn = "*"
+rasterio = "*"
+rich = "*"
+tabulate = "*"
+scanpy = "*"
+spatial-image = "*"

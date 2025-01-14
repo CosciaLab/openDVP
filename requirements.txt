@@ -14,5 +14,10 @@ seaborn
 rasterio
 rich
 tabulate
-scanpy
+scanpy 
 spatial-image
+
+
+anndata python dask dask-image geopandas ipykernel json napari-spatialdata spatialdata numpy pandas matplotlib seaborn rasterio rich tabulate scanpy spatial-image
+
+anndata python dask dask-image geopandas ipykernel napari-spatialdata spatialdata numpy pandas matplotlib seaborn rasterio rich tabulate scanpy spatial-image

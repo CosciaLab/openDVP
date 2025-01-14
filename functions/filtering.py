@@ -7,6 +7,7 @@ import seaborn as sns
 import shapely
 import geopandas as gpd
 
+# General assumption: TRUE means keep, FALSE means filter out
 
 def filter_adata_by_gates(adata: ad.AnnData, gates: pd.DataFrame, sample_id=None) -> ad.AnnData:
     """ Filter the adata object by the gates """

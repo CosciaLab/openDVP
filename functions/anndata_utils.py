@@ -10,6 +10,9 @@ def read_quant(csv_data_path) -> ad.AnnData:
     :param csv_data_path: path to the csv file
     :return: an anndata object
     """
+
+    #TODO not general enough, exemplar001 fails
+
     logger.info(" ---- read_quant : version number 1.1.0 ----")
     time_start = time.time()
 

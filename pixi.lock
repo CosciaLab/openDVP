@@ -301,6 +301,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/pip-24.3.1-pyh8b19718_2.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pkgutil-resolve-name-1.3.10-pyhd8ed1ab_2.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/platformdirs-4.3.6-pyhd8ed1ab_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/plotly-5.24.1-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/pooch-1.8.2-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/proj-9.5.1-h1318a7e_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/prometheus_client-0.21.1-pyhd8ed1ab_0.conda
@@ -395,6 +396,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/tabulate-0.9.0-pyhd8ed1ab_2.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/tbb-2022.0.0-h0cbf7ec_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/tblib-3.0.0-pyhd8ed1ab_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/tenacity-9.0.0-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/terminado-0.18.1-pyh31c8845_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/threadpoolctl-3.5.0-pyhc1e730c_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/tifffile-2025.1.10-pyhd8ed1ab_0.conda
@@ -4304,7 +4306,7 @@ packages:
 - pypi: .
   name: opendvp
   version: 0.1.0
-  sha256: 94fd79fe6c58495c7f40620c364e7e362cfb426f70c0612231fca11f3d069f6c
+  sha256: d6918b1fbb44ec37478d96518cdef71ebd191126dab468581f204350551e3520
   requires_dist:
   - pyqt5
   requires_python: '>=3.11'
@@ -4577,6 +4579,21 @@ packages:
   - pkg:pypi/platformdirs?source=hash-mapping
   size: 20448
   timestamp: 1733232756001
+- conda: https://conda.anaconda.org/conda-forge/noarch/plotly-5.24.1-pyhd8ed1ab_1.conda
+  sha256: d1bbf2d80105bfc8a7ed9817888f4a1686ed393d6435572921add09cc9347c1c
+  md5: 71ac632876630091c81c50a05ec5e030
+  depends:
+  - packaging
+  - python >=3.9
+  - tenacity >=6.2.0
+  constrains:
+  - ipywidgets >=7.6
+  license: MIT
+  license_family: MIT
+  purls:
+  - pkg:pypi/plotly?source=hash-mapping
+  size: 8022748
+  timestamp: 1733733328161
 - conda: https://conda.anaconda.org/conda-forge/noarch/pooch-1.8.2-pyhd8ed1ab_1.conda
   sha256: bedda6b36e8e42b0255179446699a0cf08051e6d9d358dd0dd0e787254a3620e
   md5: b3e783e8e8ed7577cf0b6dee37d1fbac
@@ -5958,6 +5975,17 @@ packages:
   - pkg:pypi/tblib?source=hash-mapping
   size: 17421
   timestamp: 1733842487151
+- conda: https://conda.anaconda.org/conda-forge/noarch/tenacity-9.0.0-pyhd8ed1ab_1.conda
+  sha256: dcf2155fb959773fb102066bfab8e7d79aff67054d142716979274a43fc85735
+  md5: a09f66fe95a54a92172e56a4a97ba271
+  depends:
+  - python >=3.9
+  license: Apache-2.0
+  license_family: APACHE
+  purls:
+  - pkg:pypi/tenacity?source=hash-mapping
+  size: 24808
+  timestamp: 1733649153624
 - conda: https://conda.anaconda.org/conda-forge/noarch/terminado-0.18.1-pyh31c8845_0.conda
   sha256: 4daae56fc8da17784578fbdd064f17e3b3076b394730a14119e571707568dc8a
   md5: 00b54981b923f5aefcd5e8547de056d5

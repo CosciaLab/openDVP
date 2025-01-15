@@ -195,13 +195,12 @@ def filter_by_annotation(adata, path_to_geojson, column_name="filter_by_ann") ->
     plt.xlim(min_x, max_x)
     plt.ylim(max_y, min_y)
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0., markerscale=3)
-    plt.show()
 
     # Show value counts
-    value_counts = tmp_df_ann['ann'].value_counts()
+    value_counts = tmp_df_ann['annotation'].value_counts()
     value_counts_str = "\n".join([f"{cat}: {count}" for cat, count in value_counts.items()])
 
-    plt.gca().text(1.35, 1, f"Cells Counts:\n{value_counts_str}",
+    plt.gca().text(1.25, 1, f"Cells Counts:\n{value_counts_str}",
             transform=plt.gca().transAxes, 
             fontsize=12, 
             verticalalignment='top',

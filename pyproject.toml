@@ -4,7 +4,7 @@ description = "Add a short description here"
 name = "openDVP"
 requires-python = ">= 3.11"
 version = "0.1.0"
-dependencies = ["pyqt5"]
+dependencies = ["pyqt5", "cellcharter"]
 
 [build-system]
 build-backend = "hatchling.build"
@@ -30,7 +30,7 @@ napari-spatialdata = "*"
 spatialdata = "*"
 numpy = "*"
 pandas = "*"
-matplotlib = "*"
+matplotlib = "<3.9.0"
 seaborn = "*"
 rasterio = "*"
 rich = "*"
@@ -39,3 +39,9 @@ scanpy = "*"
 spatial-image = "*"
 jupyter = ">=1.1.1,<2"
 plotly = ">=5.24.1,<6"
+
+[tool.pixi.feature.RCN.dependencies]
+cellcharter = "*"
+
+[tool.pixi.environments]
+rcn = ["RCN"]

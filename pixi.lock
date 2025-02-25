@@ -4511,7 +4511,7 @@ packages:
 - pypi: .
   name: opendvp
   version: 0.1.0
-  sha256: 0054b849dad4319aaa34312ab3708ded843b77f5a484d7e49f751835dd9913c0
+  sha256: c8a1f2c8a8f83609013d290400ece340467a875a6efa59158913533ea66d1ea6
   requires_dist:
   - pyqt5
   - cellcharter

@@ -39,9 +39,3 @@ scanpy = "*"
 spatial-image = "*"
 jupyter = ">=1.1.1,<2"
 plotly = ">=5.24.1,<6"
-
-[tool.pixi.feature.RCN.dependencies]
-cellcharter = "*"
-
-[tool.pixi.environments]
-rcn = ["RCN"]

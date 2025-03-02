@@ -24,7 +24,7 @@ def filter_adata_by_gates(adata: ad.AnnData, gates: pd.DataFrame, sample_id=None
     logger.info(f" ---- filter_adata_by_gates is done, took {int(time.time() - time_start)}s  ----")
     return adata
 
-def filter_by_abs_value(adata, marker, value=None, quantile=None, direction='above', plot=False) -> ad.AnnData:
+def filter_by_abs_value(adata, marker, value=None, quantile=None, keep='above', plot=False) -> ad.AnnData:
     """ 
     Filter cells by absolute value 
     Args:
@@ -32,7 +32,7 @@ def filter_by_abs_value(adata, marker, value=None, quantile=None, direction='abo
         marker: name of the marker to filter, string present in adata.var_names
         value: value to use as threshold
         quantile: quantile to use as threshold
-        direction: 'above' or 'below', denoting which cells are kept
+        keep: 'above' or 'below', denoting which cells are kept
     """
 
     logger.info(" ---- filter_by_abs_value : version number 1.1.0 ----")
@@ -51,8 +51,8 @@ def filter_by_abs_value(adata, marker, value=None, quantile=None, direction='abo
         assert 0 < quantile < 1, "Quantile should be between 0 and 1"
     else:
         raise ValueError("Either value or quantile should be provided")
-    # direction
-    assert direction in ['above', 'below'], "Direction should be either 'above' or 'below'"
+    # keep
+    assert keep in ['above', 'below'], "keep should be either 'above' or 'below'"
 
     # set objects up 
     adata_copy = adata.copy()
@@ -65,11 +65,11 @@ def filter_by_abs_value(adata, marker, value=None, quantile=None, direction='abo
         threshold = value
 
     # Filter
-    label = f"{marker}_{direction}_{threshold}"
-    operator = '>' if direction == 'above' else '<'
+    label = f"{marker}_{keep}_{threshold}"
+    operator = '>' if keep == 'above' else '<'
     df[label] = df.eval(f"{marker} {operator} @threshold")
     adata_copy.obs[label] = df[label].values
-    logger.info(f"Number of cells with {marker} {direction} {threshold}: {sum(df[label])}")
+    logger.info(f"Number of cells with {marker} {keep} {threshold}: {sum(df[label])}")
 
     if plot:
         sns.histplot(df[marker], bins=500)
@@ -78,9 +78,9 @@ def filter_by_abs_value(adata, marker, value=None, quantile=None, direction='abo
         plt.title(f'{marker} distribution')
         plt.axvline(threshold, color='black', linestyle='--', alpha=0.5)
 
-        if direction == 'above':
+        if keep == 'above':
             plt.text(threshold + 10, 1000, f"cells with {marker} > {threshold}", fontsize=9, color='black')
-        elif direction == 'below':
+        elif keep == 'below':
             plt.text(threshold - 10, 1000, f"cells with {marker} < {threshold}", fontsize=9, color='black', horizontalalignment='right')
         plt.show()
 
@@ -135,81 +135,75 @@ def filter_by_ratio(adata, end_cycle, start_cycle, label="DAPI", min_ratio=0.5, 
 
     return adata
 
-def filter_by_annotation(adata, path_to_geojson) -> ad.AnnData:
-    """ Filter cells by annotation in a geojson file """
+def filter_by_annotation(adata, path_to_geojson, any_label="artefact", plot_QC=True) -> ad.AnnData:
+    """ Filter cells by annotation in a geojson file efficiently using spatial indexing """
 
-    logger.info(" ---- filter_by_annotation : version number 1.3.1 ----")
-    time_start = time.time()
+    # 100x faster
+
+    logger.info(" ---- filter_by_annotation : version number 2.0.1 ----")
+    logger.info(" Each class of annotation will be a different column in adata.obs")
+    logger.info(" TRUE means cell was inside annotation, FALSE means cell not in annotation")
     
-    #load data
+    # Load GeoJSON
     gdf = gpd.read_file(path_to_geojson)
     assert gdf.geometry is not None, "No geometry found in the geojson file"
     assert gdf.geometry.type.unique()[0] == 'Polygon', "Only polygon geometries are supported"
+    
     logger.info(f"GeoJson loaded, detected: {len(gdf)} annotations")
 
-    #process geodataframe
+    # Extract class names
     gdf['class_name'] = gdf['classification'].apply(lambda x: ast.literal_eval(x).get('name') if isinstance(x, str) else x.get('name'))
 
-    #process adata
-    adata.obs['point_geometry'] = adata.obs.apply(lambda cell: shapely.geometry.Point( cell['X_centroid'], cell['Y_centroid']), axis=1)
+    # Convert AnnData cell centroids to a GeoDataFrame
+    points_gdf = gpd.GeoDataFrame(adata.obs.copy(), 
+                                  geometry=gpd.points_from_xy(adata.obs['X_centroid'], adata.obs['Y_centroid']),
+                                  crs=gdf.crs)  # Assume same CRS
     
-    #label based on polygon index
-    def label_point_if_inside_polygon(point, polygons):
-        for i, polygon in enumerate(polygons):
-            if polygon.contains(point):
-                return True
-        return False
-
-    # label based on polygon class_name
-    def label_cells_with_annotation_class(adata, geodataframe):
-        for index, row in geodataframe.iterrows():
-            adata.obs[row['class_name']] = adata.obs['point_geometry'].apply(lambda x: label_point_if_inside_polygon(x, [row['geometry']]))
+    joined = gpd.sjoin(points_gdf, gdf[['geometry', 'class_name']], how='left', predicate='within')
     
-    def label_point_if_inside_polygon_wclassname(point, geodataframe):
-        for index, row in geodataframe.iterrows():
-            if row['geometry'].contains(point):
-                return row['class_name']
-        return None
-
-    #single column with all classes
-    def label_cells_with_annotation_class_single_column(adata, geodataframe):
-        adata.obs['annotation'] = adata.obs['point_geometry'].apply(lambda x: label_point_if_inside_polygon_wclassname(x, geodataframe))
-
-    logger.info(f"Found {gdf.class_name.nunique()} unique classes in the geojson file: {gdf.class_name.unique()}")
+    df_grouped = joined.groupby("CellID")['class_name'].agg(lambda x: list(set(x))).reset_index() #fails here
+    df_expanded = df_grouped.copy()
+    for cat in set(cat for sublist in df_grouped['class_name'] for cat in sublist):
+        df_expanded[cat] = df_expanded['class_name'].apply(lambda x: cat in x)
     
-    label_cells_with_annotation_class(adata, gdf)
-    label_cells_with_annotation_class_single_column(adata, gdf)
+    df_expanded.drop(columns=['class_name', np.nan], inplace=True)
+    df_expanded[any_label] = df_expanded.drop(columns=["CellID"]).any(axis=1)
+    category_cols = [col for col in df_expanded.columns if col not in ["CellID", any_label]]
+    df_expanded["annotation"] = df_expanded[category_cols].apply(lambda row: next((col for col in category_cols if row[col]), None), axis=1)
 
-    #plotting
-    labels_to_plot = list(gdf.class_name.unique())
-    max_x, max_y = adata.obs[['X_centroid', 'Y_centroid']].max()
-    min_x, min_y = adata.obs[['X_centroid', 'Y_centroid']].min()
+    adata.obs = pd.merge(adata.obs, df_expanded, on="CellID")
 
-    tmp_df_ann = adata.obs[adata.obs['annotation'].isin(labels_to_plot)]
-    tmp_df_notann = adata.obs[~adata.obs['annotation'].isin(labels_to_plot)].sample(frac=0.2, random_state=0).reset_index(drop=True)
+    if plot_QC:
 
-    fig, ax = plt.subplots(figsize=(10,10))
-    sns.scatterplot(data=tmp_df_notann, x='X_centroid', y='Y_centroid', linewidth=0, s=3, alpha=0.25)
-    sns.scatterplot(data=tmp_df_ann, x='X_centroid', y='Y_centroid', hue='annotation', palette='bright', linewidth=0, s=8)
+        #plotting
+        labels_to_plot = list(gdf.class_name.unique())
+        max_x, max_y = adata.obs[['X_centroid', 'Y_centroid']].max()
+        min_x, min_y = adata.obs[['X_centroid', 'Y_centroid']].min()
 
-    plt.xlim(min_x, max_x)
-    plt.ylim(max_y, min_y)
-    plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0., markerscale=3)
+        tmp_df_ann = adata.obs[adata.obs['annotation'].isin(labels_to_plot)]
+        tmp_df_notann = adata.obs[~adata.obs['annotation'].isin(labels_to_plot)].sample(frac=0.2, random_state=0).reset_index(drop=True)
 
-    # Show value counts
-    value_counts = tmp_df_ann['annotation'].value_counts()
-    value_counts_str = "\n".join([f"{cat}: {count}" for cat, count in value_counts.items()])
+        fig, ax = plt.subplots(figsize=(7,5))
+        sns.scatterplot(data=tmp_df_notann, x='X_centroid', y='Y_centroid', linewidth=0, s=2, alpha=0.1)
+        sns.scatterplot(data=tmp_df_ann, x='X_centroid', y='Y_centroid', hue='annotation', palette='bright', linewidth=0, s=8)
 
-    plt.gca().text(1.25, 1, f"Cells Counts:\n{value_counts_str}",
-            transform=plt.gca().transAxes, 
-            fontsize=12, 
-            verticalalignment='top',
-            bbox=dict(facecolor='white', alpha=0.8, edgecolor='black'))
+        plt.xlim(min_x, max_x)
+        plt.ylim(max_y, min_y)
+        plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0., markerscale=3)
 
-    plt.show()
+        # Show value counts
+        value_counts = tmp_df_ann['annotation'].value_counts()
+        value_counts_str = "\n".join([f"{cat}: {count}" for cat, count in value_counts.items()])
 
-    #drop object columns ( this would block saving to h5ad)
-    adata.obs = adata.obs.drop(columns=['point_geometry', 'annotation'])
+        plt.gca().text(1.25, 1, f"Cells Counts:\n{value_counts_str}",
+                transform=plt.gca().transAxes, 
+                fontsize=12, 
+                verticalalignment='top',
+                bbox=dict(facecolor='white', alpha=0.8, edgecolor='black'))
 
-    logger.info(f" ---- filter_by_annotation is done, took {int(time.time() - time_start)}s  ----")
+        plt.show()
+
+        #drop object columns ( this would block saving to h5ad)
+        adata.obs = adata.obs.drop(columns=['annotation'])
+
     return adata

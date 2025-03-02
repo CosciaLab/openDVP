@@ -65,7 +65,6 @@ def segmentation_mask_to_qupath_detections(
 
     return gdf
 
-
 def sdata_to_qupath_detections(
         sdata,
         key_to_shapes: str,

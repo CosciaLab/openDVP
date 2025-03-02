@@ -135,10 +135,10 @@ def filter_by_ratio(adata, end_cycle, start_cycle, label="DAPI", min_ratio=0.5, 
 
     return adata
 
-def filter_by_annotation(adata, path_to_geojson, column_name="filter_by_ann") -> ad.AnnData:
+def filter_by_annotation(adata, path_to_geojson) -> ad.AnnData:
     """ Filter cells by annotation in a geojson file """
 
-    logger.info(" ---- filter_by_annotation : version number 1.3.0 ----")
+    logger.info(" ---- filter_by_annotation : version number 1.3.1 ----")
     time_start = time.time()
     
     #load data

@@ -181,8 +181,7 @@ def sdata_to_qupath_detections(
         sdata[key_to_shapes].to_file(export_path, driver='GeoJSON')
 
     if return_gdf:
-        return sdata[key_to_shapes]
-    
+        return sdata[key_to_shapes] 
 
 def parse_color_for_qupath(color_dict):
     parsed_colors = {}

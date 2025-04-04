@@ -6,10 +6,11 @@ import dask.array as da
 import geopandas as gpd
 
 import tifffile
-from shapely.geometry import shape, MultiPolygon
-from shapely.ops import unary_union
-from rasterio.features import shapes
+import shapely
+import rasterio
+import scipy
 
+#TODO test functions
 
 def lazy_image_check(image_path):
     """ Check the image metadata without loading the image """
@@ -70,7 +71,7 @@ def adataobs_to_voronoi_geojson(
     logger.info("Running Voronoi")
     # run Voronoi 
     # df = df[['X_centroid', 'Y_centroid', category_1, category_2]]    
-    vor = Voronoi(df[['X_centroid', 'Y_centroid']].values)
+    vor = scipy.spatial.Voronoi(df[['X_centroid', 'Y_centroid']].values)
     polygons = []
     for i in range(len(df)):
         polygon = shapely.Polygon(
@@ -144,8 +145,8 @@ def mask_to_polygons(array):
     cell_geometries = {}
     
     # Extract shapes and corresponding values
-    for shape_dict, cell_id in shapes(array, mask=(array > 0)):
-        polygon = shape(shape_dict)  # Convert to Shapely geometry
+    for shape_dict, cell_id in rasterio.features.shapes(array, mask=(array > 0)):
+        polygon = shapely.geometry.shape(shape_dict)  # Convert to Shapely geometry
         cell_id = int(cell_id)
         if cell_id not in cell_geometries:
             cell_geometries[cell_id] = []
@@ -158,7 +159,7 @@ def mask_to_polygons(array):
         if len(polygons) == 1:
             geometries.append(polygons[0])  # Single Polygon
         else:
-            geometries.append(MultiPolygon(polygons))  # Combine into MultiPolygon
+            geometries.append(shapely.geometry.MultiPolygon(polygons))  # Combine into MultiPolygon
         cell_ids.append(cell_id)
     
     # Create a GeoDataFrame

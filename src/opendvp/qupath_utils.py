@@ -183,6 +183,8 @@ def sdata_to_qupath_detections(
     if return_gdf:
         return sdata[key_to_shapes] 
 
+
+
 def parse_color_for_qupath(color_dict):
     parsed_colors = {}
     for name, color in color_dict.items():
@@ -197,3 +199,60 @@ def parse_color_for_qupath(color_dict):
             raise ValueError(f"Invalid color format for '{name}': {color}")
         
     return parsed_colors
+
+
+def color_geojson_w_adata(
+        geodataframe,
+        geodataframe_index_key,
+        adata,
+        adata_obs_index_key,
+        adata_obs_category_key,
+        color_dict,
+        export_path,
+        simplify_value=None,
+        return_gdf=False
+):
+    gdf = geodataframe.copy()
+
+    #label cells as detections
+    gdf['objectType'] = "detection"
+
+    #add column to gdf by indeces
+
+    phenotypes_series = adata.obs.set_index(adata_obs_index_key)[adata_obs_category_key]
+    
+    if geodataframe_index_key:
+        gdf[geodataframe_index_key] = gdf[geodataframe_index_key].astype(str)
+        gdf['class'] = gdf[geodataframe_index_key].map(phenotypes_series).astype(str)
+    else:
+        logger.info("geodataframe index key not passed, using index")
+        gdf.index = gdf.index.astype(str)
+        gdf['class'] = gdf.index.map(phenotypes_series).astype(str)
+
+    gdf['class'] = gdf['class'].cat.add_categories('filtered_out')
+    gdf['class'] = gdf['class'].fillna('filtered_out')
+
+    if color_dict:
+            logger.info(f"Using color_dict found in table.uns[{color_dict}]")
+            color_dict = parse_color_for_qupath(color_dict)
+    else:
+            logger.info("No color_dict found, using defaults")
+            default_colors = [[31, 119, 180], [255, 127, 14], [44, 160, 44], [214, 39, 40], [148, 103, 189]]
+            color_cycle = cycle(default_colors)
+            color_dict = dict(zip(adata.obs[adata_obs_category_key].cat.categories.astype(str), color_cycle))
+
+    if 'filtered_out' not in color_dict:
+        color_dict['filtered_out'] = [0,0,0]
+
+    gdf['classification'] = gdf.apply(lambda x: {'name': x['class'], 'color': color_dict[x['class']]}, axis=1)
+    gdf.drop(columns='class', inplace=True)
+
+    #simplify the geometry
+    if simplify_value is not None:
+        logger.info(f"Simplifying the geometry with tolerance {simplify_value}")
+        gdf['geometry'] = gdf['geometry'].simplify(simplify_value, preserve_topology=True)
+
+    gdf.to_file(export_path, driver='GeoJSON')
+
+    if return_gdf:
+        return gdf

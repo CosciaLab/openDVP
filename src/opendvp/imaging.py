@@ -8,6 +8,7 @@ import geopandas as gpd
 import tifffile
 import shapely
 import rasterio
+from rasterio.features import shapes
 import scipy
 
 #TODO test functions
@@ -145,7 +146,7 @@ def mask_to_polygons(array):
     cell_geometries = {}
     
     # Extract shapes and corresponding values
-    for shape_dict, cell_id in rasterio.features.shapes(array, mask=(array > 0)):
+    for shape_dict, cell_id in shapes(array, mask=(array > 0)):
         polygon = shapely.geometry.shape(shape_dict)  # Convert to Shapely geometry
         cell_id = int(cell_id)
         if cell_id not in cell_geometries:

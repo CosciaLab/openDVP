@@ -4,6 +4,7 @@ import time
 import numpy as np
 import dask.array as da
 import geopandas as gpd
+import pandas.api.types as ptypes
 
 import tifffile
 import shapely
@@ -51,7 +52,10 @@ def adataobs_to_voronoi_geojson(
 
     df = df.copy()
     #subset per image
-    df = df[(df.imageid == str(imageid))]
+    if ptypes.is_numeric_dtype(df['imageid']) is False:
+        logger.info("ImageID is not a numeric, changing datatype to int16")
+        df['imageid'] = df['imageid'].astype("int16")
+    df = df[(df.imageid == imageid)]
     logger.debug(f" df shape after imageid subset: {df.shape}")
     logger.info(f"Processing {imageid}, loaded dataframe")
 
@@ -109,7 +113,8 @@ def adataobs_to_voronoi_geojson(
 
     # create geodataframe for each cell and their celltype
     gdf2 = gdf.copy()
-    gdf2['objectType'] = 'cell'
+    # gdf2['objectType'] = 'cell'
+    gdf2['objectType'] = "detection"
     gdf2['classification'] = gdf2[category_1]
     
     # merge polygons based on the CN column

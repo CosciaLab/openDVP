@@ -8,8 +8,8 @@ import pandas.api.types as ptypes
 
 import tifffile
 import shapely
-import rasterio
 from rasterio.features import shapes
+from shapely.geometry import shape as shapely_shape, MultiPolygon
 import scipy
 
 #TODO test functions

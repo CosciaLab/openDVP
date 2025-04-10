@@ -2,7 +2,7 @@ import pandas as pd
 import anndata as ad
 from loguru import logger
 import time, os, re
-
+from itertools import cycle
 
 import matplotlib.colors as mcolors
 

@@ -48,6 +48,9 @@ def adataobs_to_voronoi_geojson(
     
     """
 
+    #TODO pass adata as input not df
+    #TODO pass color dict
+
     logger.debug(f" df shape: {df.shape}")
 
     df = df.copy()
@@ -136,39 +139,80 @@ def adataobs_to_voronoi_geojson(
     logger.success(f"Exported {imageid} to geojson")
 
 
-def mask_to_polygons(array):
+def mask_to_polygons(mask_path, savepath=None, simplify=None, max_memory_mb=16000):
     """
-    Converts a labeled segmentation mask into a GeoDataFrame with polygons or multipolygons for each cell.
+    Converts a labeled segmentation mask (TIFF file) into a GeoDataFrame with polygons or multipolygons.
+    
     Args:
-        array: A 2D labeled segmentation mask, where pixel values represent cell IDs and background is 0.
+        mask_path (str): Path to a 2D labeled segmentation mask TIFF. Pixel values represent cell IDs; background is 0.
+        max_memory_mb (int): Maximum memory (in MB) allowed to safely process the image.
+    
     Returns:
         geopandas.GeoDataFrame: A GeoDataFrame containing polygons/multipolygons and their cell IDs.
-    Caveats:
-        Larger than memory arrays will fail
-    """
     
+    Raises:
+        ValueError: If the estimated memory usage exceeds the max_memory_mb.
+    """
+
+    logger.info(f" -- Convering {mask_path} to geodataframe of polygons -- ")
+
+    # Load image metadata to check shape and memory usage
+    with tifffile.TiffFile(mask_path) as tif:
+        shape = tif.series[0].shape
+        dtype = tif.series[0].dtype
+        estimated_bytes = np.prod(shape) * np.dtype(dtype).itemsize
+        estimated_mb = estimated_bytes / (1024 ** 2)
+        logger.info(f"  Mask shape: {shape}, dtype: {dtype}, estimated_mb: {estimated_mb:.1f}")
+
+    if estimated_mb > max_memory_mb:
+        raise ValueError(f"Estimated memory usage is {estimated_mb:.2f} MB, exceeding the threshold of {max_memory_mb:.1f} MB.")
+
+    # Load the image data
+    
+    array = tifffile.imread(mask_path)
+
+    # convert to int32
+    start_time = time.time()
+    max_label = array.max()
+    logger.debug(f"Calculated max pixel value in {time.time() - start_time:.1f} seconds")
+    if max_label <= np.iinfo(np.int32).max:
+        array = array.astype(np.int32)
+    else:
+        raise ValueError(f"Cell IDs exceed int32 range, and rasterio doesn't support uint32 or int64.")
+
+    #Ensure 2D mask
+    array = np.squeeze(array)
+
     # Dictionary to store geometries grouped by cell ID
     cell_geometries = {}
-    
+
     # Extract shapes and corresponding values
+    start_time = time.time()
     for shape_dict, cell_id in shapes(array, mask=(array > 0)):
-        polygon = shapely.geometry.shape(shape_dict)  # Convert to Shapely geometry
+        polygon = shapely_shape(shape_dict)
         cell_id = int(cell_id)
-        if cell_id not in cell_geometries:
-            cell_geometries[cell_id] = []
-        cell_geometries[cell_id].append(polygon)
-    
+        cell_geometries.setdefault(cell_id, []).append(polygon)
+    logger.info(f"Transformed pixel mask into polygons in {time.time() - start_time:.1f} seconds")
+
     # Combine multiple polygons into MultiPolygons if needed
-    cell_ids = []
-    geometries = []
+    records = []
     for cell_id, polygons in cell_geometries.items():
-        if len(polygons) == 1:
-            geometries.append(polygons[0])  # Single Polygon
-        else:
-            geometries.append(shapely.geometry.MultiPolygon(polygons))  # Combine into MultiPolygon
-        cell_ids.append(cell_id)
-    
+        geometry = polygons[0] if len(polygons) == 1 else MultiPolygon(polygons)
+        records.append({'cellId': cell_id, 'geometry': geometry})
+
     # Create a GeoDataFrame
-    gdf = gpd.GeoDataFrame({'cellId': cell_ids, 'geometry': geometries}, crs="EPSG:4326")
-    
+    gdf = gpd.GeoDataFrame(records, crs="EPSG:4326")
+
+    if simplify is not None:
+        logger.info(f"Simplifying the geometry with tolerance {simplify}")
+        gdf['geometry'] = gdf['geometry'].simplify(simplify, preserve_topology=True)
+
+    if savepath is not None:
+        logger.info(f"Writing geodataframe as GeoJSON here {savepath}")
+        start_time = time.time()
+        gdf.to_file(savepath, driver="GeoJSON")
+        logger.info(f"Writing of file took {time.time() - start_time:.1f} seconds")
+
+    logger.success(" -- Created geodataframe from segmentation mask -- ")
+
     return gdf

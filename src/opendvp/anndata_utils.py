@@ -1,7 +1,10 @@
 import pandas as pd
 import anndata as ad
 from loguru import logger
-import time, os
+import time, os, re
+
+
+import matplotlib.colors as mcolors
 
 def read_quant(csv_data_path) -> ad.AnnData:
     """
@@ -95,28 +98,74 @@ def color_geojson_w_adata(
         adata_obs_category_key,
         color_dict,
         export_path,
-        simplify_value=None,
+        simplify_value=1,
         return_gdf=False
 ):
-    gdf = geodataframe.copy()
-
-    #label cells as detections
-    gdf['objectType'] = "detection"
-
-    #add column to gdf by indeces
-
-    phenotypes_series = adata.obs.set_index(adata_obs_index_key)[adata_obs_category_key]
     
+    """
+    Add classification colors from an AnnData object to a GeoDataFrame for QuPath visualization.
+
+    Parameters
+    ----------
+    geodataframe : geopandas.GeoDataFrame
+        GeoDataFrame containing polygons to annotate.
+    
+    geodataframe_index_key : str
+        Column in the GeoDataFrame that corresponds to the index or column in adata.obs used for matching.
+
+    adata : anndata.AnnData
+        AnnData object containing cell annotations in `adata.obs`.
+
+    adata_obs_index_key : str
+        Column name in `adata.obs` used to match to `geodataframe_index_key`.
+
+    adata_obs_category_key : str
+        Column in `adata.obs` that defines the classification/grouping to color.
+
+    color_dict : dict, optional
+        Dictionary mapping class names to RGB color lists (e.g., {'Tcell': [255, 0, 0]}).
+        If None, a default color cycle will be used.
+
+    export_path : str, optional
+        Path where the output GeoJSON will be saved.
+
+    simplify_value : float, optional
+        Tolerance value for geometry simplification (higher = more simplified).
+        default = 1
+
+    return_gdf : bool, optional
+        If True, returns the modified GeoDataFrame with classifications.
+
+    Returns
+    -------
+    geopandas.GeoDataFrame or None
+        Returns the updated GeoDataFrame if `return_gdf=True`, else writes to file only.
+    """
+    
+    logger.info(" -- Adding color to polygons for QuPath visualization -- ")
+    
+    gdf = geodataframe.copy()
+    gdf['objectType'] = "detection"
+    
+    phenotypes_series = adata.obs.set_index(adata_obs_index_key)[adata_obs_category_key]
+
+    if gdf[geodataframe_index_key].dtype != phenotypes_series.index.dtype:
+        gdf_dtype = gdf[geodataframe_index_key].dtype
+        adata_dtype = phenotypes_series.index.dtype
+        logger.warning(f"Data types between geodaframe {gdf_dtype} and adataobs col {adata_dtype} do not match")
+
     if geodataframe_index_key:
-        gdf[geodataframe_index_key] = gdf[geodataframe_index_key].astype(str)
-        gdf['class'] = gdf[geodataframe_index_key].map(phenotypes_series).astype(str)
+        logger.info(f"Matching gdf[{geodataframe_index_key}] to adata.obs[{adata_obs_index_key}]")
+        gdf['class'] = gdf[geodataframe_index_key].map(phenotypes_series)
     else:
         logger.info("geodataframe index key not passed, using index")
         gdf.index = gdf.index.astype(str)
         gdf['class'] = gdf.index.map(phenotypes_series).astype(str)
 
-    gdf['class'] = gdf['class'].cat.add_categories('filtered_out')
+    gdf['class'] = gdf['class'].astype("category")
+    gdf['class'] = gdf['class'].cat.add_categories('filtered_out') 
     gdf['class'] = gdf['class'].fillna('filtered_out')
+    gdf['class'] = gdf['class'].replace("nan", "filtered_out")
 
     if color_dict:
             logger.info(f"Using color_dict found in table.uns[{color_dict}]")
@@ -136,9 +185,29 @@ def color_geojson_w_adata(
     #simplify the geometry
     if simplify_value is not None:
         logger.info(f"Simplifying the geometry with tolerance {simplify_value}")
+        start_time = time.time()
         gdf['geometry'] = gdf['geometry'].simplify(simplify_value, preserve_topology=True)
+        logger.info(f"Simplified all polygons in {time.time() - start_time:.1f} seconds")
 
+    logger.info("Writing polygons as geojson file")
+    start_time = time.time()
     gdf.to_file(export_path, driver='GeoJSON')
+    logger.info(f"File written in {time.time() - start_time:.1f} seconds")
 
     if return_gdf:
         return gdf
+    
+def parse_color_for_qupath(color_dict):
+    parsed_colors = {}
+    for name, color in color_dict.items():
+        if isinstance(color, tuple) and len(color) == 3:
+            # Handle RGB fraction tuples (0-1)
+            parsed_colors[name] = list(int(c * 255) for c in color)
+        elif isinstance(color, str) and re.match(r'^#(?:[0-9a-fA-F]{3}){1,2}$', color):
+            # Handle hex codes
+            parsed_colors[name] = mcolors.hex2color(color)
+            parsed_colors[name] = list(int(c * 255) for c in parsed_colors[name])
+        else:
+            raise ValueError(f"Invalid color format for '{name}': {color}")
+        
+    return parsed_colors

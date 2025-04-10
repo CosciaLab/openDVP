@@ -4,13 +4,10 @@ import time
 import numpy as np
 import dask.array as da
 import geopandas as gpd
-import pandas.api.types as ptypes
 
 import tifffile
-import shapely
-from rasterio.features import shapes
-from shapely.geometry import shape as shapely_shape, MultiPolygon
-import scipy
+
+
 
 #TODO test functions
 

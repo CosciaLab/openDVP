@@ -1,11 +1,17 @@
 import pandas as pd
 import anndata as ad
+import geopandas as gpd
+
 from loguru import logger
 import time, os, re
 from itertools import cycle
 
+import scipy
+import shapely
+from rasterio.features import shapes
+from shapely.geometry import shape as shapely_shape, MultiPolygon
 import matplotlib.colors as mcolors
-
+import pandas.api.types as ptypes
 from .utils import parse_color_for_qupath
 
 def read_quant(csv_data_path) -> ad.AnnData:
@@ -216,6 +222,8 @@ def adataobs_to_voronoi_geojson(
 
     #TODO pass adata as input not df
     #TODO pass color dict
+    #TODO check colors
+    #TODO docstring
 
     logger.debug(f" df shape: {df.shape}")
 

@@ -6,11 +6,11 @@ from loguru import logger
 from itertools import cycle
 import shapely
 import os
-import matplotlib.colors as mcolors
-import re
 
 import dask_image.imread
 import dask.array as da
+
+from utils import parse_color_for_qupath
 
 def import_qupath_geojson_to_sdata(path_to_geojson: str, sdata: spatialdata.SpatialData, key: str) -> spatialdata.SpatialData:
     """
@@ -150,17 +150,20 @@ def sdata_to_qupath_detections(
         sdata[key_to_shapes]['class'] = sdata[key_to_shapes]['class'].replace("nan", "filtered_out") #incase filtered out cells
         logger.info(f"Classes now in shapes: {sdata[key_to_shapes]['class'].unique()}")
 
-        if color_dict:
-            logger.info(f"Using color_dict found in table.uns[{color_dict}]")
-            logger.info(f"color dict looks like this: {sdata[table_key].uns[color_dict]}")
-            color_dict = sdata[table_key].uns[color_dict]
-            color_dict = parse_color_for_qupath(color_dict)
-        else:
-            logger.info("No color_dict found, using defaults")
-            default_colors = [[31, 119, 180], [255, 127, 14], [44, 160, 44], [214, 39, 40], [148, 103, 189]]
-            color_cycle = cycle(default_colors)
-            color_dict = dict(zip(sdata[table_key].obs[classify_by].cat.categories.astype(str), color_cycle))
-            logger.info(f"color_dict created: {color_dict}")
+
+        color_dict = parse_color_for_qupath(color_dict, adata=sdata[table_key], adata_obs_key=classify_by)
+
+        # if color_dict:
+        #     logger.info(f"Using color_dict found in table.uns[{color_dict}]")
+        #     logger.info(f"color dict looks like this: {sdata[table_key].uns[color_dict]}")
+        #     color_dict = sdata[table_key].uns[color_dict]
+        #     color_dict = parse_color_for_qupath(color_dict)
+        # else:
+        #     logger.info("No color_dict found, using defaults")
+        #     default_colors = [[31, 119, 180], [255, 127, 14], [44, 160, 44], [214, 39, 40], [148, 103, 189]]
+        #     color_cycle = cycle(default_colors)
+        #     color_dict = dict(zip(sdata[table_key].obs[classify_by].cat.categories.astype(str), color_cycle))
+        #     logger.info(f"color_dict created: {color_dict}")
 
         sdata[key_to_shapes]['classification'] = sdata[key_to_shapes].apply(
             lambda x: {'name': x['class'], 'color': color_dict[x['class']]}, axis=1)
@@ -182,19 +185,3 @@ def sdata_to_qupath_detections(
 
     if return_gdf:
         return sdata[key_to_shapes] 
-
-
-def parse_color_for_qupath(color_dict):
-    parsed_colors = {}
-    for name, color in color_dict.items():
-        if isinstance(color, tuple) and len(color) == 3:
-            # Handle RGB fraction tuples (0-1)
-            parsed_colors[name] = list(int(c * 255) for c in color)
-        elif isinstance(color, str) and re.match(r'^#(?:[0-9a-fA-F]{3}){1,2}$', color):
-            # Handle hex codes
-            parsed_colors[name] = mcolors.hex2color(color)
-            parsed_colors[name] = list(int(c * 255) for c in parsed_colors[name])
-        else:
-            raise ValueError(f"Invalid color format for '{name}': {color}")
-        
-    return parsed_colors

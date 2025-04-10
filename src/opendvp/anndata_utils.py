@@ -6,6 +6,8 @@ from itertools import cycle
 
 import matplotlib.colors as mcolors
 
+from .utils import parse_color_for_qupath
+
 def read_quant(csv_data_path) -> ad.AnnData:
     """
     Read the quantification data from a csv file and return an anndata object
@@ -167,14 +169,17 @@ def color_geojson_w_adata(
     gdf['class'] = gdf['class'].fillna('filtered_out')
     gdf['class'] = gdf['class'].replace("nan", "filtered_out")
 
-    if color_dict:
-            logger.info(f"Using color_dict found in table.uns[{color_dict}]")
-            color_dict = parse_color_for_qupath(color_dict)
-    else:
-            logger.info("No color_dict found, using defaults")
-            default_colors = [[31, 119, 180], [255, 127, 14], [44, 160, 44], [214, 39, 40], [148, 103, 189]]
-            color_cycle = cycle(default_colors)
-            color_dict = dict(zip(adata.obs[adata_obs_category_key].cat.categories.astype(str), color_cycle))
+
+    color_dict = parse_color_for_qupath(color_dict, adata=adata, adata_obs_key=adata_obs_category_key)
+
+    # if color_dict:
+    #         logger.info(f"Using color_dict found in table.uns[{color_dict}]")
+    #         color_dict = parse_color_for_qupath(color_dict, )
+    # else:
+    #         logger.info("No color_dict found, using defaults")
+    #         default_colors = [[31, 119, 180], [255, 127, 14], [44, 160, 44], [214, 39, 40], [148, 103, 189]]
+    #         color_cycle = cycle(default_colors)
+    #         color_dict = dict(zip(adata.obs[adata_obs_category_key].cat.categories.astype(str), color_cycle))
 
     if 'filtered_out' not in color_dict:
         color_dict['filtered_out'] = [0,0,0]
@@ -196,18 +201,105 @@ def color_geojson_w_adata(
 
     if return_gdf:
         return gdf
+
+def adataobs_to_voronoi_geojson(
+        df,
+        imageid, 
+        subset:list=None, 
+        category_1:str="phenotype", 
+        category_2=None, 
+        output_path:str="../data/processed/"):
+    """ 
+    Description:
     
-def parse_color_for_qupath(color_dict):
-    parsed_colors = {}
-    for name, color in color_dict.items():
-        if isinstance(color, tuple) and len(color) == 3:
-            # Handle RGB fraction tuples (0-1)
-            parsed_colors[name] = list(int(c * 255) for c in color)
-        elif isinstance(color, str) and re.match(r'^#(?:[0-9a-fA-F]{3}){1,2}$', color):
-            # Handle hex codes
-            parsed_colors[name] = mcolors.hex2color(color)
-            parsed_colors[name] = list(int(c * 255) for c in parsed_colors[name])
-        else:
-            raise ValueError(f"Invalid color format for '{name}': {color}")
+    """
+
+    #TODO pass adata as input not df
+    #TODO pass color dict
+
+    logger.debug(f" df shape: {df.shape}")
+
+    df = df.copy()
+    #subset per image
+    if ptypes.is_numeric_dtype(df['imageid']) is False:
+        logger.info("ImageID is not a numeric, changing datatype to int16")
+        df['imageid'] = df['imageid'].astype("int16")
+    df = df[(df.imageid == imageid)]
+    logger.debug(f" df shape after imageid subset: {df.shape}")
+    logger.info(f"Processing {imageid}, loaded dataframe")
+
+    #subset per x,y
+    if subset is not None:
+        logger.info(f"Subsetting to {subset}")
+        assert len(subset) == 4, "subset must be a list of 4 integers"
+        x_min, x_max, y_min, y_max = subset
+        df = df[(df.X_centroid > x_min) &
+                (df.X_centroid < x_max) &
+                (df.Y_centroid > y_min) &
+                (df.Y_centroid < y_max)]
+        #clean subset up
+        df = df.reset_index(drop=True)
+        if 'Unnamed: 0' in df.columns:
+            df.drop(columns=['Unnamed: 0'], inplace=True)
+
+    logger.info("Running Voronoi")
+    # run Voronoi 
+    # df = df[['X_centroid', 'Y_centroid', category_1, category_2]]    
+    vor = scipy.spatial.Voronoi(df[['X_centroid', 'Y_centroid']].values)
+    polygons = []
+    for i in range(len(df)):
+        polygon = shapely.Polygon(
+            [vor.vertices[vertex] for vertex in vor.regions[vor.point_region[i]]])
+        polygons.append(polygon)
+    df['geometry'] = polygons
+    logger.info("Voronoi done")
+
+    #transform to geodataframe
+    gdf = gpd.GeoDataFrame(df, geometry='geometry')
+    logger.info("Transformed to geodataframe")
+
+    # filter polygons that go outside of image
+    if subset is None:
+        x_min = gdf['X_centroid'].min()
+        x_max = gdf['X_centroid'].max()
+        y_min = gdf['Y_centroid'].min()
+        y_max = gdf['Y_centroid'].max()
+        logger.info(f"Bounding box: x_min: {x_min}, x_max: {x_max}, y_min: {y_min}, y_max {y_max}")
+
+    boundary_box = shapely.box(x_min, y_min, x_max, y_max)
+    gdf = gdf[gdf.geometry.apply(lambda poly: poly.within(boundary_box))]
+    logger.info("Filtered out infinite polygons")
+
+    # filter polygons that are too large
+    gdf['area'] = gdf['geometry'].area
+    gdf = gdf[gdf['area'] < gdf['area'].quantile(0.98)]
+    logger.info("Filtered out large polygons based on the 98% quantile")
+    # filter polygons that are very pointy
+    
+    # TODO improve filtering by pointiness
+    # gdf = process_polygons(gdf, scale_threshold=350, remove_threshold=400, scale_factor=0.3)
+    # logger.info("Filtered out pointy polygons")
+
+    # create geodataframe for each cell and their celltype
+    gdf2 = gdf.copy()
+    # gdf2['objectType'] = 'cell'
+    gdf2['objectType'] = "detection"
+    gdf2['classification'] = gdf2[category_1]
+    
+    # merge polygons based on the CN column
+    if category_2:
+        logger.info("Merging polygons for cellular neighborhoods")
+        gdf3 = gdf.copy()
+        gdf3 = gdf3.dissolve(by=category_2)
+        gdf3[category_2] = gdf3.index
+        gdf3 = gdf3.explode(index_parts=True)
+        gdf3 = gdf3.reset_index(drop=True)
+        gdf3['classification'] = gdf3[category_2].astype(str)
         
-    return parsed_colors
+    #export to geojson
+    datetime = time.strftime("%Y%m%d_%H%M")
+    gdf2.to_file(f"{output_path}/{datetime}_{imageid}_cells_voronoi.geojson", driver='GeoJSON')
+    if category_2:
+        gdf3.to_file(f"{output_path}/{datetime}_{imageid}_RCN_voronoi.geojson", driver='GeoJSON')
+
+    logger.success(f"Exported {imageid} to geojson")

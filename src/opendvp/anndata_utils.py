@@ -224,6 +224,7 @@ def adataobs_to_voronoi_geojson(
     #TODO pass color dict
     #TODO check colors
     #TODO docstring
+    #TODO as detections for opaque 
 
     logger.debug(f" df shape: {df.shape}")
 

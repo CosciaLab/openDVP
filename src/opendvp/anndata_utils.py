@@ -12,7 +12,7 @@ from rasterio.features import shapes
 from shapely.geometry import shape as shapely_shape, MultiPolygon
 import matplotlib.colors as mcolors
 import pandas.api.types as ptypes
-from .utils import parse_color_for_qupath
+from opendvp.utils import parse_color_for_qupath
 
 def read_quant(csv_data_path) -> ad.AnnData:
     """
@@ -178,15 +178,6 @@ def color_geojson_w_adata(
 
     color_dict = parse_color_for_qupath(color_dict, adata=adata, adata_obs_key=adata_obs_category_key)
 
-    # if color_dict:
-    #         logger.info(f"Using color_dict found in table.uns[{color_dict}]")
-    #         color_dict = parse_color_for_qupath(color_dict, )
-    # else:
-    #         logger.info("No color_dict found, using defaults")
-    #         default_colors = [[31, 119, 180], [255, 127, 14], [44, 160, 44], [214, 39, 40], [148, 103, 189]]
-    #         color_cycle = cycle(default_colors)
-    #         color_dict = dict(zip(adata.obs[adata_obs_category_key].cat.categories.astype(str), color_cycle))
-
     if 'filtered_out' not in color_dict:
         color_dict['filtered_out'] = [0,0,0]
 
@@ -220,6 +211,8 @@ def adataobs_to_voronoi_geojson(
     
     """
 
+    #TODO one category at a time
+    #TODO decide between annotations and detections
     #TODO pass adata as input not df
     #TODO pass color dict
     #TODO check colors

@@ -1,17 +1,25 @@
 # Misc functions
-import time
+import time, os, re
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
-import re
-
 from loguru import logger
 from itertools import cycle
 
-def export_figure(fig, path, suffix):
-    datetime = time.strftime("%Y%m%d_%H%M")
-    fig.savefig(fname=f"{path}{datetime}_{suffix}.pdf", format="pdf", dpi=600, bbox_inches="tight")
-    fig.savefig(fname=f"{path}{datetime}_{suffix}.svg", format="svg", dpi=600, bbox_inches="tight")
+def export_figure(fig, path, suffix, dpi=600):
+    # Ensure path ends with a slash or is joined correctly
+    os.makedirs(path, exist_ok=True)
+
+    datetime_str = time.strftime("%Y%m%d_%H%M")
+    base_filename = f"{datetime_str}_{suffix}"
+
+    pdf_path = os.path.join(path, f"{base_filename}.pdf")
+    svg_path = os.path.join(path, f"{base_filename}.svg")
+
+    fig.savefig(fname=pdf_path, format="pdf", dpi=dpi, bbox_inches="tight")
+    fig.savefig(fname=svg_path, format="svg", dpi=dpi, bbox_inches="tight")
+
+    print(f"Figure saved as: {pdf_path} and {svg_path}")
 
 def check_link(sdata, shape_element_key, adata, adata_obs_key):
     shape_index = sdata[shape_element_key].index.to_list()

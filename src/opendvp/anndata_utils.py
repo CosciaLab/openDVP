@@ -316,7 +316,6 @@ def adataobs_to_voronoi_geojson(
         gdf = gdf.explode(index_parts=True)
         gdf = gdf.reset_index(drop=True)
         
-    
     #add color
     gdf['classification'] = gdf[color_by_adata_key].astype(str)
     color_dict = parse_color_for_qupath(color_dict, adata=adata, adata_obs_key=color_by_adata_key)

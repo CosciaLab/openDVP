@@ -107,7 +107,6 @@ def color_geojson_w_adata(
         color_dict,
         export_path,
         simplify_value=1,
-        return_gdf=False
 ):
     
     """
@@ -191,12 +190,14 @@ def color_geojson_w_adata(
         gdf['geometry'] = gdf['geometry'].simplify(simplify_value, preserve_topology=True)
         logger.info(f"Simplified all polygons in {time.time() - start_time:.1f} seconds")
 
-    logger.info("Writing polygons as geojson file")
-    start_time = time.time()
-    gdf.to_file(export_path, driver='GeoJSON')
-    logger.info(f"File written in {time.time() - start_time:.1f} seconds")
-
-    if return_gdf:
+    #export to geojson
+    if export_path:
+        logger.info("Writing polygons as geojson file")
+        gdf.index.name = 'index'
+        gdf.to_file(export_path, driver='GeoJSON')
+        logger.success(f"Exported Voronoi projection to {export_path}")
+    else:
+        logger.success(f" -- Created and returning Voronoi projection -- ")
         return gdf
 
 def adataobs_to_voronoi_geojson(
@@ -265,28 +266,29 @@ def adataobs_to_voronoi_geojson(
     if 'X_centroid' not in adata.obs or 'Y_centroid' not in adata.obs:
         raise ValueError("`adata.obs` must contain 'X_centroid' and 'Y_centroid' columns.")
 
+    df = adata.obs.copy()
+
     if subset_adata_key and subset_adata_value is not None:
         if subset_adata_key not in adata.obs.columns:
             raise ValueError(f"{subset_adata_key} not found in adata.obs columns.")
         if subset_adata_value not in adata.obs[subset_adata_key].unique():
             raise ValueError(f"{subset_adata_value} not found in adata.obs[{subset_adata_key}].")
 
-
-    # Process input data
-    df = adata.obs.copy()
-    logger.info(adata.obs[subset_adata_key].unique())
-    logger.info(f"Subset adata col dtype: {adata.obs[subset_adata_key].dtype}")
-    df = df[df[subset_adata_key] == subset_adata_value]
-    logger.info(f" Shape after subset: {df.shape}")
+        logger.info(adata.obs[subset_adata_key].unique())
+        logger.info(f"Subset adata col dtype: {adata.obs[subset_adata_key].dtype}")
+        df = df[df[subset_adata_key] == subset_adata_value]
+        logger.info(f" Shape after subset: {df.shape}")
 
     # Run Voronoi
     logger.info("Running Voronoi")
     vor = scipy.spatial.Voronoi(df[['X_centroid', 'Y_centroid']].values)
-    polygons = []
-    for i in range(len(df)):
-        polygon = shapely.Polygon(
-            [vor.vertices[vertex] for vertex in vor.regions[vor.point_region[i]]])
-        polygons.append(polygon)
+    
+    polygons = [safe_voronoi_polygon(vor, i) for i in range(len(df))]
+    
+    # polygons = []
+    # for i in range(len(df)):
+        # polygon = shapely.Polygon([vor.vertices[vertex] for vertex in vor.regions[vor.point_region[i]]])
+        # polygons.append(polygon)
     df['geometry'] = polygons
     logger.info("Voronoi done")
 
@@ -334,5 +336,18 @@ def adataobs_to_voronoi_geojson(
     else:
         logger.success(f" -- Created and returning Voronoi projection -- ")
         return gdf
-
     
+def safe_voronoi_polygon(vor, i):
+    region_index = vor.point_region[i]
+    region = vor.regions[region_index]
+    # Invalid if empty or contains -1 (infinite vertex)
+    if -1 in region or len(region) < 3:
+        return None
+    vertices = vor.vertices[region]
+    if len(vertices) < 3:
+        return None
+    polygon = shapely.Polygon(vertices)
+    # Validate: must have 4+ coords to form closed polygon
+    if not polygon.is_valid or len(polygon.exterior.coords) < 4:
+        return None
+    return polygon

@@ -282,14 +282,7 @@ def adataobs_to_voronoi_geojson(
     # Run Voronoi
     logger.info("Running Voronoi")
     vor = scipy.spatial.Voronoi(df[['X_centroid', 'Y_centroid']].values)
-    
-    polygons = [safe_voronoi_polygon(vor, i) for i in range(len(df))]
-    
-    # polygons = []
-    # for i in range(len(df)):
-        # polygon = shapely.Polygon([vor.vertices[vertex] for vertex in vor.regions[vor.point_region[i]]])
-        # polygons.append(polygon)
-    df['geometry'] = polygons
+    df['geometry'] = [safe_voronoi_polygon(vor, i) for i in range(len(df))]
     logger.info("Voronoi done")
 
     #transform to geodataframe

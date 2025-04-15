@@ -200,53 +200,87 @@ def color_geojson_w_adata(
         return gdf
 
 def adataobs_to_voronoi_geojson(
-        df,
-        imageid, 
-        subset:list=None, 
-        category_1:str="phenotype", 
-        category_2=None, 
-        output_path:str="../data/processed/"):
-    """ 
-    Description:
-    
+        adata,
+        subset_adata_key = None, 
+        subset_adata_value = None,
+        color_by_adata_key:str = "phenotype",
+        color_dict:dict = None,
+        threshold_quantile = 0.98,
+        merge_adjacent_shapes = True,
+        save_as_detection = True,  
+        output_filepath:str = None
+        ):
+    """
+    Generate a Voronoi diagram from cell centroids stored in an AnnData object 
+    and export it as a GeoJSON file or return it as a GeoDataFrame.
+
+    This function computes a 2D Voronoi tessellation from the 'X_centroid' and 'Y_centroid' 
+    columns in `adata.obs`, optionally filters and merges polygons based on user-defined criteria, 
+    and outputs the result in a GeoJSON-compatible format for visualization or downstream analysis 
+    (e.g., in QuPath).
+
+    Parameters
+    ----------
+    adata : AnnData
+        AnnData object with centroid coordinates in `adata.obs[['X_centroid', 'Y_centroid']]`.
+
+    subset_adata_key : str, optional
+        Column in `adata.obs` used to filter a subset of cells (e.g., a specific image ID or tissue section).
+
+    subset_adata_value : Any, optional
+        Value used to subset the `subset_adata_key` column. Only rows matching this value will be used.
+
+    color_by_adata_key : str, default "phenotype"
+        Column in `adata.obs` that determines the class or type of each cell. Used for coloring and grouping.
+
+    color_dict : dict, optional
+        Dictionary mapping class names to RGB color codes. Used to color each class in QuPath style.
+        If not provided, a default palette will be generated.
+
+    threshold_quantile : float, default 0.98
+        Polygons with an area greater than this quantile will be excluded (used to remove oversized/outlier regions).
+
+    merge_adjacent_shapes : bool, default True
+        If True, merges adjacent polygons with the same class label.
+
+    save_as_detection : bool, default True
+        If True, sets the `objectType` property to "detection" in the output for QuPath compatibility.
+
+    output_filepath : str, optional
+        If provided, saves the output as a GeoJSON file at this path. 
+        If None, returns the GeoDataFrame instead.
+
+    Returns
+    -------
+    geopandas.GeoDataFrame or None
+        If `output_filepath` is None, returns the resulting GeoDataFrame with Voronoi polygons.
+        Otherwise, writes to file and returns None.
+
+    Notes
+    -----
+    - Requires the `scipy`, `shapely`, `geopandas`, and `anndata` packages.
+    - Assumes `adata.obs` contains valid `X_centroid` and `Y_centroid` columns.
     """
 
-    #TODO one category at a time
-    #TODO decide between annotations and detections
-    #TODO pass adata as input not df
-    #TODO pass color dict
-    #TODO check colors
-    #TODO docstring
-    #TODO as detections for opaque 
+    if 'X_centroid' not in adata.obs or 'Y_centroid' not in adata.obs:
+        raise ValueError("`adata.obs` must contain 'X_centroid' and 'Y_centroid' columns.")
 
-    logger.debug(f" df shape: {df.shape}")
+    if subset_adata_key and subset_adata_value is not None:
+        if subset_adata_key not in adata.obs.columns:
+            raise ValueError(f"{subset_adata_key} not found in adata.obs columns.")
+        if subset_adata_value not in adata.obs[subset_adata_key].unique():
+            raise ValueError(f"{subset_adata_value} not found in adata.obs[{subset_adata_key}].")
 
-    df = df.copy()
-    #subset per image
-    if ptypes.is_numeric_dtype(df['imageid']) is False:
-        logger.info("ImageID is not a numeric, changing datatype to int16")
-        df['imageid'] = df['imageid'].astype("int16")
-    df = df[(df.imageid == imageid)]
-    logger.debug(f" df shape after imageid subset: {df.shape}")
-    logger.info(f"Processing {imageid}, loaded dataframe")
 
-    #subset per x,y
-    if subset is not None:
-        logger.info(f"Subsetting to {subset}")
-        assert len(subset) == 4, "subset must be a list of 4 integers"
-        x_min, x_max, y_min, y_max = subset
-        df = df[(df.X_centroid > x_min) &
-                (df.X_centroid < x_max) &
-                (df.Y_centroid > y_min) &
-                (df.Y_centroid < y_max)]
-        #clean subset up
-        df = df.reset_index(drop=True)
-        if 'Unnamed: 0' in df.columns:
-            df.drop(columns=['Unnamed: 0'], inplace=True)
+    # Process input data
+    df = adata.obs.copy()
+    logger.info(adata.obs[subset_adata_key].unique())
+    logger.info(f"Subset adata col dtype: {adata.obs[subset_adata_key].dtype}")
+    df = df[df[subset_adata_key] == subset_adata_value]
+    logger.info(f" Shape after subset: {df.shape}")
 
+    # Run Voronoi
     logger.info("Running Voronoi")
-    # run Voronoi 
-    # df = df[['X_centroid', 'Y_centroid', category_1, category_2]]    
     vor = scipy.spatial.Voronoi(df[['X_centroid', 'Y_centroid']].values)
     polygons = []
     for i in range(len(df)):
@@ -261,47 +295,44 @@ def adataobs_to_voronoi_geojson(
     logger.info("Transformed to geodataframe")
 
     # filter polygons that go outside of image
-    if subset is None:
-        x_min = gdf['X_centroid'].min()
-        x_max = gdf['X_centroid'].max()
-        y_min = gdf['Y_centroid'].min()
-        y_max = gdf['Y_centroid'].max()
-        logger.info(f"Bounding box: x_min: {x_min}, x_max: {x_max}, y_min: {y_min}, y_max {y_max}")
-
+    x_min, x_max = gdf['X_centroid'].min(), gdf['X_centroid'].max()
+    y_min, y_max = gdf['Y_centroid'].min(), gdf['Y_centroid'].max()
+    logger.info(f"Bounding box: x_min: {x_min:.1f}, x_max: {x_max:.1f}, y_min: {y_min:.1f}, y_max {y_max:.1f}")
     boundary_box = shapely.box(x_min, y_min, x_max, y_max)
-    gdf = gdf[gdf.geometry.apply(lambda poly: poly.within(boundary_box))]
-    logger.info("Filtered out infinite polygons")
+    # gdf = gdf[gdf.geometry.apply(lambda poly: poly.within(boundary_box))]
+    gdf = gdf[gdf.geometry.within(boundary_box)]
+    # logger.info("Filtered out infinite polygons")
+    logger.info(f"Retaining {len(gdf)} valid polygons after filtering large and infinite ones.")
 
     # filter polygons that are too large
     gdf['area'] = gdf['geometry'].area
-    gdf = gdf[gdf['area'] < gdf['area'].quantile(0.98)]
-    logger.info("Filtered out large polygons based on the 98% quantile")
-    # filter polygons that are very pointy
-    
-    # TODO improve filtering by pointiness
-    # gdf = process_polygons(gdf, scale_threshold=350, remove_threshold=400, scale_factor=0.3)
-    # logger.info("Filtered out pointy polygons")
+    gdf = gdf[gdf['area'] < gdf['area'].quantile(threshold_quantile)]
+    logger.info(f"Filtered out large polygons based on the {threshold_quantile} quantile")
 
     # create geodataframe for each cell and their celltype
-    gdf2 = gdf.copy()
-    # gdf2['objectType'] = 'cell'
-    gdf2['objectType'] = "detection"
-    gdf2['classification'] = gdf2[category_1]
-    
-    # merge polygons based on the CN column
-    if category_2:
-        logger.info("Merging polygons for cellular neighborhoods")
-        gdf3 = gdf.copy()
-        gdf3 = gdf3.dissolve(by=category_2)
-        gdf3[category_2] = gdf3.index
-        gdf3 = gdf3.explode(index_parts=True)
-        gdf3 = gdf3.reset_index(drop=True)
-        gdf3['classification'] = gdf3[category_2].astype(str)
-        
-    #export to geojson
-    datetime = time.strftime("%Y%m%d_%H%M")
-    gdf2.to_file(f"{output_path}/{datetime}_{imageid}_cells_voronoi.geojson", driver='GeoJSON')
-    if category_2:
-        gdf3.to_file(f"{output_path}/{datetime}_{imageid}_RCN_voronoi.geojson", driver='GeoJSON')
+    if save_as_detection:
+        gdf['objectType'] = "detection"
 
-    logger.success(f"Exported {imageid} to geojson")
+    # merge polygons based on the CN column
+    if merge_adjacent_shapes:
+        logger.info("Merging polygons adjacent and of same category")
+        gdf = gdf.dissolve(by=color_by_adata_key)
+        gdf[color_by_adata_key] = gdf.index
+        gdf = gdf.explode(index_parts=True)
+        gdf = gdf.reset_index(drop=True)
+        
+    
+    #add color
+    gdf['classification'] = gdf[color_by_adata_key].astype(str)
+    color_dict = parse_color_for_qupath(color_dict, adata=adata, adata_obs_key=color_by_adata_key)
+    gdf['classification'] = gdf.apply(lambda x: {'name': x['classification'], 'color': color_dict[x['classification']]}, axis=1)
+
+    #export to geojson
+    if output_filepath:
+        gdf.to_file(output_filepath, driver='GeoJSON')
+        logger.success(f"Exported Voronoi projection to {output_filepath}")
+    else:
+        logger.success(f" -- Created and returning Voronoi projection -- ")
+        return gdf
+
+    

@@ -152,3 +152,18 @@ def parse_color_for_qupath(color_dict, adata, adata_obs_key) -> dict:
                 raise ValueError(f"Invalid color format for '{name}': {color}")
             
     return parsed_colors
+
+def print_color_dict(dictionary):
+
+    fig, ax = plt.subplots(figsize=(8, len(dictionary) * 0.5))
+
+    for index,(name, hex) in enumerate(dictionary.items()):
+        ax.add_patch(plt.Rectangle((0, index), 1, 1, color=hex))
+        ax.text(1.1, index + 0.5, name, ha='left', va='center', fontsize=12)
+
+    # Adjust plot limits and aesthetics
+    ax.set_xlim(0, 2)
+    ax.set_ylim(0, len(dictionary))
+    ax.axis('off')
+
+    plt.show()

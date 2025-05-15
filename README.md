@@ -2,20 +2,35 @@
 
 ![Graphical_Abstract](https://github.com/user-attachments/assets/bc2ade23-1622-42cf-a5c5-bb80e7be5b1f)
 
-
 ## Introduction
 
-openDVP is a framework that aims to empower users to perform Deep Visual Proteomics without propietary software.
+openDVP is a framework that empowers users to perform Deep Visual propietary with open sourced software.
 
-This repository encompasses various many steps and our recommended approach to analysis, but also with resources for users to explore and decide what is best for their question at hand.
+This repository summarizes our recommendations with 4 distinct areas of use for openDVP.
+1. Image processing and Analysis
+2. Matrix processing and analysis
+3. Quality control with QuPath and Napari
+4. Export to LMD
 
-This repository also includes a variety of python functions that aim to facilitate the conversion of images, segmentation masks, and other dataformats between python data structures such as pandas DataFrames, scverse's AnnData and SpatialData, and other software more focused with user friendliness like QuPath.
+openDVP uses scverse's data formats, AnnData and SpatialData, in order to facilitate further changes and or use of other analytical packages such as scanpy, squidpy, or scimap.
 
-## Contents
+## Citation
 
-### Expectations
+Please cite the corresponding bioarxiv for now:
+<REF> 
 
-- Users must be aquainted with the DVP workflow and methodology
+## Installation
+
+To install run:   
+``` pip install opendvp ```
+
+## Demo
+### Download demo data
+
+https://zenodo.org/records/15397560
+
+### How to run demo data
+
 
 ### Inputs
 

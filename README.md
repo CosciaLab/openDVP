@@ -1,5 +1,8 @@
 # OpenDVP
 
+![Graphical_Abstract](https://github.com/user-attachments/assets/bc2ade23-1622-42cf-a5c5-bb80e7be5b1f)
+
+
 ## Introduction
 
 openDVP is a framework that aims to empower users to perform Deep Visual Proteomics without propietary software.

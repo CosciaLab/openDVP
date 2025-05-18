@@ -22,6 +22,7 @@ def read_quant(csv_data_path) -> ad.AnnData:
     """
 
     #TODO not general enough, exemplar001 fails
+    #TODO let users pass list of metadata columns, everything else is data
 
     logger.info(" ---- read_quant : version number 1.1.0 ----")
     time_start = time.time()

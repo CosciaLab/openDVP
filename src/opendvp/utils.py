@@ -27,7 +27,6 @@ def check_link(sdata, shape_element_key, adata, adata_obs_key):
     assert sdata[shape_element_key].index.dtype == adata.obs[adata_obs_key].dtype, "Data types do not match."
     print("Success, no problems found")
 
-
 def ensure_one_based_index(adata, cellid_col="CellID"):
     """
     Ensures the specified CellID column and index are 1-based.
@@ -63,41 +62,6 @@ def ensure_one_based_index(adata, cellid_col="CellID"):
     return adata
 
 
-def plot_rcn_stacked_barplot(df, phenotype_col, rcn_col, normalize=True):
-    """
-    Plots a stacked barplot showing phenotype composition per RCN motif.
-    
-    Parameters:
-    df (DataFrame): Input dataframe containing phenotype and RCN columns
-    phenotype_col (str): Column name for phenotypes
-    rcn_col (str): Column name for RCN motifs
-    normalize (bool): If True, normalize frequencies to proportions per motif
-    """
-    # Count frequencies of each phenotype within each RCN
-    count_df = df.groupby([rcn_col, phenotype_col]).size().unstack(fill_value=0)
-    
-    # Normalize to proportions if requested
-    if normalize:
-        count_df = count_df.div(count_df.sum(axis=1), axis=0)
-    
-    # Create the stacked barplot
-    fig, ax = plt.subplots(figsize=(8, 6))
-    
-    bottoms = [0] * len(count_df)
-    for phenotype, color in phenotype_colors.items():
-        if phenotype in count_df.columns:
-            ax.bar(count_df.index, count_df[phenotype],
-                   bottom=bottoms, color=color, label=phenotype)
-            bottoms = [i + j for i, j in zip(bottoms, count_df[phenotype])]
-    
-    # Customize plot
-    ax.legend(title="Phenotype", bbox_to_anchor=(1.05, 1), loc='upper left')
-    ax.set_ylabel("Proportion" if normalize else "Count")
-    ax.set_xlabel("RCN Motif")
-    ax.set_title("Phenotype Composition per RCN Motif")
-    plt.tight_layout()
-    plt.show()
-
 
 def create_vertical_legend(color_dict, title="Legend"):
 
@@ -121,35 +85,6 @@ def create_vertical_legend(color_dict, title="Legend"):
     
     return fig
 
-
-def parse_color_for_qupath(color_dict, adata, adata_obs_key) -> dict:
-    
-    logger.info("Parsing colors compatible with QuPath")
-    
-    if color_dict is None: 
-        logger.info("No color_dict found, using defaults")
-        default_colors = [[31, 119, 180], [255, 127, 14], [44, 160, 44], [214, 39, 40], [148, 103, 189]]
-        color_cycle = cycle(default_colors)
-        parsed_colors = dict(zip(adata.obs[adata_obs_key].cat.categories.astype(str), color_cycle))
-        logger.info(f"color_dict created: {parsed_colors}")
-    else:
-        logger.info("Custom color dictionary passed, adapting to QuPath color format")  
-        parsed_colors = {}
-        for name, color in color_dict.items():
-            if isinstance(color, tuple) and len(color) == 3:
-                # Handle RGB fraction tuples (0-1)
-                parsed_colors[name] = list(int(c * 255) for c in color)
-            elif isinstance(color, list) and len(color) == 3 and all(isinstance(c, int) and 0 <= c <= 255 for c in color):
-                # Already in [R, G, B] format with values 0-255
-                parsed_colors[name] = color
-            elif isinstance(color, str) and re.match(r'^#(?:[0-9a-fA-F]{3}){1,2}$', color):
-                # Handle hex codes
-                parsed_colors[name] = mcolors.hex2color(color)
-                parsed_colors[name] = list(int(c * 255) for c in parsed_colors[name])
-            else:
-                raise ValueError(f"Invalid color format for '{name}': {color}")
-            
-    return parsed_colors
 
 def print_color_dict(dictionary):
 

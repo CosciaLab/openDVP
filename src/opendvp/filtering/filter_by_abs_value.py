@@ -1,3 +1,8 @@
+from opendvp.logger import logger
+import time
+import anndata as ad
+import pandas as pd
+
 
 def filter_by_abs_value(adata, marker, value=None, quantile=None, keep='above', plot=False) -> ad.AnnData:
     """ 
@@ -46,18 +51,18 @@ def filter_by_abs_value(adata, marker, value=None, quantile=None, keep='above', 
     adata_copy.obs[label] = df[label].values
     logger.info(f"Number of cells with {marker} {keep} {threshold}: {sum(df[label])}")
 
-    if plot:
-        sns.histplot(df[marker], bins=500)
-        plt.yscale('log')
-        plt.xscale('log')
-        plt.title(f'{marker} distribution')
-        plt.axvline(threshold, color='black', linestyle='--', alpha=0.5)
+    # if plot:
+    #     sns.histplot(df[marker], bins=500)
+    #     plt.yscale('log')
+    #     plt.xscale('log')
+    #     plt.title(f'{marker} distribution')
+    #     plt.axvline(threshold, color='black', linestyle='--', alpha=0.5)
 
-        if keep == 'above':
-            plt.text(threshold + 10, 1000, f"cells with {marker} > {threshold}", fontsize=9, color='black')
-        elif keep == 'below':
-            plt.text(threshold - 10, 1000, f"cells with {marker} < {threshold}", fontsize=9, color='black', horizontalalignment='right')
-        plt.show()
+    #     if keep == 'above':
+    #         plt.text(threshold + 10, 1000, f"cells with {marker} > {threshold}", fontsize=9, color='black')
+    #     elif keep == 'below':
+    #         plt.text(threshold - 10, 1000, f"cells with {marker} < {threshold}", fontsize=9, color='black', horizontalalignment='right')
+    #     plt.show()
 
     logger.info(f" ---- filter_by_abs_value is done, took {int(time.time() - time_start)}s  ----")
     return adata_copy

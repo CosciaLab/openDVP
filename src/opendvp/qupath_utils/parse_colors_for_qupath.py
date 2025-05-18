@@ -1,3 +1,8 @@
+from opendvp.logger import logger
+import re
+from matplotlib import colors as mcolors
+from itertools import cycle
+
 def parse_color_for_qupath(color_dict, adata, adata_obs_key) -> dict:
     
     logger.info("Parsing colors compatible with QuPath")

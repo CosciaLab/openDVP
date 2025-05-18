@@ -1,3 +1,8 @@
+from opendvp.logger import logger
+import time
+import pandas as pd
+import anndata as ad
+
 def filter_by_ratio(adata, end_cycle, start_cycle, label="DAPI", min_ratio=0.5, max_ratio=1.05) -> ad.AnnData:
     """ Filter cells by ratio """
 
@@ -26,21 +31,21 @@ def filter_by_ratio(adata, end_cycle, start_cycle, label="DAPI", min_ratio=0.5, 
 
     # plot histogram
 
-    fig, ax = plt.subplots()
+    # fig, ax = plt.subplots()
 
-    sns.histplot(df[f'{label}_ratio'], color='blue')
-    plt.yscale('log')
+    # sns.histplot(df[f'{label}_ratio'], color='blue')
+    # plt.yscale('log')
 
-    plt.axvline(min_ratio, color='black', linestyle='--', alpha=0.5)
-    plt.axvline(max_ratio, color='black', linestyle='--', alpha=0.5)
-    plt.text(max_ratio + 0.05, 650, f"cells that gained >{int(max_ratio*100-100)}% {label}", fontsize=9, color='black')
-    plt.text(min_ratio - 0.05, 650, f"cells that lost >{int(min_ratio*100-100)}% {label}", fontsize=9, color='black', horizontalalignment='right')
+    # plt.axvline(min_ratio, color='black', linestyle='--', alpha=0.5)
+    # plt.axvline(max_ratio, color='black', linestyle='--', alpha=0.5)
+    # plt.text(max_ratio + 0.05, 650, f"cells that gained >{int(max_ratio*100-100)}% {label}", fontsize=9, color='black')
+    # plt.text(min_ratio - 0.05, 650, f"cells that lost >{int(min_ratio*100-100)}% {label}", fontsize=9, color='black', horizontalalignment='right')
 
-    plt.ylabel('cell count')
-    plt.xlabel(f'{label} ratio (last/cycle)')
-    plt.xlim(min_ratio-1, max_ratio+1)
+    # plt.ylabel('cell count')
+    # plt.xlabel(f'{label} ratio (last/cycle)')
+    # plt.xlim(min_ratio-1, max_ratio+1)
 
-    plt.show()
+    # plt.show()
 
     logger.info(f" ---- filter_by_ratio is done, took {int(time.time() - time_start)}s  ----")
 

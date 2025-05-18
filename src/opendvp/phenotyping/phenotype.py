@@ -1,3 +1,6 @@
+import pandas as pd
+import numpy as np
+
 def phenotype_cells (adata, 
                      phenotype, 
                      gate = 0.5, 

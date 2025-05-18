@@ -1,3 +1,8 @@
+import spatialdata
+import os
+from opendvp.logger import logger
+import geopandas
+
 
 def import_qupath_geojson_to_sdata(path_to_geojson: str, sdata: spatialdata.SpatialData, key: str) -> spatialdata.SpatialData:
     """

@@ -1,7 +1,7 @@
 from .write_checkpoint import save_adata_checkpoint
-from .quant_to_adata import read_quant
+from .quant_to_adata import quant_to_adata
 
 __all__ = [
     "save_adata_checkpoint",
-    "read_quant",
+    "quant_to_adata",
 ]

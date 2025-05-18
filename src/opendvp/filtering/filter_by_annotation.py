@@ -1,3 +1,10 @@
+from opendvp.logger import logger
+import ast
+import geopandas as gpd
+import pandas as pd
+import anndata as ad
+import numpy as np
+
 def filter_by_annotation(adata, path_to_geojson, any_label="artefact", plot_QC=True) -> ad.AnnData:
     """ Filter cells by annotation in a geojson file efficiently using spatial indexing """
 
@@ -36,37 +43,37 @@ def filter_by_annotation(adata, path_to_geojson, any_label="artefact", plot_QC=T
 
     adata.obs = pd.merge(adata.obs, df_expanded, on="CellID")
 
-    if plot_QC:
+    # if plot_QC:
 
-        #plotting
-        labels_to_plot = list(gdf.class_name.unique())
-        max_x, max_y = adata.obs[['X_centroid', 'Y_centroid']].max()
-        min_x, min_y = adata.obs[['X_centroid', 'Y_centroid']].min()
+    #     #plotting
+    #     labels_to_plot = list(gdf.class_name.unique())
+    #     max_x, max_y = adata.obs[['X_centroid', 'Y_centroid']].max()
+    #     min_x, min_y = adata.obs[['X_centroid', 'Y_centroid']].min()
 
-        tmp_df_ann = adata.obs[adata.obs['annotation'].isin(labels_to_plot)]
-        tmp_df_notann = adata.obs[~adata.obs['annotation'].isin(labels_to_plot)].sample(frac=0.2, random_state=0).reset_index(drop=True)
+    #     tmp_df_ann = adata.obs[adata.obs['annotation'].isin(labels_to_plot)]
+    #     tmp_df_notann = adata.obs[~adata.obs['annotation'].isin(labels_to_plot)].sample(frac=0.2, random_state=0).reset_index(drop=True)
 
-        fig, ax = plt.subplots(figsize=(7,5))
-        sns.scatterplot(data=tmp_df_notann, x='X_centroid', y='Y_centroid', linewidth=0, s=2, alpha=0.1)
-        sns.scatterplot(data=tmp_df_ann, x='X_centroid', y='Y_centroid', hue='annotation', palette='bright', linewidth=0, s=8)
+    #     fig, ax = plt.subplots(figsize=(7,5))
+    #     sns.scatterplot(data=tmp_df_notann, x='X_centroid', y='Y_centroid', linewidth=0, s=2, alpha=0.1)
+    #     sns.scatterplot(data=tmp_df_ann, x='X_centroid', y='Y_centroid', hue='annotation', palette='bright', linewidth=0, s=8)
 
-        plt.xlim(min_x, max_x)
-        plt.ylim(max_y, min_y)
-        plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0., markerscale=3)
+    #     plt.xlim(min_x, max_x)
+    #     plt.ylim(max_y, min_y)
+    #     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0., markerscale=3)
 
-        # Show value counts
-        value_counts = tmp_df_ann['annotation'].value_counts()
-        value_counts_str = "\n".join([f"{cat}: {count}" for cat, count in value_counts.items()])
+    #     # Show value counts
+    #     value_counts = tmp_df_ann['annotation'].value_counts()
+    #     value_counts_str = "\n".join([f"{cat}: {count}" for cat, count in value_counts.items()])
 
-        plt.gca().text(1.25, 1, f"Cells Counts:\n{value_counts_str}",
-                transform=plt.gca().transAxes, 
-                fontsize=12, 
-                verticalalignment='top',
-                bbox=dict(facecolor='white', alpha=0.8, edgecolor='black'))
+    #     plt.gca().text(1.25, 1, f"Cells Counts:\n{value_counts_str}",
+    #             transform=plt.gca().transAxes, 
+    #             fontsize=12, 
+    #             verticalalignment='top',
+    #             bbox=dict(facecolor='white', alpha=0.8, edgecolor='black'))
 
-        plt.show()
+    #     plt.show()
 
-        #drop object columns ( this would block saving to h5ad)
-        adata.obs = adata.obs.drop(columns=['annotation'])
+    #     #drop object columns ( this would block saving to h5ad)
+    #     adata.obs = adata.obs.drop(columns=['annotation'])
 
     return adata

@@ -8,6 +8,9 @@ from itertools import cycle
 
 def export_figure(fig, path, suffix, dpi=600):
     # Ensure path ends with a slash or is joined correctly
+
+    
+
     os.makedirs(path, exist_ok=True)
 
     datetime_str = time.strftime("%Y%m%d_%H%M")

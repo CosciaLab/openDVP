@@ -263,6 +263,8 @@ def adataobs_to_voronoi_geojson(
     - Assumes `adata.obs` contains valid `X_centroid` and `Y_centroid` columns.
     """
 
+    #TODO threshold_quantile to area_threshold_quantile
+
     if 'X_centroid' not in adata.obs or 'Y_centroid' not in adata.obs:
         raise ValueError("`adata.obs` must contain 'X_centroid' and 'Y_centroid' columns.")
 

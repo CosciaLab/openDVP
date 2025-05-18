@@ -6,23 +6,18 @@ import matplotlib.colors as mcolors
 from loguru import logger
 from itertools import cycle
 
-def export_figure(fig, path, suffix, dpi=600):
-    # Ensure path ends with a slash or is joined correctly
+def get_datetime():
+    return time.strftime("%Y%m%d_%H%M")
 
-    
-
-    os.makedirs(path, exist_ok=True)
-
-    datetime_str = time.strftime("%Y%m%d_%H%M")
-    base_filename = f"{datetime_str}_{suffix}"
-
-    pdf_path = os.path.join(path, f"{base_filename}.pdf")
-    svg_path = os.path.join(path, f"{base_filename}.svg")
-
-    fig.savefig(fname=pdf_path, format="pdf", dpi=dpi, bbox_inches="tight")
-    fig.savefig(fname=svg_path, format="svg", dpi=dpi, bbox_inches="tight")
-
-    print(f"Figure saved as: {pdf_path} and {svg_path}")
+def switch_adat_var_index(adata, new_index):
+    """
+    Switch the index of adata.var to a new index. Useful for switching between gene names and protein names.
+    """
+    adata_copy = adata.copy()
+    adata_copy.var[adata_copy.var.index.name] = adata_copy.var.index
+    adata_copy.var.set_index(new_index, inplace=True)
+    adata_copy.var.index.name = new_index
+    return adata_copy
 
 def check_link(sdata, shape_element_key, adata, adata_obs_key):
     shape_index = sdata[shape_element_key].index.to_list()

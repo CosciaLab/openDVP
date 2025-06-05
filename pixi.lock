@@ -484,9 +484,6 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/a8/c0/2dfab7b319dabe23f5a7b515a797c74b501d15c72e7a03837cf0cf779b9e/matplotlib_scalebar-0.9.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/b9/54/dd730b32ea14ea797530a4479b2ed46a6fb250f682a9cfb997e968bf0261/networkx-3.4.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/5d/f3/00971472499c8a76a8bfd38b987736a7eb06d6c2f20d537363b6b28dfcec/omnipath-1.0.8-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/11/64/42ec1b0bd72d87f87bde6ceb6869f444d91a2d601f2e67cd05febc0346a1/PyQt5-5.15.11-cp38-abi3-macosx_11_0_arm64.whl
-      - pypi: https://files.pythonhosted.org/packages/0a/60/b6db285c87666b02aa11d0946d7bb381d8bdcc815cc5aa61fa91272b321b/PyQt5_Qt5-5.15.16-py3-none-macosx_11_0_arm64.whl
-      - pypi: https://files.pythonhosted.org/packages/7f/3d/8dc6b2ef0132ab1cc534485905b594e6f4176176924e54e35a3f6a0fb164/PyQt5_sip-12.16.1-cp312-cp312-macosx_10_9_universal2.whl
       - pypi: https://files.pythonhosted.org/packages/02/df/0c7e4582b74264fe2179e78fcdeb9313f680d40ffe1dd4b078da5a2cbf82/pytorch_lightning-2.5.0.post0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/27/7d/0d86fe9ef28cff6481245849cad826959b1d962f26b170f34add06fbbaaa/sknw-0.15-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/f2/ff/d21d26485c50b072f5a7d8cfb3d5b71ac580901f5d2600b1b98336cacd8d/spatialdata_plot-0.2.7-py3-none-any.whl
@@ -4755,11 +4752,35 @@ packages:
   requires_python: '>=3.7'
 - pypi: .
   name: opendvp
-  version: 0.1.1
-  sha256: 231e9fc6d3884fa781c34e855fe2ead294069204f408cad84081bc4bfd1487ff
+  version: 0.1.3
+  sha256: 8aa4c74bebe2dc9e6dd01513ae1cdd30cbe72fdb9af99b298fa4b67bb4c49dac
   requires_dist:
-  - pyqt5
   - cellcharter
+  - anndata
+  - geopandas
+  - ipykernel
+  - numpy
+  - pandas
+  - matplotlib<3.9.0
+  - seaborn
+  - rasterio
+  - rich
+  - tabulate
+  - scanpy
+  - jupyter>=1.1.1,<2
+  - plotly>=5.24.1,<6
+  - spatialdata ; extra == 'spatialdata'
+  - napari-spatialdata ; extra == 'spatialdata'
+  - dask ; extra == 'spatialdata'
+  - dask-image ; extra == 'spatialdata'
+  - pyqt5 ; extra == 'spatialdata'
+  - spatial-image ; extra == 'spatialdata'
+  - twine>=6.1.0,<7 ; extra == 'dev'
+  - sphinx>=8.2.3,<9 ; extra == 'dev'
+  - sphinx-autodoc-typehints>=3.2.0,<4 ; extra == 'dev'
+  - furo>=2024.8.6,<2025 ; extra == 'dev'
+  - myst-parser>=4.0.1,<5 ; extra == 'dev'
+  - nbsphinx>=0.9.7,<0.10 ; extra == 'dev'
   requires_python: '>=3.11'
   editable: true
 - conda: https://conda.anaconda.org/conda-forge/osx-arm64/openjpeg-2.5.3-h8a3d83b_0.conda
@@ -5439,23 +5460,6 @@ packages:
   - pkg:pypi/pyproject-hooks?source=hash-mapping
   size: 15528
   timestamp: 1733710122949
-- pypi: https://files.pythonhosted.org/packages/11/64/42ec1b0bd72d87f87bde6ceb6869f444d91a2d601f2e67cd05febc0346a1/PyQt5-5.15.11-cp38-abi3-macosx_11_0_arm64.whl
-  name: pyqt5
-  version: 5.15.11
-  sha256: c8b03dd9380bb13c804f0bdb0f4956067f281785b5e12303d529f0462f9afdc2
-  requires_dist:
-  - pyqt5-sip>=12.15,<13
-  - pyqt5-qt5>=5.15.2,<5.16.0
-  requires_python: '>=3.8'
-- pypi: https://files.pythonhosted.org/packages/0a/60/b6db285c87666b02aa11d0946d7bb381d8bdcc815cc5aa61fa91272b321b/PyQt5_Qt5-5.15.16-py3-none-macosx_11_0_arm64.whl
-  name: pyqt5-qt5
-  version: 5.15.16
-  sha256: e1a0e7ae35a7615c74a293705204579650930486a89af23082462f429dae504a
-- pypi: https://files.pythonhosted.org/packages/7f/3d/8dc6b2ef0132ab1cc534485905b594e6f4176176924e54e35a3f6a0fb164/PyQt5_sip-12.16.1-cp312-cp312-macosx_10_9_universal2.whl
-  name: pyqt5-sip
-  version: 12.16.1
-  sha256: f6724c590de3d556c730ebda8b8f906b38373934472209e94d99357b52b56f5f
-  requires_python: '>=3.9'
 - conda: https://conda.anaconda.org/conda-forge/noarch/pysocks-1.7.1-pyha55dd90_7.conda
   sha256: ba3b032fa52709ce0d9fd388f63d330a026754587a2f461117cac9ab73d8d0d8
   md5: 461219d1a5bd61342293efa2c0c90eac

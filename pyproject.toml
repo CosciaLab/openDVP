@@ -3,9 +3,8 @@ authors = [{name = "Jose Nimo", email = "nimojose@gmail.com"}]
 description = "Add a short description here"
 name = "openDVP"
 requires-python = ">= 3.11"
-version = "0.1.3"
+version = "0.1.4"
 dependencies = [
-    "cellcharter",
     "anndata",
     "geopandas",
     "ipykernel",

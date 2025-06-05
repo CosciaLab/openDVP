@@ -45,8 +45,6 @@ def export_figure(fig, path, suffix, dpi=600):
 
     # Ensure editable text in SVG
     matplotlib.rcParams.update(matplotlib.rcParamsDefault)
-    matplotlib.rcParams['font.family'] = 'Open Sans'
-    matplotlib.rcParams['font.size'] = 14
     matplotlib.rcParams['svg.fonttype'] = 'none'
 
     datetime_str = time.strftime("%Y%m%d_%H%M")

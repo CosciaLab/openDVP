@@ -5,14 +5,10 @@ name = "openDVP"
 requires-python = ">= 3.11"
 version = "0.1.2"
 dependencies = [
-    "pyqt5",
     "cellcharter",
     "anndata",
-    "dask",
-    "dask-image",
     "geopandas",
     "ipykernel",
-    "napari-spatialdata",
     "numpy",
     "pandas",
     "matplotlib<3.9.0",
@@ -21,7 +17,6 @@ dependencies = [
     "rich",
     "tabulate",
     "scanpy",
-    "spatial-image",
     "jupyter>=1.1.1,<2",
     "plotly>=5.24.1,<6"
 ]
@@ -29,9 +24,11 @@ dependencies = [
 [project.optional-dependencies]
 spatialdata = [
     "spatialdata",
+    "napari-spatialdata",
     "dask",
     "dask-image",
-    "pyqt5"
+    "pyqt5",
+    "spatial-image",
 ]
 dev = [
     "twine>=6.1.0,<7",

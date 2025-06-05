@@ -1,12 +1,7 @@
-from opendvp.logger import logger
-try:
-    import spatialdata
-except ImportError as e:
-    raise ImportError("The 'spatialdata' package is required for this functionality. Install with 'pip install opendvp[spatialdata]'.") from e
 import geopandas
 import anndata as ad
-import xarray
 from opendvp.qupath_utils import parse_colors_for_qupath
+from opendvp.logger import logger
 
 def sdata_to_qupath_detections(
         sdata,
@@ -29,6 +24,12 @@ def sdata_to_qupath_detections(
         color_dict: dictionary with color mappings found in table.uns, should match keys in classify_by
         simplify_value: simplify the geometry, tolerance 1.0 is default, replace with None for no simplification
     """
+
+    try:
+        import spatialdata
+    except ImportError as e:
+        raise ImportError("The 'spatialdata' package is required for this functionality. Install with 'pip install opendvp[spatialdata]'.") from e
+    import xarray
 
     #checks 
     assert isinstance(sdata, spatialdata.SpatialData), "sdata must be an instance of spatialdata.SpatialData"

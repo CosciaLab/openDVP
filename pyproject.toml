@@ -3,7 +3,7 @@ authors = [{name = "Jose Nimo", email = "nimojose@gmail.com"}]
 description = "Add a short description here"
 name = "openDVP"
 requires-python = ">= 3.11"
-version = "0.1.4"
+version = "0.1.5"
 dependencies = [
     "anndata",
     "geopandas",
@@ -17,7 +17,11 @@ dependencies = [
     "tabulate",
     "scanpy",
     "jupyter>=1.1.1,<2",
-    "plotly>=5.24.1,<6"
+    "plotly>=5.24.1,<6",
+    "shapely",
+    "loguru",
+    "scikit-learn",
+    "scikit-image",
 ]
 
 [project.optional-dependencies]
@@ -30,12 +34,12 @@ spatialdata = [
     "spatial-image",
 ]
 dev = [
-    "twine>=6.1.0,<7",
-    "sphinx>=8.2.3,<9",
-    "sphinx-autodoc-typehints>=3.2.0,<4",
-    "furo>=2024.8.6,<2025",
-    "myst-parser>=4.0.1,<5",
-    "nbsphinx>=0.9.7,<0.10"
+    "twine",
+    "sphinx",
+    "sphinx-autodoc-typehints",
+    "furo",
+    "myst-parser",
+    "nbsphinx"
 ]
 
 [build-system]

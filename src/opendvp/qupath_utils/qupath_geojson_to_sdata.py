@@ -1,14 +1,14 @@
-try:
-    import spatialdata
-except ImportError as e:
-    raise ImportError("The 'spatialdata' package is required for this functionality. Install with 'pip install opendvp[spatialdata]'.") from e
-
 import os
 from opendvp.logger import logger
 import geopandas
 
 
-def import_qupath_geojson_to_sdata(path_to_geojson: str, sdata: spatialdata.SpatialData, key: str) -> spatialdata.SpatialData:
+def import_qupath_geojson_to_sdata(path_to_geojson: str, sdata, key: str):
+    try:
+        import spatialdata
+    except ImportError as e:
+        raise ImportError("The 'spatialdata' package is required for this functionality. Install with 'pip install opendvp[spatialdata]'.") from e
+
     """
     Import the geojson from qupath to sdata
     Args:

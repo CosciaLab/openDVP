@@ -1,4 +1,8 @@
-import spatialdata
+try:
+    import spatialdata
+except ImportError as e:
+    raise ImportError("The 'spatialdata' package is required for this functionality. Install with 'pip install opendvp[spatialdata]'.") from e
+
 import os
 from opendvp.logger import logger
 import geopandas

@@ -1,5 +1,8 @@
 from opendvp.logger import logger
-import spatialdata
+try:
+    import spatialdata
+except ImportError as e:
+    raise ImportError("The 'spatialdata' package is required for this functionality. Install with 'pip install opendvp[spatialdata]'.") from e
 import geopandas
 import anndata as ad
 import xarray
@@ -122,4 +125,4 @@ def sdata_to_qupath_detections(
         sdata[key_to_shapes].to_file(export_path, driver='GeoJSON')
 
     if return_gdf:
-        return sdata[key_to_shapes] 
+        return sdata[key_to_shapes]

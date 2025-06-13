@@ -83,9 +83,17 @@ def rankplot(
             for _, row in labeled_df.iterrows():
                 texts.append(
                     ax.text(
-                        row['offset_rank'], row['mean'], row['protein'],
-                        fontsize=9, ha='center',
-                        bbox=dict(facecolor=color if color else 'white', edgecolor='none', alpha=0.6, boxstyle='round,pad=0.3')
+                        row['offset_rank'],
+                        row['mean'],
+                        row['protein'],
+                        fontsize=9,
+                        ha='center',
+                        bbox=dict(
+                            facecolor=color if color else 'white',
+                            edgecolor='none',
+                            alpha=0.6,
+                            boxstyle='round,pad=0.3',
+                        ),
                     )
                 )
 

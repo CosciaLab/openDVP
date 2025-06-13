@@ -61,7 +61,9 @@ def plot_MLM_heatmap(
 
     print("Ranking top ", n_pathways, " pathways")
     pathways = dc.rank_sources_groups(adata=acts, groupby=groupby_analysis, reference='rest', method='t-test_overestim_var')
-    source_markers = pathways.groupby('group').head(n_pathways).groupby('group')['names'].apply(lambda x: list(x)).to_dict()
+    source_markers = pathways.groupby('group').head(n_pathways).groupby('group')[
+        'names'
+    ].apply(lambda x: list(x)).to_dict()
 
     print("Plotting heatmap using scanpy")
     sc.pl.matrixplot(adata=acts,
@@ -146,7 +148,18 @@ def plot_MLM_source_variables(
 
     # First subplot: Gene-wise boxplot
     sns.boxplot(x='Gene', y='Expression', hue='Group', data=df_long, dodge=True, width=0.6, ax=axes[0])
-    sns.stripplot(x='Gene', y='Expression', hue='Group', data=df_long, dodge=True, marker='o', palette='dark:black', alpha=0.6, size=3, ax=axes[0])
+    sns.stripplot(
+        x='Gene',
+        y='Expression',
+        hue='Group',
+        data=df_long,
+        dodge=True,
+        marker='o',
+        palette='dark:black',
+        alpha=0.6,
+        size=3,
+        ax=axes[0],
+    )
     axes[0].set_title(f"{geneset} by Group (Sorted by Mean Difference)")
     axes[0].set_ylabel("Median-Centered Expression")
     axes[0].tick_params(axis='x', rotation=90)

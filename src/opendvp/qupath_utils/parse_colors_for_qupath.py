@@ -14,7 +14,13 @@ def parse_color_for_qupath(color_dict, adata, adata_obs_key) -> dict:
         logger.info("No color_dict found, using defaults")
         default_colors = [[31, 119, 180], [255, 127, 14], [44, 160, 44], [214, 39, 40], [148, 103, 189]]
         color_cycle = cycle(default_colors)
-        parsed_colors = dict(zip(adata.obs[adata_obs_key].cat.categories.astype(str), color_cycle, strict=False))
+        parsed_colors = dict(
+            zip(
+                adata.obs[adata_obs_key].cat.categories.astype(str),
+                color_cycle,
+                strict=False,
+            )
+        )
         logger.info(f"color_dict created: {parsed_colors}")
     else:
         logger.info("Custom color dictionary passed, adapting to QuPath color format")  

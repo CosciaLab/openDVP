@@ -1,4 +1,3 @@
-
 import geopandas as gpd
 import scipy
 import shapely
@@ -141,7 +140,13 @@ def adataobs_to_voronoi_geojson(
     #add color
     gdf['classification'] = gdf[color_by_adata_key].astype(str)
     color_dict = parse_color_for_qupath(color_dict, adata=adata, adata_obs_key=color_by_adata_key)
-    gdf['classification'] = gdf.apply(lambda x: {'name': x['classification'], 'color': color_dict[x['classification']]}, axis=1)
+    gdf['classification'] = gdf.apply(
+        lambda x: {
+            'name': x['classification'],
+            'color': color_dict[x['classification']],
+        },
+        axis=1,
+    )
 
     #export to geojson
     if output_filepath:

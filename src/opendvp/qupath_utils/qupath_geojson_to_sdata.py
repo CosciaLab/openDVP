@@ -22,7 +22,9 @@ def import_qupath_geojson_to_sdata(path_to_geojson: str, sdata, key: str):
     # path to geojson
     assert isinstance(path_to_geojson, str), "path_to_geojson must be a string"
     assert path_to_geojson.endswith('.geojson'), "path_to_geojson must end with .geojson"
-    assert os.path.isfile(path_to_geojson), f"path_to_geojson {path_to_geojson} not found"
+    assert os.path.isfile(path_to_geojson), (
+        f"path_to_geojson {path_to_geojson} not found"
+    )
     # sdata
     assert isinstance(sdata, spatialdata.SpatialData), "sdata must be an instance of spatialdata.SpatialData"
     # key

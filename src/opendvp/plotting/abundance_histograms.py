@@ -1,4 +1,3 @@
-
 import matplotlib.pyplot as plt
 import numpy as np
 import scipy
@@ -47,7 +46,16 @@ def plot_histograms(
         ax.set_box_aspect(1)
         ax.set_xlim(5, 25)
         res = scipy.stats.shapiro(x)
-        ax.text(x=0.80, y=0.86, s=f"Schapiro p: {res[1]:.3g}", transform=ax.transAxes, fontsize=12, ha='center', va='center', bbox=dict(facecolor='white', alpha=0.8))
+        ax.text(
+            x=0.80,
+            y=0.86,
+            s=f"Schapiro p: {res[1]:.3g}",
+            transform=ax.transAxes,
+            fontsize=12,
+            ha='center',
+            va='center',
+            bbox=dict(facecolor='white', alpha=0.8),
+        )
         ax.set_title(f'file_id: {adata.obs.raw_file_id[i]}')
         ax.grid(False)
     fig.tight_layout()

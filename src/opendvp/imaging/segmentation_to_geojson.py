@@ -1,5 +1,3 @@
-
-
 def mask_to_polygons(mask_path, savepath=None, simplify=None, max_memory_mb=16000):
     """Converts a labeled segmentation mask (TIFF file) into a GeoDataFrame with polygons or multipolygons.
     
@@ -24,7 +22,9 @@ def mask_to_polygons(mask_path, savepath=None, simplify=None, max_memory_mb=1600
         logger.info(f"  Mask shape: {shape}, dtype: {dtype}, estimated_mb: {estimated_mb:.1f}")
 
     if estimated_mb > max_memory_mb:
-        raise ValueError(f"Estimated memory usage is {estimated_mb:.2f} MB, exceeding the threshold of {max_memory_mb:.1f} MB.")
+        raise ValueError(
+            f"Estimated memory usage is {estimated_mb:.2f} MB, exceeding the threshold of {max_memory_mb:.1f} MB."
+        )
 
     # Load the image data
     
@@ -37,7 +37,9 @@ def mask_to_polygons(mask_path, savepath=None, simplify=None, max_memory_mb=1600
     if max_label <= np.iinfo(np.int32).max:
         array = array.astype(np.int32)
     else:
-        raise ValueError("Cell IDs exceed int32 range, and rasterio doesn't support uint32 or int64.")
+        raise ValueError(
+            "Cell IDs exceed int32 range, and rasterio doesn't support uint32 or int64."
+        )
 
     #Ensure 2D mask
     array = np.squeeze(array)

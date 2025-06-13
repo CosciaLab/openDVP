@@ -30,7 +30,9 @@ def plot_ORA_source_variables(
     # assert adata is ready
     assert adata_copy.var.index.name == "Genes", "adata.var.index should be 'Genes'"
     assert adata_copy.var.index.isna().sum() == 0, "adata.var.index should not have any NA values"
-    assert not any(";" in str(i) for i in adata_copy.var.index), "adata.var.index contains ';' characters, gene list should be cleaned"
+    assert not any(";" in str(i) for i in adata_copy.var.index), (
+        "adata.var.index contains ';' characters, gene list should be cleaned"
+    )
     assert "ora_estimate" in adata_copy.obsm, "ora_estimate not found in adata.obsm."
 
     # assert msigdb is ready
@@ -70,7 +72,10 @@ def plot_ORA_source_variables(
 
     # First subplot: Gene-wise boxplot
     sns.boxplot(x='Gene', y='Expression', hue='Group', data=df_long, dodge=True, width=0.6, ax=axes[0])
-    sns.stripplot(x='Gene', y='Expression', hue='Group', data=df_long, dodge=True, marker='o', palette='dark:black', alpha=0.6, size=3, ax=axes[0])
+    sns.stripplot(
+        data=df_long, x='Gene', y='Expression', hue='Group',
+        dodge=True, marker='o', palette='dark:black', alpha=0.6, size=3, ax=axes[0],
+    )
     axes[0].set_title(f"{geneset} by Group (Sorted by Mean Difference)")
     axes[0].set_ylabel("Median-Centered Expression")
     axes[0].tick_params(axis='x', rotation=45)

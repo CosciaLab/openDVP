@@ -106,19 +106,26 @@ def pca(
         x_pc = f'PC{choose_PCs[0]}'
         y_pc = f'PC{choose_PCs[1]}'
         fig = px.scatter(
-            df, x=x_pc, y=y_pc,
+            df,
+            x=x_pc,
+            y=y_pc,
             color=color,
             symbol=symbol,
             hover_data=hoverwith,
             labels={
                 x_pc: f'{x_pc} ({adata.uns["pca"]["variance_ratio"][choose_PCs[0]-1]*100:.2f}%)',
-                y_pc: f'{y_pc} ({adata.uns["pca"]["variance_ratio"][choose_PCs[1]-1]*100:.2f}%)'
+                y_pc: f'{y_pc} ({adata.uns["pca"]["variance_ratio"][choose_PCs[1]-1]*100:.2f}%)',
             },
             color_discrete_map=group_colors,
-            **kwargs
+            **kwargs,
         )
         fig.update_layout(
-            title=dict(text=f"PCA of samples by {color} and {symbol}", font=dict(size=24), automargin=False, yref='paper'),
+            title=dict(
+                text=f"PCA of samples by {color} and {symbol}",
+                font=dict(size=24),
+                automargin=False,
+                yref='paper',
+            ),
             font=dict(size=15, color='black'),
             width=1500,
             height=1000,

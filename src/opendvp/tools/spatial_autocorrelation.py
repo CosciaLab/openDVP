@@ -3,8 +3,9 @@ import esda
 import numpy as np
 import pandas as pd
 from libpysal.weights import KNN, DistanceBand
-from opendvp.logger import logger
 from tqdm import tqdm
+
+from opendvp.logger import logger
 
 
 def spatial_autocorrelation(

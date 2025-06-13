@@ -19,7 +19,12 @@ dependencies = [
     "loguru",
     "scikit-learn",
     "scikit-image",
-]
+    "adjusttext",
+    "pingouin",
+    "libpysal",
+    "esda",
+    "upsetplot"
+, "perseuspy>=0.3.9,<0.4"]
 
 [project.optional-dependencies]
 spatialdata = [
@@ -38,6 +43,7 @@ dev = [
     "myst-parser",
     "nbsphinx",
     "ruff",
+    "pytest"
 ]
 
 [tool.pixi.environments.default]
@@ -61,7 +67,7 @@ opendvp = { path = ".", editable = true }
 ## FORMATTING AND LINTING ##
 
 [tool.ruff]
-line-length = 88  # Black's default, widely accepted in Python community
+line-length = 120
 target-version = "py311"  # Match your supported Python version
 exclude = [
     ".git",

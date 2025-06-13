@@ -1,4 +1,3 @@
-
 def plot_dynamic_histogram(df, column, bins=100):
     """Create a dynamic histogram with a threshold slider,
     showing counts to the left and right of the threshold.
@@ -35,8 +34,10 @@ def plot_dynamic_histogram(df, column, bins=100):
 
     # Add initial annotations for counts
     fig.update_layout(
-        annotations=[dict(x=0.02, y=1.1, xref="paper", yref="paper", text=f"Left Count: {left_count}", showarrow=False),
-                    dict(x=0.98, y=1.1, xref="paper", yref="paper", text=f"Right Count: {right_count}", showarrow=False)]
+        annotations=[
+            dict(x=0.02, y=1.1, xref="paper", yref="paper", text=f"Left Count: {left_count}", showarrow=False),
+            dict(x=0.98, y=1.1, xref="paper", yref="paper", text=f"Right Count: {right_count}", showarrow=False),
+        ]
     )
 
     # Initial vertical line at threshold
@@ -66,19 +67,21 @@ def plot_dynamic_histogram(df, column, bins=100):
     # Add slider with threshold steps
     thresholds = np.linspace(data.min(), data.max(), bins)
     fig.update_layout(
-        sliders=[{
-            "active": 0,
-            "currentvalue": {"prefix": "Threshold: "},
-            "pad": {"t": 50},
-            "steps": [
-                {
-                    "label": str(round(threshold, 2)),
-                    "method": "relayout",
-                    "args": [update_slider(threshold)]
-                }
-                for threshold in thresholds
-            ]
-        }]
+        sliders=[
+            {
+                "active": 0,
+                "currentvalue": {"prefix": "Threshold: "},
+                "pad": {"t": 50},
+                "steps": [
+                    {
+                        "label": str(round(threshold, 2)),
+                        "method": "relayout",
+                        "args": [update_slider(threshold)],
+                    }
+                    for threshold in thresholds
+                ],
+            }
+        ]
     )
 
     # Show figure

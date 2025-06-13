@@ -59,7 +59,9 @@ def plot_ORA_heatmap(
 
     print("Ranking top ", n_pathways, " pathways")
     pathways = dc.rank_sources_groups(adata=acts, groupby=groupby_analysis, reference='rest', method='t-test_overestim_var')
-    source_markers = pathways.groupby('group').head(n_pathways).groupby('group')['names'].apply(lambda x: list(x)).to_dict()
+    source_markers = pathways.groupby('group').head(n_pathways).groupby('group')[
+        'names'
+    ].apply(lambda x: list(x)).to_dict()
 
     print("Plotting heatmap using scanpy")
     sc.pl.matrixplot(adata=acts,

@@ -55,8 +55,32 @@ def plot_correlation_heatmap(
         fig, ax = plt.subplots(figsize=((0.55 * df.shape[1]), (0.4 * df.shape[1])))
     else:
         fig = ax.figure
-    sns.heatmap(correlation_matrix, annot=True, cmap='magma', fmt='.2f', linewidths=0.5, vmin=0.7, mask=mask_top_right, square=True, annot_kws={"size":8}, ax=ax, **kwargs)
-    sns.heatmap(correlation_matrix, annot=False, cmap='magma', fmt='.2f', linewidths=0.5, vmin=0.7, mask=mask_bottom_left, square=True, cbar=False, ax=ax, **kwargs)
+    sns.heatmap(
+        correlation_matrix,
+        annot=True,
+        cmap='magma',
+        fmt='.2f',
+        linewidths=0.5,
+        vmin=0.7,
+        mask=mask_top_right,
+        square=True,
+        annot_kws={"size": 8},
+        ax=ax,
+        **kwargs,
+    )
+    sns.heatmap(
+        correlation_matrix,
+        annot=False,
+        cmap='magma',
+        fmt='.2f',
+        linewidths=0.5,
+        vmin=0.7,
+        mask=mask_bottom_left,
+        square=True,
+        cbar=False,
+        ax=ax,
+        **kwargs,
+    )
     ax.grid(False)
     ax.set_title(title)
     ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha='right')

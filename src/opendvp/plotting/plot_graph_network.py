@@ -52,7 +52,18 @@ def plot_graph_network(
     else:
         fig = ax.figure
     pos = {i: (coords[i][0], coords[i][1]) for i in range(len(coords))}
-    nx.draw(G, pos, with_labels=False, node_size=30, node_color='blue', alpha=0.5, edge_color='gray', width=0.5, ax=ax, **kwargs)
+    nx.draw(
+        G,
+        pos,
+        with_labels=False,
+        node_size=30,
+        node_color='blue',
+        alpha=0.5,
+        edge_color='gray',
+        width=0.5,
+        ax=ax,
+        **kwargs,
+    )
     ax.set_title(f"Graph of Connected Nodes at Threshold {threshold}")
     if return_fig:
         return fig

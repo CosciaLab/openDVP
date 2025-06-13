@@ -61,7 +61,9 @@ def sdata_to_qupath_detections(
     #color dict
     if color_dict:
         assert isinstance(sdata[table_key].uns[color_dict], dict), "color_dict must be a dictionary"
-        assert set(sdata[table_key].obs[classify_by].cat.categories).issubset(set(sdata[table_key].uns[color_dict].keys())), "categories in classify_by, must be present in color_dict"
+        assert set(sdata[table_key].obs[classify_by].cat.categories).issubset(
+            set(sdata[table_key].uns[color_dict].keys())
+        ), "categories in classify_by, must be present in color_dict"
 
     #TODO ensure that indexes match between polygon and table
 
@@ -107,7 +109,8 @@ def sdata_to_qupath_detections(
         #     logger.info(f"color_dict created: {color_dict}")
 
         sdata[key_to_shapes]['classification'] = sdata[key_to_shapes].apply(
-            lambda x: {'name': x['class'], 'color': color_dict[x['class']]}, axis=1)
+            lambda x: {'name': x['class'], 'color': color_dict[x['class']]}, axis=1
+        )
         
         # remove class column to keep clean
         sdata[key_to_shapes].drop(columns='class', inplace=True)

@@ -105,11 +105,45 @@ def plot_dual_axis_boxplots(
         y1 = df1[df1[feature_key] == group]["value"].dropna()
         y2 = df2[df2[feature_key] == group]["value"].dropna()
         if not y1.empty:
-            ax1.boxplot(y1, positions=[x1_box], widths=width, patch_artist=True, boxprops=dict(facecolor=box1_color, alpha=0.6), medianprops=dict(color=median_color), showfliers=False, **kwargs)
-            ax1.scatter(np.random.normal(x1_box, 0.03, size=len(y1)), y1, color=scatter_color, alpha=point_alpha, s=10, zorder=3, **kwargs)
+            ax1.boxplot(
+                y1,
+                positions=[x1_box],
+                widths=width,
+                patch_artist=True,
+                boxprops=dict(facecolor=box1_color, alpha=0.6),
+                medianprops=dict(color=median_color),
+                showfliers=False,
+                **kwargs,
+            )
+            ax1.scatter(
+                np.random.normal(x1_box, 0.03, size=len(y1)),
+                y1,
+                color=scatter_color,
+                alpha=point_alpha,
+                s=10,
+                zorder=3,
+                **kwargs,
+            )
         if not y2.empty:
-            ax2.boxplot(y2, positions=[x2_box], widths=width, patch_artist=True, boxprops=dict(facecolor=box2_color, alpha=0.6), medianprops=dict(color=median_color), showfliers=False, **kwargs)
-            ax2.scatter(np.random.normal(x2_box, 0.03, size=len(y2)), y2, color=scatter_color, alpha=point_alpha, s=10, zorder=3, **kwargs)
+            ax2.boxplot(
+                y2,
+                positions=[x2_box],
+                widths=width,
+                patch_artist=True,
+                boxprops=dict(facecolor=box2_color, alpha=0.6),
+                medianprops=dict(color=median_color),
+                showfliers=False,
+                **kwargs,
+            )
+            ax2.scatter(
+                np.random.normal(x2_box, 0.03, size=len(y2)),
+                y2,
+                color=scatter_color,
+                alpha=point_alpha,
+                s=10,
+                zorder=3,
+                **kwargs,
+            )
     ax1.set_xticks(x_base)
     ax1.set_xticklabels(groups)
     ax1.set_ylabel(ylabel1, color=tick1_color)

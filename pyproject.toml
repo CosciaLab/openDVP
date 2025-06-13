@@ -2,7 +2,7 @@
 authors = [{name = "Jose Nimo", email = "nimojose@gmail.com"}]
 description = "Add a short description here"
 name = "openDVP"
-requires-python = ">= 3.11"
+requires-python = ">3.11,<3.13"
 version = "0.1.5"
 dependencies = [
     "anndata",
@@ -13,10 +13,7 @@ dependencies = [
     "matplotlib<3.9.0",
     "seaborn",
     "rasterio",
-    "rich",
-    "tabulate",
     "scanpy",
-    "jupyter>=1.1.1,<2",
     "plotly>=5.24.1,<6",
     "shapely",
     "loguru",
@@ -39,8 +36,12 @@ dev = [
     "sphinx-autodoc-typehints",
     "furo",
     "myst-parser",
-    "nbsphinx"
+    "nbsphinx",
+    "ruff",
 ]
+
+[tool.pixi.environments.default]
+features = ["dev"]
 
 [build-system]
 build-backend = "hatchling.build"
@@ -54,3 +55,54 @@ platforms = ["osx-arm64"]
 opendvp = { path = ".", editable = true }
 
 [tool.pixi.tasks]
+
+[tool.pixi.dependencies]
+
+## FORMATTING AND LINTING ##
+
+[tool.ruff]
+line-length = 88  # Black's default, widely accepted in Python community
+target-version = "py311"  # Match your supported Python version
+exclude = [
+    ".git",
+    "__pycache__",
+    "build",
+    "dist",
+    ".venv",
+    "env",
+    "docs",
+    "notebooks",
+    "tests/data",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "F",    # Pyflakes
+    "B",    # flake8-bugbear
+    "I",    # isort (import sorting)
+    "UP",   # pyupgrade (modernize syntax)
+    "C90",  # mccabe (complexity)
+    "D",    # pydocstyle (docstrings)
+    "A",    # flake8-builtins
+    "S",    # flake8-bandit (security)
+    "SIM",  # flake8-simplify
+    "PD",   # pandas-vet
+    "ANN",  # flake8-annotations
+]
+
+ignore = [
+    "D100", # Ignore missing docstring in public module
+    "D104", # Ignore missing docstring in public package
+    "ANN101", # Missing type annotation for self
+    "ANN102", # Missing type annotation for cls
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"

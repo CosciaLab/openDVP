@@ -1,5 +1,5 @@
 import os
-from opendvp.logger import logger
+from opendvp.utils.logger import logger
 import geopandas
 
 

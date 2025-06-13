@@ -1,15 +1,8 @@
-import sys
-import time
-
 import anndata as ad
 import numpy as np
 import pandas as pd
-from loguru import logger
 
-datetime = time.strftime("%Y%m%d_%H%M%S")
-
-logger.remove()
-logger.add(sys.stdout, format="<green>{time:HH:mm:ss.SS}</green> | <level>{level}</level> | {message}")
+from opendvp.logger import logger
 
 
 def DIANN_to_adata(
@@ -22,7 +15,7 @@ def DIANN_to_adata(
     filter_nan_genes: bool = True,
     n_of_protein_metadata_cols: int = 4
 ) -> ad.AnnData:
-    """Converts DIANN output file and metadata file into an AnnData object.
+    r"""Converts DIANN output file and metadata file into an AnnData object.
 
     Parameters
     ----------
@@ -48,51 +41,59 @@ def DIANN_to_adata(
     AnnData
         AnnData object with imported data.
     """
-    df = pd.read_csv(DIANN_path, sep=DIANN_sep)
-    logger.info(f"Starting DIANN matrix shape {df.shape}")
+    diann_df = pd.read_csv(DIANN_path, sep=DIANN_sep)
+    logger.info(f"Starting DIANN matrix shape {diann_df.shape}")
     if filter_contamination:
-        condition_cont = df['Protein.Group'].str.contains("Cont_")
-        logger.info(f"Removing {df[condition_cont].shape[0]} proteins considered contaminants")
-        df = df[~condition_cont]
+        condition_cont = diann_df['Protein.Group'].str.contains("Cont_")
+        logger.info(f"Removing {diann_df[condition_cont].shape[0]} contaminants")
+        diann_df = diann_df[~condition_cont]
     if filter_nan_genes:
-        condition_na = df['Genes'].isna()
-        logger.info(f"Filtering {df[condition_na].shape[0]} genes that are NaN, {df[condition_na]['Protein.Names'].tolist()}")
-        df = df[~condition_na]
+        condition_na = diann_df['Genes'].isna()
+        logger.info(f"Filtering {diann_df[condition_na].shape[0]} genes that are NaN")
+        logger.info(f"{diann_df[condition_na]['Protein.Names'].tolist()}")
+        diann_df = diann_df[~condition_na]
 
     ### numerical data ###
-    dft= df.T.copy()
-    dft.columns = dft.loc["Protein.Group", :].values
-    dft.index.name = "Sample_filepath"
-    rawdata = dft.iloc[n_of_protein_metadata_cols:,:]
-    logger.info(f" Data comprises {rawdata.shape[0]} samples, and {rawdata.shape[1]} proteins ")
+    diann_dft= diann_df.T.copy()
+    diann_dft.columns = diann_dft.loc["Protein.Group", :].to_numpy()
+    diann_dft.index.name = "Sample_filepath"
+    rawdata = diann_dft.iloc[n_of_protein_metadata_cols:,:]
+    logger.info(f"{rawdata.shape[0]} samples, and {rawdata.shape[1]} proteins")
 
     ### protein metadata ###
-    protein_metadata = df.iloc[:,:n_of_protein_metadata_cols]
-    protein_metadata['Genes_simplified'] = [gene.split(";")[0] for gene in protein_metadata['Genes'].tolist()]
-    protein_metadata.set_index('Genes_simplified', inplace=True)
-    logger.info(f"{protein_metadata[protein_metadata['Genes'].str.contains(';')].shape[0]} gene lists (eg 'TMA7;TMA7B') were simplified to their first element ('TMA7').")
-    protein_metadata.index.name = "Gene" #changed index name to Gene, instead of Genes to avoid conflicts writing the data
+    protein_metadata = diann_df.iloc[:,:n_of_protein_metadata_cols]
+    protein_metadata['Genes_simplified'] = [
+        gene.split(";")[0]
+        for gene in protein_metadata['Genes'].tolist()
+    ]
+    protein_metadata = protein_metadata.set_index('Genes_simplified')
+    n_simple = protein_metadata[protein_metadata['Genes'].str.contains(';')].shape[0]
+    logger.info(f"{n_simple} gene lists (eg 'TMA7;TMA7B') were simplified to ('TMA7').")
+    protein_metadata.index.name = "Gene"
 
     #load sample metadata
     if metadata_path is not None:
         sample_metadata = pd.read_csv(metadata_path, sep=metadata_sep)
-        sample_metadata.set_index(metadata_filepath_header, inplace=True)
+        sample_metadata = sample_metadata.set_index(metadata_filepath_header)
     else:
         sample_metadata = pd.DataFrame(index=rawdata.index)
 
     # check sample_metadata filename_paths are unique, and matches df
-    if not set(sample_metadata.index) == set(rawdata.index): 
-        logger.warning("unique values from sample metadata and DIANN table do not match")
-        logger.warning("consider double checking 'n_of_protein_metadata_cols', it varies per DIANN version")
+    if set(sample_metadata.index) != set(rawdata.index): 
+        logger.warning("uniques from sample metadata and DIANN table do not match")
+        logger.warning("check n_of_protein_metadata_cols, it varies per DIANN version")
         raise ValueError("uniques don't match")
     
-    if not rawdata.shape[0] == sample_metadata.shape[0]:
-        logger.error(f"ERROR: Number of samples in DIANN output {rawdata.shape[0]} and metadata {sample_metadata.shape[0]} do not match. Please check your files.")
+    if rawdata.shape[0] != sample_metadata.shape[0]:
+        logger.error("Number of samples in DIANN output and metadata do not match")
 
     # reindex to match rawdata to sample metadata
     sample_metadata_aligned = sample_metadata.reindex(rawdata.index)
 
     # create adata object
-    adata = ad.AnnData(X=rawdata.values.astype(np.float64), obs=sample_metadata_aligned, var=protein_metadata)
+    adata = ad.AnnData(
+        X=rawdata.to_numpy().astype(np.float64), 
+        obs=sample_metadata_aligned, 
+        var=protein_metadata)
     logger.success("Anndata object has been created :) ")
     return adata

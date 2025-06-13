@@ -5,7 +5,7 @@ import numpy as np
 
 datetime = time.strftime("%Y%m%d_%H%M%S")
 
-from loguru import logger
+from opendvp.logger import logger
 
 logger.remove()
 logger.add(sys.stdout, format="<green>{time:HH:mm:ss.SS}</green> | <level>{level}</level> | {message}")

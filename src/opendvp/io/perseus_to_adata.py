@@ -2,7 +2,7 @@ import sys
 import time
 
 import anndata as ad
-from loguru import logger
+from opendvp.logger import logger
 
 datetime = time.strftime("%Y%m%d_%H%M%S")
 

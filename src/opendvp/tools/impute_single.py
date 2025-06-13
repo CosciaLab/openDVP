@@ -4,7 +4,7 @@ import warnings
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
-from loguru import logger
+from opendvp.logger import logger
 
 warnings.simplefilter(action='ignore', category=FutureWarning)
 warnings.simplefilter(action='ignore', category=UserWarning)
@@ -17,7 +17,9 @@ def impute_single(
     std_dev_shift: float = 0.3,
     report_stats: bool = True
 ) -> None:
-    """Impute missing values in a 1D array using a Gaussian distribution in log2 space and plot the result.
+    """Impute missing values.
+     
+    Impute for 1D array using a Gaussian distribution in log2 space and plot the result.
 
     Parameters
     ----------

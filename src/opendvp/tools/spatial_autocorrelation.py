@@ -1,10 +1,9 @@
-
 import anndata as ad
 import esda
 import numpy as np
 import pandas as pd
 from libpysal.weights import KNN, DistanceBand
-from loguru import logger
+from opendvp.logger import logger
 from tqdm import tqdm
 
 

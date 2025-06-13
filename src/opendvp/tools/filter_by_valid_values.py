@@ -5,7 +5,7 @@ import warnings
 import anndata as ad
 import numpy as np
 import pandas as pd
-from loguru import logger
+from opendvp.logger import logger
 
 datetime = time.strftime("%Y%m%d_%H%M%S")
 logger.remove()

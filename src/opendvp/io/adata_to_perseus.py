@@ -12,7 +12,7 @@ def adata_to_perseus(
     suffix: str,
     obs_key: str | None = None
 ) -> None:
-    """Export an AnnData object to Perseus-compatible text files (expression data and metadata).
+    """Export an AnnData object to Perseus-compatible text files.
 
     Parameters
     ----------
@@ -23,7 +23,8 @@ def adata_to_perseus(
     suffix : str
         Suffix for output file names.
     obs_key : Optional[str], default None
-        Column in adata.obs to use as row index for the data file. If None, uses adata.obs_names.
+        Column in adata.obs to use as row index for the data file. 
+        If None, uses adata.obs_names.
 
     Returns:
     -------
@@ -48,7 +49,7 @@ def adata_to_perseus(
 
     # Export metadata
     metadata = adata.obs.copy()
-    metadata.set_index(obs_key, inplace=True)
+    metadata = metadata.set_index(obs_key)
     metadata.index.name = "Name"
     metadata.to_csv(metadata_file, sep="\t")
 

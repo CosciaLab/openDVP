@@ -4,7 +4,7 @@ import warnings
 import anndata as ad
 import numpy as np
 import pandas as pd
-from loguru import logger
+from opendvp.logger import logger
 
 warnings.simplefilter(action='ignore', category=FutureWarning)
 warnings.simplefilter(action='ignore', category=UserWarning)

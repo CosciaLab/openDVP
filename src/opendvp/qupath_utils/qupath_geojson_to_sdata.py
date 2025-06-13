@@ -2,7 +2,7 @@ import os
 
 import geopandas
 
-from opendvp.utils.logger import logger
+from opendvp.logger import logger
 
 
 def import_qupath_geojson_to_sdata(path_to_geojson: str, sdata, key: str):

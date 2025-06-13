@@ -1,9 +1,10 @@
-import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
 import seaborn as sns
-from tqdm.notebook import tqdm
 from pyproteomics.statistics.coefficient_of_variation import coefficient_of_variation
+from tqdm.notebook import tqdm
+
 
 def bootstrap_variability(
     dataframe,
@@ -17,9 +18,7 @@ def bootstrap_variability(
     nan_policy="omit",
     cv_threshold=None,  # New argument for threshold-based summary
 ):
-
-    """
-    Evaluate the variability of feature-level coefficient of variation (CV) via bootstrapping.
+    """Evaluate the variability of feature-level coefficient of variation (CV) via bootstrapping.
 
     This function samples subsets from the input DataFrame and computes the CV (standard deviation divided by mean)
     of each feature (column) for each bootstrap replication. For each subset size, the function aggregates the CVs
@@ -55,7 +54,7 @@ def bootstrap_variability(
             - "raise": raise an error if NaNs are encountered,
             - "propagate": allow NaNs to propagate in the output.
 
-    Returns
+    Returns:
     -------
     pandas.DataFrame or tuple of pandas.DataFrame
         Depending on the flags `return_raw` and `return_summary`, the function returns:
@@ -66,12 +65,12 @@ def bootstrap_variability(
             - If only one of the flags is True, only that DataFrame is returned.
             - If neither is True, returns None.
 
-    Raises
+    Raises:
     ------
     ValueError
         If any of the specified subset sizes is larger than the number of rows in `dataframe`.
 
-    Examples
+    Examples:
     --------
     >>> import pandas as pd
     >>> import numpy as np
@@ -85,7 +84,6 @@ def bootstrap_variability(
     3           20       B    0.102345
     4           50       A    0.095432
     """
-
     # Safety checks
     if max(subset_sizes) > dataframe.shape[0]:
         raise ValueError("A subset size is larger than the number of rows in the dataframe.")

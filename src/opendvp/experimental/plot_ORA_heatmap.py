@@ -1,11 +1,9 @@
-import anndata as ad
-import pandas as pd
-import numpy as np
+import time
+
 import decoupler as dc
+import numpy as np
 import scanpy as sc
-import seaborn as sns
-import matplotlib.pyplot as plt
-import time,os,sys
+
 
 # helper functions
 def get_datetime():
@@ -21,9 +19,7 @@ def plot_ORA_heatmap(
         return_adata=False,
         return_acts=False,
         **kwargs): 
-    
-    """
-    Description:
+    """Description:
         Perform an Over-Representation Analysis (ORA) using the Decoupler package and plot the results as a heatmap.
     Parameters:
         adata: AnnData object
@@ -31,7 +27,6 @@ def plot_ORA_heatmap(
         msigdb: DataFrame
             A DataFrame with the gene sets from the Molecular Signatures Database (MSigDB).
     """
-
     #TODO add option to save pathways as list_of_strings
 
     print("version 1.0.0")

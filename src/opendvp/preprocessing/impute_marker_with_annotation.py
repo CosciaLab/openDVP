@@ -1,6 +1,8 @@
-from opendvp.logger import logger
-import numpy as np
 import anndata as ad
+import numpy as np
+
+from opendvp.logger import logger
+
 
 def negate_var_by_ann(adata, target_variable, target_annotation_column , quantile_for_imputation=0.05) -> ad.AnnData:
 

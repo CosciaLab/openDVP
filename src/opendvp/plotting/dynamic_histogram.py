@@ -1,7 +1,6 @@
 
 def plot_dynamic_histogram(df, column, bins=100):
-    """
-    Create a dynamic histogram with a threshold slider, 
+    """Create a dynamic histogram with a threshold slider,
     showing counts to the left and right of the threshold.
 
     Parameters:

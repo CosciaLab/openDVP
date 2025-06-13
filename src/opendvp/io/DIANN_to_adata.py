@@ -1,11 +1,10 @@
-import os
 import sys
-import pandas as pd
-import numpy as np
-import anndata as ad
 import time
+
+import anndata as ad
+import numpy as np
+import pandas as pd
 from loguru import logger
-from typing import Optional
 
 datetime = time.strftime("%Y%m%d_%H%M%S")
 
@@ -16,15 +15,14 @@ logger.add(sys.stdout, format="<green>{time:HH:mm:ss.SS}</green> | <level>{level
 def DIANN_to_adata(
     DIANN_path: str,
     DIANN_sep: str = "\t",
-    metadata_path: Optional[str] = None,
+    metadata_path: str | None = None,
     metadata_sep: str = ",",
     metadata_filepath_header: str = "File.Name",
     filter_contamination: bool = True,
     filter_nan_genes: bool = True,
     n_of_protein_metadata_cols: int = 4
 ) -> ad.AnnData:
-    """
-    Converts DIANN output file and metadata file into an AnnData object.
+    """Converts DIANN output file and metadata file into an AnnData object.
 
     Parameters
     ----------
@@ -45,12 +43,11 @@ def DIANN_to_adata(
     n_of_protein_metadata_cols : int, default 4
         Number of protein metadata columns at the start of the DIANN file.
 
-    Returns
+    Returns:
     -------
     AnnData
         AnnData object with imported data.
     """
-
     df = pd.read_csv(DIANN_path, sep=DIANN_sep)
     logger.info(f"Starting DIANN matrix shape {df.shape}")
     if filter_contamination:

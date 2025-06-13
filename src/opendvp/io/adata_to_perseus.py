@@ -1,18 +1,18 @@
 import os
-import pandas as pd
-import numpy as np
-import anndata as ad
 from datetime import datetime
-from typing import Optional
+
+import anndata as ad
+import numpy as np
+import pandas as pd
+
 
 def adata_to_perseus(
     adata: ad.AnnData,
     path_to_dir: str,
     suffix: str,
-    obs_key: Optional[str] = None
+    obs_key: str | None = None
 ) -> None:
-    """
-    Export an AnnData object to Perseus-compatible text files (expression data and metadata).
+    """Export an AnnData object to Perseus-compatible text files (expression data and metadata).
 
     Parameters
     ----------
@@ -25,7 +25,7 @@ def adata_to_perseus(
     obs_key : Optional[str], default None
         Column in adata.obs to use as row index for the data file. If None, uses adata.obs_names.
 
-    Returns
+    Returns:
     -------
     None
         This function saves files to disk and does not return a value.

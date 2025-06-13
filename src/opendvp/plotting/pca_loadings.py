@@ -1,20 +1,21 @@
-from adjustText import adjust_text
+from typing import Any
+
 import matplotlib.pyplot as plt
 import numpy as np
+from adjustText import adjust_text
 from anndata import AnnData
-from typing import Optional, Any
 from matplotlib.figure import Figure
+
 
 def pca_loadings(
     adata: AnnData,
     top: int = 30,
     n_pcs: int = 2,
     return_fig: bool = False,
-    ax: Optional[Any] = None,
+    ax: Any | None = None,
     **kwargs
-) -> Optional[Figure]:
-    """
-    Plot PCA protein loadings for the top features in the first two principal components.
+) -> Figure | None:
+    """Plot PCA protein loadings for the top features in the first two principal components.
 
     Parameters
     ----------
@@ -31,7 +32,7 @@ def pca_loadings(
     **kwargs
         Additional keyword arguments passed to matplotlib scatter.
 
-    Returns
+    Returns:
     -------
     fig : matplotlib.figure.Figure or None
         The figure object if return_fig is True, otherwise None.

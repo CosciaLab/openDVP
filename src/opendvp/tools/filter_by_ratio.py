@@ -1,11 +1,13 @@
-from opendvp.logger import logger
 import time
-import pandas as pd
+
 import anndata as ad
+import pandas as pd
+
+from opendvp.logger import logger
+
 
 def filter_by_ratio(adata, end_cycle, start_cycle, label="DAPI", min_ratio=0.5, max_ratio=1.05) -> ad.AnnData:
-    """ Filter cells by ratio """
-
+    """Filter cells by ratio"""
     logger.info(" ---- filter_by_ratio : version number 1.1.0 ----")
     #adapt to use with adata
     time_start = time.time()

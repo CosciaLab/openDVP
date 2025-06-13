@@ -1,17 +1,15 @@
 # Misc functions
-import time, os, re
-import numpy as np
+import time
+
 import matplotlib.pyplot as plt
-import matplotlib.colors as mcolors
-from loguru import logger
-from itertools import cycle
+import numpy as np
+
 
 def get_datetime():
     return time.strftime("%Y%m%d_%H%M")
 
 def switch_adat_var_index(adata, new_index):
-    """
-    Switch the index of adata.var to a new index. Useful for switching between gene names and protein names.
+    """Switch the index of adata.var to a new index. Useful for switching between gene names and protein names.
     """
     adata_copy = adata.copy()
     adata_copy.var[adata_copy.var.index.name] = adata_copy.var.index
@@ -28,8 +26,7 @@ def check_link(sdata, shape_element_key, adata, adata_obs_key):
     print("Success, no problems found")
 
 def ensure_one_based_index(adata, cellid_col="CellID"):
-    """
-    Ensures the specified CellID column and index are 1-based.
+    """Ensures the specified CellID column and index are 1-based.
     Converts data to integers if needed.
     
     Parameters:
@@ -39,7 +36,6 @@ def ensure_one_based_index(adata, cellid_col="CellID"):
     Returns:
     - adata: updated AnnData object
     """
-    
     # Check if the column exists
     if cellid_col not in adata.obs.columns:
         raise ValueError(f"Column '{cellid_col}' not found in adata.obs.")

@@ -1,13 +1,15 @@
-from opendvp.logger import logger
 import ast
-import geopandas as gpd
-import pandas as pd
+
 import anndata as ad
+import geopandas as gpd
 import numpy as np
+import pandas as pd
+
+from opendvp.logger import logger
+
 
 def filter_by_annotation(adata, path_to_geojson, any_label="artefact", plot_QC=True) -> ad.AnnData:
-    """ Filter cells by annotation in a geojson file efficiently using spatial indexing """
-
+    """Filter cells by annotation in a geojson file efficiently using spatial indexing"""
     # 100x faster
 
     logger.info(" ---- filter_by_annotation : version number 2.0.1 ----")

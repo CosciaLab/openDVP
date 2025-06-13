@@ -1,9 +1,7 @@
-from typing import Optional, Tuple
-import numpy as np
-import pandas as pd
+import matplotlib.pyplot as plt
 from anndata import AnnData
 from upsetplot import UpSet, from_indicators
-import matplotlib.pyplot as plt
+
 
 def upset(
     adata: AnnData,
@@ -13,8 +11,7 @@ def upset(
     sort_by: str = "cardinality",
     show: bool = True
 ) -> plt.Figure:
-    """
-    Generate an UpSet plot from an AnnData object based on variable presence across groups.
+    """Generate an UpSet plot from an AnnData object based on variable presence across groups.
 
     Presence is defined as non-NaN and above a specified threshold. Variables that are
     completely NaN across all samples are excluded. The final UpSet plot shows
@@ -38,12 +35,12 @@ def upset(
     show : bool, optional
         Whether to call plt.show(). Default is True.
 
-    Returns
+    Returns:
     -------
     matplotlib.figure.Figure
         The matplotlib Figure object containing the UpSet plot.
 
-    Example
+    Example:
     -------
     >>> plot_upset_from_adata(adata, groupby="condition", threshold=1000, min_presence_fraction=0.2)
     """

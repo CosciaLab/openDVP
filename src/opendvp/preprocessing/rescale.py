@@ -1,7 +1,8 @@
-import pandas as pd
 import numpy as np
-from sklearn.preprocessing import MinMaxScaler
+import pandas as pd
 from sklearn.mixture import GaussianMixture
+from sklearn.preprocessing import MinMaxScaler
+
 
 def rescale(
     adata,
@@ -14,8 +15,7 @@ def rescale(
     random_state=0,
     gmm_components=3,
 ):
-    """
-    Parameters:
+    """Parameters:
         adata (AnnData Object, required):
             An annotated data object that contains single-cell expression data.
 
@@ -73,7 +73,6 @@ def rescale(
         ```
 
     """
-
     # log=True; imageid='imageid'; failed_markers=None; method='all'; random_state=0
 
     # make a copy to raw data if raw is none
@@ -105,7 +104,7 @@ def rescale(
             gate_mapping.gate = gate_mapping.gate.fillna(
                 gate_mapping.markers.map(
                     dict(
-                        zip(gate['markers'], gate['gates'])
+                        zip(gate['markers'], gate['gates'], strict=False)
                     )  # these columns are hardcoded in CSV
                 )
             )
@@ -278,7 +277,7 @@ def rescale(
         result = pd.concat(result, join='outer')
         # use this to merge with gate_mapping
         gate_mapping.gate = gate_mapping.gate.fillna(
-            gate_mapping.markers.map(dict(zip(result.markers, result.gate)))
+            gate_mapping.markers.map(dict(zip(result.markers, result.gate, strict=False)))
         )
 
     # Rescaling function

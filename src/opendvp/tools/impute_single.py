@@ -1,12 +1,10 @@
 import sys
 import warnings
-import numpy as np
-import pandas as pd
-import anndata as ad
-from loguru import logger
-import seaborn as sns
+
 import matplotlib.pyplot as plt
-from typing import Optional
+import numpy as np
+import seaborn as sns
+from loguru import logger
 
 warnings.simplefilter(action='ignore', category=FutureWarning)
 warnings.simplefilter(action='ignore', category=UserWarning)
@@ -19,8 +17,7 @@ def impute_single(
     std_dev_shift: float = 0.3,
     report_stats: bool = True
 ) -> None:
-    """
-    Impute missing values in a 1D array using a Gaussian distribution in log2 space and plot the result.
+    """Impute missing values in a 1D array using a Gaussian distribution in log2 space and plot the result.
 
     Parameters
     ----------
@@ -33,12 +30,11 @@ def impute_single(
     report_stats : bool, default True
         Whether to print statistics about the imputation process.
 
-    Returns
+    Returns:
     -------
     None
         This function only plots and logs statistics; it does not return an imputed array.
     """
-    
     array_log2 = np.log2(array)
     mean_log2 = np.nanmean(array_log2)
     stddev_log2 = np.nanstd(array_log2)

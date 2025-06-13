@@ -1,9 +1,12 @@
-from opendvp.logger import logger
 import time
+
 import pandas as pd
 
+from opendvp.logger import logger
+
+
 def process_gates_for_sm(gates:pd.DataFrame, sample_id) -> pd.DataFrame:
-    """ Process gates dataframe to be in log1p scale """
+    """Process gates dataframe to be in log1p scale"""
     logger.info(" ---- process_gates_for_sm : version number 1.2.0 ----")
     time_start = time.time()
 

@@ -1,27 +1,28 @@
+from typing import Any
+
 import matplotlib.pyplot as plt
 import seaborn as sns
 from adjustText import adjust_text
 from anndata import AnnData
-from typing import Optional, List, Any
 from matplotlib.figure import Figure
+
 
 def volcano(
     adata: AnnData,
     x: str = "log2_FC",
     y: str = "-log10(p_val_corr)_BH",
     significant: bool = True,
-    FDR: Optional[float] = None,
-    tag_top: Optional[int] = None,
-    group1: Optional[str] = None,
-    group2: Optional[str] = None,
+    FDR: float | None = None,
+    tag_top: int | None = None,
+    group1: str | None = None,
+    group2: str | None = None,
     return_fig: bool = False,
-    highlight_genes: Optional[List[str]] = None,
+    highlight_genes: list[str] | None = None,
     show_highlighted_genes_names: bool = True,
-    ax: Optional[Any] = None,
+    ax: Any | None = None,
     **kwargs
-) -> Optional[Figure]:
-    """
-    Plot a volcano plot from an AnnData object.
+) -> Figure | None:
+    """Plot a volcano plot from an AnnData object.
 
     Parameters
     ----------
@@ -52,7 +53,7 @@ def volcano(
     **kwargs
         Additional keyword arguments passed to matplotlib scatter.
 
-    Returns
+    Returns:
     -------
     fig : matplotlib.figure.Figure or None
         The `fig` object if `return_fig=True`, otherwise None.

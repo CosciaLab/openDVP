@@ -1,14 +1,14 @@
-from typing import List
+
 import anndata as ad
-import pandas as pd
 import numpy as np
+import pandas as pd
+
 
 def calculate_category_averages(
     adata: ad.AnnData,
-    categories: List[str]
+    categories: list[str]
 ) -> ad.AnnData:
-    """
-    Calculate averages for all permutations of given categories in adata.obs.
+    """Calculate averages for all permutations of given categories in adata.obs.
 
     Parameters
     ----------
@@ -17,7 +17,7 @@ def calculate_category_averages(
     categories : list of str
         List of categories (column names in adata.obs) to calculate averages for.
 
-    Returns
+    Returns:
     -------
     AnnData
         AnnData object containing category combinations and their corresponding averages.
@@ -38,7 +38,7 @@ def calculate_category_averages(
     for combination in combinations:
 
         # Select cells that match the current category combination
-        mask = np.all(np.vstack([adata_copy.obs[cat] == val for cat, val in zip(categories, combination)]), axis=0)
+        mask = np.all(np.vstack([adata_copy.obs[cat] == val for cat, val in zip(categories, combination, strict=False)]), axis=0)
         selected_cells = np.asarray(adata.X)[mask]
         
         # Calculate average for the selected cells and store it in the DataFrame

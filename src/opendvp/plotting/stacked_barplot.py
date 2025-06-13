@@ -1,6 +1,5 @@
 def plot_rcn_stacked_barplot(df, phenotype_col, rcn_col, normalize=True):
-    """
-    Plots a stacked barplot showing phenotype composition per RCN motif.
+    """Plots a stacked barplot showing phenotype composition per RCN motif.
     
     Parameters:
     df (DataFrame): Input dataframe containing phenotype and RCN columns
@@ -23,7 +22,7 @@ def plot_rcn_stacked_barplot(df, phenotype_col, rcn_col, normalize=True):
         if phenotype in count_df.columns:
             ax.bar(count_df.index, count_df[phenotype],
                    bottom=bottoms, color=color, label=phenotype)
-            bottoms = [i + j for i, j in zip(bottoms, count_df[phenotype])]
+            bottoms = [i + j for i, j in zip(bottoms, count_df[phenotype], strict=False)]
     
     # Customize plot
     ax.legend(title="Phenotype", bbox_to_anchor=(1.05, 1), loc='upper left')

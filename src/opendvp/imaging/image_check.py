@@ -1,5 +1,5 @@
 def lazy_image_check(image_path):
-    """ Check the image metadata without loading the image """
+    """Check the image metadata without loading the image"""
     logger.info(" ---- lazy_image_check : version number 1.0.0 ----")
     time_start = time.time()
 

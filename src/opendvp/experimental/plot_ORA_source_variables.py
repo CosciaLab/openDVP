@@ -1,13 +1,10 @@
-import anndata as ad
-import pandas as pd
-import numpy as np
-import decoupler as dc
-import scanpy as sc
-import seaborn as sns
-import matplotlib.pyplot as plt
 import time
-import os
-import sys
+
+import anndata as ad
+import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
+
 
 # helper functions
 def get_datetime():
@@ -20,13 +17,10 @@ def plot_ORA_source_variables(
     geneset: str,
     groupby_analysis: str,
 ) -> None:
-        
-    """
-    Description:
+    """Description:
     Plots gene expression by group with median-centered scaling and sorts genes by the mean difference in expression between groups.
     Adds a second subplot with the combined expression of all genes per group.
     """
-
     #TODO max number of genes to plot, dynamic number of genes to plot, too many and switch to heatmap??
     #TODO summary plot should be violin plot, boxplot loses information about density
 

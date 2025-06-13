@@ -1,9 +1,12 @@
-from opendvp.logger import logger
 import time
+
 import pandas as pd
 
+from opendvp.logger import logger
+
+
 def read_gates(gates_csv_path, sample_id=None) -> pd.DataFrame:
-    """ Read the gates data from a csv file and return a dataframe """
+    """Read the gates data from a csv file and return a dataframe"""
     logger.info(" ---- read_gates : version number 1.1.0 ----")
     time_start = time.time()
 

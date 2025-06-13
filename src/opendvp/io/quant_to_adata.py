@@ -1,15 +1,16 @@
 import time
+
 import anndata as ad
 import pandas as pd
+
 from opendvp.logger import logger
 
+
 def quant_to_adata(csv_data_path) -> ad.AnnData:
-    """
-    Read the quantification data from a csv file and return an anndata object
+    """Read the quantification data from a csv file and return an anndata object
     :param csv_data_path: path to the csv file
     :return: an anndata object
     """
-
     #TODO not general enough, exemplar001 fails
     #TODO let users pass list of metadata columns, everything else is data
 

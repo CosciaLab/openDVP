@@ -1,6 +1,7 @@
 # src/opendvp/logger.py
-from loguru import logger
 import sys
+
+from loguru import logger
 
 # Remove default Loguru handler
 logger.remove()

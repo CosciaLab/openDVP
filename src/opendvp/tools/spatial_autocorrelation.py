@@ -1,22 +1,22 @@
-from typing import List
+
 import anndata as ad
+import esda
 import numpy as np
 import pandas as pd
-from tqdm import tqdm
 from libpysal.weights import KNN, DistanceBand
-import esda
 from loguru import logger
+from tqdm import tqdm
+
 
 def spatial_autocorrelation(
     adata: ad.AnnData,
     method: str = "moran",
-    x_y: List[str] = ["x_centroid", "y_centroid"],
+    x_y: list[str] = ["x_centroid", "y_centroid"],
     k: int = 8,
     threshold: float = 10.0,
     island_threshold: float = 0.1
 ) -> None:
-    """
-    Compute spatial autocorrelation statistics (Moran's I or Geary's C) for each gene in an AnnData object,
+    """Compute spatial autocorrelation statistics (Moran's I or Geary's C) for each gene in an AnnData object,
     with automatic threshold search if too many islands (disconnected samples) are detected.
 
     Parameters
@@ -34,12 +34,11 @@ def spatial_autocorrelation(
     island_threshold : float, default 0.1
         If more than this fraction of samples are islands (no neighbors), hyperparameter search is triggered.
 
-    Returns
+    Returns:
     -------
     None
         Results are added to adata.var in-place.
     """
-
     logger.info(f"Starting spatial autocorrelation: {method.upper()}")
     logger.info(f"adata shape: obs={adata.n_obs}, var={adata.n_vars}")
     coords = adata.obs[x_y].values

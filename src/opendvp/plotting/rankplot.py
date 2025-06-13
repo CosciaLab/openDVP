@@ -1,24 +1,25 @@
+from typing import Any
+
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 from adjustText import adjust_text
 from anndata import AnnData
-from typing import Optional, List, Dict, Any
 from matplotlib.figure import Figure
+
 
 def rankplot(
     adata: AnnData,
     adata_obs_key: str,
-    groups: List[str],
-    proteins_to_label: Optional[List[str]] = None,
-    group_colors: Optional[Dict[str, str]] = None,
-    group_offset: Optional[Dict[str, float]] = None,
+    groups: list[str],
+    proteins_to_label: list[str] | None = None,
+    group_colors: dict[str, str] | None = None,
+    group_offset: dict[str, float] | None = None,
     return_fig: bool = False,
-    ax: Optional[Any] = None,
+    ax: Any | None = None,
     **kwargs
-) -> Optional[Figure]:
-    """
-    Plot a rank plot of average protein abundance in an AnnData object.
+) -> Figure | None:
+    """Plot a rank plot of average protein abundance in an AnnData object.
 
     Parameters
     ----------
@@ -41,7 +42,7 @@ def rankplot(
     **kwargs
         Additional keyword arguments passed to matplotlib plot.
 
-    Returns
+    Returns:
     -------
     fig : matplotlib.figure.Figure or None
         The figure object if return_fig is True, otherwise None.

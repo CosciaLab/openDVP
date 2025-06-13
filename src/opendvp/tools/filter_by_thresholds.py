@@ -1,11 +1,13 @@
-import anndata as ad
-import pandas as pd
-from opendvp.logger import logger
 import time
 
+import anndata as ad
+import pandas as pd
+
+from opendvp.logger import logger
+
+
 def filter_adata_by_gates(adata: ad.AnnData, gates: pd.DataFrame, sample_id=None) -> ad.AnnData:
-    """
-    Filter an AnnData object to retain only markers specified in the `gates` DataFrame.
+    """Filter an AnnData object to retain only markers specified in the `gates` DataFrame.
 
     Parameters
     ----------
@@ -17,12 +19,12 @@ def filter_adata_by_gates(adata: ad.AnnData, gates: pd.DataFrame, sample_id=None
     sample_id : str, optional
         If provided, filters the `gates` DataFrame to only include rows with this sample_id.
 
-    Returns
+    Returns:
     -------
     AnnData
         A new AnnData object with the same cells but filtered to include only the gated markers.
     
-    Raises
+    Raises:
     ------
     AssertionError
         If marker IDs in `gates` are not all found in `adata.var.index`,

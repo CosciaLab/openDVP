@@ -1,10 +1,10 @@
 import sys
 import warnings
+
+import anndata as ad
 import numpy as np
 import pandas as pd
-import anndata as ad
 from loguru import logger
-from typing import Optional
 
 warnings.simplefilter(action='ignore', category=FutureWarning)
 warnings.simplefilter(action='ignore', category=UserWarning)
@@ -16,10 +16,9 @@ def gaussian(
     mean_shift: float = -1.8,
     std_dev_shift: float = 0.3,
     perSample: bool = False,
-    qc_export_path: Optional[str] = None
+    qc_export_path: str | None = None
 ) -> ad.AnnData:
-    """
-    Description:
+    """Description:
         This function imputes missing values in the adata object using a Gaussian distribution.
         The mean and standard deviation of the Gaussian distribution are calculated for each column (protein) in the adata object.
         The mean is shifted by the mean shift value multiplied by the standard deviation.
@@ -37,12 +36,12 @@ def gaussian(
         Recommended to impute per protein when more than 12 protein values available
     qc_export_path : Optional[str], default None
         Path to export QC information. If None, no export is performed.
-    Returns
+
+    Returns:
     -------
     AnnData
         AnnData object with imputed values
     """
-
     # TODO error if nan found in index, both np.nan and "nan"
     # TODO warn user when data is in linear space, could lead to negative values
 

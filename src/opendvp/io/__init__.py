@@ -1,5 +1,5 @@
-from .DIANN_to_adata import DIANN_to_adata
 from .adata_to_perseus import adata_to_perseus
+from .DIANN_to_adata import DIANN_to_adata
 from .perseus_to_adata import perseus_to_anndata
 
 __all__ = [

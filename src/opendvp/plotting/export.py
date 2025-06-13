@@ -1,8 +1,11 @@
-import os, time, matplotlib
+import os
+import time
+
+import matplotlib
+
 
 def export_figure(fig, path, suffix, dpi=600):
-    """
-    Save a matplotlib figure as both PDF and SVG files with a timestamped filename.
+    """Save a matplotlib figure as both PDF and SVG files with a timestamped filename.
 
     The function creates the output directory if it does not exist, generates a
     timestamped filename using the current date and time, and saves the figure in
@@ -20,7 +23,7 @@ def export_figure(fig, path, suffix, dpi=600):
     dpi : int, optional
         Resolution in dots per inch for the saved figure. Default is 600.
 
-    Returns
+    Returns:
     -------
     None
 
@@ -29,7 +32,7 @@ def export_figure(fig, path, suffix, dpi=600):
     str
         Confirmation message with the full paths to the saved PDF and SVG files.
 
-    Examples
+    Examples:
     --------
     >>> import matplotlib.pyplot as plt
     >>> fig, ax = plt.subplots()
@@ -40,7 +43,6 @@ def export_figure(fig, path, suffix, dpi=600):
     figures/20250519_1245_line_plot.pdf
     figures/20250519_1245_line_plot.svg
     """
-
     os.makedirs(path, exist_ok=True)
 
     # Ensure editable text in SVG

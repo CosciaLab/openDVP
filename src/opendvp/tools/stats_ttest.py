@@ -1,11 +1,9 @@
 from datetime import datetime
+
 date = datetime.now().strftime("%Y%m%d")
 
-from typing import Optional
 import anndata as ad
 import numpy as np
-import pandas as pd
-from scipy import stats
 import pingouin as pg
 import statsmodels.stats.multitest as smm
 
@@ -19,8 +17,7 @@ def ttest_adata(
     group2: str,
     FDR_threshold: float = 0.05
 ) -> ad.AnnData:
-    """
-    Perform a t-test for all columns of an AnnData object between two groups.
+    """Perform a t-test for all columns of an AnnData object between two groups.
 
     Parameters
     ----------
@@ -35,12 +32,11 @@ def ttest_adata(
     FDR_threshold : float, default 0.05
         The threshold for the FDR correction.
 
-    Returns
+    Returns:
     -------
     None
         Results are saved to adata.var in-place.
     """
-
     #TODO assert that adata slicing returns a non-empty object
     
     #setup

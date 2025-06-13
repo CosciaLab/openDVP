@@ -1,23 +1,17 @@
 from datetime import datetime
+
 date = datetime.now().strftime("%Y%m%d")
 
-from typing import Optional
-import anndata as ad
-import numpy as np
-import pandas as pd
-from scipy import stats
-import pingouin as pg
-import statsmodels.stats.multitest as smm
 from datetime import datetime
-date = datetime.now().strftime("%Y%m%d")
 
-from typing import Optional
 import anndata as ad
 import numpy as np
 import pandas as pd
-from scipy import stats
 import pingouin as pg
 import statsmodels.stats.multitest as smm
+
+date = datetime.now().strftime("%Y%m%d")
+
 
 #TODO tukey of only significant from anova
 #TODO average per sample as default (test assumes independence)
@@ -28,8 +22,7 @@ def anova_adata(
     FDR_threshold: float = 0.05,
     posthoc = "pairwise_tukey",
 ) -> ad.AnnData:
-    """
-    Perform one-way ANOVA for all columns of an AnnData object across all groups in a categorical column.
+    """Perform one-way ANOVA for all columns of an AnnData object across all groups in a categorical column.
 
     Parameters
     ----------
@@ -40,7 +33,7 @@ def anova_adata(
     FDR_threshold : float, default 0.05
         The threshold for the FDR correction.
 
-    Returns
+    Returns:
     -------
     None
         Results are saved to adata.var in-place.

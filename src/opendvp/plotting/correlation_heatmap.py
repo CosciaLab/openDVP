@@ -1,10 +1,12 @@
+from typing import Any, Literal, cast
+
 import matplotlib.pyplot as plt
-import seaborn as sns
-import pandas as pd
 import numpy as np
+import pandas as pd
+import seaborn as sns
 from anndata import AnnData
-from typing import Optional, Any, cast, Literal
 from matplotlib.figure import Figure
+
 
 def plot_correlation_heatmap(
     adata: AnnData,
@@ -12,11 +14,10 @@ def plot_correlation_heatmap(
     title: str = "Spearman Correlation Heatmap",
     sample_label: str = "raw_file_id",
     return_fig: bool = False,
-    ax: Optional[Any] = None,
+    ax: Any | None = None,
     **kwargs
-) -> Optional[Figure]:
-    """
-    Plot a correlation heatmap of the protein abundance for all samples in adata.
+) -> Figure | None:
+    """Plot a correlation heatmap of the protein abundance for all samples in adata.
 
     Parameters
     ----------
@@ -35,7 +36,7 @@ def plot_correlation_heatmap(
     **kwargs
         Additional keyword arguments passed to seaborn.heatmap.
 
-    Returns
+    Returns:
     -------
     fig : matplotlib.figure.Figure or None
         The figure object if return_fig is True, otherwise None.

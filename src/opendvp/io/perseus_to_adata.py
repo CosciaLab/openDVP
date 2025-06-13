@@ -1,8 +1,8 @@
 import sys
-import anndata as ad
 import time
+
+import anndata as ad
 from loguru import logger
-from typing import Optional
 
 datetime = time.strftime("%Y%m%d_%H%M%S")
 
@@ -13,8 +13,7 @@ def perseus_to_anndata(
     path_to_perseus_txt: str,
     n_var_metadata_rows: int = 4
 ) -> ad.AnnData:
-    """
-    Convert a Perseus text file to an AnnData object.
+    """Convert a Perseus text file to an AnnData object.
 
     Parameters
     ----------
@@ -23,7 +22,7 @@ def perseus_to_anndata(
     n_var_metadata_rows : int, default 4
         Number of metadata rows at the bottom of the columns to use as var headers.
 
-    Returns
+    Returns:
     -------
     AnnData
         AnnData object with imported data.

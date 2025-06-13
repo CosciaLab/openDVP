@@ -1,13 +1,13 @@
+import time
+
 import anndata as ad
-import pandas as pd
-import numpy as np
 import decoupler as dc
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
 import scanpy as sc
 import seaborn as sns
-import matplotlib.pyplot as plt
-import time
-import os
-import sys
+
 
 # helper functions
 def get_datetime():
@@ -26,9 +26,7 @@ def plot_MLM_heatmap(
         return_adata=False,
         return_acts=False,
         **kwargs): 
-    
-    """
-    Description:
+    """Description:
         Perform an Over-Representation Analysis (ORA) using the Decoupler package and plot the results as a heatmap.
     Parameters:
         adata: AnnData object
@@ -36,7 +34,6 @@ def plot_MLM_heatmap(
         msigdb: DataFrame
             A DataFrame with the gene sets from the Molecular Signatures Database (MSigDB).
     """
-
     print("version 1.0.0")
 
     adata_copy = adata.copy()
@@ -93,13 +90,10 @@ def plot_MLM_source_variables(
     geneset: str,
     groupby_analysis: str,
 ) -> None:
-        
-    """
-    Description:
+    """Description:
     Plots gene expression by group with median-centered scaling and sorts genes by the mean difference in expression between groups.
     Adds a second subplot with the combined expression of all genes per group.
     """
-
     #TODO max number of genes to plot, dynamic number of genes to plot, too many and switch to heatmap??
     #TODO summary plot should be violin plot, boxplot loses information about density
 

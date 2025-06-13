@@ -1,5 +1,6 @@
-import pandas as pd
 import numpy as np
+import pandas as pd
+
 
 def phenotype_cells (adata, 
                      phenotype, 
@@ -10,9 +11,7 @@ def phenotype_cells (adata,
                      pheno_threshold_abs=None,
                      verbose=True
                      ):
-    """
-    
-Parameters:
+    """Parameters:
     adata (anndata.AnnData):  
         The input AnnData object containing single-cell data for phenotyping.
 
@@ -37,11 +36,11 @@ Parameters:
     verbose (bool):  
         If set to `True`, the function will print detailed messages about its progress and the steps being executed.
 
-Returns:
+    Returns:
     adata (anndata.AnnData):  
         The input AnnData object, updated to include the phenotype classifications for each cell. The phenotyping results can be found in `adata.obs[label]`, where `label` is the name specified by the user for the phenotype column.
 
-Example:    
+    Example:
     ```python
     
     # Load the phenotype workflow CSV file
@@ -82,7 +81,7 @@ Example:
         p_list = phenotype.iloc[:,1].tolist()
         r_phenotype = lambda x: phenotype_parser(cell=x, p=phenotype) # Create lamda function
         all_phenotype = list(map(r_phenotype, p_list)) # Apply function
-        all_phenotype = dict(zip(p_list, all_phenotype)) # Name the lists
+        all_phenotype = dict(zip(p_list, all_phenotype, strict=False)) # Name the lists
 
         # Define function to check if there is any marker that does not satisfy the gate
         def gate_satisfation_lessthan (marker, data, gate):
@@ -177,7 +176,7 @@ Example:
         # Apply the fuction to get the total score for all cell types
         r_prob_mapper = lambda x: prob_mapper (data=data, all_phenotype=all_phenotype, cell=x, gate=gate) # Create lamda function
         final_scores = list(map(r_prob_mapper, [*all_phenotype])) # Apply function
-        final_scores = dict(zip([*all_phenotype], final_scores)) # Name the lists
+        final_scores = dict(zip([*all_phenotype], final_scores, strict=False)) # Name the lists
 
         # Combine the final score to annotate the cells with a label
         final_score_df = pd.DataFrame()
@@ -188,7 +187,7 @@ Example:
         final_score_df.columns = [*final_scores]
         final_score_df.index = data.index
         # Add a column called unknown if all markers have a value less than the gate (0.5)
-        unknown = group + str('-rest')
+        unknown = group + '-rest'
         final_score_df[unknown] = (final_score_df < gate).all(axis=1).astype(int)
 
         # Name each cell
@@ -280,7 +279,7 @@ Example:
                 fail = list(x.loc[x['val'] < x['val'].sum() * pheno_threshold_percent/100].index)
             if pheno_threshold_abs is not None:
                 fail = list(x.loc[x['val'] < pheno_threshold_abs].index)
-            d[label] = d[label].replace(dict(zip(fail, ['Unknown'] * len(fail) )))
+            d[label] = d[label].replace(dict(zip(fail, ['Unknown'] * len(fail), strict=False )))
             # Return
             return d
 

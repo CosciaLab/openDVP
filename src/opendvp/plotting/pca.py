@@ -1,27 +1,28 @@
-import pandas as pd
+from typing import Any
+
 import numpy as np
+import pandas as pd
 import plotly.express as px
+import plotly.graph_objs as go
 import scanpy as sc
 from anndata import AnnData
-from typing import Optional, List, Dict, Any
-import plotly.graph_objs as go
+
 
 def pca(
     adata: AnnData,
-    color: Optional[str] = None,
-    group_colors: Optional[Dict[str, str]] = None,
-    symbol: Optional[str] = None,
-    hoverwith: Optional[List[str]] = None,
-    choose_PCs: List[int] = [1, 2],
+    color: str | None = None,
+    group_colors: dict[str, str] | None = None,
+    symbol: str | None = None,
+    hoverwith: list[str] | None = None,
+    choose_PCs: list[int] = [1, 2],
     multi_scatter: bool = False,
     how_many_PCs: int = 4,
     scatter_3d: bool = False,
-    save_path: Optional[str] = None,
+    save_path: str | None = None,
     return_fig: bool = False,
     **kwargs: Any
-) -> Optional[go.Figure]:
-    """
-    Plot PCA of samples in an AnnData object using Plotly.
+) -> go.Figure | None:
+    """Plot PCA of samples in an AnnData object using Plotly.
 
     Parameters
     ----------
@@ -50,7 +51,7 @@ def pca(
     **kwargs
         Additional keyword arguments passed to plotly express functions.
 
-    Returns
+    Returns:
     -------
     fig : plotly.graph_objs.Figure or None
         The figure object if return_fig is True, otherwise None.

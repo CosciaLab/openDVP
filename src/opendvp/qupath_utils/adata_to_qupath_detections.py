@@ -1,10 +1,7 @@
-from opendvp.logger import logger
 import time
-import anndata as ad
-import numpy as np
-import pandas as pd
-import geopandas as gpd
-from opendvp.qupath_utils import parse_colors_for_qupath
+
+from opendvp.logger import logger
+
 
 def color_geojson_w_adata(
         geodataframe,
@@ -16,9 +13,7 @@ def color_geojson_w_adata(
         export_path,
         simplify_value=1,
 ):
-    
-    """
-    Add classification colors from an AnnData object to a GeoDataFrame for QuPath visualization.
+    """Add classification colors from an AnnData object to a GeoDataFrame for QuPath visualization.
 
     Parameters
     ----------
@@ -51,12 +46,11 @@ def color_geojson_w_adata(
     return_gdf : bool, optional
         If True, returns the modified GeoDataFrame with classifications.
 
-    Returns
+    Returns:
     -------
     geopandas.GeoDataFrame or None
         Returns the updated GeoDataFrame if `return_gdf=True`, else writes to file only.
     """
-    
     logger.info(" -- Adding color to polygons for QuPath visualization -- ")
     
     gdf = geodataframe.copy()
@@ -105,5 +99,5 @@ def color_geojson_w_adata(
         gdf.to_file(export_path, driver='GeoJSON')
         logger.success(f"Exported Voronoi projection to {export_path}")
     else:
-        logger.success(f" -- Created and returning Voronoi projection -- ")
+        logger.success(" -- Created and returning Voronoi projection -- ")
         return gdf

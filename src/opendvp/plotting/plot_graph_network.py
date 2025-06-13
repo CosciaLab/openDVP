@@ -1,18 +1,19 @@
+from typing import Any
+
 import matplotlib.pyplot as plt
 import networkx as nx
-from typing import Any, Optional
 from matplotlib.figure import Figure
+
 
 def plot_graph_network(
     w: Any,
     coords: Any,
     threshold: float,
     return_fig: bool = False,
-    ax: Optional[Any] = None,
+    ax: Any | None = None,
     **kwargs
-) -> Optional[Figure]:
-    """
-    Plot the graph of connected nodes for a given threshold.
+) -> Figure | None:
+    """Plot the graph of connected nodes for a given threshold.
 
     Parameters
     ----------
@@ -29,7 +30,7 @@ def plot_graph_network(
     **kwargs
         Additional keyword arguments passed to networkx.draw.
 
-    Returns
+    Returns:
     -------
     fig : matplotlib.figure.Figure or None
         The figure object if return_fig is True, otherwise None.

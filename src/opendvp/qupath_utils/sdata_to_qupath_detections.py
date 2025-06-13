@@ -1,7 +1,8 @@
-import geopandas
 import anndata as ad
-from opendvp.qupath_utils import parse_colors_for_qupath
+import geopandas
+
 from opendvp.logger import logger
+
 
 def sdata_to_qupath_detections(
         sdata,
@@ -14,17 +15,15 @@ def sdata_to_qupath_detections(
         simplify_value=1.0,
         return_gdf=False
 ):
+    """Export the shapes as detections
+    adata: anndata object
+    key_to_shapes: key in sdata._shared_keys where the shapes, must be shape element or labels, if labels it will be polygonized
+    table_key: key in sdata._shared_keys referring to table element
+    classify_by: key in table for categorical
+    export_path: path to export the detections as geojson
+    color_dict: dictionary with color mappings found in table.uns, should match keys in classify_by
+    simplify_value: simplify the geometry, tolerance 1.0 is default, replace with None for no simplification
     """
-    Export the shapes as detections
-        adata: anndata object
-        key_to_shapes: key in sdata._shared_keys where the shapes, must be shape element or labels, if labels it will be polygonized
-        table_key: key in sdata._shared_keys referring to table element
-        classify_by: key in table for categorical
-        export_path: path to export the detections as geojson
-        color_dict: dictionary with color mappings found in table.uns, should match keys in classify_by
-        simplify_value: simplify the geometry, tolerance 1.0 is default, replace with None for no simplification
-    """
-
     try:
         import spatialdata
     except ImportError as e:

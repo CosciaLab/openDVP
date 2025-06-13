@@ -1,20 +1,21 @@
+from typing import Any
+
 import matplotlib.pyplot as plt
-import seaborn as sns
-import pandas as pd
 import numpy as np
+import pandas as pd
+import seaborn as sns
 from anndata import AnnData
-from typing import Optional, Any
 from matplotlib.figure import Figure
+
 
 def coefficient_of_variation(
     adata: AnnData,
     group_by: str,
     return_fig: bool = False,
-    ax: Optional[Any] = None,
+    ax: Any | None = None,
     **kwargs
-) -> Optional[Figure]:
-    """
-    Plot coefficient of variation (CV) for each group in AnnData.obs[group_by].
+) -> Figure | None:
+    """Plot coefficient of variation (CV) for each group in AnnData.obs[group_by].
 
     Parameters
     ----------
@@ -29,7 +30,7 @@ def coefficient_of_variation(
     **kwargs
         Additional keyword arguments passed to seaborn.boxplot.
 
-    Returns
+    Returns:
     -------
     fig : matplotlib.figure.Figure or None
         The figure object if return_fig is True, otherwise None.

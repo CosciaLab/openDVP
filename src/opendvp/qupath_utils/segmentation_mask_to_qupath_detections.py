@@ -1,5 +1,6 @@
 from opendvp.logger import logger
 
+
 def segmentation_mask_to_qupath_detections(
         path_to_mask: str,
         simplify_value: float=1,
@@ -8,8 +9,8 @@ def segmentation_mask_to_qupath_detections(
         import spatialdata
     except ImportError as e:
         raise ImportError("The 'spatialdata' package is required for this functionality. Install with 'pip install opendvp[spatialdata]'.") from e
-    import dask_image
     import dask.array as da
+    import dask_image
 
     # checks
     assert isinstance(path_to_mask, str), "path_to_mask must be a string"

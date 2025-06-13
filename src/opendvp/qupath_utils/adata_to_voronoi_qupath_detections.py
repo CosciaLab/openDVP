@@ -1,10 +1,10 @@
-from opendvp.logger import logger
-import time
 
-import shapely
-import scipy
 import geopandas as gpd
-from opendvp.qupath_utils import parse_colors_for_qupath
+import scipy
+import shapely
+
+from opendvp.logger import logger
+
 
 def adataobs_to_voronoi_geojson(
         adata,
@@ -17,8 +17,7 @@ def adataobs_to_voronoi_geojson(
         save_as_detection = True,  
         output_filepath:str = None
         ):
-    """
-    Generate a Voronoi diagram from cell centroids stored in an AnnData object 
+    """Generate a Voronoi diagram from cell centroids stored in an AnnData object
     and export it as a GeoJSON file or return it as a GeoDataFrame.
 
     This function computes a 2D Voronoi tessellation from the 'X_centroid' and 'Y_centroid' 
@@ -57,13 +56,13 @@ def adataobs_to_voronoi_geojson(
         If provided, saves the output as a GeoJSON file at this path. 
         If None, returns the GeoDataFrame instead.
 
-    Returns
+    Returns:
     -------
     geopandas.GeoDataFrame or None
         If `output_filepath` is None, returns the resulting GeoDataFrame with Voronoi polygons.
         Otherwise, writes to file and returns None.
 
-    Notes
+    Notes:
     -----
     - Requires the `scipy`, `shapely`, `geopandas`, and `anndata` packages.
     - Assumes `adata.obs` contains valid `X_centroid` and `Y_centroid` columns.
@@ -149,5 +148,5 @@ def adataobs_to_voronoi_geojson(
         gdf.to_file(output_filepath, driver='GeoJSON')
         logger.success(f"Exported Voronoi projection to {output_filepath}")
     else:
-        logger.success(f" -- Created and returning Voronoi projection -- ")
+        logger.success(" -- Created and returning Voronoi projection -- ")
         return gdf

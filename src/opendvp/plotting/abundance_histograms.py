@@ -1,20 +1,19 @@
+
 import matplotlib.pyplot as plt
 import numpy as np
-import pandas as pd
-import seaborn as sns
 import scipy
+import seaborn as sns
 from anndata import AnnData
-from typing import Optional
 from matplotlib.figure import Figure
+
 
 def plot_histograms(
     adata: AnnData,
     n_cols: int = 4,
     return_fig: bool = False,
     **kwargs
-) -> Optional[Figure]:
-    """
-    Plot histograms of protein abundance for each sample in adata.
+) -> Figure | None:
+    """Plot histograms of protein abundance for each sample in adata.
 
     Parameters
     ----------
@@ -27,7 +26,7 @@ def plot_histograms(
     **kwargs
         Additional keyword arguments passed to seaborn.histplot.
 
-    Returns
+    Returns:
     -------
     fig : matplotlib.figure.Figure or None
         The figure object if return_fig is True, otherwise None.

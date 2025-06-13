@@ -1,21 +1,22 @@
-from typing import List, Optional, Tuple, Any
+from typing import Any
+
 import anndata as ad
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 from libpysal.weights import DistanceBand
 from pyproteomics.plotting.plot_graph_network import plot_graph_network
 
+
 def hyperparameter_search(
     adata: ad.AnnData,
-    x_y: List[str] = ["x_centroid", "y_centroid"],
+    x_y: list[str] = ["x_centroid", "y_centroid"],
     threshold_range: np.ndarray = np.arange(1, 100, 1),
-    loguru_logger: Optional[Any] = None,
+    loguru_logger: Any | None = None,
     return_df: bool = False,
-    plot_network_at: Optional[int] = None
+    plot_network_at: int | None = None
 ) -> Any:
-    """
-    Perform a hyperparameter search over a range of threshold values to determine the number of connected nodes and average neighbors
+    """Perform a hyperparameter search over a range of threshold values to determine the number of connected nodes and average neighbors
     for different threshold values, and optionally plot the network of connected nodes at a given threshold.
 
     Parameters
@@ -33,7 +34,7 @@ def hyperparameter_search(
     plot_network_at : Optional[int], default None
         The threshold value at which to plot the network of connected nodes. If None, no plot is generated.
 
-    Returns
+    Returns:
     -------
     If return_df is True:
         tuple[pandas.DataFrame, tuple[matplotlib.figure.Figure, matplotlib.axes.Axes]]
@@ -42,7 +43,6 @@ def hyperparameter_search(
         tuple[matplotlib.figure.Figure, matplotlib.axes.Axes]
             The plot (figure, axes).
     """
-    
     # Initialize a list to store the stats for each threshold
     stats = []
 

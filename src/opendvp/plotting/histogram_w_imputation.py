@@ -1,9 +1,10 @@
-import numpy as np
+
 import matplotlib.pyplot as plt
+import numpy as np
 import seaborn as sns
 from anndata import AnnData
-from typing import Optional
 from matplotlib.figure import Figure
+
 
 def histogram_w_imputation(
     adata_before_imputation: AnnData,
@@ -11,11 +12,10 @@ def histogram_w_imputation(
     n_cols: int = 4,
     return_fig: bool = False,
     save: bool = False,
-    save_name: Optional[str] = None,
+    save_name: str | None = None,
     **kwargs
-) -> Optional[Figure]:
-    """
-    Plot histograms for each sample showing raw and imputed values before and after imputation.
+) -> Figure | None:
+    """Plot histograms for each sample showing raw and imputed values before and after imputation.
 
     Parameters
     ----------
@@ -34,7 +34,7 @@ def histogram_w_imputation(
     **kwargs
         Additional keyword arguments passed to seaborn.histplot.
 
-    Returns
+    Returns:
     -------
     fig : matplotlib.figure.Figure or None
         The figure object if return_fig is True, otherwise None.

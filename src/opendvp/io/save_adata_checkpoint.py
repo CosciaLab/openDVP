@@ -1,17 +1,17 @@
 import os
-from typing import Optional
 from pathlib import Path
+
 import anndata as ad
 from pyproteomics.logger import logger
 from pyproteomics.utils import get_datetime
+
 
 def save_adata_checkpoint(
     adata: ad.AnnData,
     path_to_dir: str,
     checkpoint_name: str
 ) -> None:
-    """
-    Save an AnnData object as both .h5ad and .parquet files in a checkpoint directory.
+    """Save an AnnData object as both .h5ad and .parquet files in a checkpoint directory.
 
     Parameters
     ----------
@@ -22,12 +22,11 @@ def save_adata_checkpoint(
     checkpoint_name : str
         Name for the checkpoint folder and file prefix.
 
-    Returns
+    Returns:
     -------
     None
         This function saves files to disk and does not return a value.
     """
-
     try:    
         os.makedirs(path_to_dir, exist_ok=True)
         os.makedirs(os.path.join(path_to_dir,checkpoint_name), exist_ok=True)
@@ -42,7 +41,7 @@ def save_adata_checkpoint(
         logger.info("Writing h5ad")
         adata.write_h5ad(filename=Path(basename + ".h5ad"))
         logger.success("Wrote h5ad file")
-    except (OSError, IOError, ValueError) as e:
+    except (OSError, ValueError) as e:
         logger.error(f"Could not write h5ad file: {e}")
         return
 
@@ -51,5 +50,5 @@ def save_adata_checkpoint(
         logger.info("Writing parquet")
         adata.to_df().to_parquet(path=Path(basename + ".parquet"))
         logger.success("Wrote parquet file")
-    except (OSError, IOError, ValueError) as e:
+    except (OSError, ValueError) as e:
         logger.error(f"Could not write parquet file: {e}")

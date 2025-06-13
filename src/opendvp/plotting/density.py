@@ -1,20 +1,21 @@
+from typing import Any
+
+import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 import seaborn as sns
-import matplotlib.pyplot as plt
 from anndata import AnnData
-from typing import Optional, Any
-import numpy as np
 from matplotlib.figure import Figure
+
 
 def density_plots(
     adata: AnnData,
     color_by: str,
     return_fig: bool = False,
-    ax: Optional[Any] = None,
+    ax: Any | None = None,
     **kwargs
-) -> Optional[Figure]:
-    """
-    Plot density (KDE) plots of protein abundance grouped by a categorical variable in AnnData.obs.
+) -> Figure | None:
+    """Plot density (KDE) plots of protein abundance grouped by a categorical variable in AnnData.obs.
 
     Parameters
     ----------
@@ -29,7 +30,7 @@ def density_plots(
     **kwargs
         Additional keyword arguments passed to seaborn.kdeplot.
 
-    Returns
+    Returns:
     -------
     fig : matplotlib.figure.Figure or None
         The figure object if return_fig is True, otherwise None.

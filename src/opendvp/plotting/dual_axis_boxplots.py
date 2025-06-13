@@ -1,9 +1,10 @@
-import seaborn as sns
+from typing import Any
+
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from typing import Optional, Any, Tuple
 from matplotlib.figure import Figure
+
 
 def plot_dual_axis_boxplots(
     adata_obs: pd.DataFrame,
@@ -21,15 +22,14 @@ def plot_dual_axis_boxplots(
     scatter_color: str = 'black',
     tick1_color: str = 'blue',
     tick2_color: str = 'red',
-    figsize: Tuple[int, int] = (6, 6),
+    figsize: tuple[int, int] = (6, 6),
     return_fig: bool = False,
     show_plot: bool = True,
-    ax1: Optional[Any] = None,
-    ax2: Optional[Any] = None,
+    ax1: Any | None = None,
+    ax2: Any | None = None,
     **kwargs
-) -> Optional[Figure]:
-    """
-    Generates a dual-axis plot with boxplots and stripplots for two features grouped by a specified feature key.
+) -> Figure | None:
+    """Generates a dual-axis plot with boxplots and stripplots for two features grouped by a specified feature key.
 
     Parameters
     ----------
@@ -74,7 +74,7 @@ def plot_dual_axis_boxplots(
     **kwargs
         Additional keyword arguments passed to matplotlib boxplot/scatter.
 
-    Returns
+    Returns:
     -------
     fig : matplotlib.figure.Figure or None
         The figure object if return_fig is True, otherwise None.

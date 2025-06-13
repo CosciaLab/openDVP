@@ -1,22 +1,23 @@
+from typing import Any
+
 import pandas as pd
 import plotly.express as px
-from anndata import AnnData
-from typing import Optional, List, Dict, Any
 import plotly.graph_objs as go
+from anndata import AnnData
+
 
 def plot_boxplots_plotly(
     adata: AnnData,
     x_axis: str = "Phenotype_1",
     y_axis: str = "n_proteins",
-    hover_data: Optional[List[str]] = None,
+    hover_data: list[str] | None = None,
     color_column: str = "Phenotype_1",
     return_fig: bool = False,
-    save_path: Optional[str] = None,
-    save_df_path: Optional[str] = None,
+    save_path: str | None = None,
+    save_df_path: str | None = None,
     **kwargs: Any
-) -> Optional[go.Figure]:
-    """
-    Plot interactive boxplots using Plotly for a given AnnData object.
+) -> go.Figure | None:
+    """Plot interactive boxplots using Plotly for a given AnnData object.
 
     Parameters
     ----------
@@ -39,7 +40,7 @@ def plot_boxplots_plotly(
     **kwargs
         Additional keyword arguments passed to plotly.express.box.
 
-    Returns
+    Returns:
     -------
     fig : plotly.graph_objs.Figure or None
         The figure object if return_fig is True, otherwise None.

@@ -1,7 +1,9 @@
-from opendvp.logger import logger
 import time
+
 import anndata as ad
 import pandas as pd
+
+from opendvp.logger import logger
 
 
 def filter_by_abs_value(adata, marker, value=None, quantile=None, keep='above', plot=False) -> ad.AnnData:
@@ -14,7 +16,6 @@ def filter_by_abs_value(adata, marker, value=None, quantile=None, keep='above', 
         quantile: quantile to use as threshold
         keep: 'above' or 'below', denoting which cells are kept
     """
-
     logger.info(" ---- filter_by_abs_value : version number 1.1.0 ----")
     time_start = time.time()
 

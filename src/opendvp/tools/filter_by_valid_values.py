@@ -1,12 +1,11 @@
-import os
 import sys
 import time
+import warnings
+
 import anndata as ad
 import numpy as np
 import pandas as pd
 from loguru import logger
-import warnings
-from typing import Optional
 
 datetime = time.strftime("%Y%m%d_%H%M%S")
 logger.remove()
@@ -15,12 +14,11 @@ logger.add(sys.stdout, format="<green>{time:HH:mm:ss.SS}</green> | <level>{level
 def filter_by_valid_values(
     adata: ad.AnnData,
     threshold: float = 0.7,
-    grouping: Optional[str] = None,
-    qc_export_path: Optional[str] = None,
+    grouping: str | None = None,
+    qc_export_path: str | None = None,
     valid_in_ANY_or_ALL_groups: str = 'ANY'
 ) -> ad.AnnData:
-    """
-    Filter out proteins that have a NaN proportion above the threshold, for each group in the grouping variable.
+    """Filter out proteins that have a NaN proportion above the threshold, for each group in the grouping variable.
 
     Parameters
     ----------
@@ -36,17 +34,15 @@ def filter_by_valid_values(
         'ANY' means that if a protein passes the threshold in any group it will be kept.
         'ALL' means that a protein must pass validity threshold for all groups to be kept (more stringent).
 
-    Returns
+    Returns:
     -------
     AnnData
         Filtered AnnData object.
     """
-
     # TODO let users decide on an absolute number of valid values
 
     logger.info(f"Filtering protein without atleast {threshold*100}% valid values in {valid_in_ANY_or_ALL_groups} group")
 
-    import warnings #for numpy mean of empty slice, which is expected
     warnings.simplefilter("ignore", category=RuntimeWarning)
 
     assert 0 <= threshold <= 1, "Threshold must be between 0 and 1"
@@ -94,7 +90,7 @@ def filter_by_valid_values(
         df_proteins['nan_count']       = np.isnan(np.asarray(adata_copy.X)).sum(axis=0)
         df_proteins['valid_count']     = (~np.isnan(np.asarray(adata_copy.X))).sum(axis=0)
         df_proteins['nan_proportions'] = np.isnan(np.asarray(adata_copy.X)).mean(axis=0)
-        df_proteins['valid']           = df_proteins[f'nan_proportions'] < (1.0 - threshold)
+        df_proteins['valid']           = df_proteins['nan_proportions'] < (1.0 - threshold)
         df_proteins['not_valid']       = ~df_proteins['valid']
         adata_copy = adata_copy[:, df_proteins.valid.values.astype(bool)]
         print(f"{df_proteins['valid'].sum()} proteins were kept")

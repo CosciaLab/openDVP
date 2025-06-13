@@ -2,11 +2,12 @@ import os
 from pathlib import Path
 
 import anndata as ad
-from pyproteomics.logger import logger
-from pyproteomics.utils import get_datetime
+
+from opendvp.logger import logger
+from opendvp.utils.utils import get_datetime
 
 
-def save_adata_checkpoint(
+def export_adata(
     adata: ad.AnnData,
     path_to_dir: str,
     checkpoint_name: str

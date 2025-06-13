@@ -2,9 +2,17 @@ import os
 import time
 
 import matplotlib
+import matplotlib.figure
+
+from opendvp.logger import logger
 
 
-def export_figure(fig, path, suffix, dpi=600):
+def export_figure(
+    fig : matplotlib.figure.Figure, 
+    path : str,
+    suffix : str, 
+    dpi :int = 600
+) -> None:
     """Save a matplotlib figure as both PDF and SVG files with a timestamped filename.
 
     The function creates the output directory if it does not exist, generates a
@@ -58,4 +66,4 @@ def export_figure(fig, path, suffix, dpi=600):
     fig.savefig(fname=pdf_path, format="pdf", dpi=dpi, bbox_inches="tight")
     fig.savefig(fname=svg_path, format="svg", dpi=dpi, bbox_inches="tight", transparent=True)
 
-    print(f"Figure saved as: {pdf_path} and {svg_path}")
+    logger.info(f"Figure saved as: {pdf_path} and {svg_path}")

@@ -4,6 +4,8 @@ import time
 import matplotlib.pyplot as plt
 import numpy as np
 
+from .logger import logger
+
 
 def get_datetime():
     return time.strftime("%Y%m%d_%H%M")

@@ -43,9 +43,9 @@ def adata_to_perseus(
     # Export expression data
     data = np.asarray(adata.X)
     index = adata.obs[obs_key] if obs_key is not None else adata.obs_names
-    df = pd.DataFrame(data=data, columns=adata.var_names, index=index)
-    df.index.name = "Name"  # Perseus requires this
-    df.to_csv(data_file, sep="\t")
+    expression_df = pd.DataFrame(data=data, columns=adata.var_names, index=index)
+    expression_df.index.name = "Name"  # Perseus requires this
+    expression_df.to_csv(data_file, sep="\t")
 
     # Export metadata
     metadata = adata.obs.copy()

@@ -1,20 +1,17 @@
-import sys
 import time
 
 import numpy as np
 
-datetime = time.strftime("%Y%m%d_%H%M%S")
-
 from opendvp.logger import logger
 
-logger.remove()
-logger.add(sys.stdout, format="<green>{time:HH:mm:ss.SS}</green> | <level>{level}</level> | {message}")
+datetime = time.strftime("%Y%m%d_%H%M%S")
 
 def nan_difference(
     array1: np.ndarray,
     array2: np.ndarray
 ) -> None:
     """Calculate how many NaNs do not match between two arrays.
+    
     Good quality control, since this can happen.
 
     Parameters
@@ -29,14 +26,15 @@ def nan_difference(
     None
         Prints the number and percentage of mismatched NaNs.
     """
-    assert array1.shape == array2.shape
+    if array1.shape != array2.shape:
+        raise ValueError(f"Shape mismatch: array1.shape={array1.shape}, array2.shape={array2.shape}")
     total = array1.shape[0] * array1.shape[1]
 
-    print("how many nans are not matched between arrays?")
+    logger.info("how many nans are not matched between arrays?")
     nan_mask1 = np.isnan(array1)
     nan_mask2 = np.isnan(array2)
 
     #True only if True,False or False,True. True True, or False False will be False.
     mismatch = np.logical_xor(nan_mask1, nan_mask2) & np.logical_or(nan_mask1, nan_mask2)
-    print(f"Number of NaNs not matching: {np.sum(mismatch)}") 
-    print(f"{np.sum(mismatch)*100/total} % of entire table")
+    logger.info(f"Number of NaNs not matching: {np.sum(mismatch)}") 
+    logger.info(f"{np.sum(mismatch)*100/total} % of entire table")

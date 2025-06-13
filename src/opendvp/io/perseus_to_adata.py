@@ -23,7 +23,7 @@ def perseus_to_anndata(
         AnnData object with imported data.
     """
     logger.info(f"Reading Perseus file from: {path_to_perseus_txt}")
-    perseus_df = pd.read_perseus(path_to_perseus_txt)
+    perseus_df = pd.read_perseus(path_to_perseus_txt) # type: ignore
     logger.info(f"Perseus DataFrame shape: {perseus_df.shape}")
     # get obs headers
     obs_headers = list(perseus_df.columns.names)

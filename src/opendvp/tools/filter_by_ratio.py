@@ -3,7 +3,7 @@ import time
 import anndata as ad
 import pandas as pd
 
-from opendvp.logger import logger
+from opendvp.utils import logger
 
 
 def filter_by_ratio(adata, end_cycle, start_cycle, label="DAPI", min_ratio=0.5, max_ratio=1.05) -> ad.AnnData:

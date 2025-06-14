@@ -3,7 +3,7 @@ import time
 import anndata as ad
 import pandas as pd
 
-from opendvp.logger import logger
+from opendvp.utils import logger
 
 
 def filter_adata_by_gates(adata: ad.AnnData, gates: pd.DataFrame, sample_id=None) -> ad.AnnData:

@@ -2,7 +2,7 @@ import time
 
 import numpy as np
 
-from opendvp.logger import logger
+from opendvp.utils import logger
 
 datetime = time.strftime("%Y%m%d_%H%M%S")
 

@@ -1,4 +1,4 @@
-from opendvp.logger import logger
+from opendvp.utils import logger
 
 
 def segmentation_mask_to_qupath_detections(

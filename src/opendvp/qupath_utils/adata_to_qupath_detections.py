@@ -1,18 +1,21 @@
 import time
 
-from opendvp.logger import logger
+import anndata as ad
+import geopandas
+
+from opendvp.utils import logger, parse_color_for_qupath
 
 
 def color_geojson_w_adata(
-        geodataframe,
-        geodataframe_index_key,
-        adata,
-        adata_obs_index_key,
-        adata_obs_category_key,
-        color_dict,
-        export_path,
-        simplify_value=1,
-):
+        geodataframe : geopandas.GeoDataFrame,
+        geodataframe_index_key : str,
+        adata : ad.AnnData ,
+        adata_obs_index_key : str,
+        adata_obs_category_key : str,
+        color_dict : dict,
+        export_path : str,
+        simplify_value : float | int = 1,
+) -> geopandas.GeoDataFrame | None :
     """Add classification colors from an AnnData object to a GeoDataFrame for QuPath visualization.
 
     Parameters
@@ -83,7 +86,7 @@ def color_geojson_w_adata(
         color_dict['filtered_out'] = [0,0,0]
 
     gdf['classification'] = gdf.apply(lambda x: {'name': x['class'], 'color': color_dict[x['class']]}, axis=1)
-    gdf.drop(columns='class', inplace=True)
+    gdf = gdf.drop(columns='class')
 
     #simplify the geometry
     if simplify_value is not None:

@@ -2,7 +2,7 @@ import geopandas as gpd
 import scipy
 import shapely
 
-from opendvp.logger import logger
+from opendvp.utils import logger
 
 
 def adataobs_to_voronoi_geojson(

@@ -1,7 +1,7 @@
 import anndata as ad
 import geopandas
 
-from opendvp.logger import logger
+from opendvp.utils import logger
 
 
 def sdata_to_qupath_detections(

@@ -3,7 +3,7 @@ import time
 import anndata as ad
 import pandas as pd
 
-from opendvp.logger import logger
+from opendvp.utils import logger
 
 
 def filter_by_abs_value(adata, marker, value=None, quantile=None, keep='above', plot=False) -> ad.AnnData:

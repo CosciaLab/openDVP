@@ -4,7 +4,7 @@ import time
 import matplotlib
 import matplotlib.figure
 
-from opendvp.logger import logger
+from opendvp.utils import logger
 
 
 def export_figure(

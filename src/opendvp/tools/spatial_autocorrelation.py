@@ -5,7 +5,7 @@ import pandas as pd
 from libpysal.weights import KNN, DistanceBand
 from tqdm import tqdm
 
-from opendvp.logger import logger
+from opendvp.utils import logger
 
 
 def spatial_autocorrelation(

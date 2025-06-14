@@ -3,7 +3,7 @@ import time
 import anndata as ad
 import pandas as pd
 
-from opendvp.logger import logger
+from opendvp.utils import logger
 
 
 def quant_to_adata(csv_data_path: str) -> ad.AnnData:

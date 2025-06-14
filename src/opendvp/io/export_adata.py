@@ -3,7 +3,7 @@ from pathlib import Path
 
 import anndata as ad
 
-from opendvp.logger import logger
+from opendvp.utils import logger
 from opendvp.utils.utils import get_datetime
 
 

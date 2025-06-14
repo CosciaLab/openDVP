@@ -1,13 +1,33 @@
 import re
 from itertools import cycle
 
+import anndata as ad
 from matplotlib import colors as mcolors
 
-from opendvp.logger import logger
+from opendvp.utils import logger
 
 
-def parse_color_for_qupath(color_dict, adata, adata_obs_key) -> dict:
-    
+def parse_color_for_qupath(
+    color_dict : dict, 
+    adata : ad.AnnData, 
+    adata_obs_key : str
+) -> dict:
+    """Parse and convert color definitions to a format compatible with QuPath.
+
+    Parameters
+    ----------
+    color_dict : dict
+        Dictionary mapping category names to color definitions (RGB tuples, lists, or hex strings).
+    adata : ad.AnnData
+        AnnData object containing observation data.
+    adata_obs_key : str
+        Key in adata.obs specifying the categorical variable to assign colors to.
+
+    Returns:
+    -------
+    dict
+        Dictionary mapping category names to [R, G, B] lists with values in the range 0-255.
+    """
     logger.info("Parsing colors compatible with QuPath")
     
     if color_dict is None: 

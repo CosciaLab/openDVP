@@ -2,7 +2,7 @@ import anndata as ad
 import numpy as np
 import pandas as pd
 
-from opendvp.logger import logger
+from opendvp.utils import logger
 
 
 def DIANN_to_adata(

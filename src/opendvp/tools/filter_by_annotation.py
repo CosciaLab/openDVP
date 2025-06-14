@@ -5,7 +5,7 @@ import geopandas as gpd
 import numpy as np
 import pandas as pd
 
-from opendvp.logger import logger
+from opendvp.utils import logger
 
 
 def filter_by_annotation(adata, path_to_geojson, any_label="artefact", plot_QC=True) -> ad.AnnData:

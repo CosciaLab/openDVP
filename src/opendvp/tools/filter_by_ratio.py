@@ -1,5 +1,3 @@
-import time
-
 import anndata as ad
 import pandas as pd
 
@@ -65,7 +63,7 @@ def filter_by_ratio(
 
     logger.info(f"Number of cells with {label} ratio < {min_ratio}: {sum(marker_df[f'{label}_ratio'] < min_ratio)}")
     logger.info(f"Number of cells with {label} ratio > {max_ratio}: {sum(marker_df[f'{label}_ratio'] > max_ratio)}")
-    logger.info(f"Number of cells with {label} ratio between {min_ratio} and {max_ratio}: {sum(marker_df[f'{label}_ratio_pass'])}")
-    logger.info(f"Percentage of cells filtered out: {round(100 - sum(marker_df[f'{label}_ratio_pass'])/len(marker_df)*100,2)}%")
+    logger.info(f"Cells with {label} ratio between {min_ratio} and {max_ratio}: {sum(marker_df[f'{label}_ratio_pass'])}")
+    logger.info(f"Cells filtered: {round(100 - sum(marker_df[f'{label}_ratio_pass'])/len(marker_df)*100,2)}%")
 
     return adata

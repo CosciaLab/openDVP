@@ -10,7 +10,7 @@ def plot_histograms(
     adata: AnnData,
     n_cols: int = 4,
     return_fig: bool = False,
-    **kwargs
+    **kwargs : dict,
 ) -> Figure | None:
     """Plot histograms of protein abundance for each sample in adata.
 

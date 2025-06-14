@@ -41,7 +41,7 @@ def density_plots(
 
     X = np.asarray(adata_copy.X)
     df = pd.DataFrame(data=X, columns=adata_copy.var_names, index=adata_copy.obs[color_by])
-    df.reset_index(inplace=True)
+    df = df.reset_index()
     df = pd.melt(df, id_vars=[color_by], var_name="Protein", value_name="Abundance")
 
     if ax is None:

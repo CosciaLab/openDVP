@@ -8,7 +8,7 @@ from opendvp.utils import logger
 
 
 def parse_color_for_qupath(
-    color_dict : dict, 
+    color_dict : dict | None, 
     adata : ad.AnnData, 
     adata_obs_key : str
 ) -> dict:

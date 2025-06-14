@@ -26,19 +26,19 @@ def segmask_to_qupath(
     return_gdf : bool, default False
         If True, returns the resulting GeoDataFrame. If False, returns None.
 
-    Returns
+    Returns:
     -------
     geopandas.GeoDataFrame or None
         The resulting GeoDataFrame if `return_gdf` is True, otherwise None.
 
-    Raises
+    Raises:
     ------
     ImportError
         If required packages (dask, dask_image, spatialdata) are not installed.
     ValueError
         If input types or file extensions are incorrect.
 
-    Notes
+    Notes:
     -----
     - Requires the 'dask', 'dask_image', and 'spatialdata' packages.
     - The exported GeoJSON is compatible with QuPath for detection import and visualization.

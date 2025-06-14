@@ -1,10 +1,4 @@
-from . import io
-from . import tools
-from . import plotting
-from . import imaging
-from . import metrics
-from . import preprocessing
-from . import utils
+from . import imaging, io, metrics, plotting, preprocessing, tools, utils
 
 __all__ = [
     "io",

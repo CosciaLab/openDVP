@@ -2,7 +2,7 @@
 authors = [{name = "Jose Nimo", email = "nimojose@gmail.com"}]
 description = "Add a short description here"
 name = "openDVP"
-requires-python = ">3.11,<3.13"
+requires-python = ">3.9,<3.13"
 version = "0.2.0"
 dependencies = [
     "anndata",
@@ -43,7 +43,9 @@ dev = [
     "myst-parser",
     "nbsphinx",
     "ruff",
-    "pytest"
+    "pytest",
+    "tox",
+    "hatchling"
 ]
 
 [tool.pixi.environments.default]

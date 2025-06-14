@@ -1,6 +1,8 @@
 import numpy as np
 import pandas as pd
 
+## THIS FUNCTION IS FROM SCIMAP ## 
+## THIS IS HERE FOR SIMPLICITY, AND TO PREVENT ENV CONFLICTS ##
 
 def phenotype_cells (adata, 
                      phenotype, 

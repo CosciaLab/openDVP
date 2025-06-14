@@ -22,6 +22,7 @@ def calculate_category_averages(
     AnnData
         AnnData object containing category combinations and their corresponding averages.
     """
+    #LEGACY CODE
     print(f" --- --- --- Calculating averages for {categories} --- --- --- ")
 
     adata_copy = adata.copy()
@@ -50,7 +51,5 @@ def calculate_category_averages(
     adata_res = ad.AnnData(X=df_reset.iloc[:,2:].values, 
                             obs=df_reset[categories], 
                             var=adata_copy.var)
-    
-    print(" --- --- --- Category averages calculated! --- --- --- ")
 
     return adata_res

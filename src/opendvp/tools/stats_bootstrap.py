@@ -2,21 +2,22 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import seaborn as sns
-from pyproteomics.statistics.coefficient_of_variation import coefficient_of_variation
-from tqdm.notebook import tqdm
+from tqdm import tqdm
+
+from opendvp.metrics import coefficient_of_variation
 
 
 def bootstrap_variability(
-    dataframe,
-    n_bootstrap=100,
-    subset_sizes=[10, 50, 100],
-    summary_func=np.mean,
-    return_raw=False,
-    return_summary=True,
-    plot=True,
-    random_seed=42,
-    nan_policy="omit",
-    cv_threshold=None,  # New argument for threshold-based summary
+    dataframe : pd.DataFrame,
+    n_bootstrap : int = 100,
+    subset_sizes : list | None = None,
+    summary_func = np.mean,
+    return_raw : bool =False,
+    return_summary : bool = True,
+    plot : bool =True,
+    random_seed : int = 42,
+    nan_policy : str = "omit",
+    cv_threshold : float | None = None,
 ):
     """Evaluate the variability of feature-level coefficient of variation (CV) via bootstrapping.
 
@@ -85,6 +86,8 @@ def bootstrap_variability(
     4           50       A    0.095432
     """
     # Safety checks
+    if subset_sizes is None:
+        subset_sizes = [10, 50, 100]
     if max(subset_sizes) > dataframe.shape[0]:
         raise ValueError("A subset size is larger than the number of rows in the dataframe.")
     rng = np.random.default_rng(seed=random_seed)

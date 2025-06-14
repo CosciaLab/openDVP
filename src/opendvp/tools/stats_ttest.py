@@ -1,14 +1,13 @@
 from datetime import datetime
 
-date = datetime.now().strftime("%Y%m%d")
-
 import anndata as ad
 import numpy as np
 import pingouin as pg
 import statsmodels.stats.multitest as smm
 
-# factor in a way that we can test the arrays with different tests
+from opendvp.utils import logger
 
+date = datetime.now().strftime("%Y%m%d")
 
 def ttest_adata(
     adata: ad.AnnData,
@@ -37,9 +36,6 @@ def ttest_adata(
     None
         Results are saved to adata.var in-place.
     """
-    #TODO assert that adata slicing returns a non-empty object
-    
-    #setup
     adata_copy = adata.copy()
     t_values = []
     p_values = []
@@ -67,10 +63,10 @@ def ttest_adata(
     adata_copy.var["p_val_corr_BH"] = result_BH[1]
     adata_copy.var['-log10(p_val_corr)_BH'] = -np.log10(adata_copy.var['p_val_corr_BH'])
 
-    print(f"Testing for differential expression between {group1} and {group2}")
-    print("Using pingouin.ttest to perform t-test, two-sided, not paired")
-    print("Using statsmodels.stats.multitest.multipletests to correct for multiple testing")
-    print(f"Using Benjamini-Hochberg for FDR correction, with a threshold of {FDR_threshold}")
-    print(f"The test found {np.sum(adata_copy.var['significant_BH'])} proteins to be significantly differentially expressed")
+    logger.info(f"Testing for differential expression between {group1} and {group2}")
+    logger.info("Using pingouin.ttest to perform t-test, two-sided, not paired")
+    logger.info("Using statsmodels.stats.multitest.multipletests to correct for multiple testing")
+    logger.info(f"Using Benjamini-Hochberg for FDR correction, with a threshold of {FDR_threshold}")
+    logger.info(f"The test found {np.sum(adata_copy.var['significant_BH'])} proteins to be significantly")
 
     return adata_copy

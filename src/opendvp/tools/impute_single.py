@@ -1,16 +1,9 @@
-import sys
-import warnings
-
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
 
 from opendvp.utils import logger
 
-warnings.simplefilter(action='ignore', category=FutureWarning)
-warnings.simplefilter(action='ignore', category=UserWarning)
-logger.remove()
-logger.add(sys.stdout, format="<green>{time:HH:mm:ss.SS}</green> | <level>{level}</level> | {message}")
 
 def impute_single(
     array: np.ndarray,

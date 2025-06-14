@@ -1,23 +1,24 @@
-from typing import Any
-
 import anndata as ad
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from libpysal.weights import DistanceBand
-from pyproteomics.plotting.plot_graph_network import plot_graph_network
+
+from opendvp.plotting.plot_graph_network import plot_graph_network
+from opendvp.utils import logger
 
 
-def hyperparameter_search(
+def spatial_hyperparameter_search(
     adata: ad.AnnData,
-    x_y: list[str] = ["x_centroid", "y_centroid"],
-    threshold_range: np.ndarray = np.arange(1, 100, 1),
-    loguru_logger: Any | None = None,
+    x_y: list[str] | None = None,
+    threshold_range: np.ndarray | None = None,
     return_df: bool = False,
     plot_network_at: int | None = None
-) -> Any:
-    """Perform a hyperparameter search over a range of threshold values to determine the number of connected nodes and average neighbors
-    for different threshold values, and optionally plot the network of connected nodes at a given threshold.
+) -> pd.DataFrame | tuple:
+    """Perform a hyperparameter search over a range of threshold values.
+     
+    To determine the number of connected nodes and average neighbors for different threshold values, 
+    and optionally plot the network of connected nodes at a given threshold.
 
     Parameters
     ----------
@@ -44,9 +45,13 @@ def hyperparameter_search(
             The plot (figure, axes).
     """
     # Initialize a list to store the stats for each threshold
+    if x_y is None:
+        x_y = ["x_centroid", "y_centroid"]
+    if not threshold_range:
+        threshold_range = np.arange(1, 100, 1)
     stats = []
 
-    coords = adata.obs[x_y].values
+    coords = adata.obs[x_y].to_numpy()
     total_nodes = len(coords)  # Total number of nodes
 
     for threshold in threshold_range:
@@ -65,9 +70,7 @@ def hyperparameter_search(
             'avg_neighbors': avg_neighbors
         })
 
-        # Log the threshold being processed if logger is provided
-        if loguru_logger:
-            loguru_logger.info(f"Processed threshold {threshold}, connected nodes: {num_connected_nodes}, avg neighbors: {avg_neighbors}")
+        logger.info(f"Threshold {threshold}, connected nodes: {num_connected_nodes}, avg neighbors: {avg_neighbors}")
 
         # Optionally plot the graph network for a particular threshold
         if plot_network_at == threshold:

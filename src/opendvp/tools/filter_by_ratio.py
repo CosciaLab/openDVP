@@ -6,49 +6,66 @@ import pandas as pd
 from opendvp.utils import logger
 
 
-def filter_by_ratio(adata, end_cycle, start_cycle, label="DAPI", min_ratio=0.5, max_ratio=1.05) -> ad.AnnData:
-    """Filter cells by ratio"""
-    logger.info(" ---- filter_by_ratio : version number 1.1.0 ----")
-    #adapt to use with adata
-    time_start = time.time()
+def filter_by_ratio(
+    adata: ad.AnnData,
+    end_cycle: str,
+    start_cycle: str,
+    label: str = "DAPI",
+    min_ratio: float = 0.5,
+    max_ratio: float = 1.05
+) -> ad.AnnData:
+    """Filter cells by the ratio of two markers in an AnnData object.
 
-    # Create a DataFrame for easier manipulation
-    df = pd.DataFrame(data=adata.X, columns=adata.var_names)
-    df[f'{label}_ratio'] = df[end_cycle] / df[start_cycle]
-    df[f'{label}_ratio_pass_nottoolow'] = df[f'{label}_ratio'] > min_ratio
-    df[f'{label}_ratio_pass_nottoohigh'] = df[f'{label}_ratio'] < max_ratio
-    df[f'{label}_ratio_pass'] = df[f'{label}_ratio_pass_nottoolow'] & df[f'{label}_ratio_pass_nottoohigh']
+    This function computes the ratio between two markers (columns) for each cell, and flags cells
+    whose ratio falls within the specified range. The results are stored as new columns in `.obs`.
 
-    # Pass to adata object
-    adata.obs[f'{label}_ratio'] = df[f'{label}_ratio'].values
-    adata.obs[f'{label}_ratio_pass_nottoolow']     = df[f'{label}_ratio_pass_nottoolow'].values
-    adata.obs[f'{label}_ratio_pass_nottoohigh']    = df[f'{label}_ratio_pass_nottoohigh'].values
-    adata.obs[f'{label}_ratio_pass']            = adata.obs[f'{label}_ratio_pass_nottoolow'] & adata.obs[f'{label}_ratio_pass_nottoohigh']
+    Parameters
+    ----------
+    adata : ad.AnnData
+        AnnData object containing the data matrix and metadata.
+    end_cycle : str
+        Name of the marker/column for the numerator of the ratio.
+    start_cycle : str
+        Name of the marker/column for the denominator of the ratio.
+    label : str, default 'DAPI'
+        Label prefix for the new columns in `.obs`.
+    min_ratio : float, default 0.5
+        Minimum allowed ratio (exclusive).
+    max_ratio : float, default 1.05
+        Maximum allowed ratio (exclusive).
 
-    # print out statistics
-    logger.info(f"Number of cells with {label} ratio < {min_ratio}: {sum(df[f'{label}_ratio'] < min_ratio)}")
-    logger.info(f"Number of cells with {label} ratio > {max_ratio}: {sum(df[f'{label}_ratio'] > max_ratio)}")
-    logger.info(f"Number of cells with {label} ratio between {min_ratio} and {max_ratio}: {sum(df[f'{label}_ratio_pass'])}")
-    logger.info(f"Percentage of cells filtered out: {round(100 - sum(df[f'{label}_ratio_pass'])/len(df)*100,2)}%")
+    Returns:
+    -------
+    ad.AnnData
+        The input AnnData with new columns in `.obs` for the ratio and pass/fail flags.
 
-    # plot histogram
+    Raises:
+    ------
+    ValueError
+        If marker names are not found or if min_ratio >= max_ratio.
+    """
+    if end_cycle not in adata.var_names:
+        raise ValueError(f"end_cycle marker '{end_cycle}' not found in adata.var_names")
+    if start_cycle not in adata.var_names:
+        raise ValueError(f"start_cycle marker '{start_cycle}' not found in adata.var_names")
+    if min_ratio >= max_ratio:
+        raise ValueError("min_ratio must be less than max_ratio")
 
-    # fig, ax = plt.subplots()
+    data_matrix = adata.X.toarray()
+    marker_df = pd.DataFrame(data=data_matrix, columns=adata.var_names)
+    marker_df[f'{label}_ratio'] = marker_df[end_cycle] / marker_df[start_cycle]
+    marker_df[f'{label}_ratio_pass_nottoolow'] = marker_df[f'{label}_ratio'] > min_ratio
+    marker_df[f'{label}_ratio_pass_nottoohigh'] = marker_df[f'{label}_ratio'] < max_ratio
+    marker_df[f'{label}_ratio_pass'] = marker_df[f'{label}_ratio_pass_nottoolow'] & marker_df[f'{label}_ratio_pass_nottoohigh']
 
-    # sns.histplot(df[f'{label}_ratio'], color='blue')
-    # plt.yscale('log')
+    adata.obs[f'{label}_ratio'] = marker_df[f'{label}_ratio'].to_numpy()
+    adata.obs[f'{label}_ratio_pass_nottoolow'] = marker_df[f'{label}_ratio_pass_nottoolow'].to_numpy()
+    adata.obs[f'{label}_ratio_pass_nottoohigh'] = marker_df[f'{label}_ratio_pass_nottoohigh'].to_numpy()
+    adata.obs[f'{label}_ratio_pass'] = adata.obs[f'{label}_ratio_pass_nottoolow'] & adata.obs[f'{label}_ratio_pass_nottoohigh']
 
-    # plt.axvline(min_ratio, color='black', linestyle='--', alpha=0.5)
-    # plt.axvline(max_ratio, color='black', linestyle='--', alpha=0.5)
-    # plt.text(max_ratio + 0.05, 650, f"cells that gained >{int(max_ratio*100-100)}% {label}", fontsize=9, color='black')
-    # plt.text(min_ratio - 0.05, 650, f"cells that lost >{int(min_ratio*100-100)}% {label}", fontsize=9, color='black', horizontalalignment='right')
-
-    # plt.ylabel('cell count')
-    # plt.xlabel(f'{label} ratio (last/cycle)')
-    # plt.xlim(min_ratio-1, max_ratio+1)
-
-    # plt.show()
-
-    logger.info(f" ---- filter_by_ratio is done, took {int(time.time() - time_start)}s  ----")
+    logger.info(f"Number of cells with {label} ratio < {min_ratio}: {sum(marker_df[f'{label}_ratio'] < min_ratio)}")
+    logger.info(f"Number of cells with {label} ratio > {max_ratio}: {sum(marker_df[f'{label}_ratio'] > max_ratio)}")
+    logger.info(f"Number of cells with {label} ratio between {min_ratio} and {max_ratio}: {sum(marker_df[f'{label}_ratio_pass'])}")
+    logger.info(f"Percentage of cells filtered out: {round(100 - sum(marker_df[f'{label}_ratio_pass'])/len(marker_df)*100,2)}%")
 
     return adata

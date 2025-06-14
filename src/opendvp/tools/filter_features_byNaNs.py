@@ -1,6 +1,6 @@
-import sys
 import time
 import warnings
+from typing import Literal
 
 import anndata as ad
 import numpy as np
@@ -9,15 +9,13 @@ import pandas as pd
 from opendvp.utils import logger
 
 datetime = time.strftime("%Y%m%d_%H%M%S")
-logger.remove()
-logger.add(sys.stdout, format="<green>{time:HH:mm:ss.SS}</green> | <level>{level}</level> | {message}")
 
-def filter_by_valid_values(
+def filter_features_byNaNs(
     adata: ad.AnnData,
     threshold: float = 0.7,
     grouping: str | None = None,
     qc_export_path: str | None = None,
-    valid_in_ANY_or_ALL_groups: str = 'ANY'
+    valid_in_ANY_or_ALL_groups : Literal["ANY", "ALL"] = 'ANY'
 ) -> ad.AnnData:
     """Filter out proteins that have a NaN proportion above the threshold, for each group in the grouping variable.
 
@@ -41,19 +39,17 @@ def filter_by_valid_values(
         Filtered AnnData object.
     """
     # TODO let users decide on an absolute number of valid values
-
     logger.info(f"Filtering protein without atleast {threshold*100}% valid values in {valid_in_ANY_or_ALL_groups} group")
-
     warnings.simplefilter("ignore", category=RuntimeWarning)
 
-    assert 0 <= threshold <= 1, "Threshold must be between 0 and 1"
-    assert valid_in_ANY_or_ALL_groups in ['ANY', 'ALL'], "valid_in_ANY_or_ALL_groups must be 'ANY' or 'ALL'"
+    if not (0 <= threshold <= 1):
+        raise ValueError("Threshold must be between 0 and 1")
 
     adata_copy = adata.copy()
 
     df_proteins = pd.DataFrame(index=adata_copy.var_names, columns=["Genes"], data=adata_copy.var['Genes'])
     df_proteins['Genes'] = df_proteins['Genes'].astype(str)
-    df_proteins.fillna({"Genes":'None'}, inplace=True)
+    df_proteins = df_proteins.fillna({"Genes":'None'})
 
     df_proteins = pd.DataFrame(index=adata_copy.var_names, columns=["Genes"], data=adata_copy.var['Genes'])
 
@@ -75,11 +71,11 @@ def filter_by_valid_values(
         df_proteins['not_valid_in_any'] = ~df_proteins['valid_in_any']
 
         if valid_in_ANY_or_ALL_groups == 'ALL':
-            adata_copy = adata_copy[:, df_proteins.valid_in_all.values.astype(bool)]
+            adata_copy = adata_copy[:, df_proteins.valid_in_all.to_numpy().astype(bool)]
             logger.info(f"{df_proteins['valid_in_all'].sum()} proteins were kept")
             logger.info(f"{df_proteins.shape[0] - df_proteins['valid_in_all'].sum()} proteins were removed")
         elif valid_in_ANY_or_ALL_groups == 'ANY':
-            adata_copy = adata_copy[:, df_proteins.valid_in_any.values.astype(bool)]
+            adata_copy = adata_copy[:, df_proteins.valid_in_any.to_numpy().astype(bool)]
             logger.info(f"{df_proteins['valid_in_any'].sum()} proteins were kept")
             logger.info(f"{df_proteins.shape[0] - df_proteins['valid_in_any'].sum()} proteins were removed")
 
@@ -93,7 +89,7 @@ def filter_by_valid_values(
         df_proteins['nan_proportions'] = np.isnan(np.asarray(adata_copy.X)).mean(axis=0)
         df_proteins['valid']           = df_proteins['nan_proportions'] < (1.0 - threshold)
         df_proteins['not_valid']       = ~df_proteins['valid']
-        adata_copy = adata_copy[:, df_proteins.valid.values.astype(bool)]
+        adata_copy = adata_copy[:, df_proteins.valid.to_numpy().astype(bool)]
         print(f"{df_proteins['valid'].sum()} proteins were kept")
         print(f"{df_proteins['not_valid'].sum()} proteins were filtered out")
     

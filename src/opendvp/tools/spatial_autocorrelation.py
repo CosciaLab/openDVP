@@ -1,3 +1,5 @@
+from collections.abc import Sequence
+
 import anndata as ad
 import esda
 import numpy as np
@@ -11,13 +13,12 @@ from opendvp.utils import logger
 def spatial_autocorrelation(
     adata: ad.AnnData,
     method: str = "moran",
-    x_y: list[str] = ["x_centroid", "y_centroid"],
-    k: int = 8,
-    threshold: float = 10.0,
-    island_threshold: float = 0.1
+    x_y: Sequence[str] = ("x_centroid", "y_centroid"),
+    k : int = 8,
+    threshold : float = 10.0,
+    island_threshold : float = 0.1
 ) -> None:
-    """Compute spatial autocorrelation statistics (Moran's I or Geary's C) for each gene in an AnnData object,
-    with automatic threshold search if too many islands (disconnected samples) are detected.
+    """Compute spatial autocorrelation statistics (Moran's I or Geary's C) for each gene in an AnnData object.
 
     Parameters
     ----------
@@ -25,24 +26,32 @@ def spatial_autocorrelation(
         Annotated data matrix where observations are cells and variables are genes.
     method : {'moran', 'geary'}, default 'moran'
         Spatial statistic to compute: 'moran' or 'geary'.
-    x_y : list of str, default ['x_centroid', 'y_centroid']
+    x_y : Sequence[str], default ("x_centroid", "y_centroid")
         Names of columns in `adata.obs` containing spatial coordinates.
     k : int, default 8
         Number of neighbors for Moran's I (ignored for Geary's C).
     threshold : float, default 10.0
         Distance threshold for neighbors for Geary's C (ignored for Moran's I).
     island_threshold : float, default 0.1
-        If more than this fraction of samples are islands (no neighbors), hyperparameter search is triggered.
+        If more than this fraction of samples are islands (no neighbors), raises error.
 
     Returns:
     -------
     None
         Results are added to adata.var in-place.
+
+    Raises:
+    ------
+    ValueError
+        If method is not 'moran' or 'geary'.
+    RuntimeError
+        If too many islands are detected in Geary's C mode.
     """
     logger.info(f"Starting spatial autocorrelation: {method.upper()}")
     logger.info(f"adata shape: obs={adata.n_obs}, var={adata.n_vars}")
-    coords = adata.obs[x_y].values
+    coords = adata.obs[list(x_y)].to_numpy()
 
+    # Build spatial weights
     if method.lower() == "moran":
         logger.info(f"Building KNN graph with k={k}")
         w = KNN.from_array(coords, k=k)
@@ -57,10 +66,16 @@ def spatial_autocorrelation(
         logger.info(f"Detected {n_islands} islands ({frac_islands:.2%} of samples)")
 
         if frac_islands > island_threshold:
-            logger.warning(f"Too many islands (> {island_threshold:.0%}). Consider adjusting the threshold.")
-            return
-
+            logger.error(
+                f"Too many islands (> {island_threshold:.0%}). "
+                f"Consider adjusting the threshold or coordinates."
+            )
+            raise RuntimeError(
+                f"Too many islands ({frac_islands:.2%} > {island_threshold:.0%}) in DistanceBand graph. "
+                f"Try increasing the threshold or check your coordinates."
+            )
     else:
+        logger.error("Method must be 'moran' or 'geary'.")
         raise ValueError("Method must be 'moran' or 'geary'.")
 
     results = []
@@ -77,7 +92,6 @@ def spatial_autocorrelation(
             else:
                 raise ValueError("Method must be 'moran' or 'geary'.")
             results.append(result)
-            
         except Exception as e:
             results.append(np.nan)
             failed_genes.append(gene)
@@ -88,25 +102,24 @@ def spatial_autocorrelation(
 
     if method.lower() == "moran":
         adata.var['Moran_I'] = pd.Series(
-            [r.I if pd.notna(r) else np.nan for r in results], 
+            [getattr(r, 'I', np.nan) if pd.notna(r) else np.nan for r in results],
             index=adata.var.index
         )
         adata.var['Moran_p_sim'] = pd.Series(
-            [r.p_sim if pd.notna(r) else np.nan for r in results], 
+            [getattr(r, 'p_sim', np.nan) if pd.notna(r) else np.nan for r in results],
             index=adata.var.index
         )
         adata.var['Moran_Zscore'] = pd.Series(
-            [r.z_sim if pd.notna(r) else np.nan for r in results], 
+            [getattr(r, 'z_sim', np.nan) if pd.notna(r) else np.nan for r in results],
             index=adata.var.index
         )
-
     elif method.lower() == "geary":
         adata.var[f'Geary_C_k{threshold}'] = pd.Series(
-            [r.C if pd.notna(r) else np.nan for r in results], 
+            [getattr(r, 'C', np.nan) if pd.notna(r) else np.nan for r in results],
             index=adata.var.index
         )
         adata.var[f'Geary_p_sim_k{threshold}'] = pd.Series(
-            [r.p_sim if pd.notna(r) else np.nan for r in results], 
+            [getattr(r, 'p_sim', np.nan) if pd.notna(r) else np.nan for r in results],
             index=adata.var.index
         )
 

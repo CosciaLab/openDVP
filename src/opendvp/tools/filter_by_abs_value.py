@@ -1,4 +1,4 @@
-import time
+from typing import Literal
 
 import anndata as ad
 import pandas as pd
@@ -6,64 +6,61 @@ import pandas as pd
 from opendvp.utils import logger
 
 
-def filter_by_abs_value(adata, marker, value=None, quantile=None, keep='above', plot=False) -> ad.AnnData:
-    """ 
-    Filter cells by absolute value 
-    Args:
-        adata: anndata object
-        marker: name of the marker to filter, string present in adata.var_names
-        value: value to use as threshold
-        quantile: quantile to use as threshold
-        keep: 'above' or 'below', denoting which cells are kept
+def filter_by_abs_value(
+    adata: ad.AnnData,
+    marker: str,
+    mode: Literal['absolute', 'quantile'] = "quantile",
+    value: float | int = 0.5,
+    keep: Literal["below", "above"] = 'above',
+) -> ad.AnnData:
+    """Filter cells in an AnnData object by absolute marker value or quantile threshold.
+
+    This function creates a boolean mask for each cell based on a marker's value, using either an absolute threshold or a quantile.
+    The result is stored as a new column in `adata.obs` and the filtered AnnData is returned.
+
+    Parameters:
+    ----------
+    adata : ad.AnnData
+        AnnData object containing the data matrix and metadata.
+    marker : str
+        Name of the marker to filter on (must be present in `adata.var_names`).
+    mode : {'absolute', 'quantile'}, default 'quantile'
+        Whether to use an absolute value or quantile as the threshold.
+    value : float or int, default 0.5
+        The threshold value. If mode is 'absolute', this is the absolute threshold. If 'quantile', this is the quantile (0 < value < 1).
+    keep : {'above', 'below'}, default 'above'
+        Whether to keep cells 'above' or 'below' the threshold.
+
+    Returns:
+    -------
+    ad.AnnData
+        A copy of the input AnnData with a new boolean column in `.obs` indicating which cells passed the filter.
+
+    Raises:
+    ------
+    ValueError
+        If marker is not found, mutually exclusive arguments are violated, or parameters are invalid.
     """
-    logger.info(" ---- filter_by_abs_value : version number 1.1.0 ----")
-    time_start = time.time()
-
-    # checks
-    assert type(adata) is ad.AnnData, "adata should be an AnnData object"
-    assert marker in adata.var_names, f"Marker {marker} not found in adata.var_names"
-    # value or quantile
-    if value is not None:
-        assert quantile is None, "Only one of value or quantile should be provided"
-        assert isinstance(value, (int, float)), "Value should be a number"
-    elif quantile is not None:
-        assert value is None, "Only one of value or quantile should be provided"
-        assert isinstance(quantile, float), "Quantile should be a float"
-        assert 0 < quantile < 1, "Quantile should be between 0 and 1"
-    else:
-        raise ValueError("Either value or quantile should be provided")
-    # keep
-    assert keep in ['above', 'below'], "keep should be either 'above' or 'below'"
-
-    # set objects up 
+    if marker not in adata.var_names:
+        raise ValueError(f"Marker {marker} not found in adata.var_names")
+    if mode == "absolute":
+        if not isinstance(value, int | float):
+            raise ValueError("For mode 'absolute', value must be a number (int or float)")
+    elif mode == "quantile":
+        if not isinstance(value, float):
+            raise ValueError("For mode 'quantile', value must be a float between 0 and 1")
+        if not (0 < value < 1):
+            raise ValueError("For mode 'quantile', value must be between 0 and 1")
+    
     adata_copy = adata.copy()
-    df = pd.DataFrame(data=adata_copy.X, columns=adata_copy.var_names)
+    data_matrix = adata_copy.X.toarray()
+    marker_df = pd.DataFrame(data=data_matrix, columns=adata_copy.var_names)
 
-    # calculate threshold
-    if value is None:
-        threshold = df[marker].quantile(quantile)
-    else:
-        threshold = value
+    threshold = marker_df[marker].quantile(value) if mode == "quantile" else value
 
-    # Filter
     label = f"{marker}_{keep}_{threshold}"
     operator = '>' if keep == 'above' else '<'
-    df[label] = df.eval(f"{marker} {operator} @threshold")
-    adata_copy.obs[label] = df[label].values
-    logger.info(f"Number of cells with {marker} {keep} {threshold}: {sum(df[label])}")
-
-    # if plot:
-    #     sns.histplot(df[marker], bins=500)
-    #     plt.yscale('log')
-    #     plt.xscale('log')
-    #     plt.title(f'{marker} distribution')
-    #     plt.axvline(threshold, color='black', linestyle='--', alpha=0.5)
-
-    #     if keep == 'above':
-    #         plt.text(threshold + 10, 1000, f"cells with {marker} > {threshold}", fontsize=9, color='black')
-    #     elif keep == 'below':
-    #         plt.text(threshold - 10, 1000, f"cells with {marker} < {threshold}", fontsize=9, color='black', horizontalalignment='right')
-    #     plt.show()
-
-    logger.info(f" ---- filter_by_abs_value is done, took {int(time.time() - time_start)}s  ----")
+    marker_df[label] = marker_df.eval(f"{marker} {operator} @threshold")
+    adata_copy.obs[label] = marker_df[label].to_numpy()
+    logger.info(f"Number of cells with {marker} {keep} {threshold}: {sum(marker_df[label])}")
     return adata_copy

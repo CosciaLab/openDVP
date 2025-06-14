@@ -3,7 +3,7 @@ authors = [{name = "Jose Nimo", email = "nimojose@gmail.com"}]
 description = "Add a short description here"
 name = "openDVP"
 requires-python = ">3.11,<3.13"
-version = "0.1.5"
+version = "0.2.5"
 dependencies = [
     "anndata",
     "geopandas",
@@ -23,8 +23,8 @@ dependencies = [
     "pingouin",
     "libpysal",
     "esda",
-    "upsetplot"
-, "perseuspy>=0.3.9,<0.4"]
+    "upsetplot",
+    "perseuspy>=0.3.9,<0.4"]
 
 [project.optional-dependencies]
 spatialdata = [

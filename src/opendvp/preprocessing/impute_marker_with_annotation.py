@@ -4,7 +4,7 @@ import numpy as np
 from opendvp.utils import logger
 
 
-def negate_var_by_ann(
+def impute_marker_with_annotation(
     adata : ad.AnnData, 
     target_variable : str,
     target_annotation_column : str, 

@@ -2,68 +2,52 @@
 
 ![Graphical_Abstract](https://github.com/user-attachments/assets/bc2ade23-1622-42cf-a5c5-bb80e7be5b1f)
 
-## Introduction
+**OpenDVP** is an open-source framework designed to support Deep Visual Profiling (DVP) across multiple modalities using community-supported tools.
 
-openDVP is a framework that empowers users to perform Deep Visual propietary with open sourced software.
+---
 
-This repository summarizes our recommendations with 4 distinct areas of use for openDVP.
-1. Image processing and Analysis
-2. Matrix processing and analysis
-3. Quality control with QuPath and Napari
-4. Export to LMD
+## Overview
 
-openDVP uses scverse's data formats, AnnData and SpatialData, in order to facilitate further changes and or use of other analytical packages such as scanpy, squidpy, or scimap.
+OpenDVP empowers researchers to perform Deep Visual Proteomics using open-source software. It integrates with community data standards such as [AnnData](https://anndata.readthedocs.io/en/latest/) and [SpatialData](https://spatialdata.scverse.org/) to ensure interoperability with popular analysis tools like [Scanpy](https://github.com/scverse/scanpy), [Squidpy](https://github.com/scverse/squidpy), and [Scimap](https://github.com/labsyspharm/scimap).
 
-## Citation
+This repository outlines four major use cases for OpenDVP:
 
-Please cite the corresponding bioarxiv for now:
-<REF> 
+1. **Image Processing and Analysis**
+2. **Matrix Processing and Analysis**
+3. **Quality Control with QuPath and Napari**
+4. **Exporting to LMD (Laser Microdissection)**
 
 ## Installation
 
-To install run:   
-``` pip install opendvp ```
+You can install openDVP via pip:
+```bash
+pip install opendvp
+```
+If you want to install with spatialdata capacity please run:
+```bash
+pip install 'opendvp[spatialdata]'
+```
 
-## Demo
-### Download demo data
+## Motivation
+
+Deep Visual Profiling (DVP) combines high-dimensional imaging, spatial analysis, and machine learning to extract complex biological insights from tissue samples. However, many current DVP tools are locked into proprietary formats, restricted software ecosystems, or closed-source pipelines that limit reproducibility, accessibility, and community collaboration.
+
+- Work transparently across modalities and analysis environments
+- Contribute improvements back to a growing ecosystem
+- Avoid vendor lock-in for critical workflows
+
+## Community & Discussions
+
+We are excited to hear from you and together we can improve spatial protemics.
+We welcome questions, feedback, and community contributions!  
+Join the conversation in the [GitHub Discussions](https://github.com/CosciaLab/opendvp/discussions) tab.
+
+
+## Citation
+
+Please cite the corresponding bioarxiv for now, Coming Soon!
+
+## Demo data
+A comprehensive tutorial of openDVP features is on the works, to test it, feel free to download our demo data.
 
 https://zenodo.org/records/15397560
-
-### How to run demo data
-
-
-### Inputs
-
-#### Essential
-
-- Images independent of modality (HE, IHC, mIF) in BioFormats compatible format.
-- Shapes in a geojson file with the QuPath format
-- LCMS proteomic data, so far DIANN outputs are the only acceptable format.
-
-#### Optional
-
-- Segmentation mask of images
-- Quantification matrix of cells from images (cells x features)
-- Metadata of LCMS proteomic data
-
-### Jupyternotebooks
-
-Here we have the jupyter notebooks to guide users through the steps to create a spatialdata object.
-
-- Parsing geojson, especially important to merge many experiments together
-- Creating a spatialdata object
-- Reading and vizualizing the spatialdata object for quality control
-- Exporting analysis of cells to QuPath compatible visualization (recommended for large images)
-- Filtering of imaging artefacts and outlier cells
-- Filtering and labelling of tissue areas by manual annotations
-- Phenotyping cells
-- Performing spatial analysis and cellular neighborhoods
-
-# TODO
-
-[] standardize functions to have docstrings
-[] multi OS pixi project
-[] integrate proteomic analysis functions
-[] brainstorm how to run conflicting environments (scimap, cellcharter (they dont like spatialdata))
-[] establish codecov (kinda annoying since pixi is so new)
-[] create some tests, use pytest I suppose

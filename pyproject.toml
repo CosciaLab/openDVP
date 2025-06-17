@@ -71,6 +71,7 @@ opendvp = { path = ".", editable = true }
 [tool.ruff]
 line-length = 120
 target-version = "py311"  # Match your supported Python version
+per-file-ignores = { "tests/**/*.py" = ["S101"] } #ignores assert rule in tests
 exclude = [
     ".git",
     "__pycache__",

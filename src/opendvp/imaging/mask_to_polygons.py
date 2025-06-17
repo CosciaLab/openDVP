@@ -3,11 +3,18 @@ import time
 import geopandas as gpd
 import numpy as np
 import tifffile
-from rasterio.features import shapes
+# from rasterio.features import shapes
 from shapely.geometry import MultiPolygon
 from shapely.geometry import shape as shapely_shape
 
 from opendvp.utils import logger
+
+
+# TODO Replace rasterio.features.shapes with:
+# skimage.measure.find_contours OR
+# shapely + scikit-image combo OR
+# scipy.ndimage.label + regionprops (via skimage.measure)
+
 
 
 def mask_to_polygons(

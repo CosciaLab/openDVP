@@ -2,20 +2,20 @@
 authors = [{name = "Jose Nimo", email = "nimojose@gmail.com"}]
 description = "Add a short description here"
 name = "openDVP"
-requires-python = ">3.9,<3.13"
+requires-python = ">=3.10, <3.13"
 version = "0.2.0"
 dependencies = [
-    "anndata",
-    "geopandas",
+    "anndata>=0.9.1",
+    "geopandas>=0.14",
     "ipykernel",
+    "numba>=0.55.0",
     "numpy",
     "pandas",
     "matplotlib<3.9.0",
     "seaborn",
-    "rasterio",
     "scanpy",
     "plotly>=5.24.1,<6",
-    "shapely",
+    "shapely>=2.0.1",
     "loguru",
     "scikit-learn",
     "scikit-image",
@@ -30,7 +30,7 @@ dependencies = [
 spatialdata = [
     "spatialdata",
     "napari-spatialdata",
-    "dask",
+    "dask>=2024.4.1,<=2024.11.2",
     "dask-image",
     "pyqt5",
     "spatial-image",

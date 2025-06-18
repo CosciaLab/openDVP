@@ -3,7 +3,7 @@ authors = [{name = "Jose Nimo", email = "nimojose@gmail.com"}]
 description = "Add a short description here"
 name = "openDVP"
 requires-python = ">=3.10, <3.13"
-version = "0.2.0"
+version = "0.2.2"
 dependencies = [
     "anndata>=0.9.1",
     "geopandas>=0.14",
@@ -28,12 +28,9 @@ dependencies = [
 
 [project.optional-dependencies]
 spatialdata = [
-    "spatialdata",
+    "spatialdata==0.4.0",
     "napari-spatialdata",
-    "dask>=2024.4.1,<=2024.11.2",
-    "dask-image",
     "pyqt5",
-    "spatial-image",
 ]
 dev = [
     "twine",
@@ -49,7 +46,7 @@ dev = [
 ]
 
 [tool.pixi.environments.default]
-features = ["dev"]
+features = ["dev", "spatialdata"]
 
 [build-system]
 build-backend = "hatchling.build"
@@ -57,7 +54,9 @@ requires = ["hatchling"]
 
 [tool.pixi.project]
 channels = ["conda-forge"]
-platforms = ["osx-arm64"]
+platforms = ["win-64", "osx-64", "osx-arm64"]
+# so far a single wheel is working
+# we might need platform specific dependencies and wheels
 
 [tool.pixi.pypi-dependencies]
 opendvp = { path = ".", editable = true }

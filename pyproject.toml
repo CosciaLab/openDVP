@@ -2,20 +2,20 @@
 authors = [{name = "Jose Nimo", email = "nimojose@gmail.com"}]
 description = "Add a short description here"
 name = "openDVP"
-requires-python = ">3.9,<3.13"
-version = "0.2.0"
+requires-python = ">=3.10, <3.13"
+version = "0.2.2"
 dependencies = [
-    "anndata",
-    "geopandas",
+    "anndata>=0.9.1",
+    "geopandas>=0.14",
     "ipykernel",
+    "numba>=0.55.0",
     "numpy",
     "pandas",
     "matplotlib<3.9.0",
     "seaborn",
-    "rasterio",
     "scanpy",
     "plotly>=5.24.1,<6",
-    "shapely",
+    "shapely>=2.0.1",
     "loguru",
     "scikit-learn",
     "scikit-image",
@@ -28,12 +28,9 @@ dependencies = [
 
 [project.optional-dependencies]
 spatialdata = [
-    "spatialdata",
+    "spatialdata==0.4.0",
     "napari-spatialdata",
-    "dask",
-    "dask-image",
     "pyqt5",
-    "spatial-image",
 ]
 dev = [
     "twine",
@@ -49,7 +46,7 @@ dev = [
 ]
 
 [tool.pixi.environments.default]
-features = ["dev"]
+features = ["dev", "spatialdata"]
 
 [build-system]
 build-backend = "hatchling.build"
@@ -57,7 +54,9 @@ requires = ["hatchling"]
 
 [tool.pixi.project]
 channels = ["conda-forge"]
-platforms = ["osx-arm64"]
+platforms = ["win-64", "osx-64", "osx-arm64"]
+# so far a single wheel is working
+# we might need platform specific dependencies and wheels
 
 [tool.pixi.pypi-dependencies]
 opendvp = { path = ".", editable = true }
@@ -71,6 +70,7 @@ opendvp = { path = ".", editable = true }
 [tool.ruff]
 line-length = 120
 target-version = "py311"  # Match your supported Python version
+per-file-ignores = { "tests/**/*.py" = ["S101"] } #ignores assert rule in tests
 exclude = [
     ".git",
     "__pycache__",

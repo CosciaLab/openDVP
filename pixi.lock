@@ -3549,7 +3549,7 @@ packages:
 - pypi: .
   name: opendvp
   version: 0.2.2
-  sha256: f2fa03af8cafba1946179de476fcc1666e65becaefe3d20199d287c6a3bc9176
+  sha256: dc3477ce759851b4ed6cdf9dccdf650f0ba8f9e4c9ccac1ff59bbf42e4f7b399
   requires_dist:
   - anndata>=0.9.1
   - geopandas>=0.14
@@ -3584,7 +3584,7 @@ packages:
   - pytest ; extra == 'dev'
   - tox ; extra == 'dev'
   - hatchling ; extra == 'dev'
-  requires_python: '>=3.10,<3.13'
+  requires_python: '>=3.10'
   editable: true
 - conda: https://conda.anaconda.org/conda-forge/osx-64/openssl-3.5.0-hc426f3f_1.conda
   sha256: bcac94cb82a458b4e3164da8d9bced08cc8c3da2bc3bd7330711a3689c1464a5

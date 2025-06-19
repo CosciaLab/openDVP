@@ -1,15 +1,25 @@
-# Configuration file for the Sphinx documentation builder.
-#
-# For the full list of built-in configuration values, see the documentation:
-# https://www.sphinx-doc.org/en/master/usage/configuration.html
+from importlib.metadata import metadata
+from datetime import datetime
+from pathlib import Path
+
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
+HERE = Path(__file__).parent
+sys.path.insert(0, str(HERE / "extensions"))
+
+info = metadata("opendvp")  # replace with your package name as installed via pip
+project = info["Name"]
+author = info["Author"]
+copyright = f"{datetime.now():%Y}, {author}"
+release = info["Version"]
+
+
 project = 'opendvp'
 copyright = '2025, Jose Nimo'
 author = 'Jose Nimo'
-release = '0.1.1'
+release = '0.2.2'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

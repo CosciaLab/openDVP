@@ -1,9 +1,18 @@
 [project]
-authors = [{name = "Jose Nimo", email = "nimojose@gmail.com"}]
-description = "Add a short description here"
 name = "openDVP"
-requires-python = ">=3.10, <3.13"
 version = "0.2.2"
+description = "open-sourced Deep Visual Proteomics toolkit"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+authors = [{name = "Jose Nimo", email = "jose.nimo@mdc-berlin.de"}]
+maintainers = [{ name = "Jose Nimo", email = "jose.nimo@mdc-berlin.de" }]
+
+# urls.Documentation = "https://decoupler.readthedocs.io/"
+urls.Homepage = "https://github.com/CosciaLab/openDVP"
+urls.Source = "https://github.com/CosciaLab/openDVP"
+
+
 dependencies = [
     "anndata>=0.9.1",
     "geopandas>=0.14",
@@ -33,20 +42,28 @@ spatialdata = [
     "pyqt5",
 ]
 dev = [
-    "twine",
-    "sphinx",
-    "sphinx-autodoc-typehints",
-    "furo",
-    "myst-parser",
-    "nbsphinx",
     "ruff",
     "pytest",
     "tox",
-    "hatchling"
+    "hatchling",
+]
+
+docs = [
+    "myst_nb",
+    "sphinx_copybutton",
+    "sphinxcontrib-bibtex", 
+    "sphinx_tabs", 
+    "sphinxext-opengraph", 
+    "sphinx-book-theme",
+    "twine",
+    "sphinx",
+    "myst-parser",
+    "nbsphinx",
+    "sphinx_autodoc_typehints"
 ]
 
 [tool.pixi.environments.default]
-features = ["dev", "spatialdata"]
+features = ["docs"]
 
 [build-system]
 build-backend = "hatchling.build"

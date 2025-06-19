@@ -8,7 +8,7 @@ from anndata import AnnData
 from matplotlib.figure import Figure
 
 
-def density_plots(
+def density(
     adata: AnnData,
     color_by: str,
     return_fig: bool = False,

@@ -6,7 +6,7 @@ from anndata import AnnData
 from matplotlib.figure import Figure
 
 
-def plot_histograms(
+def abundance_histograms(
     adata: AnnData,
     n_cols: int = 4,
     return_fig: bool = False,

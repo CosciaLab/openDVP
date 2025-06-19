@@ -1,17 +1,12 @@
-# Preprocessing Module
+# Preprocessing
 
+## Imaging
 ```{eval-rst}
-.. automodule:: opendvp.preprocessing
-   :members:
-   :undoc-members:
-   :show-inheritance:
-```
-
-.. module:: opendvp.preprocessing
+.. module:: opendvp.pp
 .. currentmodule:: opendvp
 
 .. autosummary::
     :toctree: generated
-
-    preprocessing.impute_marker_with_annotation
-    preprocessing.rescale
+    pp.impute_marker_with_annotation
+    pp.rescale
+```

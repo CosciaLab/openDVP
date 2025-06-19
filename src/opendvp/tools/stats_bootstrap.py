@@ -7,7 +7,7 @@ from tqdm import tqdm
 from opendvp.metrics import coefficient_of_variation
 
 
-def bootstrap_variability(
+def stats_bootstrap(
     dataframe : pd.DataFrame,
     n_bootstrap : int = 100,
     subset_sizes : list | None = None,

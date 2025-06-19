@@ -1,12 +1,6 @@
-# Metrics Module
+# Metrics
 
 ```{eval-rst}
-.. automodule:: opendvp.metrics
-   :members:
-   :undoc-members:
-   :show-inheritance:
-```
-
 .. module:: opendvp.metrics
 .. currentmodule:: opendvp
 
@@ -15,3 +9,4 @@
 
     metrics.coefficient_of_variation
     metrics.nan_difference
+```

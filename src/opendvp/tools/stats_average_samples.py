@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 
 
-def calculate_category_averages(
+def stats_average_samples(
     adata: ad.AnnData,
     categories: list[str]
 ) -> ad.AnnData:

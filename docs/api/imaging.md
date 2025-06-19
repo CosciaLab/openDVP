@@ -1,12 +1,6 @@
-# Imaging Module
+# Imaging
 
 ```{eval-rst}
-.. automodule:: opendvp.imaging
-   :members:
-   :undoc-members:
-   :show-inheritance:
-```
-
 .. module:: opendvp.imaging
 .. currentmodule:: opendvp
 
@@ -14,3 +8,4 @@
     :toctree: generated
 
     imaging.mask_to_polygons
+```

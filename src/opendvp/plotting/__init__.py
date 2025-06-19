@@ -1,17 +1,31 @@
-from .abundance_histograms import plot_histograms
-from .correlation_heatmap import plot_correlation_heatmap
-from .density import density_plots
-from .dynamic_histogram import plot_dynamic_histogram
+from .abundance_histograms import abundance_histograms
+from .coefficient_of_variation import coefficient_of_variation
+from .correlation_heatmap import correlation_heatmap
+from .density import density
+from .dual_axis_boxplots import dual_axis_boxplots
+from .dynamic_histogram import dynamic_histogram
+from .histogram_w_imputation import histogram_w_imputation
+from .pca import pca
+from .pca_loadings import pca_loadings
 from .plot_graph_network import plot_graph_network
-from .stacked_barplot import plot_rcn_stacked_barplot
+from .rankplot import rankplot
+from .stacked_barplot import stacked_barplot
+from .upset import upset
 from .volcano import volcano
 
 __all__ = [
-    "plot_dynamic_histogram",
-    "plot_histograms",
-    "plot_correlation_heatmap",
-    "density_plots",
-    "plot_rcn_stacked_barplot",
+    "rankplot",
+    "dynamic_histogram",
+    "abundance_histograms",
+    "correlation_heatmap",
+    "density",
+    "stacked_barplot",
     "volcano",
     "plot_graph_network",
+    "coefficient_of_variation",
+    "dual_axis_boxplots",
+    "histogram_w_imputation",
+    "pca_loadings",
+    "pca",
+    "upset"
 ]

@@ -8,7 +8,7 @@ from anndata import AnnData
 from matplotlib.figure import Figure
 
 
-def plot_correlation_heatmap(
+def correlation_heatmap(
     adata: AnnData,
     correlation_method: str = "spearman",
     title: str = "Spearman Correlation Heatmap",

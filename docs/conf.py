@@ -9,14 +9,16 @@ sys.path.insert(0, str(HERE / "extensions"))
 
 # -- Project information -----------------------------------------------------
 
-info = metadata("opendvp")  # replace with your package name as installed via pip
+info = metadata("opendvp")
 project = info["Name"]
-author = info["Author"]
-copyright = f"{datetime.now():%Y}, {author}"
+author = "Jose Nimo"
+# author = info["Author"]
+# copyright = f"{datetime.now():%Y}, {author}"
 release = info["Version"]
 
-urls = dict(pu.split(", ") for pu in info.get_all("Project-URL"))
-repository_url = urls["Source"]
+# urls = dict(pu.split(", ") for pu in info.get_all("Project-URL"))
+# repository_url = urls["Source"]
+repository_url = "https://github.com/CosciaLab/openDVP"
 
 bibtex_bibfiles = ["references.bib"]
 templates_path = ["_templates"]

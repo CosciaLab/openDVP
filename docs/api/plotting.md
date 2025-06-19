@@ -1,4 +1,4 @@
-# Input / Output
+# Plotting
 
 ## Imaging
 ```{eval-rst}
@@ -20,7 +20,6 @@
 
     plotting.abundance_histograms
     plotting.correlation_heatmap
-    plotting.import_perseus
     plotting.coefficient_of_variation
     plotting.density
     plotting.dual_axis_boxplots

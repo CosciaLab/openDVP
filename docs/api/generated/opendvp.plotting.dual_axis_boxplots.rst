@@ -1,12 +1,6 @@
 ﻿opendvp.plotting.dual\_axis\_boxplots
 =====================================
 
-.. automodule:: opendvp.plotting.dual_axis_boxplots
+.. currentmodule:: opendvp.plotting
 
-   
-   .. rubric:: Functions
-
-   .. autosummary::
-   
-      dual_axis_boxplots
-   
+.. autofunction:: dual_axis_boxplots

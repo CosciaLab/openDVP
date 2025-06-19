@@ -1,6 +1,6 @@
-﻿opendvp.plotting.density
+﻿opendvp.plotting.volcano
 ========================
 
 .. currentmodule:: opendvp.plotting
 
-.. autofunction:: density
+.. autofunction:: volcano

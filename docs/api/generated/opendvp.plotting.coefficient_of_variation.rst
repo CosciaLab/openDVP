@@ -1,12 +1,6 @@
 ﻿opendvp.plotting.coefficient\_of\_variation
 ===========================================
 
-.. automodule:: opendvp.plotting.coefficient_of_variation
+.. currentmodule:: opendvp.plotting
 
-   
-   .. rubric:: Functions
-
-   .. autosummary::
-   
-      coefficient_of_variation
-   
+.. autofunction:: coefficient_of_variation

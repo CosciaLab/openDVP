@@ -1,12 +1,6 @@
 ﻿opendvp.imaging.mask\_to\_polygons
 ==================================
 
-.. automodule:: opendvp.imaging.mask_to_polygons
+.. currentmodule:: opendvp.imaging
 
-   
-   .. rubric:: Functions
-
-   .. autosummary::
-   
-      mask_to_polygons
-   
+.. autofunction:: mask_to_polygons

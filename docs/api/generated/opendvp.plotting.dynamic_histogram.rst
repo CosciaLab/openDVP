@@ -1,12 +1,6 @@
 ﻿opendvp.plotting.dynamic\_histogram
 ===================================
 
-.. automodule:: opendvp.plotting.dynamic_histogram
+.. currentmodule:: opendvp.plotting
 
-   
-   .. rubric:: Functions
-
-   .. autosummary::
-   
-      dynamic_histogram
-   
+.. autofunction:: dynamic_histogram

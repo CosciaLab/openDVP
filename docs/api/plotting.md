@@ -1,13 +1,33 @@
+# Input / Output
+
+## Imaging
+```{eval-rst}
 .. module:: opendvp.plotting
 .. currentmodule:: opendvp
 
 .. autosummary::
     :toctree: generated
-
-    plotting.plot_dynamic_histogram
-    plotting.plot_histograms
-    plotting.plot_correlation_heatmap
-    plotting.density_plots
-    plotting.plot_rcn_stacked_barplot
-    plotting.volcano
+    
+    plotting.dynamic_histogram
     plotting.plot_graph_network
+    plotting.stacked_barplot
+```
+
+## Proteomics
+```{eval-rst}
+.. autosummary::
+    :toctree: generated
+
+    plotting.abundance_histograms
+    plotting.correlation_heatmap
+    plotting.import_perseus
+    plotting.coefficient_of_variation
+    plotting.density
+    plotting.dual_axis_boxplots
+    plotting.histogram_w_imputation
+    plotting.pca_loadings
+    plotting.pca
+    plotting.rankplot
+    plotting.upset
+    plotting.volcano
+```

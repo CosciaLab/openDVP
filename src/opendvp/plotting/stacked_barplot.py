@@ -4,7 +4,7 @@ from matplotlib.axes import Axes
 from matplotlib.figure import Figure
 
 
-def plot_rcn_stacked_barplot(
+def stacked_barplot(
     df: pd.DataFrame,
     phenotype_col: str,
     rcn_col: str,

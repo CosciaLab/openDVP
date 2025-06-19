@@ -5,7 +5,7 @@ import pandas as pd
 from opendvp.utils import logger
 
 
-def gaussian(
+def impute_gaussian(
     adata: ad.AnnData,
     mean_shift: float = -1.8,
     std_dev_shift: float = 0.3,

@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.graph_objects as go
 
 
-def plot_dynamic_histogram(
+def dynamic_histogram(
     df: pd.DataFrame, column: str, bins: int = 100
 ) -> None:
     """Plot a dynamic histogram with a threshold slider and count annotations.

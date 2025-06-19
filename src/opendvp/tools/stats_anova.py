@@ -1,9 +1,5 @@
 from datetime import datetime
 
-date = datetime.now().strftime("%Y%m%d")
-
-from datetime import datetime
-
 import anndata as ad
 import numpy as np
 import pandas as pd
@@ -16,7 +12,7 @@ date = datetime.now().strftime("%Y%m%d")
 #TODO tukey of only significant from anova
 #TODO average per sample as default (test assumes independence)
 
-def anova_adata(
+def stats_anova(
     adata: ad.AnnData,
     grouping: str,
     FDR_threshold: float = 0.05,

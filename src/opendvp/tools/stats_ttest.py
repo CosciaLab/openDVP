@@ -9,7 +9,7 @@ from opendvp.utils import logger
 
 date = datetime.now().strftime("%Y%m%d")
 
-def ttest_adata(
+def stats_ttest(
     adata: ad.AnnData,
     grouping: str,
     group1: str,

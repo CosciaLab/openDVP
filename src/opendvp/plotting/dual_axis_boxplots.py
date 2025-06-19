@@ -6,7 +6,7 @@ import pandas as pd
 from matplotlib.figure import Figure
 
 
-def plot_dual_axis_boxplots(
+def dual_axis_boxplots(
     adata_obs: pd.DataFrame,
     feature_key: str = "RCN",
     feature_1: str = "Proteins.Identified",

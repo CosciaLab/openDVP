@@ -7,5 +7,4 @@ Welcome to the documentation for `opendvp`.
 :hidden:
 
 api/index
-Tutorials/index
 references

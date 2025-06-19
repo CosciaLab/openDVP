@@ -51,7 +51,13 @@ dev = [
     "ruff",
     "pytest",
     "tox",
-    "hatchling"
+    "hatchling",
+    "myst_nb",
+    "sphinx_copybutton",
+    "sphinxcontrib-bibtex", 
+    "sphinx_tabs", 
+    "sphinxext-opengraph", 
+    "sphinx-book-theme"
 ]
 
 [tool.pixi.environments.default]

@@ -42,26 +42,28 @@ spatialdata = [
     "pyqt5",
 ]
 dev = [
-    "twine",
-    "sphinx",
-    "sphinx-autodoc-typehints",
-    "furo",
-    "myst-parser",
-    "nbsphinx",
     "ruff",
     "pytest",
     "tox",
     "hatchling",
+]
+
+docs = [
     "myst_nb",
     "sphinx_copybutton",
     "sphinxcontrib-bibtex", 
     "sphinx_tabs", 
     "sphinxext-opengraph", 
-    "sphinx-book-theme"
+    "sphinx-book-theme",
+    "twine",
+    "sphinx",
+    "myst-parser",
+    "nbsphinx",
+    "sphinx_autodoc_typehints"
 ]
 
 [tool.pixi.environments.default]
-features = ["dev", "spatialdata"]
+features = ["docs"]
 
 [build-system]
 build-backend = "hatchling.build"

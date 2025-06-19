@@ -1,5 +1,5 @@
 # removed imaging because rasterio is giving issues with gdal and python 
-from . import imaging, io, metrics, plotting, preprocessing, tools, utils
+from . import imaging, io, metrics, plotting, pp, tl, utils
 
 try:
     from importlib.metadata import version as _version
@@ -10,10 +10,10 @@ __version__ = _version("openDVP")
 
 __all__ = [
     "io",
-    "tools",
+    "tl",
     "plotting",
     "imaging",
     "metrics",
-    "preprocessing",
+    "pp",
     "utils",
 ]

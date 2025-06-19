@@ -1,12 +1,6 @@
 ﻿opendvp.plotting.correlation\_heatmap
 =====================================
 
-.. automodule:: opendvp.plotting.correlation_heatmap
+.. currentmodule:: opendvp.plotting
 
-   
-   .. rubric:: Functions
-
-   .. autosummary::
-   
-      correlation_heatmap
-   
+.. autofunction:: correlation_heatmap

@@ -1,12 +1,6 @@
 ﻿opendvp.plotting.histogram\_w\_imputation
 =========================================
 
-.. automodule:: opendvp.plotting.histogram_w_imputation
+.. currentmodule:: opendvp.plotting
 
-   
-   .. rubric:: Functions
-
-   .. autosummary::
-   
-      histogram_w_imputation
-   
+.. autofunction:: histogram_w_imputation

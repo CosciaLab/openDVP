@@ -1,12 +1,6 @@
 ﻿opendvp.plotting.abundance\_histograms
 ======================================
 
-.. automodule:: opendvp.plotting.abundance_histograms
+.. currentmodule:: opendvp.plotting
 
-   
-   .. rubric:: Functions
-
-   .. autosummary::
-   
-      abundance_histograms
-   
+.. autofunction:: abundance_histograms

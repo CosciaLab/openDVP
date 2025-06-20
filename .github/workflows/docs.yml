@@ -2,16 +2,15 @@ name: docs
 
 on:
   push:
-    branches:
-      - main
-  workflow_dispatch:  # allow manual trigger
+    tags:
+      - 'v*'
 
 jobs:
   build-docs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write  # needed to push to gh-pages
+      contents: write
 
     steps:
       - name: Checkout code
@@ -29,9 +28,6 @@ jobs:
             environments: docs
             activate-environment: docs
             log-level: vv
-
-    #   - name: Activate Pixi environment
-    #     run: pixi shell --environment docs    
 
       - name: Build documentation
         run: sphinx-build -b html docs docs/_build/html

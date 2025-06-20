@@ -23,13 +23,15 @@ jobs:
           python-version: "3.12"
 
       - name: Install Pixi with docs dependencies
-        uses: prefix-dev/setup-pixi@v0.5.1
+        uses: prefix-dev/setup-pixi@v0.8.0
         with:
-            log-level: vv
+            manifest-path: pyproject.toml
             environments: docs
+            activate-environment: docs
+            log-level: vv
 
-      - name: Activate Pixi environment
-        run: pixi shell --environment docs    
+    #   - name: Activate Pixi environment
+    #     run: pixi shell --environment docs    
 
       - name: Build documentation
         run: sphinx-build -b html docs docs/_build/html

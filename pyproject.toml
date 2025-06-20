@@ -1,6 +1,6 @@
 [project]
 name = "openDVP"
-version = "0.2.5"
+version = "0.2.6"
 description = "open-sourced Deep Visual Proteomics toolkit"
 readme = "README.md"
 requires-python = ">=3.10"

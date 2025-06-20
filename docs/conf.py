@@ -22,13 +22,13 @@ repository_url = "https://github.com/CosciaLab/openDVP"
 
 bibtex_bibfiles = ["references.bib"]
 templates_path = ["_templates"]
-nitpicky = True  # Warn about broken links
+nitpicky = True
 needs_sphinx = "4.0"
 
 html_context = {
-    "display_github": True,  # Integrate GitHub
-    "github_user": "scverse",
-    "github_repo": project,
+    "display_github": True,
+    "github_user": "CosciaLab",
+    "github_repo": "openDVP",
     "github_version": "main",
     "conf_py_path": "/docs/",
 }
@@ -57,9 +57,9 @@ default_role = "literal"
 napoleon_google_docstring = True #changed this
 napoleon_numpy_docstring = False #changed this
 napoleon_include_init_with_doc = False
-napoleon_use_rtype = True  # having a separate entry generally helps readability
+napoleon_use_rtype = True
 napoleon_use_param = True
-myst_heading_anchors = 6  # create anchors for h1-h6
+myst_heading_anchors = 6
 myst_enable_extensions = [
     "amsmath",
     "colon_fence",
@@ -78,6 +78,8 @@ source_suffix = {
     ".rst": "restructuredtext",
     ".ipynb": "myst-nb",
     ".myst": "myst-nb",
+    # ".md" : "markdown",
+    # ".md": "myst",
 }
 
 intersphinx_mapping = {
@@ -102,8 +104,4 @@ html_title = project
 
 pygments_style = "default"
 
-nitpick_ignore = [
-    # If building the documentation fails because of a missing link that is outside your control,
-    # you can add an exception to this list.
-    #     ("py:class", "igraph.Graph"),
-]
+nitpick_ignore = []

@@ -2429,7 +2429,7 @@ packages:
 - pypi: .
   name: opendvp
   version: 0.2.2
-  sha256: 236949ce8b2500ee72d717240b0e79d2db1763a71a8877cc66c09c7bacc2abc1
+  sha256: e70cee5d5488c69b95c35ca08cef5032eb6af788898fec2f9d8c6c9b9985a6aa
   requires_dist:
   - anndata>=0.9.1
   - geopandas>=0.14
@@ -2458,15 +2458,15 @@ packages:
   - pytest ; extra == 'dev'
   - tox ; extra == 'dev'
   - hatchling ; extra == 'dev'
-  - myst-nb ; extra == 'docs'
+  - sphinx ; extra == 'docs'
   - sphinx-copybutton ; extra == 'docs'
   - sphinxcontrib-bibtex ; extra == 'docs'
   - sphinx-tabs ; extra == 'docs'
   - sphinxext-opengraph ; extra == 'docs'
   - sphinx-book-theme ; extra == 'docs'
   - twine ; extra == 'docs'
-  - sphinx ; extra == 'docs'
   - myst-parser ; extra == 'docs'
+  - myst-nb ; extra == 'docs'
   - nbsphinx ; extra == 'docs'
   - sphinx-autodoc-typehints ; extra == 'docs'
   requires_python: '>=3.10'

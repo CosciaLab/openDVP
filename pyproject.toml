@@ -49,15 +49,15 @@ dev = [
 ]
 
 docs = [
-    "myst_nb",
+    "sphinx",
     "sphinx_copybutton",
     "sphinxcontrib-bibtex", 
     "sphinx_tabs", 
     "sphinxext-opengraph", 
     "sphinx-book-theme",
     "twine",
-    "sphinx",
     "myst-parser",
+    "myst_nb",
     "nbsphinx",
     "sphinx_autodoc_typehints"
 ]

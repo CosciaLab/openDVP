@@ -1,5 +1,7 @@
 # OpenDVP
 
+[![Docs](https://img.shields.io/badge/docs-online-blue.svg)](https://coscialab.github.io/openDVP/)
+
 ![Screenshot 2025-06-17 at 11 43 44](https://github.com/user-attachments/assets/c8ac779d-a7bb-401a-b12d-93599f75528a)
 
 **OpenDVP** is an open-source framework designed to support Deep Visual Profiling (DVP) across multiple modalities using community-supported tools.

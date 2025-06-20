@@ -8,11 +8,6 @@ license = {file = "LICENSE"}
 authors = [{name = "Jose Nimo", email = "jose.nimo@mdc-berlin.de"}]
 maintainers = [{ name = "Jose Nimo", email = "jose.nimo@mdc-berlin.de" }]
 
-# urls.Documentation = "https://decoupler.readthedocs.io/"
-urls.Homepage = "https://github.com/CosciaLab/openDVP"
-urls.Source = "https://github.com/CosciaLab/openDVP"
-
-
 dependencies = [
     "anndata>=0.9.1",
     "geopandas>=0.14",
@@ -61,6 +56,11 @@ docs = [
     "nbsphinx",
     "sphinx_autodoc_typehints"
 ]
+
+[project.urls]
+"Documentation" = "https://your-username.github.io/your-repo-name"
+"Homepage" = "https://github.com/CosciaLab/openDVP"
+"Source" = "https://github.com/CosciaLab/openDVP"
 
 [tool.pixi.environments]
 default = {features = [], solve-group = "default"}

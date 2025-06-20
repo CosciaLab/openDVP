@@ -41,7 +41,6 @@ dev = [
     "pytest",
     "tox",
     "hatchling",
-    "hatchling",
 ]
 
 docs = [

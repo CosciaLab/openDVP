@@ -76,9 +76,6 @@ requires = ["hatchling"]
 [tool.pixi.project]
 channels = ["conda-forge"]
 platforms = ["linux-64", "osx-arm64", "osx-64", "win-64"]
-platforms = ["linux-64", "osx-arm64", "osx-64", "win-64"]
-# so far a single wheel is working
-# we might need platform specific dependencies and wheels
 
 [tool.pixi.pypi-dependencies]
 opendvp = { path = ".", editable = true }

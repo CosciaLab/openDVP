@@ -1,17 +1,12 @@
 [project]
 name = "openDVP"
-version = "0.2.2"
+version = "0.2.5"
 description = "open-sourced Deep Visual Proteomics toolkit"
 readme = "README.md"
 requires-python = ">=3.10"
 license = {file = "LICENSE"}
 authors = [{name = "Jose Nimo", email = "jose.nimo@mdc-berlin.de"}]
 maintainers = [{ name = "Jose Nimo", email = "jose.nimo@mdc-berlin.de" }]
-
-# urls.Documentation = "https://decoupler.readthedocs.io/"
-urls.Homepage = "https://github.com/CosciaLab/openDVP"
-urls.Source = "https://github.com/CosciaLab/openDVP"
-
 
 dependencies = [
     "anndata>=0.9.1",
@@ -46,6 +41,7 @@ dev = [
     "pytest",
     "tox",
     "hatchling",
+    "hatchling",
 ]
 
 docs = [
@@ -62,6 +58,11 @@ docs = [
     "sphinx_autodoc_typehints"
 ]
 
+[project.urls]
+"Documentation" = "https://your-username.github.io/your-repo-name"
+"Homepage" = "https://github.com/CosciaLab/openDVP"
+"Source" = "https://github.com/CosciaLab/openDVP"
+
 [tool.pixi.environments]
 default = {features = [], solve-group = "default"}
 spatialdata = {features = ["spatialdata"], solve-group = "default"}
@@ -74,6 +75,7 @@ requires = ["hatchling"]
 
 [tool.pixi.project]
 channels = ["conda-forge"]
+platforms = ["linux-64", "osx-arm64", "osx-64", "win-64"]
 platforms = ["linux-64", "osx-arm64", "osx-64", "win-64"]
 # so far a single wheel is working
 # we might need platform specific dependencies and wheels

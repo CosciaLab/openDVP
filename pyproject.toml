@@ -49,21 +49,24 @@ dev = [
 ]
 
 docs = [
-    "myst_nb",
+    "sphinx",
     "sphinx_copybutton",
     "sphinxcontrib-bibtex", 
     "sphinx_tabs", 
     "sphinxext-opengraph", 
     "sphinx-book-theme",
     "twine",
-    "sphinx",
     "myst-parser",
+    "myst_nb",
     "nbsphinx",
     "sphinx_autodoc_typehints"
 ]
 
-[tool.pixi.environments.default]
-features = ["docs"]
+[tool.pixi.environments]
+default = {features = [], solve-group = "default"}
+spatialdata = {features = ["spatialdata"], solve-group = "default"}
+dev = {features = ["dev"], solve-group = "default"}
+docs = {features = ["docs"], solve-group = "default"}
 
 [build-system]
 build-backend = "hatchling.build"

@@ -1,0 +1,1072 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="opendvp.metrics package" href="opendvp.metrics.html" /><link rel="prev" title="opendvp.imaging package" href="opendvp.imaging.html" />
+
+    <!-- Generated with Sphinx 8.2.3 and Furo 2024.08.06 -->
+        <title>opendvp.io package - opendvp 0.2.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=302659d7" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">opendvp 0.2.2 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">opendvp 0.2.2 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">API Reference:</span></p>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="opendvp.html">opendvp package</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of opendvp package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="opendvp.imaging.html">opendvp.imaging package</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">opendvp.io package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opendvp.metrics.html">opendvp.metrics package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opendvp.plotting.html">opendvp.plotting package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opendvp.preprocessing.html">opendvp.preprocessing package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opendvp.tools.html">opendvp.tools package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opendvp.utils.html">opendvp.utils package</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="_sources/opendvp.io.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="opendvp-io-package">
+<h1>opendvp.io package<a class="headerlink" href="#opendvp-io-package" title="Link to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-opendvp.io.DIANN_to_adata">
+<span id="opendvp-io-diann-to-adata-module"></span><h2>opendvp.io.DIANN_to_adata module<a class="headerlink" href="#module-opendvp.io.DIANN_to_adata" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="opendvp.io.DIANN_to_adata.DIANN_to_adata">
+<span class="sig-prename descclassname"><span class="pre">opendvp.io.DIANN_to_adata.</span></span><span class="sig-name descname"><span class="pre">DIANN_to_adata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">DIANN_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DIANN_sep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'\\t'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata_sep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">','</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata_filepath_header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'File.Name'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_contamination</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_nan_genes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_of_protein_metadata_cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.io.DIANN_to_adata.DIANN_to_adata" title="Link to this definition">¶</a></dt>
+<dd><p>Converts DIANN output file and metadata file into an AnnData object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>DIANN_path</strong> (<em>str</em>) – Path to DIANN output file.</p></li>
+<li><p><strong>DIANN_sep</strong> (<em>str</em><em>, </em><em>default 't'</em>) – Delimiter for DIANN output file.</p></li>
+<li><p><strong>metadata_path</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em><em>, </em><em>default None</em>) – Path to metadata file.</p></li>
+<li><p><strong>metadata_sep</strong> (<em>str</em><em>, </em><em>default '</em><em>,</em><em>'</em>) – Delimiter for metadata file.</p></li>
+<li><p><strong>metadata_filepath_header</strong> (<em>str</em><em>, </em><em>default 'File.Name'</em>) – Name of the column in metadata file that contains the DIANN file paths.</p></li>
+<li><p><strong>filter_contamination</strong> (<em>bool</em><em>, </em><em>default True</em>) – If True, removes Protein.Names labelled with ‘<a href="#id1"><span class="problematic" id="id2">Cont_</span></a>’ as a prefix.</p></li>
+<li><p><strong>filter_nan_genes</strong> (<em>bool</em><em>, </em><em>default True</em>) – If True, removes variable rows that contain NaN in the ‘Genes’ column.</p></li>
+<li><p><strong>n_of_protein_metadata_cols</strong> (<em>int</em><em>, </em><em>default 4</em>) – Number of protein metadata columns at the start of the DIANN file.</p></li>
+<li><p><strong>Returns</strong></p></li>
+<li><p><strong>-------</strong></p></li>
+<li><p><strong>AnnData</strong> – AnnData object with imported data.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnnData</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-opendvp.io.adata_to_perseus">
+<span id="opendvp-io-adata-to-perseus-module"></span><h2>opendvp.io.adata_to_perseus module<a class="headerlink" href="#module-opendvp.io.adata_to_perseus" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="opendvp.io.adata_to_perseus.adata_to_perseus">
+<span class="sig-prename descclassname"><span class="pre">opendvp.io.adata_to_perseus.</span></span><span class="sig-name descname"><span class="pre">adata_to_perseus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_to_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suffix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obs_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.io.adata_to_perseus.adata_to_perseus" title="Link to this definition">¶</a></dt>
+<dd><p>Export an AnnData object to Perseus-compatible text files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>adata</strong> (<em>AnnData</em>) – AnnData object to export.</p></li>
+<li><p><strong>path_to_dir</strong> (<em>str</em>) – Directory where output files will be saved.</p></li>
+<li><p><strong>suffix</strong> (<em>str</em>) – Suffix for output file names.</p></li>
+<li><p><strong>obs_key</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em><em>, </em><em>default None</em>) – Column in adata.obs to use as row index for the data file.
+If None, uses adata.obs_names.</p></li>
+<li><p><strong>Returns</strong></p></li>
+<li><p><strong>-------</strong></p></li>
+<li><p><strong>None</strong> – This function saves files to disk and does not return a value.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-opendvp.io.adata_to_qupath">
+<span id="opendvp-io-adata-to-qupath-module"></span><h2>opendvp.io.adata_to_qupath module<a class="headerlink" href="#module-opendvp.io.adata_to_qupath" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="opendvp.io.adata_to_qupath.adata_to_qupath">
+<span class="sig-prename descclassname"><span class="pre">opendvp.io.adata_to_qupath.</span></span><span class="sig-name descname"><span class="pre">adata_to_qupath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'polygons'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geodataframe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geodataframe_index_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adata_obs_index_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adata_obs_category_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'phenotype'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">export_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simplify_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voronoi_area_quantile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.98</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">merge_adjacent_shapes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subset_adata_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subset_adata_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_as_detection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.io.adata_to_qupath.adata_to_qupath" title="Link to this definition">¶</a></dt>
+<dd><p>Flexible function to output QuPath-compatible detections from AnnData, using either Voronoi or provided polygons.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>adata</strong> (<em>AnnData</em>) – AnnData object with cell metadata and (optionally) centroid coordinates.</p></li>
+<li><p><strong>mode</strong> (<em>{&quot;voronoi&quot;</em><em>, </em><em>&quot;polygons&quot;}</em>) – If “voronoi”, generates polygons from centroids. If “polygons”, uses provided geodataframe.</p></li>
+<li><p><strong>geodataframe</strong> (<em>GeoDataFrame</em><em>, </em><em>optional</em>) – If mode=”polygons”, the polygons to annotate.</p></li>
+<li><p><strong>geodataframe_index_key</strong> (<em>str</em><em>, </em><em>optional</em>) – Column in geodataframe to match to adata.obs (for mode=”polygons”).</p></li>
+<li><p><strong>adata_obs_index_key</strong> (<em>str</em><em>, </em><em>optional</em>) – Column in adata.obs to match to geodataframe (for mode=”polygons”).</p></li>
+<li><p><strong>adata_obs_category_key</strong> (<em>str</em><em>, </em><em>default &quot;phenotype&quot;</em>) – Column in adata.obs for class/color annotation.</p></li>
+<li><p><strong>color_dict</strong> (<em>dict</em><em>, </em><em>optional</em>) – Mapping from class names to RGB color lists.</p></li>
+<li><p><strong>export_path</strong> (<em>str</em><em>, </em><em>optional</em>) – If provided, writes output to this path as GeoJSON.</p></li>
+<li><p><strong>simplify_value</strong> (<em>float</em><em>, </em><em>default 1</em>) – Geometry simplification tolerance (for polygons mode).</p></li>
+<li><p><strong>voronoi_area_quantile</strong> (<em>float</em><em>, </em><em>default 0.98</em>) – Area quantile threshold for filtering large Voronoi polygons.</p></li>
+<li><p><strong>merge_adjacent_shapes</strong> (<em>bool</em><em>, </em><em>default True</em>) – If True, merges adjacent polygons of the same class (Voronoi mode).</p></li>
+<li><p><strong>subset_adata_key</strong> (<em>str</em><em>, </em><em>optional</em>) – Column in adata.obs to filter for Voronoi mode.</p></li>
+<li><p><strong>subset_adata_value</strong> (<em>any</em><em>, </em><em>optional</em>) – Value to filter subset_adata_key by (Voronoi mode).</p></li>
+<li><p><strong>save_as_detection</strong> (<em>bool</em><em>, </em><em>default True</em>) – If True, sets objectType to “detection” for QuPath. Otherwise as Annotations.</p></li>
+<li><p><strong>Returns</strong></p></li>
+<li><p><strong>-------</strong></p></li>
+<li><p><strong>None</strong> (<em>GeoDataFrame or</em>) – Returns GeoDataFrame if export_path is None, else writes to file and returns None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">GeoDataFrame</span></code> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-opendvp.io.export_adata">
+<span id="opendvp-io-export-adata-module"></span><h2>opendvp.io.export_adata module<a class="headerlink" href="#module-opendvp.io.export_adata" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="opendvp.io.export_adata.export_adata">
+<span class="sig-prename descclassname"><span class="pre">opendvp.io.export_adata.</span></span><span class="sig-name descname"><span class="pre">export_adata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_to_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">checkpoint_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.io.export_adata.export_adata" title="Link to this definition">¶</a></dt>
+<dd><p>Save an AnnData object as both .h5ad and .parquet files in a checkpoint directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>adata</strong> (<em>AnnData</em>) – AnnData object to save.</p></li>
+<li><p><strong>path_to_dir</strong> (<em>str</em>) – Directory where the checkpoint folder will be created.</p></li>
+<li><p><strong>checkpoint_name</strong> (<em>str</em>) – Name for the checkpoint folder and file prefix.</p></li>
+<li><p><strong>Returns</strong></p></li>
+<li><p><strong>-------</strong></p></li>
+<li><p><strong>None</strong> – This function saves files to disk and does not return a value.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-opendvp.io.export_figure">
+<span id="opendvp-io-export-figure-module"></span><h2>opendvp.io.export_figure module<a class="headerlink" href="#module-opendvp.io.export_figure" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="opendvp.io.export_figure.export_figure">
+<span class="sig-prename descclassname"><span class="pre">opendvp.io.export_figure.</span></span><span class="sig-name descname"><span class="pre">export_figure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suffix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">600</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.io.export_figure.export_figure" title="Link to this definition">¶</a></dt>
+<dd><p>Save a matplotlib figure as both PDF and SVG files with a timestamped filename.</p>
+<p>The function creates the output directory if it does not exist, generates a
+timestamped filename using the current date and time, and saves the figure in
+both PDF and SVG formats with the specified DPI. For SVG export, it ensures
+that text remains editable in vector graphics editors like Adobe Illustrator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fig</strong> (<em>&gt;&gt;&gt;</em>) – The matplotlib figure object to be saved.</p></li>
+<li><p><strong>path</strong> (<em>str</em>) – Directory path where the figure files will be saved.</p></li>
+<li><p><strong>suffix</strong> (<em>str</em>) – A custom suffix to include in the filename (e.g., describing the content).</p></li>
+<li><p><strong>dpi</strong> (<em>int</em><em>, </em><em>optional</em>) – Resolution in dots per inch for the saved figure. Default is 600.</p></li>
+<li><p><strong>Returns</strong></p></li>
+<li><p><strong>-------</strong></p></li>
+<li><p><strong>None</strong></p></li>
+<li><p><strong>Prints</strong></p></li>
+<li><p><strong>------</strong></p></li>
+<li><p><strong>str</strong> – Confirmation message with the full paths to the saved PDF and SVG files.</p></li>
+<li><p><strong>Examples</strong></p></li>
+<li><p><strong>--------</strong></p></li>
+<li><p><strong>plt</strong> (<em>&gt;&gt;&gt; import matplotlib.pyplot as</em>)</p></li>
+<li><p><strong>fig</strong></p></li>
+<li><p><strong>plt.subplots</strong><strong>(</strong><strong>)</strong> (<em>ax =</em>)</p></li>
+<li><p><strong>ax.plot</strong><strong>(</strong><strong>[</strong><strong>0</strong> (<em>&gt;&gt;&gt;</em>)</p></li>
+<li><p><strong>1</strong><strong>]</strong></p></li>
+<li><p><strong>[</strong><strong>0</strong></p></li>
+<li><p><strong>1</strong><strong>]</strong><strong>)</strong></p></li>
+<li><p><strong>export_figure</strong><strong>(</strong><strong>fig</strong> (<em>&gt;&gt;&gt;</em>)</p></li>
+<li><p><strong>path=&quot;figures/&quot;</strong></p></li>
+<li><p><strong>suffix=&quot;line_plot&quot;</strong><strong>)</strong></p></li>
+<li><p><strong>as</strong> (<em>Figures saved</em>)</p></li>
+<li><p><strong>figures/20250519_1245_line_plot.pdf</strong></p></li>
+<li><p><strong>figures/20250519_1245_line_plot.svg</strong></p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-opendvp.io.geojson_to_sdata">
+<span id="opendvp-io-geojson-to-sdata-module"></span><h2>opendvp.io.geojson_to_sdata module<a class="headerlink" href="#module-opendvp.io.geojson_to_sdata" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="opendvp.io.geojson_to_sdata.geojson_to_sdata">
+<span class="sig-prename descclassname"><span class="pre">opendvp.io.geojson_to_sdata.</span></span><span class="sig-name descname"><span class="pre">geojson_to_sdata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_to_geojson</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sdata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.io.geojson_to_sdata.geojson_to_sdata" title="Link to this definition">¶</a></dt>
+<dd><p>Import the geojson from QuPath to a SpatialData object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path_to_geojson</strong> (<em>str</em>) – Path to the geojson file.</p></li>
+<li><p><strong>sdata</strong> (<em>spatialdata.SpatialData</em>) – The SpatialData object to which the geojson will be added.</p></li>
+<li><p><strong>key</strong> (<em>str</em>) – Key to store the geodataframe in sdata.</p></li>
+<li><p><strong>Returns</strong></p></li>
+<li><p><strong>-------</strong></p></li>
+<li><p><strong>spatialdata.SpatialData</strong> – The updated SpatialData object with the new geojson data.</p></li>
+<li><p><strong>Raises</strong></p></li>
+<li><p><strong>------</strong></p></li>
+<li><p><strong>ImportError</strong> – If the ‘spatialdata’ package is not installed.</p></li>
+<li><p><strong>AssertionError</strong> – If input types or file existence checks fail.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type">spatialdata.SpatialData</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-opendvp.io.import_perseus">
+<span id="opendvp-io-import-perseus-module"></span><h2>opendvp.io.import_perseus module<a class="headerlink" href="#module-opendvp.io.import_perseus" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="opendvp.io.import_perseus.import_perseus">
+<span class="sig-prename descclassname"><span class="pre">opendvp.io.import_perseus.</span></span><span class="sig-name descname"><span class="pre">import_perseus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_to_perseus_txt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_var_metadata_rows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.io.import_perseus.import_perseus" title="Link to this definition">¶</a></dt>
+<dd><p>Convert a Perseus text file to an AnnData object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path_to_perseus_txt</strong> (<em>str</em>) – Path to the Perseus text file.</p></li>
+<li><p><strong>n_var_metadata_rows</strong> (<em>int</em><em>, </em><em>default 4</em>) – Number of metadata rows at the bottom of the columns to use as var headers.</p></li>
+<li><p><strong>Returns</strong></p></li>
+<li><p><strong>-------</strong></p></li>
+<li><p><strong>AnnData</strong> – AnnData object with imported data.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnnData</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-opendvp.io.import_thresholds">
+<span id="opendvp-io-import-thresholds-module"></span><h2>opendvp.io.import_thresholds module<a class="headerlink" href="#module-opendvp.io.import_thresholds" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="opendvp.io.import_thresholds.import_thresholds">
+<span class="sig-prename descclassname"><span class="pre">opendvp.io.import_thresholds.</span></span><span class="sig-name descname"><span class="pre">import_thresholds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gates_csv_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log1p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.io.import_thresholds.import_thresholds" title="Link to this definition">¶</a></dt>
+<dd><p>Read gate thresholds from a CSV file, filter, and optionally log1p-transform for scimap compatibility.</p>
+<p>This function loads a CSV file containing gate thresholds, validates required columns, filters out rows
+with gate values of 0.0 (assumed not gated), optionally selects gates for a specific sample, and can
+log1p-transform gate values for downstream analysis (e.g., scimap). Logs progress and summary information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gates_csv_path</strong> (<em>str</em>) – Path to the CSV file containing gate thresholds. Must end with ‘.csv’.</p></li>
+<li><p><strong>sample_id</strong> (<em>str</em><em> or </em><em>int</em><em>, </em><em>optional</em>) – If provided, only gates for this sample will be returned and the output column will be named accordingly.</p></li>
+<li><p><strong>log1p</strong> (<em>bool</em><em>, </em><em>default True</em>) – If True, applies log1p transformation to gate values and formats output for scimap.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Filtered DataFrame containing valid gates, with columns including ‘markers’ and the sample_id
+(if log1p=True), or the original columns if log1p=False.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the file extension is not ‘.csv’, or required columns are missing.</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gates</span> <span class="o">=</span> <span class="n">read_and_process_gates</span><span class="p">(</span><span class="s1">&#39;gates.csv&#39;</span><span class="p">,</span> <span class="n">sample_id</span><span class="o">=</span><span class="s1">&#39;sample1&#39;</span><span class="p">,</span> <span class="n">log1p</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">gates</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="module-opendvp.io.quant_to_adata">
+<span id="opendvp-io-quant-to-adata-module"></span><h2>opendvp.io.quant_to_adata module<a class="headerlink" href="#module-opendvp.io.quant_to_adata" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="opendvp.io.quant_to_adata.quant_to_adata">
+<span class="sig-prename descclassname"><span class="pre">opendvp.io.quant_to_adata.</span></span><span class="sig-name descname"><span class="pre">quant_to_adata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">csv_data_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.io.quant_to_adata.quant_to_adata" title="Link to this definition">¶</a></dt>
+<dd><p>Read the quantification data from a csv file and return an anndata object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>csv_data_path</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – path to the csv file</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnnData</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an anndata object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-opendvp.io.sdata_to_qupath">
+<span id="opendvp-io-sdata-to-qupath-module"></span><h2>opendvp.io.sdata_to_qupath module<a class="headerlink" href="#module-opendvp.io.sdata_to_qupath" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="opendvp.io.sdata_to_qupath.sdata_to_qupath">
+<span class="sig-prename descclassname"><span class="pre">opendvp.io.sdata_to_qupath.</span></span><span class="sig-name descname"><span class="pre">sdata_to_qupath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sdata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_to_shapes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">export_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_table_by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'CellID'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classify_by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simplify_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_gdf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.io.sdata_to_qupath.sdata_to_qupath" title="Link to this definition">¶</a></dt>
+<dd><p>Export shapes from a SpatialData object as QuPath-compatible detections in GeoJSON format.</p>
+<p>This function converts shape or label elements from a SpatialData object into a GeoDataFrame suitable for QuPath.
+It supports both direct shape elements (GeoDataFrame) and label elements (xarray.DataArray, which are polygonized).
+Optionally, it can annotate detections with class/category information and color them for QuPath visualization.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sdata</strong> (<em>spatialdata.SpatialData</em>) – The SpatialData object containing shape or label elements and (optionally) a table element with cell metadata.</p></li>
+<li><p><strong>key_to_shapes</strong> (<em>str</em>) – Key in sdata._shared_keys for the shape or label element. If a label (xarray.DataArray), it will be polygonized.</p></li>
+<li><p><strong>export_path</strong> (<em>str</em>) – Path to export the detections as a GeoJSON file. Must end with ‘.geojson’.</p></li>
+<li><p><strong>table_key</strong> (<em>str</em><em>, </em><em>optional</em>) – Key in sdata._shared_keys for the table (AnnData) element containing cell metadata. Required for classification.</p></li>
+<li><p><strong>index_table_by</strong> (<em>str</em><em>, </em><em>default &quot;CellID&quot;</em>) – Column in the table (AnnData.obs) used to match shapes to metadata.</p></li>
+<li><p><strong>classify_by</strong> (<em>str</em><em>, </em><em>optional</em>) – Column in the table (AnnData.obs) to use for classifying detections (e.g., cell type or phenotype).
+If provided, detections will be annotated and colored by this category.</p></li>
+<li><p><strong>color_dict</strong> (<em>dict</em><em>, </em><em>optional</em>) – Dictionary mapping class/category names to RGB color lists (e.g., {‘Tcell’: [255, 0, 0]}).
+If not provided, a default color cycle will be generated.</p></li>
+<li><p><strong>simplify_value</strong> (<em>float</em><em>, </em><em>default 1.0</em>) – Tolerance for geometry simplification. Set to None to disable simplification.</p></li>
+<li><p><strong>return_gdf</strong> (<em>bool</em><em>, </em><em>default False</em>) – If True, returns the resulting GeoDataFrame instead of just exporting to file.</p></li>
+<li><p><strong>Returns</strong></p></li>
+<li><p><strong>-------</strong></p></li>
+<li><p><strong>None</strong> (<em>geopandas.GeoDataFrame or</em>) – The resulting GeoDataFrame if <cite>return_gdf</cite> is True, otherwise None.</p></li>
+<li><p><strong>Raises</strong></p></li>
+<li><p><strong>------</strong></p></li>
+<li><p><strong>ImportError</strong> – If the ‘spatialdata’ package is not installed.</p></li>
+<li><p><strong>AssertionError</strong> – If required keys or columns are missing, or if input types are incorrect.</p></li>
+<li><p><strong>ValueError</strong> – If the shape element is not a GeoDataFrame or DataArray, or if classification fails.</p></li>
+<li><p><strong>Notes</strong></p></li>
+<li><p><strong>-----</strong></p></li>
+<li><p><strong>aligned.</strong> (<em>- The function expects that the shape and table elements are properly indexed and</em>)</p></li>
+<li><p><strong>provided</strong> (<em>- If a label element is</em>)</p></li>
+<li><p><strong>spatialdata.to_polygons.</strong> (<em>it will be polygonized using</em>)</p></li>
+<li><p><strong>visualization.</strong> (<em>- The exported GeoJSON is compatible with QuPath for detection import and</em>)</p></li>
+<li><p><strong>'spatialdata'</strong> (<em>- Requires the</em>)</p></li>
+<li><p><strong>'geopandas'</strong></p></li>
+<li><p><strong>packages.</strong> (<em>and 'anndata'</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">GeoDataFrame</span></code> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-opendvp.io.segmask_to_qupath">
+<span id="opendvp-io-segmask-to-qupath-module"></span><h2>opendvp.io.segmask_to_qupath module<a class="headerlink" href="#module-opendvp.io.segmask_to_qupath" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="opendvp.io.segmask_to_qupath.segmask_to_qupath">
+<span class="sig-prename descclassname"><span class="pre">opendvp.io.segmask_to_qupath.</span></span><span class="sig-name descname"><span class="pre">segmask_to_qupath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_to_mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simplify_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">export_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_gdf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.io.segmask_to_qupath.segmask_to_qupath" title="Link to this definition">¶</a></dt>
+<dd><p>Convert a segmentation mask (TIFF) to QuPath-compatible detections as a GeoDataFrame or GeoJSON file.</p>
+<p>This function loads a 2D segmentation mask image, converts it to polygons using spatialdata,
+and prepares the result for QuPath detection import. Optionally, it can simplify the geometry,
+export the detections as a GeoJSON file, and/or return the resulting GeoDataFrame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path_to_mask</strong> (<em>str</em>) – Path to the segmentation mask image (must be a .tif file).</p></li>
+<li><p><strong>simplify_value</strong> (<em>float</em><em>, </em><em>default 1</em>) – Tolerance for geometry simplification. Set to None to disable simplification.</p></li>
+<li><p><strong>export_path</strong> (<em>str</em><em>, </em><em>optional</em>) – If provided, writes the detections to this path as a GeoJSON file.</p></li>
+<li><p><strong>return_gdf</strong> (<em>bool</em><em>, </em><em>default False</em>) – If True, returns the resulting GeoDataFrame. If False, returns None.</p></li>
+<li><p><strong>Returns</strong></p></li>
+<li><p><strong>-------</strong></p></li>
+<li><p><strong>None</strong> (<em>geopandas.GeoDataFrame or</em>) – The resulting GeoDataFrame if <cite>return_gdf</cite> is True, otherwise None.</p></li>
+<li><p><strong>Raises</strong></p></li>
+<li><p><strong>------</strong></p></li>
+<li><p><strong>ImportError</strong> – If required packages (dask, dask_image, spatialdata) are not installed.</p></li>
+<li><p><strong>ValueError</strong> – If input types or file extensions are incorrect.</p></li>
+<li><p><strong>Notes</strong></p></li>
+<li><p><strong>-----</strong></p></li>
+<li><p><strong>'dask'</strong> (<em>- Requires the</em>)</p></li>
+<li><p><strong>'dask_image'</strong></p></li>
+<li><p><strong>packages.</strong> (<em>and 'spatialdata'</em>)</p></li>
+<li><p><strong>visualization.</strong> (<em>- The exported GeoJSON is compatible with QuPath for detection import and</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">GeoDataFrame</span></code> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-opendvp.io">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-opendvp.io" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="opendvp.io.DIANN_to_adata">
+<span class="sig-prename descclassname"><span class="pre">opendvp.io.</span></span><span class="sig-name descname"><span class="pre">DIANN_to_adata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">DIANN_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DIANN_sep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'\\t'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata_sep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">','</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata_filepath_header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'File.Name'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_contamination</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_nan_genes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_of_protein_metadata_cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.io.DIANN_to_adata" title="Link to this definition">¶</a></dt>
+<dd><p>Converts DIANN output file and metadata file into an AnnData object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>DIANN_path</strong> (<em>str</em>) – Path to DIANN output file.</p></li>
+<li><p><strong>DIANN_sep</strong> (<em>str</em><em>, </em><em>default 't'</em>) – Delimiter for DIANN output file.</p></li>
+<li><p><strong>metadata_path</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em><em>, </em><em>default None</em>) – Path to metadata file.</p></li>
+<li><p><strong>metadata_sep</strong> (<em>str</em><em>, </em><em>default '</em><em>,</em><em>'</em>) – Delimiter for metadata file.</p></li>
+<li><p><strong>metadata_filepath_header</strong> (<em>str</em><em>, </em><em>default 'File.Name'</em>) – Name of the column in metadata file that contains the DIANN file paths.</p></li>
+<li><p><strong>filter_contamination</strong> (<em>bool</em><em>, </em><em>default True</em>) – If True, removes Protein.Names labelled with ‘<a href="#id3"><span class="problematic" id="id4">Cont_</span></a>’ as a prefix.</p></li>
+<li><p><strong>filter_nan_genes</strong> (<em>bool</em><em>, </em><em>default True</em>) – If True, removes variable rows that contain NaN in the ‘Genes’ column.</p></li>
+<li><p><strong>n_of_protein_metadata_cols</strong> (<em>int</em><em>, </em><em>default 4</em>) – Number of protein metadata columns at the start of the DIANN file.</p></li>
+<li><p><strong>Returns</strong></p></li>
+<li><p><strong>-------</strong></p></li>
+<li><p><strong>AnnData</strong> – AnnData object with imported data.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnnData</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opendvp.io.adata_to_perseus">
+<span class="sig-prename descclassname"><span class="pre">opendvp.io.</span></span><span class="sig-name descname"><span class="pre">adata_to_perseus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_to_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suffix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obs_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.io.adata_to_perseus" title="Link to this definition">¶</a></dt>
+<dd><p>Export an AnnData object to Perseus-compatible text files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>adata</strong> (<em>AnnData</em>) – AnnData object to export.</p></li>
+<li><p><strong>path_to_dir</strong> (<em>str</em>) – Directory where output files will be saved.</p></li>
+<li><p><strong>suffix</strong> (<em>str</em>) – Suffix for output file names.</p></li>
+<li><p><strong>obs_key</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em><em>, </em><em>default None</em>) – Column in adata.obs to use as row index for the data file.
+If None, uses adata.obs_names.</p></li>
+<li><p><strong>Returns</strong></p></li>
+<li><p><strong>-------</strong></p></li>
+<li><p><strong>None</strong> – This function saves files to disk and does not return a value.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opendvp.io.adata_to_qupath">
+<span class="sig-prename descclassname"><span class="pre">opendvp.io.</span></span><span class="sig-name descname"><span class="pre">adata_to_qupath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'polygons'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geodataframe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geodataframe_index_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adata_obs_index_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adata_obs_category_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'phenotype'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">export_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simplify_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voronoi_area_quantile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.98</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">merge_adjacent_shapes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subset_adata_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subset_adata_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_as_detection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.io.adata_to_qupath" title="Link to this definition">¶</a></dt>
+<dd><p>Flexible function to output QuPath-compatible detections from AnnData, using either Voronoi or provided polygons.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>adata</strong> (<em>AnnData</em>) – AnnData object with cell metadata and (optionally) centroid coordinates.</p></li>
+<li><p><strong>mode</strong> (<em>{&quot;voronoi&quot;</em><em>, </em><em>&quot;polygons&quot;}</em>) – If “voronoi”, generates polygons from centroids. If “polygons”, uses provided geodataframe.</p></li>
+<li><p><strong>geodataframe</strong> (<em>GeoDataFrame</em><em>, </em><em>optional</em>) – If mode=”polygons”, the polygons to annotate.</p></li>
+<li><p><strong>geodataframe_index_key</strong> (<em>str</em><em>, </em><em>optional</em>) – Column in geodataframe to match to adata.obs (for mode=”polygons”).</p></li>
+<li><p><strong>adata_obs_index_key</strong> (<em>str</em><em>, </em><em>optional</em>) – Column in adata.obs to match to geodataframe (for mode=”polygons”).</p></li>
+<li><p><strong>adata_obs_category_key</strong> (<em>str</em><em>, </em><em>default &quot;phenotype&quot;</em>) – Column in adata.obs for class/color annotation.</p></li>
+<li><p><strong>color_dict</strong> (<em>dict</em><em>, </em><em>optional</em>) – Mapping from class names to RGB color lists.</p></li>
+<li><p><strong>export_path</strong> (<em>str</em><em>, </em><em>optional</em>) – If provided, writes output to this path as GeoJSON.</p></li>
+<li><p><strong>simplify_value</strong> (<em>float</em><em>, </em><em>default 1</em>) – Geometry simplification tolerance (for polygons mode).</p></li>
+<li><p><strong>voronoi_area_quantile</strong> (<em>float</em><em>, </em><em>default 0.98</em>) – Area quantile threshold for filtering large Voronoi polygons.</p></li>
+<li><p><strong>merge_adjacent_shapes</strong> (<em>bool</em><em>, </em><em>default True</em>) – If True, merges adjacent polygons of the same class (Voronoi mode).</p></li>
+<li><p><strong>subset_adata_key</strong> (<em>str</em><em>, </em><em>optional</em>) – Column in adata.obs to filter for Voronoi mode.</p></li>
+<li><p><strong>subset_adata_value</strong> (<em>any</em><em>, </em><em>optional</em>) – Value to filter subset_adata_key by (Voronoi mode).</p></li>
+<li><p><strong>save_as_detection</strong> (<em>bool</em><em>, </em><em>default True</em>) – If True, sets objectType to “detection” for QuPath. Otherwise as Annotations.</p></li>
+<li><p><strong>Returns</strong></p></li>
+<li><p><strong>-------</strong></p></li>
+<li><p><strong>None</strong> (<em>GeoDataFrame or</em>) – Returns GeoDataFrame if export_path is None, else writes to file and returns None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">GeoDataFrame</span></code> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opendvp.io.export_adata">
+<span class="sig-prename descclassname"><span class="pre">opendvp.io.</span></span><span class="sig-name descname"><span class="pre">export_adata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_to_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">checkpoint_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.io.export_adata" title="Link to this definition">¶</a></dt>
+<dd><p>Save an AnnData object as both .h5ad and .parquet files in a checkpoint directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>adata</strong> (<em>AnnData</em>) – AnnData object to save.</p></li>
+<li><p><strong>path_to_dir</strong> (<em>str</em>) – Directory where the checkpoint folder will be created.</p></li>
+<li><p><strong>checkpoint_name</strong> (<em>str</em>) – Name for the checkpoint folder and file prefix.</p></li>
+<li><p><strong>Returns</strong></p></li>
+<li><p><strong>-------</strong></p></li>
+<li><p><strong>None</strong> – This function saves files to disk and does not return a value.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opendvp.io.export_figure">
+<span class="sig-prename descclassname"><span class="pre">opendvp.io.</span></span><span class="sig-name descname"><span class="pre">export_figure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suffix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">600</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.io.export_figure" title="Link to this definition">¶</a></dt>
+<dd><p>Save a matplotlib figure as both PDF and SVG files with a timestamped filename.</p>
+<p>The function creates the output directory if it does not exist, generates a
+timestamped filename using the current date and time, and saves the figure in
+both PDF and SVG formats with the specified DPI. For SVG export, it ensures
+that text remains editable in vector graphics editors like Adobe Illustrator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fig</strong> (<em>&gt;&gt;&gt;</em>) – The matplotlib figure object to be saved.</p></li>
+<li><p><strong>path</strong> (<em>str</em>) – Directory path where the figure files will be saved.</p></li>
+<li><p><strong>suffix</strong> (<em>str</em>) – A custom suffix to include in the filename (e.g., describing the content).</p></li>
+<li><p><strong>dpi</strong> (<em>int</em><em>, </em><em>optional</em>) – Resolution in dots per inch for the saved figure. Default is 600.</p></li>
+<li><p><strong>Returns</strong></p></li>
+<li><p><strong>-------</strong></p></li>
+<li><p><strong>None</strong></p></li>
+<li><p><strong>Prints</strong></p></li>
+<li><p><strong>------</strong></p></li>
+<li><p><strong>str</strong> – Confirmation message with the full paths to the saved PDF and SVG files.</p></li>
+<li><p><strong>Examples</strong></p></li>
+<li><p><strong>--------</strong></p></li>
+<li><p><strong>plt</strong> (<em>&gt;&gt;&gt; import matplotlib.pyplot as</em>)</p></li>
+<li><p><strong>fig</strong></p></li>
+<li><p><strong>plt.subplots</strong><strong>(</strong><strong>)</strong> (<em>ax =</em>)</p></li>
+<li><p><strong>ax.plot</strong><strong>(</strong><strong>[</strong><strong>0</strong> (<em>&gt;&gt;&gt;</em>)</p></li>
+<li><p><strong>1</strong><strong>]</strong></p></li>
+<li><p><strong>[</strong><strong>0</strong></p></li>
+<li><p><strong>1</strong><strong>]</strong><strong>)</strong></p></li>
+<li><p><strong>export_figure</strong><strong>(</strong><strong>fig</strong> (<em>&gt;&gt;&gt;</em>)</p></li>
+<li><p><strong>path=&quot;figures/&quot;</strong></p></li>
+<li><p><strong>suffix=&quot;line_plot&quot;</strong><strong>)</strong></p></li>
+<li><p><strong>as</strong> (<em>Figures saved</em>)</p></li>
+<li><p><strong>figures/20250519_1245_line_plot.pdf</strong></p></li>
+<li><p><strong>figures/20250519_1245_line_plot.svg</strong></p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opendvp.io.geojson_to_sdata">
+<span class="sig-prename descclassname"><span class="pre">opendvp.io.</span></span><span class="sig-name descname"><span class="pre">geojson_to_sdata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_to_geojson</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sdata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.io.geojson_to_sdata" title="Link to this definition">¶</a></dt>
+<dd><p>Import the geojson from QuPath to a SpatialData object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path_to_geojson</strong> (<em>str</em>) – Path to the geojson file.</p></li>
+<li><p><strong>sdata</strong> (<em>spatialdata.SpatialData</em>) – The SpatialData object to which the geojson will be added.</p></li>
+<li><p><strong>key</strong> (<em>str</em>) – Key to store the geodataframe in sdata.</p></li>
+<li><p><strong>Returns</strong></p></li>
+<li><p><strong>-------</strong></p></li>
+<li><p><strong>spatialdata.SpatialData</strong> – The updated SpatialData object with the new geojson data.</p></li>
+<li><p><strong>Raises</strong></p></li>
+<li><p><strong>------</strong></p></li>
+<li><p><strong>ImportError</strong> – If the ‘spatialdata’ package is not installed.</p></li>
+<li><p><strong>AssertionError</strong> – If input types or file existence checks fail.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type">spatialdata.SpatialData</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opendvp.io.import_perseus">
+<span class="sig-prename descclassname"><span class="pre">opendvp.io.</span></span><span class="sig-name descname"><span class="pre">import_perseus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_to_perseus_txt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_var_metadata_rows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.io.import_perseus" title="Link to this definition">¶</a></dt>
+<dd><p>Convert a Perseus text file to an AnnData object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path_to_perseus_txt</strong> (<em>str</em>) – Path to the Perseus text file.</p></li>
+<li><p><strong>n_var_metadata_rows</strong> (<em>int</em><em>, </em><em>default 4</em>) – Number of metadata rows at the bottom of the columns to use as var headers.</p></li>
+<li><p><strong>Returns</strong></p></li>
+<li><p><strong>-------</strong></p></li>
+<li><p><strong>AnnData</strong> – AnnData object with imported data.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnnData</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opendvp.io.import_thresholds">
+<span class="sig-prename descclassname"><span class="pre">opendvp.io.</span></span><span class="sig-name descname"><span class="pre">import_thresholds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gates_csv_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log1p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.io.import_thresholds" title="Link to this definition">¶</a></dt>
+<dd><p>Read gate thresholds from a CSV file, filter, and optionally log1p-transform for scimap compatibility.</p>
+<p>This function loads a CSV file containing gate thresholds, validates required columns, filters out rows
+with gate values of 0.0 (assumed not gated), optionally selects gates for a specific sample, and can
+log1p-transform gate values for downstream analysis (e.g., scimap). Logs progress and summary information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gates_csv_path</strong> (<em>str</em>) – Path to the CSV file containing gate thresholds. Must end with ‘.csv’.</p></li>
+<li><p><strong>sample_id</strong> (<em>str</em><em> or </em><em>int</em><em>, </em><em>optional</em>) – If provided, only gates for this sample will be returned and the output column will be named accordingly.</p></li>
+<li><p><strong>log1p</strong> (<em>bool</em><em>, </em><em>default True</em>) – If True, applies log1p transformation to gate values and formats output for scimap.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Filtered DataFrame containing valid gates, with columns including ‘markers’ and the sample_id
+(if log1p=True), or the original columns if log1p=False.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the file extension is not ‘.csv’, or required columns are missing.</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gates</span> <span class="o">=</span> <span class="n">read_and_process_gates</span><span class="p">(</span><span class="s1">&#39;gates.csv&#39;</span><span class="p">,</span> <span class="n">sample_id</span><span class="o">=</span><span class="s1">&#39;sample1&#39;</span><span class="p">,</span> <span class="n">log1p</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">gates</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opendvp.io.quant_to_adata">
+<span class="sig-prename descclassname"><span class="pre">opendvp.io.</span></span><span class="sig-name descname"><span class="pre">quant_to_adata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">csv_data_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.io.quant_to_adata" title="Link to this definition">¶</a></dt>
+<dd><p>Read the quantification data from a csv file and return an anndata object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>csv_data_path</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – path to the csv file</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnnData</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an anndata object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opendvp.io.sdata_to_qupath">
+<span class="sig-prename descclassname"><span class="pre">opendvp.io.</span></span><span class="sig-name descname"><span class="pre">sdata_to_qupath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sdata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_to_shapes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">export_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_table_by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'CellID'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classify_by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simplify_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_gdf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.io.sdata_to_qupath" title="Link to this definition">¶</a></dt>
+<dd><p>Export shapes from a SpatialData object as QuPath-compatible detections in GeoJSON format.</p>
+<p>This function converts shape or label elements from a SpatialData object into a GeoDataFrame suitable for QuPath.
+It supports both direct shape elements (GeoDataFrame) and label elements (xarray.DataArray, which are polygonized).
+Optionally, it can annotate detections with class/category information and color them for QuPath visualization.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sdata</strong> (<em>spatialdata.SpatialData</em>) – The SpatialData object containing shape or label elements and (optionally) a table element with cell metadata.</p></li>
+<li><p><strong>key_to_shapes</strong> (<em>str</em>) – Key in sdata._shared_keys for the shape or label element. If a label (xarray.DataArray), it will be polygonized.</p></li>
+<li><p><strong>export_path</strong> (<em>str</em>) – Path to export the detections as a GeoJSON file. Must end with ‘.geojson’.</p></li>
+<li><p><strong>table_key</strong> (<em>str</em><em>, </em><em>optional</em>) – Key in sdata._shared_keys for the table (AnnData) element containing cell metadata. Required for classification.</p></li>
+<li><p><strong>index_table_by</strong> (<em>str</em><em>, </em><em>default &quot;CellID&quot;</em>) – Column in the table (AnnData.obs) used to match shapes to metadata.</p></li>
+<li><p><strong>classify_by</strong> (<em>str</em><em>, </em><em>optional</em>) – Column in the table (AnnData.obs) to use for classifying detections (e.g., cell type or phenotype).
+If provided, detections will be annotated and colored by this category.</p></li>
+<li><p><strong>color_dict</strong> (<em>dict</em><em>, </em><em>optional</em>) – Dictionary mapping class/category names to RGB color lists (e.g., {‘Tcell’: [255, 0, 0]}).
+If not provided, a default color cycle will be generated.</p></li>
+<li><p><strong>simplify_value</strong> (<em>float</em><em>, </em><em>default 1.0</em>) – Tolerance for geometry simplification. Set to None to disable simplification.</p></li>
+<li><p><strong>return_gdf</strong> (<em>bool</em><em>, </em><em>default False</em>) – If True, returns the resulting GeoDataFrame instead of just exporting to file.</p></li>
+<li><p><strong>Returns</strong></p></li>
+<li><p><strong>-------</strong></p></li>
+<li><p><strong>None</strong> (<em>geopandas.GeoDataFrame or</em>) – The resulting GeoDataFrame if <cite>return_gdf</cite> is True, otherwise None.</p></li>
+<li><p><strong>Raises</strong></p></li>
+<li><p><strong>------</strong></p></li>
+<li><p><strong>ImportError</strong> – If the ‘spatialdata’ package is not installed.</p></li>
+<li><p><strong>AssertionError</strong> – If required keys or columns are missing, or if input types are incorrect.</p></li>
+<li><p><strong>ValueError</strong> – If the shape element is not a GeoDataFrame or DataArray, or if classification fails.</p></li>
+<li><p><strong>Notes</strong></p></li>
+<li><p><strong>-----</strong></p></li>
+<li><p><strong>aligned.</strong> (<em>- The function expects that the shape and table elements are properly indexed and</em>)</p></li>
+<li><p><strong>provided</strong> (<em>- If a label element is</em>)</p></li>
+<li><p><strong>spatialdata.to_polygons.</strong> (<em>it will be polygonized using</em>)</p></li>
+<li><p><strong>visualization.</strong> (<em>- The exported GeoJSON is compatible with QuPath for detection import and</em>)</p></li>
+<li><p><strong>'spatialdata'</strong> (<em>- Requires the</em>)</p></li>
+<li><p><strong>'geopandas'</strong></p></li>
+<li><p><strong>packages.</strong> (<em>and 'anndata'</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">GeoDataFrame</span></code> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opendvp.io.segmask_to_qupath">
+<span class="sig-prename descclassname"><span class="pre">opendvp.io.</span></span><span class="sig-name descname"><span class="pre">segmask_to_qupath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_to_mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simplify_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">export_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_gdf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.io.segmask_to_qupath" title="Link to this definition">¶</a></dt>
+<dd><p>Convert a segmentation mask (TIFF) to QuPath-compatible detections as a GeoDataFrame or GeoJSON file.</p>
+<p>This function loads a 2D segmentation mask image, converts it to polygons using spatialdata,
+and prepares the result for QuPath detection import. Optionally, it can simplify the geometry,
+export the detections as a GeoJSON file, and/or return the resulting GeoDataFrame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path_to_mask</strong> (<em>str</em>) – Path to the segmentation mask image (must be a .tif file).</p></li>
+<li><p><strong>simplify_value</strong> (<em>float</em><em>, </em><em>default 1</em>) – Tolerance for geometry simplification. Set to None to disable simplification.</p></li>
+<li><p><strong>export_path</strong> (<em>str</em><em>, </em><em>optional</em>) – If provided, writes the detections to this path as a GeoJSON file.</p></li>
+<li><p><strong>return_gdf</strong> (<em>bool</em><em>, </em><em>default False</em>) – If True, returns the resulting GeoDataFrame. If False, returns None.</p></li>
+<li><p><strong>Returns</strong></p></li>
+<li><p><strong>-------</strong></p></li>
+<li><p><strong>None</strong> (<em>geopandas.GeoDataFrame or</em>) – The resulting GeoDataFrame if <cite>return_gdf</cite> is True, otherwise None.</p></li>
+<li><p><strong>Raises</strong></p></li>
+<li><p><strong>------</strong></p></li>
+<li><p><strong>ImportError</strong> – If required packages (dask, dask_image, spatialdata) are not installed.</p></li>
+<li><p><strong>ValueError</strong> – If input types or file extensions are incorrect.</p></li>
+<li><p><strong>Notes</strong></p></li>
+<li><p><strong>-----</strong></p></li>
+<li><p><strong>'dask'</strong> (<em>- Requires the</em>)</p></li>
+<li><p><strong>'dask_image'</strong></p></li>
+<li><p><strong>packages.</strong> (<em>and 'spatialdata'</em>)</p></li>
+<li><p><strong>visualization.</strong> (<em>- The exported GeoJSON is compatible with QuPath for detection import and</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">GeoDataFrame</span></code> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="opendvp.metrics.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">opendvp.metrics package</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="opendvp.imaging.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">opendvp.imaging package</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, Jose Nimo
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">opendvp.io package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-opendvp.io.DIANN_to_adata">opendvp.io.DIANN_to_adata module</a><ul>
+<li><a class="reference internal" href="#opendvp.io.DIANN_to_adata.DIANN_to_adata"><code class="docutils literal notranslate"><span class="pre">DIANN_to_adata()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opendvp.io.adata_to_perseus">opendvp.io.adata_to_perseus module</a><ul>
+<li><a class="reference internal" href="#opendvp.io.adata_to_perseus.adata_to_perseus"><code class="docutils literal notranslate"><span class="pre">adata_to_perseus()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opendvp.io.adata_to_qupath">opendvp.io.adata_to_qupath module</a><ul>
+<li><a class="reference internal" href="#opendvp.io.adata_to_qupath.adata_to_qupath"><code class="docutils literal notranslate"><span class="pre">adata_to_qupath()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opendvp.io.export_adata">opendvp.io.export_adata module</a><ul>
+<li><a class="reference internal" href="#opendvp.io.export_adata.export_adata"><code class="docutils literal notranslate"><span class="pre">export_adata()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opendvp.io.export_figure">opendvp.io.export_figure module</a><ul>
+<li><a class="reference internal" href="#opendvp.io.export_figure.export_figure"><code class="docutils literal notranslate"><span class="pre">export_figure()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opendvp.io.geojson_to_sdata">opendvp.io.geojson_to_sdata module</a><ul>
+<li><a class="reference internal" href="#opendvp.io.geojson_to_sdata.geojson_to_sdata"><code class="docutils literal notranslate"><span class="pre">geojson_to_sdata()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opendvp.io.import_perseus">opendvp.io.import_perseus module</a><ul>
+<li><a class="reference internal" href="#opendvp.io.import_perseus.import_perseus"><code class="docutils literal notranslate"><span class="pre">import_perseus()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opendvp.io.import_thresholds">opendvp.io.import_thresholds module</a><ul>
+<li><a class="reference internal" href="#opendvp.io.import_thresholds.import_thresholds"><code class="docutils literal notranslate"><span class="pre">import_thresholds()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opendvp.io.quant_to_adata">opendvp.io.quant_to_adata module</a><ul>
+<li><a class="reference internal" href="#opendvp.io.quant_to_adata.quant_to_adata"><code class="docutils literal notranslate"><span class="pre">quant_to_adata()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opendvp.io.sdata_to_qupath">opendvp.io.sdata_to_qupath module</a><ul>
+<li><a class="reference internal" href="#opendvp.io.sdata_to_qupath.sdata_to_qupath"><code class="docutils literal notranslate"><span class="pre">sdata_to_qupath()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opendvp.io.segmask_to_qupath">opendvp.io.segmask_to_qupath module</a><ul>
+<li><a class="reference internal" href="#opendvp.io.segmask_to_qupath.segmask_to_qupath"><code class="docutils literal notranslate"><span class="pre">segmask_to_qupath()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-opendvp.io">Module contents</a><ul>
+<li><a class="reference internal" href="#opendvp.io.DIANN_to_adata"><code class="docutils literal notranslate"><span class="pre">DIANN_to_adata()</span></code></a></li>
+<li><a class="reference internal" href="#opendvp.io.adata_to_perseus"><code class="docutils literal notranslate"><span class="pre">adata_to_perseus()</span></code></a></li>
+<li><a class="reference internal" href="#opendvp.io.adata_to_qupath"><code class="docutils literal notranslate"><span class="pre">adata_to_qupath()</span></code></a></li>
+<li><a class="reference internal" href="#opendvp.io.export_adata"><code class="docutils literal notranslate"><span class="pre">export_adata()</span></code></a></li>
+<li><a class="reference internal" href="#opendvp.io.export_figure"><code class="docutils literal notranslate"><span class="pre">export_figure()</span></code></a></li>
+<li><a class="reference internal" href="#opendvp.io.geojson_to_sdata"><code class="docutils literal notranslate"><span class="pre">geojson_to_sdata()</span></code></a></li>
+<li><a class="reference internal" href="#opendvp.io.import_perseus"><code class="docutils literal notranslate"><span class="pre">import_perseus()</span></code></a></li>
+<li><a class="reference internal" href="#opendvp.io.import_thresholds"><code class="docutils literal notranslate"><span class="pre">import_thresholds()</span></code></a></li>
+<li><a class="reference internal" href="#opendvp.io.quant_to_adata"><code class="docutils literal notranslate"><span class="pre">quant_to_adata()</span></code></a></li>
+<li><a class="reference internal" href="#opendvp.io.sdata_to_qupath"><code class="docutils literal notranslate"><span class="pre">sdata_to_qupath()</span></code></a></li>
+<li><a class="reference internal" href="#opendvp.io.segmask_to_qupath"><code class="docutils literal notranslate"><span class="pre">segmask_to_qupath()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=000c92bf"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/furo.js?v=5fa4622c"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    </body>
+</html>

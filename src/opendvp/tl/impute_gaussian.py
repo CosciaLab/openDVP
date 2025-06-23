@@ -77,3 +77,7 @@ def impute_gaussian(
     logger.info("Imputation complete")
 
     return adata_copy
+
+
+    # Current issues 
+    # Logging print out every protein or sample with mean and std, print this at debugging level

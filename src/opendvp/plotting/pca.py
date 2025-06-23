@@ -7,6 +7,8 @@ import plotly.graph_objs as go
 import scanpy as sc
 from anndata import AnnData
 
+#TODO ValueError: Mime type rendering requires nbformat>=4.2.0 but it is not installed
+# nbformat not in dependencies, considering removing plotly from functions to simplify package
 
 def pca(
     adata: AnnData,
@@ -139,3 +141,57 @@ def pca(
     if not return_fig:
         fig.show()
         return None
+    
+
+
+# def pca(
+#         adata : ad.AnnData, 
+#         pc_x : int = 1, 
+#         pc_y : int = 2,
+#         color : str | None = None, 
+#         palette : dict | None = None,
+#         symbol : str | None = None, 
+#         symbol_dict : bool | dict = True,
+#         return_fig : bool = False
+#         ):
+#     """
+#     Create a DataFrame for seaborn scatterplot from AnnData object.
+    
+#     Parameters:
+#         adata: AnnData object
+#         key1: str, column in adata.obs for color (hue)
+#         key2: str, column in adata.obs for marker (style)
+#         pc_x: int, 1-based index for x-axis PCA component
+#         pc_y: int, 1-based index for y-axis PCA component
+        
+#     Returns: 
+#         Figure | None
+#     """
+#     # Convert 1-based to 0-based index
+#     x_idx = pc_x - 1
+#     y_idx = pc_y - 1
+    
+#     #create dataframe
+#     pca_df = pd.DataFrame({
+#         f"PC{pc_x}": adata.obsm["X_pca"][:, x_idx],
+#         f"PC{pc_y}": adata.obsm["X_pca"][:, y_idx],
+#         color: adata.obs[color].values,
+#         symbol: adata.obs[symbol].values
+#     })
+
+#     fig,ax = plt.subplots()
+
+#     sns.scatterplot(
+#         data=pca_df,
+#         x=f"PC{pc_x}",
+#         y=f"PC{pc_y}",
+#         hue=color,
+#         palette=palette,
+#         style = symbol,
+#         markers = symbol_dict,
+#     )
+
+#     if return_fig:
+#         return fig
+#     else:
+#         plt.show()

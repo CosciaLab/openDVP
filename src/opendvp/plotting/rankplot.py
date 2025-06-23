@@ -7,6 +7,7 @@ from adjustText import adjust_text
 from anndata import AnnData
 from matplotlib.figure import Figure
 
+#TODO Assume all groups if None provided
 
 def rankplot(
     adata: AnnData,

@@ -45,7 +45,7 @@ def segmask_to_qupath(
     """
     try:
         import dask.array as da
-        import dask_image
+        import dask_image.imread
         import spatialdata
     except ImportError as e:
         raise ImportError("The 'spatialdata' package is required. Use 'pip install opendvp[spatialdata]'.") from e

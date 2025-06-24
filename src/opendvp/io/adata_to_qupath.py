@@ -7,7 +7,7 @@ import shapely
 
 from opendvp.utils import logger, parse_color_for_qupath
 
-#TODO color should be optional
+#TODO Separate into adata_to_Voronoi and color_geojson_w_adataobs
 
 def adata_to_qupath(
     adata: ad.AnnData,

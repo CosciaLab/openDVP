@@ -8,7 +8,7 @@ def test_adata_to_qupath_callable() -> None:
 
 
 def test_adata_to_qupath_voronoi():
-    adata = ad.read_h5ad("tests/test_data/io/adata_with_centroids.h5ad")
+    adata = ad.read_h5ad("../test_data/io/adata.h5ad")
     gdf = adata_to_qupath(adata, mode="voronoi")
     assert gdf is not None
     assert isinstance(gdf, gpd.GeoDataFrame)
@@ -17,14 +17,14 @@ def test_adata_to_qupath_voronoi():
 
 
 def test_adata_to_qupath_polygons():
-    adata = ad.read_h5ad("tests/test_data/io/adata_with_centroids.h5ad")
-    gdf_poly = gpd.read_file("tests/test_data/io/QuPath_Annotations_wo_calibs.geojson")
+    adata = ad.read_h5ad("../test_data/io/adata.h5ad")
+    gdf_poly = gpd.read_file("../test_data/io/adata.geojson")
     gdf = adata_to_qupath(
         adata,
         mode="polygons",
         geodataframe=gdf_poly,
-        geodataframe_index_key=None,  # Set to None or the correct key if needed
-        adata_obs_index_key=None,     # Set to None or the correct key if needed
+        geodataframe_index_key="label",
+        adata_obs_index_key="CellID",
     )
     assert gdf is not None
     assert isinstance(gdf, gpd.GeoDataFrame)

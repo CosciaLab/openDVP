@@ -5,16 +5,42 @@ import pandas as pd
 
 from opendvp.utils import logger
 
+#TODO not general enough, exemplar001 fails
+#TODO let users pass list of metadata columns, everything else is data
+#TODO automatically change CellID to CellID+1 (?) to match segmentation mask
+
 
 def quant_to_adata(csv_data_path: str) -> ad.AnnData:
-    """Read the quantification data from a csv file and return an anndata object.
+    """Convert cell quantification CSV data to an AnnData object for downstream analysis.
 
-    :param csv_data_path: path to the csv file
-    :return: an anndata object.
+    This module provides a function to read a CSV file containing single-cell quantification data, extract metadata and marker intensities, and return an AnnData object suitable for spatial omics workflows. The function expects specific metadata columns and parses marker columns by splitting their names into mathematical operation and marker name.
+
+    Parameters
+    ----------
+    csv_data_path : str
+        Path to the CSV file containing cell quantification data.
+
+    Returns
+    -------
+    ad.AnnData
+        AnnData object with cell metadata in `.obs` and marker intensities in `.X` and `.var`.
+
+    Examples:
+    --------
+    >>> from opendvp.io import quant_to_adata
+    >>> adata = quant_to_adata('my_quantification.csv')
+    >>> print(adata)
+    AnnData object with n_obs * n_vars = ...
+    >>> adata.obs.head()
+    >>> adata.var.head()
+
+    Notes:
+    ------
+    - The CSV file must contain the following metadata columns: 'CellID', 'Y_centroid', 'X_centroid', 'Area', 'MajorAxisLength', 'MinorAxisLength', 'Eccentricity', 'Orientation', 'Extent', 'Solidity'.
+    - All other columns are treated as marker intensities and are split into 'math' and 'marker' components for AnnData.var.
+    - Raises ValueError if required metadata columns are missing or if the file is not a CSV.
+    - The function logs the number of cells and variables loaded, and the time taken for the operation.
     """
-    #TODO not general enough, exemplar001 fails
-    #TODO let users pass list of metadata columns, everything else is data
-
     time_start = time.time()
 
     if not csv_data_path.endswith('.csv'):

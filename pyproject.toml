@@ -91,7 +91,7 @@ pyproj = "3.7.1.*"
 [tool.ruff]
 line-length = 120
 target-version = "py311"  # Match your supported Python version
-per-file-ignores = { "tests/**/*.py" = ["S101", "D103"] } #ignores assert rule in tests
+per-file-ignores = { "tests/**/*.py" = ["S101", "D103", "ANN201"] }
 exclude = [
     ".git",
     "__pycache__",

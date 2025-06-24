@@ -7,6 +7,7 @@ import shapely
 
 from opendvp.utils import logger, parse_color_for_qupath
 
+#TODO color should be optional
 
 def adata_to_qupath(
     adata: ad.AnnData,
@@ -14,12 +15,12 @@ def adata_to_qupath(
     geodataframe: gpd.GeoDataFrame | None = None,
     geodataframe_index_key: str | None = None,
     adata_obs_index_key: str | None = None,
-    adata_obs_category_key: str = "phenotype",
+    adata_obs_category_key: str | None = None,
     color_dict: dict | None = None,
     export_path: str | None = None,
     simplify_value: float | int = 1,
     voronoi_area_quantile: float | None = 0.98,
-    merge_adjacent_shapes: bool = True,
+    merge_adjacent_shapes: bool = False,
     subset_adata_key: str | None = None,
     subset_adata_value : str | None = None,
     save_as_detection: bool = True,
@@ -38,8 +39,9 @@ def adata_to_qupath(
         Column in geodataframe to match to adata.obs (for mode="polygons").
     adata_obs_index_key : str, optional
         Column in adata.obs to match to geodataframe (for mode="polygons").
-    adata_obs_category_key : str, default "phenotype"
+    adata_obs_category_key : str, optional
         Column in adata.obs for class/color annotation.
+        If no color is given resulting shapes will be white
     color_dict : dict, optional
         Mapping from class names to RGB color lists.
     export_path : str, optional
@@ -48,8 +50,9 @@ def adata_to_qupath(
         Geometry simplification tolerance (for polygons mode).
     voronoi_area_quantile : float, default 0.98
         Area quantile threshold for filtering large Voronoi polygons.
-    merge_adjacent_shapes : bool, default True
-        If True, merges adjacent polygons of the same class (Voronoi mode).
+    merge_adjacent_shapes : bool, default False
+        If True, merges adjacent polygons of the same class
+        Selected with adata_obs_category_key (Voronoi mode).
     subset_adata_key : str, optional
         Column in adata.obs to filter for Voronoi mode.
     subset_adata_value : any, optional
@@ -115,11 +118,14 @@ def adata_to_qupath(
             gdf['objectType'] = "detection"
         if merge_adjacent_shapes:
             logger.info("Merging polygons adjacent and of same category")
+            if adata_obs_category_key is None:
+                raise ValueError("You need adata_obs_category_key if merge_adjacent_shapes is True")
             gdf = gdf.dissolve(by=adata_obs_category_key)
             gdf[adata_obs_category_key] = gdf.index
             gdf = gdf.explode(index_parts=True)
             gdf = gdf.reset_index(drop=True)
-        gdf['classification'] = gdf[adata_obs_category_key].astype(str)
+        if adata_obs_category_key:
+            gdf['classification'] = gdf[adata_obs_category_key].astype(str)
     
     ### POLYGONS ###
     elif mode == "polygons":
@@ -127,20 +133,21 @@ def adata_to_qupath(
             raise ValueError("geodataframe must be provided for mode='polygons'")
         gdf = geodataframe.copy()
         gdf['objectType'] = "detection" if save_as_detection else None
-        phenotypes_series = adata.obs.set_index(adata_obs_index_key)[adata_obs_category_key]
-        if geodataframe_index_key:
-            logger.info(f"Matching gdf[{geodataframe_index_key}] to adata.obs[{adata_obs_index_key}]")
-            gdf['class'] = gdf[geodataframe_index_key].map(phenotypes_series)
-        else:
-            logger.info("geodataframe index key not passed, using index")
-            gdf.index = gdf.index.astype(str)
-            gdf['class'] = gdf.index.map(phenotypes_series).astype(str)
-        gdf['class'] = gdf['class'].astype("category")
-        gdf['class'] = gdf['class'].cat.add_categories('filtered_out') 
-        gdf['class'] = gdf['class'].fillna('filtered_out')
-        gdf['class'] = gdf['class'].replace("nan", "filtered_out")
-        gdf['classification'] = gdf['class']
-        gdf = gdf.drop(columns='class')
+        if adata_obs_category_key:
+            phenotypes_series = adata.obs.set_index(adata_obs_index_key)[adata_obs_category_key]
+            if geodataframe_index_key:
+                logger.info(f"Matching gdf[{geodataframe_index_key}] to adata.obs[{adata_obs_index_key}]")
+                gdf['class'] = gdf[geodataframe_index_key].map(phenotypes_series)
+            else:
+                logger.info("geodataframe index key not passed, using index")
+                gdf.index = gdf.index.astype(str)
+                gdf['class'] = gdf.index.map(phenotypes_series).astype(str)
+            gdf['class'] = gdf['class'].astype("category")
+            gdf['class'] = gdf['class'].cat.add_categories('filtered_out') 
+            gdf['class'] = gdf['class'].fillna('filtered_out')
+            gdf['class'] = gdf['class'].replace("nan", "filtered_out")
+            gdf['classification'] = gdf['class']
+            gdf = gdf.drop(columns='class')
         if simplify_value is not None:
             logger.info(f"Simplifying the geometry with tolerance {simplify_value}")
             gdf['geometry'] = gdf['geometry'].simplify(simplify_value, preserve_topology=True)
@@ -148,7 +155,7 @@ def adata_to_qupath(
         raise ValueError("mode must be either 'voronoi' or 'polygons'")
     
     # Color annotation
-    if color_dict:
+    if color_dict and adata_obs_category_key:
         color_dict = parse_color_for_qupath(color_dict, adata=adata, adata_obs_key=adata_obs_category_key)
         if 'filtered_out' not in color_dict:
             color_dict['filtered_out'] = [0,0,0]

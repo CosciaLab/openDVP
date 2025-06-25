@@ -6,7 +6,6 @@ from .export_figure import export_figure
 from .import_perseus import import_perseus
 from .import_thresholds import import_thresholds
 from .quant_to_adata import quant_to_adata
-from .sdata_to_qupath import sdata_to_qupath
 from .segmask_to_qupath import segmask_to_qupath
 
 __all__ = [
@@ -18,6 +17,5 @@ __all__ = [
     "export_figure",
     "quant_to_adata",
     "segmask_to_qupath",
-    "sdata_to_qupath",
     "adata_to_qupath"
 ]

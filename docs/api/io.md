@@ -9,7 +9,6 @@
     :toctree: generated
     
     io.adata_to_qupath
-    io.geojson_to_sdata
     io.import_thresholds
     io.quant_to_adata
     io.sdata_to_qupath

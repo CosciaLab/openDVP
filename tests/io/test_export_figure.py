@@ -19,4 +19,3 @@ def test_export_figure_callable(tmp_path) -> None:
     extensions = {f.suffix for f in output_files}
     assert ".pdf" in extensions
     assert ".svg" in extensions
-

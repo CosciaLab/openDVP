@@ -48,6 +48,10 @@ def import_perseus(
     #get data
     data = perseus_df.iloc[:,:-(len(var_headers))].values.T
     logger.info(f"Data matrix shape: {data.shape}")
+    #to prevent implicint modification
+    obs.index = obs.index.astype(str)
+    var.index = var.index.astype(str)
+
     try:
         adata = ad.AnnData(X=data, obs=obs, var=var)
     except Exception as e:
@@ -57,6 +61,6 @@ def import_perseus(
             f"Try lowering or increasing it depending on your file structure."
         )
         raise
-    
+
     logger.success("AnnData object created from Perseus file.")
     return adata

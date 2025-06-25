@@ -57,7 +57,7 @@ def export_adata(
         os.makedirs(path_to_dir, exist_ok=True)
         os.makedirs(os.path.join(path_to_dir,checkpoint_name), exist_ok=True)
     except Exception as e:
-        logger.error(f"Unexpected error in save_adata_checkpoint: {e}")
+        logger.error(f"Could not create folder, permission problem likely: {e}")
         return
     
     basename = f"{os.path.join(path_to_dir,checkpoint_name)}/{get_datetime()}_{checkpoint_name}_adata"

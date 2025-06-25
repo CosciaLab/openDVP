@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 
 import anndata as ad
+import pandas as pd
 
 from opendvp.utils import logger
 from opendvp.utils.utils import get_datetime
@@ -10,11 +11,15 @@ from opendvp.utils.utils import get_datetime
 def export_adata(
     adata: ad.AnnData,
     path_to_dir: str,
-    checkpoint_name: str
+    checkpoint_name: str,
+    export_as_cvs : bool = False,
+    metadata_cols : list | None = None,
+    metadata_index : str | None = None, 
+    parquet : bool = False,
 ) -> None:
-    """Save an AnnData object as both .h5ad and .parquet files in a checkpoint directory.
+    """Save an AnnData object as both .h5ad and optionally .parquet or .csv files in a checkpoint directory.
 
-    Parameters
+    Parameters:
     ----------
     adata : AnnData
         AnnData object to save.
@@ -22,11 +27,31 @@ def export_adata(
         Directory where the checkpoint folder will be created.
     checkpoint_name : str
         Name for the checkpoint folder and file prefix.
+    export_as_cvs : bool, optional
+        If True, exports the data and metadata as .csv (tab-delimited) or .parquet files. Default is False.
+    metadata_cols : list, optional
+        List of columns from adata.obs to include in the metadata file. If None, all columns are included.
+    metadata_index : str, optional
+        Column from adata.obs to use as index in the exported files. If None, uses the default index.
+    parquet : bool, optional
+        If True, exports as .parquet files instead of .csv. Only used if export_as_cvs is True.
 
     Returns:
     -------
     None
         This function saves files to disk and does not return a value.
+
+    Example:
+    -------
+    >>> from opendvp.io.export_adata import export_adata
+    >>> import anndata as ad
+    >>> import numpy as np
+    >>> import pandas as pd
+    >>> X = np.random.rand(10, 5)
+    >>> obs = pd.DataFrame({'celltype': ['A']*5 + ['B']*5}, index=[f'cell{i}' for i in range(10)])
+    >>> var = pd.DataFrame(index=[f'gene{i}' for i in range(5)])
+    >>> adata = ad.AnnData(X=X, obs=obs, var=var)
+    >>> export_adata(adata, path_to_dir='checkpoints', checkpoint_name='test', export_as_cvs=True)
     """
     try:    
         os.makedirs(path_to_dir, exist_ok=True)
@@ -46,10 +71,23 @@ def export_adata(
         logger.error(f"Could not write h5ad file: {e}")
         return
 
-    # Save CSV file
-    try:
-        logger.info("Writing parquet")
-        adata.to_df().to_parquet(path=Path(basename + ".parquet"))
-        logger.success("Wrote parquet file")
-    except (OSError, ValueError) as e:
-        logger.error(f"Could not write parquet file: {e}")
+    if export_as_cvs:
+
+        df_index = adata.obs[metadata_index] if metadata_index else adata.obs.index
+        index_name = metadata_index if metadata_index else adata.obs.index.name
+        adata_obs_cols = metadata_cols if metadata_cols else adata.obs.columns.tolist()
+
+        data = pd.DataFrame(data=adata.X.toarray(), columns=adata.var_names, index=df_index)
+        metadata = pd.DataFrame(data=adata.obs[adata_obs_cols])
+        metadata = metadata.set_index(index_name)
+
+        if parquet:
+            logger.info("Writing parquet")
+            data.to_parquet(path=Path(basename + "data.parquet"))
+            metadata.to_parquet(path=Path(basename + "metadata.parquet"))
+            logger.success("Wrote parquet file")
+        else:
+            logger.info("Writing csvs")
+            data.to_csv(path_or_buf=Path(basename + "data.txt"), sep="\t")
+            metadata.to_csv(path_or_buf=Path(basename + "metadata.txt"), sep="\t")
+            logger.success("Wrote csv files")

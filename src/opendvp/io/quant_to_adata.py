@@ -56,7 +56,10 @@ def quant_to_adata(
         raise ValueError("Not all metadata columns are not present in the csv file")
 
     if index_into_1_based:
-        quant_data[index_into_1_based] = quant_data[index_into_1_based].astype(int) + 1
+        quant_data[index_into_1_based] = quant_data[index_into_1_based].astype(int)
+        if (quant_data[index_into_1_based] == 0).any():
+            logger.info(f"Detected 0 in '{index_into_1_based}' — shifting all values by +1 for 1-based indexing.")
+            quant_data[index_into_1_based] = quant_data[index_into_1_based] + 1
 
     metadata = quant_data[meta_columns].copy()
     data = quant_data.drop(columns=meta_columns).copy()

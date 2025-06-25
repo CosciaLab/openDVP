@@ -11,4 +11,3 @@ def test_import_perseus() -> None:
     assert adata.shape == test_shape
     test_list = ['Column Name','Heart_Condition','Ischemia_region','Sample_type','Replicate']
     assert adata.obs.columns.tolist() == test_list
-

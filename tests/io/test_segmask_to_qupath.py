@@ -26,7 +26,7 @@ def test_returns_geodataframe(dummy_mask):
 
 def test_simplify_geometry(dummy_mask):
     gdf = segmask_to_qupath(path_to_mask=dummy_mask, simplify_value=0.5)
-    assert gdf.geometry.is_valid.all()
+    assert gdf.geometry.is_valid.all() # type: ignore
 
 
 def test_disable_simplification(dummy_mask):

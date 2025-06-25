@@ -43,9 +43,9 @@ def segmask_to_qupath(
     - The exported GeoJSON is compatible with QuPath for detection import and visualization.
     """
     try:
-        import dask.array as da
-        import dask_image.imread
-        import spatialdata
+        import dask.array as da  # type: ignore
+        import dask_image.imread  # type: ignore
+        import spatialdata  # type: ignore
     except ImportError as e:
         raise ImportError("The 'spatialdata' package is required. Use 'pip install opendvp[spatialdata]'.") from e
 

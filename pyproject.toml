@@ -69,6 +69,7 @@ default =       {features = [],                 solve-group = "default"}
 spatialdata =   {features = ["spatialdata"],    solve-group = "spatialdata"}
 dev =           {features = ["dev"],            solve-group = "dev"}
 docs =          {features = ["docs"],           solve-group = "docs"}
+dev-sdata =     {features = ["dev", "spatialdata"],solve-group = "dev-sdata"}
 
 [build-system]
 build-backend = "hatchling.build"

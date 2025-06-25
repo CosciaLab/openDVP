@@ -67,5 +67,9 @@ def test_custom_meta_columns(sample_csv):
     assert 'mean_CD3' in adata.var.index
 
 
-def exemplar001_mcmicro():
-    
+def test_exemplar001_mcmicro():
+    adata = quant_to_adata(path="../test_data/io/quant.csv")
+    assert isinstance(adata, AnnData)
+    assert adata.shape == (9711,12)
+    assert adata.var.shape == (12,0)
+    assert adata.obs.shape == (9711,10)

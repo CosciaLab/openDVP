@@ -1,4 +1,3 @@
-from .adata_to_perseus import adata_to_perseus
 from .adata_to_qupath import adata_to_qupath
 from .adata_to_voronoi import adata_to_voronoi
 from .DIANN_to_adata import DIANN_to_adata
@@ -11,7 +10,6 @@ from .segmask_to_qupath import segmask_to_qupath
 
 __all__ = [
     "DIANN_to_adata",
-    "adata_to_perseus",
     "import_perseus",
     "import_thresholds",
     "export_adata",

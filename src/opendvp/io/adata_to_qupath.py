@@ -4,7 +4,7 @@ import geopandas
 from opendvp.utils import logger, parse_color_for_qupath
 
 
-def qupath_export_core(  # noqa: C901
+def adata_to_qupath(  # noqa: C901
     adata: ad.AnnData,
     geodataframe: geopandas.GeoDataFrame,
     adataobs_on: str = "CellID",
@@ -12,7 +12,7 @@ def qupath_export_core(  # noqa: C901
     gdf_index : bool = False,
     classify_by: str | None = None,
     color_dict: dict | None = None,
-    simplify_value: float = 1.0,
+    simplify_value: float | None = 1.0,
     save_as_detection : bool = True,
 ) -> geopandas.GeoDataFrame | None:
     """Export a GeoDataFrame with QuPath-compatible annotations, using AnnData for classification and color mapping.
@@ -54,7 +54,7 @@ def qupath_export_core(  # noqa: C901
     Example:
         >>> import anndata as ad
         >>> import geopandas as gpd
-        >>> from opendvp.io.qupath_export_core import qupath_export_core
+        >>> from opendvp.io.adata_to_qupath import adata_to_qupath
         >>> # Create example AnnData
         >>> import pandas as pd
         >>> obs = pd.DataFrame({'CellID': [1, 2, 3], 'celltype': ['A', 'B', 'A']})
@@ -63,7 +63,7 @@ def qupath_export_core(  # noqa: C901
         >>> from shapely.geometry import Point
         >>> gdf = gpd.GeoDataFrame({'CellID': [1, 2, 3]}, geometry=[Point(0,0), Point(1,1), Point(2,2)])
         >>> # Export with classification
-        >>> result = qupath_export_core(
+        >>> result = adata_to_qupath(
         ...     adata=adata,
         ...     geodataframe=gdf,
         ...     adataobs_on="CellID",
@@ -81,10 +81,10 @@ def qupath_export_core(  # noqa: C901
         raise ValueError("gdf must be an instance of geopandas.GeoDataFrame")
     if adataobs_on not in adata.obs.columns:
         raise ValueError(f"{adataobs_on} not in adata.obs.columns")
-    if gdf_on not in geodataframe.columns:
-        raise ValueError(f"{gdf_on} not in gdf.columns")
     if (gdf_on and gdf_index) or (gdf_on is None and not gdf_index):
         raise ValueError("You must set exactly one of gdf_on or gdf_index (not both, not neither).")
+    if gdf_on and gdf_on not in geodataframe.columns:
+        raise ValueError(f"{gdf_on} not in gdf.columns")
     if classify_by:
         if classify_by not in adata.obs.columns:
             raise ValueError(f"{classify_by} not in adata.obs.columns")

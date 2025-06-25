@@ -1,5 +1,6 @@
 from .adata_to_perseus import adata_to_perseus
-from .adata_to_voronoi_geojson import adata_to_qupath
+from .adata_to_qupath import adata_to_qupath
+from .adata_to_voronoi import adata_to_voronoi
 from .DIANN_to_adata import DIANN_to_adata
 from .export_adata import export_adata
 from .export_figure import export_figure
@@ -17,5 +18,6 @@ __all__ = [
     "export_figure",
     "quant_to_adata",
     "segmask_to_qupath",
-    "adata_to_voronoi_geojson"
+    "adata_to_voronoi",
+    "adata_to_qupath"
 ]

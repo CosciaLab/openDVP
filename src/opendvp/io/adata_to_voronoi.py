@@ -6,7 +6,7 @@ import shapely
 from opendvp.utils import logger, parse_color_for_qupath
 
 
-def adata_to_qupath(
+def adata_to_voronoi(
     adata: ad.AnnData,
     x_y: tuple = ("X_centroid", "Y_centroid"),
     classify_by: str | None = None,
@@ -52,14 +52,14 @@ def adata_to_qupath(
     >>> import anndata as ad
     >>> import pandas as pd
     >>> import numpy as np
-    >>> from opendvp.io.adata_to_voronoi_geojson import adata_to_qupath
+    >>> from opendvp.io.adata_to_voronoi import adata_to_voronoi
     >>> obs = pd.DataFrame({
     ...     'X_centroid': np.random.rand(5),
     ...     'Y_centroid': np.random.rand(5),
     ...     'celltype': ['A', 'B', 'A', 'B', 'A']
     ... })
     >>> adata = ad.AnnData(obs=obs)
-    >>> gdf = adata_to_qupath(adata, classify_by='celltype')
+    >>> gdf = adata_to_voronoi(adata, classify_by='celltype')
     >>> print(gdf.head())
     """
     if not isinstance(adata, ad.AnnData):

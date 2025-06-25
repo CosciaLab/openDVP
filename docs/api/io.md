@@ -19,7 +19,6 @@
 .. autosummary::
     :toctree: generated
 
-    io.adata_to_perseus
     io.DIANN_to_adata
     io.import_perseus
 ```

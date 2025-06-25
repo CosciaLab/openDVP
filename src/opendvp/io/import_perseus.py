@@ -48,7 +48,7 @@ def import_perseus(
     #get data
     data = perseus_df.iloc[:,:-(len(var_headers))].values.T
     logger.info(f"Data matrix shape: {data.shape}")
-    #to prevent implicint modification
+    #to prevent implicit modification
     obs.index = obs.index.astype(str)
     var.index = var.index.astype(str)
 

@@ -1,9 +1,14 @@
-import pytest
+from pathlib import Path
+
 import pandas as pd
+import pytest
 from anndata import AnnData
 
 from opendvp.io import quant_to_adata
 
+TEST_DATA_DIR = Path(__file__).parent.parent / "test_data" / "io"
+
+QUANT = TEST_DATA_DIR / "quant.csv"
 
 @pytest.fixture
 def sample_csv(tmp_path):
@@ -51,7 +56,7 @@ def test_missing_metadata_columns(tmp_path):
     df = pd.DataFrame({'CellID': [1], 'mean_CD3': [1.0]})
     path = tmp_path / "missing_meta.csv"
     df.to_csv(path, index=False)
-    with pytest.raises(ValueError, match="metadata columns are not present"):
+    with pytest.raises(ValueError, match="Not all metadata columns are present in the csv file"):
         quant_to_adata(str(path))
 
 
@@ -68,7 +73,7 @@ def test_custom_meta_columns(sample_csv):
 
 
 def test_exemplar001_mcmicro():
-    adata = quant_to_adata(path="../test_data/io/quant.csv")
+    adata = quant_to_adata(path=str(QUANT))
     assert isinstance(adata, AnnData)
     assert adata.shape == (9711,12)
     assert adata.var.shape == (12,0)

@@ -53,7 +53,7 @@ def quant_to_adata(
         meta_columns = ['CellID', 'Y_centroid', 'X_centroid', 'Area', 'MajorAxisLength', 
                         'MinorAxisLength', 'Eccentricity', 'Orientation', 'Extent', 'Solidity']
     if not all([column in quant_data.columns for column in meta_columns]):
-        raise ValueError("Not all metadata columns are not present in the csv file")
+        raise ValueError("Not all metadata columns are present in the csv file")
 
     if index_into_1_based:
         quant_data[index_into_1_based] = quant_data[index_into_1_based].astype(int)

@@ -1,8 +1,9 @@
-from opendvp.io import export_adata
+import anndata as ad
 import numpy as np
 import pandas as pd
-import anndata as ad
-from pathlib import Path
+
+from opendvp.io import export_adata
+
 
 def test_export_adata_just_h5ad(tmp_path) -> None:
     # Create a minimal AnnData object

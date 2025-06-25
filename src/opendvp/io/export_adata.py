@@ -73,14 +73,12 @@ def export_adata(
 
     if export_as_cvs:
 
-        X_array = adata.X.toarray() if hasattr(adata.X, "toarray") else adata.X
+        X_array = adata.X.toarray() if hasattr(adata.X, "toarray") else adata.X # type: ignore
         df_index = adata.obs[metadata_index] if metadata_index else adata.obs.index
-        index_name = metadata_index if metadata_index else adata.obs.index.name
         adata_obs_cols = metadata_cols if metadata_cols else adata.obs.columns.tolist()
 
-        data = pd.DataFrame(data=X_array, columns=adata.var_names, index=df_index)
+        data = pd.DataFrame(data=X_array, columns=adata.var_names, index=df_index) # type: ignore
         metadata = pd.DataFrame(data=adata.obs[adata_obs_cols], index=df_index)
-        # metadata = metadata.set_index(index_name)
 
         if parquet:
             logger.info("Writing parquet")

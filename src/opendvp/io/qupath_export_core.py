@@ -20,7 +20,7 @@ def qupath_export_core(  # noqa: C901
     This function matches shapes in a GeoDataFrame to metadata in an AnnData object.
     Assigns class labels and colors for QuPath visualization, and optionally simplifies geometries.
 
-    Parameters
+    Parameters:
     ----------
     adata: AnnData
         AnnData object containing cell metadata (e.g., cell types, phenotypes).

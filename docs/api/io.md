@@ -11,7 +11,6 @@
     io.adata_to_qupath
     io.import_thresholds
     io.quant_to_adata
-    io.sdata_to_qupath
     io.segmask_to_qupath
 ```
 

@@ -1,5 +1,3 @@
-import time
-
 import numpy as np
 import pandas as pd
 
@@ -36,16 +34,15 @@ def import_thresholds(
         >>> gates = read_and_process_gates('gates.csv', sample_id='sample1', log1p=True)
         >>> print(gates.head())
     """
-    logger.info(" ---- read_and_process_gates : version 2.0.0 ----")
-    time_start = time.time()
-
     if not gates_csv_path.endswith('.csv'):
         raise ValueError("The file should be a csv file")
     gates = pd.read_csv(gates_csv_path)
+    if "gate_value" not in gates.columns:
+        raise ValueError("gate_value is not present")
+    if "sample_id" not in gates.columns:
+         raise ValueError("sample_id is not present")
 
     logger.info("   Filtering out all rows with value 0.0 (assuming not gated)")
-    if "gate_value" not in gates.columns:
-        raise ValueError("The column gate_value is not present in the csv file")
     gates = gates[gates.gate_value != 0.0]
     logger.info(f"  Found {gates.shape[0]} valid gates")
     logger.info(f"  Markers found: {gates.marker_id.unique()}")
@@ -64,8 +61,6 @@ def import_thresholds(
         gates_for_scimap = gates_copy[['marker_id', 'log1p_gate_value']]
         gates_for_scimap = gates_for_scimap.rename(columns={'marker_id': 'markers', 'log1p_gate_value': sample_id if sample_id is not None else 'log1p_gate_value'})
         logger.info(f"   Output DataFrame columns: {gates_for_scimap.columns.tolist()}")
-        logger.info(f" ---- read_and_process_gates is done, took {int(time.time() - time_start)}s  ----")
         return gates_for_scimap
     else:
-        logger.info(f" ---- read_and_process_gates is done, took {int(time.time() - time_start)}s  ----")
         return gates

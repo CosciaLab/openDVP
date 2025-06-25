@@ -4,10 +4,9 @@ from opendvp.utils import logger
 
 
 def segmask_to_qupath(
-        path_to_mask : str,
-        simplify_value : float = 1,
-        export_path : str | None = None,
-        return_gdf : bool = True,
+    path_to_mask : str,
+    simplify_value : float = 1.0,
+    save_as_detection: bool = True,
     ) -> geopandas.GeoDataFrame | None:
     """Convert a segmentation mask (TIFF) to QuPath-compatible detections as a GeoDataFrame or GeoJSON file.
 
@@ -44,9 +43,9 @@ def segmask_to_qupath(
     - The exported GeoJSON is compatible with QuPath for detection import and visualization.
     """
     try:
-        import dask.array as da
-        import dask_image
-        import spatialdata
+        import dask.array as da  # type: ignore
+        import dask_image.imread  # type: ignore
+        import spatialdata  # type: ignore
     except ImportError as e:
         raise ImportError("The 'spatialdata' package is required. Use 'pip install opendvp[spatialdata]'.") from e
 
@@ -65,16 +64,13 @@ def segmask_to_qupath(
     # convert to polygons
     sdata['mask_polygons'] = spatialdata.to_polygons(sdata['mask'])
     gdf = sdata['mask_polygons']
-    gdf['objectType'] = "detection"
+    if save_as_detection:
+        gdf['objectType'] = "detection"
     #simplify the geometry
     if simplify_value is not None:
         logger.info(f"Simplifying the geometry with tolerance {simplify_value}")
         gdf['geometry'] = gdf['geometry'].simplify(simplify_value, preserve_topology=True)
     #remove label column
     gdf = gdf.drop(columns='label')
-    if export_path:
-        gdf.to_file(export_path, driver='GeoJSON')
-        logger.success(f"Exported detections to {export_path}")
-    if return_gdf:
-        return gdf
-    return None
+
+    return gdf

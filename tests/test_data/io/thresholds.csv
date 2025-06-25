@@ -1,0 +1,9 @@
+sample_id,marker_id,gate_value
+991,mean_Vimentin,574.380913496318
+991,mean_CD3e,350
+991,mean_panCK,50
+991,mean_CD8,1200
+991,mean_COL1A1,1320
+991,mean_CD20,800
+991,mean_CD68,271.581385758833
+991,mean_Ki67,18.1050613172181

@@ -9,7 +9,7 @@ authors = [{name = "Jose Nimo", email = "jose.nimo@mdc-berlin.de"}]
 maintainers = [{ name = "Jose Nimo", email = "jose.nimo@mdc-berlin.de" }]
 
 dependencies = [
-    "anndata>=0.9.1",
+    "anndata>=0.9.1, <0.11",
     "geopandas>=0.14",
     "ipykernel",
     "numba>=0.55.0",
@@ -17,7 +17,7 @@ dependencies = [
     "pandas",
     "matplotlib<3.9.0",
     "seaborn",
-    "scanpy",
+    "scanpy==1.11.0",
     "plotly>=5.24.1,<6",
     "shapely>=2.0.1",
     "loguru",
@@ -69,6 +69,7 @@ default =       {features = [],                 solve-group = "default"}
 spatialdata =   {features = ["spatialdata"],    solve-group = "spatialdata"}
 dev =           {features = ["dev"],            solve-group = "dev"}
 docs =          {features = ["docs"],           solve-group = "docs"}
+dev-sdata =     {features = ["dev", "spatialdata"],solve-group = "dev-sdata"}
 
 [build-system]
 build-backend = "hatchling.build"
@@ -91,7 +92,7 @@ pyproj = "3.7.1.*"
 [tool.ruff]
 line-length = 120
 target-version = "py311"  # Match your supported Python version
-per-file-ignores = { "tests/**/*.py" = ["S101"] } #ignores assert rule in tests
+per-file-ignores = { "tests/**/*.py" = ["S101", "D103", "ANN201", "ANN001"] }
 exclude = [
     ".git",
     "__pycache__",

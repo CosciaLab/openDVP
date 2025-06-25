@@ -1,170 +1,130 @@
-from typing import Literal
-
 import anndata as ad
-import geopandas as gpd
-import scipy
-import shapely
+import geopandas
 
 from opendvp.utils import logger, parse_color_for_qupath
 
 
-def adata_to_qupath(
+def adata_to_qupath(  # noqa: C901
     adata: ad.AnnData,
-    mode: Literal["voronoi", "polygons"] = "polygons",
-    geodataframe: gpd.GeoDataFrame | None = None,
-    geodataframe_index_key: str | None = None,
-    adata_obs_index_key: str | None = None,
-    adata_obs_category_key: str = "phenotype",
+    geodataframe: geopandas.GeoDataFrame,
+    adataobs_on: str = "CellID",
+    gdf_on: str | None = "CellID",
+    gdf_index : bool = False,
+    classify_by: str | None = None,
     color_dict: dict | None = None,
-    export_path: str | None = None,
-    simplify_value: float | int = 1,
-    voronoi_area_quantile: float | None = 0.98,
-    merge_adjacent_shapes: bool = True,
-    subset_adata_key: str | None = None,
-    subset_adata_value : str | None = None,
-    save_as_detection: bool = True,
-) -> gpd.GeoDataFrame | None:
-    """Flexible function to output QuPath-compatible detections from AnnData, using either Voronoi or provided polygons.
+    simplify_value: float | None = 1.0,
+    save_as_detection : bool = True,
+) -> geopandas.GeoDataFrame | None:
+    """Export a GeoDataFrame with QuPath-compatible annotations, using AnnData for classification and color mapping.
 
-    Parameters
+    This function matches shapes in a GeoDataFrame to metadata in an AnnData object.
+    Assigns class labels and colors for QuPath visualization, and optionally simplifies geometries.
+
+    Parameters:
     ----------
-    adata : AnnData
-        AnnData object with cell metadata and (optionally) centroid coordinates.
-    mode : {"voronoi", "polygons"}
-        If "voronoi", generates polygons from centroids. If "polygons", uses provided geodataframe.
-    geodataframe : GeoDataFrame, optional
-        If mode="polygons", the polygons to annotate.
-    geodataframe_index_key : str, optional
-        Column in geodataframe to match to adata.obs (for mode="polygons").
-    adata_obs_index_key : str, optional
-        Column in adata.obs to match to geodataframe (for mode="polygons").
-    adata_obs_category_key : str, default "phenotype"
-        Column in adata.obs for class/color annotation.
-    color_dict : dict, optional
-        Mapping from class names to RGB color lists.
-    export_path : str, optional
-        If provided, writes output to this path as GeoJSON.
-    simplify_value : float, default 1
-        Geometry simplification tolerance (for polygons mode).
-    voronoi_area_quantile : float, default 0.98
-        Area quantile threshold for filtering large Voronoi polygons.
-    merge_adjacent_shapes : bool, default True
-        If True, merges adjacent polygons of the same class (Voronoi mode).
-    subset_adata_key : str, optional
-        Column in adata.obs to filter for Voronoi mode.
-    subset_adata_value : any, optional
-        Value to filter subset_adata_key by (Voronoi mode).
-    save_as_detection : bool, default True
-        If True, sets objectType to "detection" for QuPath. Otherwise as Annotations.
+    adata: AnnData
+        AnnData object containing cell metadata (e.g., cell types, phenotypes).
+    geodataframe: GeoDataFrame
+        GeoDataFrame containing shapes (detections or annotations) to be exported.
+    adataobs_on: str, default "CellID"
+        Column in adata.obs to match with geodataframe.
+    gdf_on: str or None, default "CellID"
+        Column in geodataframe to match with adata.obs. If None and gdf_index is True, uses the index.
+    gdf_index: bool, default False
+        If True, uses the geodataframe index for matching instead of a column.
+    classify_by: str or None, optional
+        Column in adata.obs to use for classifying detections (e.g., cell type or phenotype).
+    color_dict: dict or None, optional
+        Dictionary mapping class/category names to RGB color lists (e.g., {'Tcell': [255, 0, 0]}).
+        If not provided, a default color cycle will be generated.
+        Hexcodes colors are acceptable as well.
+    simplify_value: float, default 1.0
+        Tolerance for geometry simplification. Set to None to disable simplification.
+    save_as_detection: bool, default True
+        If True, sets 'objectType' to 'detection' for QuPath.
 
     Returns:
-    -------
-    GeoDataFrame or None
-        Returns GeoDataFrame if export_path is None, else writes to file and returns None.
+        GeoDataFrame:
+            The resulting GeoDataFrame with QuPath-compatible columns.
+
+    Raises:
+        ValueError:
+            If input types are incorrect, required columns are missing, or no matches are found between adata and geodataframe.
+
+    Example:
+        >>> import anndata as ad
+        >>> import geopandas as gpd
+        >>> from opendvp.io.adata_to_qupath import adata_to_qupath
+        >>> # Create example AnnData
+        >>> import pandas as pd
+        >>> obs = pd.DataFrame({'CellID': [1, 2, 3], 'celltype': ['A', 'B', 'A']})
+        >>> adata = ad.AnnData(obs=obs)
+        >>> # Create example GeoDataFrame
+        >>> from shapely.geometry import Point
+        >>> gdf = gpd.GeoDataFrame({'CellID': [1, 2, 3]}, geometry=[Point(0,0), Point(1,1), Point(2,2)])
+        >>> # Export with classification
+        >>> result = adata_to_qupath(
+        ...     adata=adata,
+        ...     geodataframe=gdf,
+        ...     adataobs_on="CellID",
+        ...     gdf_on="CellID",
+        ...     classify_by="celltype",
+        ...     color_dict={"A": [255,0,0], "B": [0,255,0]},
+        ...     simplify_value=0.5,
+        ...     save_as_detection=True
+        ... )
+        >>> print(result.head())
     """
-    ### VORONOI ###
-    if mode == "voronoi":
-        #check coords
-        if 'X_centroid' not in adata.obs or 'Y_centroid' not in adata.obs:
-            raise ValueError("`adata.obs` must contain 'X_centroid' and 'Y_centroid' columns for Voronoi mode.")
-        obs_df = adata.obs.copy()
-        #subset
-        if subset_adata_key and subset_adata_value is not None:
-            if subset_adata_key not in adata.obs.columns:
-                raise ValueError(f"{subset_adata_key} not found in adata.obs columns.")
-            if subset_adata_value not in adata.obs[subset_adata_key].unique():
-                raise ValueError(f"{subset_adata_value} not found in adata.obs[{subset_adata_key}].")
-            logger.info(adata.obs[subset_adata_key].unique())
-            logger.info(f"Subset adata col dtype: {adata.obs[subset_adata_key].dtype}")
-            obs_df = obs_df[obs_df[subset_adata_key] == subset_adata_value] #COULD BE A LIST
-            logger.info(f" Shape after subset: {obs_df.shape}")
-        
-        logger.info("Running Voronoi")
-        vor = scipy.spatial.Voronoi(obs_df[['X_centroid', 'Y_centroid']].values)
-        def safe_voronoi_polygon(vor,  i : int) -> shapely.Polygon | None :
-            region_index = vor.point_region[i]
-            region = vor.regions[region_index]
-            if -1 in region or len(region) < 3:
-                return None
-            vertices = vor.vertices[region]
-            if len(vertices) < 3:
-                return None
-            polygon = shapely.Polygon(vertices)
-            if not polygon.is_valid or len(polygon.exterior.coords) < 4:
-                return None
-            return polygon
-        
-        obs_df['geometry'] = [safe_voronoi_polygon(vor, i) for i in range(len(obs_df))]
-        logger.info("Voronoi done")
-        gdf = gpd.GeoDataFrame(obs_df, geometry='geometry')
-        logger.info("Transformed to geodataframe")
-
-        # Filter polygons outside bounding box
-        x_min, x_max = gdf['X_centroid'].min(), gdf['X_centroid'].max()
-        y_min, y_max = gdf['Y_centroid'].min(), gdf['Y_centroid'].max()
-        boundary_box = shapely.box(x_min, y_min, x_max, y_max)
-        gdf = gdf[gdf.geometry.within(boundary_box)]
-        logger.info(f"Retaining {len(gdf)} valid polygons after filtering large and infinite ones.")
-
-        # Area filter
-        if voronoi_area_quantile:
-            gdf['area'] = gdf['geometry'].area
-            gdf = gdf[gdf['area'] < gdf['area'].quantile(voronoi_area_quantile)]
-            logger.info(f"Filtered out large polygons based on the {voronoi_area_quantile} quantile")
-        if save_as_detection:
-            gdf['objectType'] = "detection"
-        if merge_adjacent_shapes:
-            logger.info("Merging polygons adjacent and of same category")
-            gdf = gdf.dissolve(by=adata_obs_category_key)
-            gdf[adata_obs_category_key] = gdf.index
-            gdf = gdf.explode(index_parts=True)
-            gdf = gdf.reset_index(drop=True)
-        gdf['classification'] = gdf[adata_obs_category_key].astype(str)
+    if not isinstance(adata, ad.AnnData):
+        raise ValueError("adata must be an instance of anndata.AnnData")
+    if not isinstance(geodataframe, geopandas.GeoDataFrame):
+        raise ValueError("gdf must be an instance of geopandas.GeoDataFrame")
+    if adataobs_on not in adata.obs.columns:
+        raise ValueError(f"{adataobs_on} not in adata.obs.columns")
+    if (gdf_on and gdf_index) or (gdf_on is None and not gdf_index):
+        raise ValueError("You must set exactly one of gdf_on or gdf_index (not both, not neither).")
+    if gdf_on and gdf_on not in geodataframe.columns:
+        raise ValueError(f"{gdf_on} not in gdf.columns")
+    if classify_by:
+        if classify_by not in adata.obs.columns:
+            raise ValueError(f"{classify_by} not in adata.obs.columns")
+        if adata.obs[classify_by].isna().any():
+            raise ValueError(f"The {classify_by} contains NaN values")
+        if adata.obs[classify_by].dtype.name != 'category':
+            logger.warning(f"{classify_by} is not a categorical, converting to categorical")
+            adata.obs[classify_by] = adata.obs[classify_by].astype('category')        
+    if color_dict and not isinstance(color_dict,dict):
+        raise ValueError("provided color_dict is not a dict")
     
-    ### POLYGONS ###
-    elif mode == "polygons":
-        if geodataframe is None:
-            raise ValueError("geodataframe must be provided for mode='polygons'")
-        gdf = geodataframe.copy()
-        gdf['objectType'] = "detection" if save_as_detection else None
-        phenotypes_series = adata.obs.set_index(adata_obs_index_key)[adata_obs_category_key]
-        if geodataframe_index_key:
-            logger.info(f"Matching gdf[{geodataframe_index_key}] to adata.obs[{adata_obs_index_key}]")
-            gdf['class'] = gdf[geodataframe_index_key].map(phenotypes_series)
-        else:
-            logger.info("geodataframe index key not passed, using index")
-            gdf.index = gdf.index.astype(str)
-            gdf['class'] = gdf.index.map(phenotypes_series).astype(str)
-        gdf['class'] = gdf['class'].astype("category")
-        gdf['class'] = gdf['class'].cat.add_categories('filtered_out') 
-        gdf['class'] = gdf['class'].fillna('filtered_out')
-        gdf['class'] = gdf['class'].replace("nan", "filtered_out")
-        gdf['classification'] = gdf['class']
+    # Check matches between adata and geodataframe
+    adata_index_values = set(adata.obs[adataobs_on])
+    gdf_index_values = set(geodataframe[gdf_on]) if gdf_on else set(geodataframe.index)
+    n_matches = len(adata_index_values & gdf_index_values)
+    logger.info(f"Found {n_matches} matching IDs between adata.obs['{adataobs_on}'] and geodataframe['{gdf_on}'].")
+    if n_matches == 0:
+        raise ValueError("No matching values between adata and geodataframe")
+
+    gdf = geodataframe.copy()
+    if save_as_detection:
+        gdf['objectType'] = "detection"
+
+    # Filter shapes of gdf by adata
+    gdf = gdf[gdf[gdf_on].isin(adata.obs[adataobs_on])] if gdf_on else gdf[gdf.index.isin(adata.obs[adataobs_on])]
+
+    if classify_by:
+        index_class = adata.obs.set_index(adataobs_on)[classify_by].copy()
+        if gdf_on:
+            gdf['class'] = gdf[gdf_on].map(index_class).astype(str).fillna('filtered_out')
+        elif gdf_index:
+            gdf['class'] = gdf.index.map(index_class).astype(str).fillna('filtered_out')
+        logger.info(f"Classes now in shapes: {gdf['class'].unique()}")
+        color_dict = parse_color_for_qupath(color_dict, adata=adata, adata_obs_key=classify_by)
+        gdf['classification'] = gdf.apply(lambda row: {'name': row['class'], 'color': color_dict[row['class']]}, axis=1)
         gdf = gdf.drop(columns='class')
-        if simplify_value is not None:
-            logger.info(f"Simplifying the geometry with tolerance {simplify_value}")
-            gdf['geometry'] = gdf['geometry'].simplify(simplify_value, preserve_topology=True)
-    else:
-        raise ValueError("mode must be either 'voronoi' or 'polygons'")
-    
-    # Color annotation
-    if color_dict:
-        color_dict = parse_color_for_qupath(color_dict, adata=adata, adata_obs_key=adata_obs_category_key)
-        if 'filtered_out' not in color_dict:
-            color_dict['filtered_out'] = [0,0,0]
-        gdf['classification'] = gdf.apply(
-            lambda row: {
-                'name': row['classification'],
-                'color': color_dict.get(row['classification']), #Careful here
-            },
-        axis=1,
-        )
-    # Export or return
-    if export_path:
-        gdf.index.name = 'index'
-        gdf.to_file(export_path, driver='GeoJSON')
-        logger.success(f"Exported detections to {export_path}")
-        return None
-    else:
-        logger.success(" -- Created and returning detections -- ")
-        return gdf
+
+    # Simplify geometry
+    if simplify_value is not None:
+        logger.info(f"Simplifying the geometry with tolerance {simplify_value}")
+        gdf['geometry'] = gdf['geometry'].simplify(simplify_value, preserve_topology=True)
+
+    return gdf

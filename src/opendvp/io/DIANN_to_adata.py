@@ -95,5 +95,12 @@ def DIANN_to_adata(
         X=rawdata.to_numpy().astype(np.float64), 
         obs=sample_metadata_aligned, 
         var=protein_metadata)
+    
+    if adata.var.index.has_duplicates:
+        logger.info("Duplicate genes found from different protein groups")
+        logger.info(f"{adata.var.index[adata.var.index.duplicated()].unique().tolist()}")
+        logger.info("duplicates will be made unique by adding suffix (eg, -1,-2,-3)")
+        adata.var_names_make_unique()
+
     logger.success("Anndata object has been created :) ")
     return adata

@@ -48,6 +48,19 @@ def import_perseus(
     #get data
     data = perseus_df.iloc[:,:-(len(var_headers))].values.T
     logger.info(f"Data matrix shape: {data.shape}")
-    adata = ad.AnnData(X=data, obs=obs, var=var)
+    #to prevent implicint modification
+    obs.index = obs.index.astype(str)
+    var.index = var.index.astype(str)
+
+    try:
+        adata = ad.AnnData(X=data, obs=obs, var=var)
+    except Exception as e:
+        logger.error(
+            f"Failed to convert Perseus file to AnnData. Error: {e}\n"
+            f"Tip: Double-check the `n_var_metadata_rows` parameter. "
+            f"Try lowering or increasing it depending on your file structure."
+        )
+        raise
+
     logger.success("AnnData object created from Perseus file.")
     return adata

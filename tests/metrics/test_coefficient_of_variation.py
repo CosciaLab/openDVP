@@ -56,7 +56,7 @@ def test_basic_cv_calculation_axis_1(sample_dataframe):
     # Row 2: [30, 3, 100, 0, 1]
     assert result_cv.iloc[2] == pytest.approx(np.std([30, 3, 100, 0, 1], ddof=1) / np.mean([30, 3, 100, 0, 1]))
     # Last row: [60, 6, 100, 0, 1] - should be a valid CV
-    last_row_values = sample_dataframe.iloc[-1].values
+    last_row_values = sample_dataframe.iloc[-1].to_numpy()
     expected_last_row_cv = np.std(last_row_values, ddof=1) / np.mean(last_row_values)
     assert result_cv.iloc[-1] == pytest.approx(expected_last_row_cv)
 

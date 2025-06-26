@@ -1,9 +1,29 @@
-import numpy as np
+# -*- coding: utf-8 -*-
+# Created on Fri Mar  6 12:13:22 2020
+# @author: Ajit Johnson Nirmal
+
+"""
+!!! abstract "Short Description"
+    `sm.pp.rescale`: The function allows users to rescale the data. This step is often performed to standardize the 
+    the expression of all markers to a common scale. The rescaling can be either performed automatically or manually. 
+    User defined gates can be passed to rescale the data manually, else the algorithm fits a GMM (gaussian mixed model) to 
+    identify the cutoff point. The resultant data is between 0-1 where values below 0.5 are considered non-expressing while 
+    above 0.5 is considered positive. 
+
+## Function
+"""
+
+# Import library
 import pandas as pd
-from sklearn.mixture import GaussianMixture
+import numpy as np
+import argparse
 from sklearn.preprocessing import MinMaxScaler
+from sklearn.mixture import GaussianMixture
+import anndata as ad
+import json
 
 
+# Function
 def rescale(
     adata,
     gate=None,
@@ -15,7 +35,8 @@ def rescale(
     random_state=0,
     gmm_components=3,
 ):
-    """Parameters:
+    """
+    Parameters:
         adata (AnnData Object, required):
             An annotated data object that contains single-cell expression data.
 
@@ -73,6 +94,7 @@ def rescale(
         ```
 
     """
+
     # log=True; imageid='imageid'; failed_markers=None; method='all'; random_state=0
 
     # make a copy to raw data if raw is none
@@ -104,7 +126,7 @@ def rescale(
             gate_mapping.gate = gate_mapping.gate.fillna(
                 gate_mapping.markers.map(
                     dict(
-                        zip(gate['markers'], gate['gates'], strict=False)
+                        zip(gate['markers'], gate['gates'])
                     )  # these columns are hardcoded in CSV
                 )
             )
@@ -252,6 +274,47 @@ def rescale(
 
     # Running gmm_gating on the dataset
     def gmm_gating_internal(adata_subset, gate_mapping, method):
+        if verbose:
+            print(
+                'Running GMM for image: ' + str(adata_subset.obs[imageid].unique()[0])
+            )
+        data_subset = pd.DataFrame(
+            adata_subset.raw.X,
+            columns=adata_subset.var.index,
+            index=adata_subset.obs.index,
+        )
+        # find markers
+        if method == 'all':
+            image_specific = gate_mapping.copy()
+            marker_to_gate = list(
+                gate_mapping[gate_mapping.gate.isnull()].markers.unique()
+            )
+        else:
+            image_specific = gate_mapping[
+                gate_mapping['imageid'].isin(adata_subset.obs[imageid].unique())
+            ]
+            marker_to_gate = image_specific[image_specific.gate.isnull()].markers.values
+
+        if verbose and len(marker_to_gate) > 0:
+            print('Applying GMM to markers: ' + ', '.join(marker_to_gate))
+
+        # Apply clipping
+        data_subset_clipped = data_subset.apply(clipping)
+        # log transform data
+        if log is True:
+            data_subset_clipped = np.log1p(data_subset_clipped)
+        # identify the gates for the markers
+        r_gmm_gating = lambda x: gmm_gating(
+            marker=x, data=data_subset_clipped, gmm_components=gmm_components
+        )
+        gates = list(map(r_gmm_gating, marker_to_gate))
+        # create a df with results
+        result = image_specific[image_specific.gate.isnull()]
+        mapping = dict(zip(marker_to_gate, gates))
+        for i in result.index:
+            result.loc[i, 'gate'] = mapping[result.loc[i, 'markers']]
+        # result['gate'] = result['gate'].fillna(result['markers'].map(dict(zip(marker_to_gate, gates))))
+        # return
         return result
 
     # Create a list of image IDs that need to go through the GMM
@@ -277,7 +340,7 @@ def rescale(
         result = pd.concat(result, join='outer')
         # use this to merge with gate_mapping
         gate_mapping.gate = gate_mapping.gate.fillna(
-            gate_mapping.markers.map(dict(zip(result.markers, result.gate, strict=False)))
+            gate_mapping.markers.map(dict(zip(result.markers, result.gate)))
         )
 
     # Rescaling function
@@ -395,3 +458,93 @@ def rescale(
 
     # return adata
     return adata
+
+
+# Make the Function CLI compatible
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(
+        description='The function allows users to rescale the data.'
+    )
+
+    parser.add_argument('--adata', type=str, help='Path to AnnData object file (.h5ad)')
+
+    parser.add_argument(
+        '--gate',
+        type=str,
+        help='Path to gates CSV file. First column should be markers, subsequent columns should be gate values',
+    )
+
+    parser.add_argument(
+        '--log',
+        type=bool,
+        default=True,
+        help='If True, log transform (log1p) before applying gates',
+    )
+
+    parser.add_argument(
+        '--imageid',
+        type=str,
+        default='imageid',
+        help='Column name containing Image IDs',
+    )
+
+    parser.add_argument(
+        '--failed_markers',
+        type=str,
+        help='Path to JSON file containing failed markers dictionary',
+    )
+
+    parser.add_argument(
+        '--method',
+        type=str,
+        default='all',
+        choices=['all', 'by_image'],
+        help='Method for GMM: all or by_image',
+    )
+
+    parser.add_argument(
+        '--verbose', type=bool, default=True, help='Print detailed progress messages'
+    )
+
+    parser.add_argument(
+        '--random_state', type=int, default=0, help='Random seed for GMM'
+    )
+
+    parser.add_argument(
+        '--gmm_components',
+        type=int,
+        default=3,
+        help='Number of components for GMM (minimum 2)',
+    )
+
+    args = parser.parse_args()
+
+    # Load the AnnData object
+    adata = ad.read_h5ad(args.adata)
+
+    # Load gates if provided
+    gate = None
+    if args.gate:
+        gate = pd.read_csv(args.gate)
+
+    # Load failed markers if provided
+    failed_markers = None
+    if args.failed_markers:
+        with open(args.failed_markers, 'r') as f:
+            failed_markers = json.load(f)
+
+    # Call the function
+    adata = rescale(
+        adata=adata,
+        gate=gate,
+        log=args.log,
+        imageid=args.imageid,
+        failed_markers=failed_markers,
+        method=args.method,
+        verbose=args.verbose,
+        random_state=args.random_state,
+        gmm_components=args.gmm_components,
+    )
+
+    # Save the modified AnnData object back to disk
+    adata.write_h5ad(args.adata)

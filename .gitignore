@@ -50,6 +50,7 @@ cover/
 html/
 
 # Jupyter Notebook
+notebooks
 .ipynb_checkpoints
 
 # IPython

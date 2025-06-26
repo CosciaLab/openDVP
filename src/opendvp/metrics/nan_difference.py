@@ -1,20 +1,15 @@
-import time
-
 import numpy as np
 
-from opendvp.utils import logger
-
-datetime = time.strftime("%Y%m%d_%H%M%S")
 
 def nan_difference(
     array1: np.ndarray,
     array2: np.ndarray
-) -> None:
+) -> tuple[int, int]:
     """Calculate how many NaNs do not match between two arrays.
     
     Good quality control, since this can happen.
 
-    Parameters
+    Parameters:
     ----------
     array1 : np.ndarray
         First array to compare.
@@ -23,18 +18,20 @@ def nan_difference(
 
     Returns:
     -------
-    None
-        Prints the number and percentage of mismatched NaNs.
+    tuple[int, int]
+        A tuple containing:
+        - The number of mismatched NaNs.
+        - The total number of elements in an array.
     """
     if array1.shape != array2.shape:
         raise ValueError(f"Shape mismatch: array1.shape={array1.shape}, array2.shape={array2.shape}")
-    total = array1.shape[0] * array1.shape[1]
-
-    logger.info("how many nans are not matched between arrays?")
+    
+    total_elements = array1.size
     nan_mask1 = np.isnan(array1)
     nan_mask2 = np.isnan(array2)
 
-    #True only if True,False or False,True. True True, or False False will be False.
-    mismatch = np.logical_xor(nan_mask1, nan_mask2) & np.logical_or(nan_mask1, nan_mask2)
-    logger.info(f"Number of NaNs not matching: {np.sum(mismatch)}") 
-    logger.info(f"{np.sum(mismatch)*100/total} % of entire table")
+    # XOR is True only if inputs are different (one True, one False)
+    mismatch_mask = np.logical_xor(nan_mask1, nan_mask2)
+    mismatch_count = int(np.sum(mismatch_mask))
+    
+    return mismatch_count, total_elements

@@ -50,7 +50,7 @@ def create_test_adata(
 def test_impute_per_protein_default():
     """Test default imputation (per protein) and QC storage."""
     adata = create_test_adata(n_obs=10, n_vars=5, nan_pattern='structured')
-    original_X = adata.X.copy()
+    original_X = np.asarray(adata.X.copy())
 
     # protein_0 has 5 NaNs, protein_1 has 5 NaNs, protein_2 has 10 NaNs, p3 and p4 no NaNs
 

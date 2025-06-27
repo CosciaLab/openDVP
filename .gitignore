@@ -50,7 +50,7 @@ cover/
 html/
 
 # Jupyter Notebook
-tests/tmp_tests.ipynb
+tests/*.ipynb
 notebooks
 .ipynb_checkpoints
 

@@ -48,10 +48,10 @@ def impute_gaussian(
 
     # Store the original data in a new layer
     logger.info(f"Storing original data in `adata.layers['{layer_key}']`.")
-    adata_copy.layers[layer_key] = adata_copy.X.copy()
+    adata_copy.layers[layer_key] = np.asarray(adata_copy.X)
 
     # Ensure dense array for DataFrame construction
-    data = np.asarray(adata_copy.X)
+    data = np.asarray(adata_copy.X.copy())
     impute_df = pd.DataFrame(data=data, columns=adata_copy.var.index, index=adata_copy.obs_names)
 
     if perSample:

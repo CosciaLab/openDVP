@@ -1,3 +1,5 @@
+import ast
+
 import anndata as ad
 import geopandas as gpd
 import numpy as np
@@ -11,14 +13,23 @@ from opendvp.tl.filter_by_annotation import filter_by_annotation
 @pytest.fixture
 def sample_adata() -> ad.AnnData:
     """Create a sample AnnData object for testing."""
-    n_obs = 100
+    # Create deterministic coordinates for cells
+    coords = {
+        "in_A_only": (10, 10),
+        "in_B_only": (90, 90),
+        "in_C_only": (10, 90),
+        "in_A_and_B_overlap": (60, 60), # In the overlap of A and B
+        "unannotated": (150, 150)
+    }
+    
     obs_data = pd.DataFrame({
-        "CellID": [f"cell_{i}" for i in range(n_obs)],
-        "X_centroid": np.random.rand(n_obs) * 100,
-        "Y_centroid": np.random.rand(n_obs) * 100,
-        "custom_x": np.random.rand(n_obs) * 100,
-        "custom_y": np.random.rand(n_obs) * 100, # Removed .set_index("CellID")
+        "CellID": list(coords.keys()),
+        "X_centroid": [c[0] for c in coords.values()],
+        "Y_centroid": [c[1] for c in coords.values()],
+        "custom_x": [c[0] for c in coords.values()],
+        "custom_y": [c[1] for c in coords.values()],
     })
+
     return ad.AnnData(obs=obs_data)
 
 
@@ -26,11 +37,13 @@ def sample_adata() -> ad.AnnData:
 def sample_geojson() -> gpd.GeoDataFrame:
     """Create a sample GeoDataFrame representing a GeoJSON file."""
     # Create two polygons with classification
-    polygon1 = Polygon([(0, 0), (0, 50), (50, 50), (50, 0)])
-    polygon2 = Polygon([(60, 60), (60, 100), (100, 100), (100, 60)])
+    polygon1 = Polygon([(0, 0), (0, 70), (70, 70), (70, 0)]) # ClassA
+    polygon2 = Polygon([(50, 50), (50, 120), (120, 120), (120, 50)]) # ClassB, overlaps with A
+    polygon3 = Polygon([(0, 80), (0, 120), (40, 120), (40, 80)]) # ClassC, no overlap
+    polygon4 = Polygon([(200, 200), (200, 210), (210, 210), (210, 200)]) # ClassD, no cells inside
     return gpd.GeoDataFrame({
-        "geometry": [polygon1, polygon2],
-        "classification": ['{"name": "ClassA"}', '{"name": "ClassB"}']
+        "geometry": [polygon1, polygon2, polygon3, polygon4],
+        "classification": ['{"name": "ClassA"}', '{"name": "ClassB"}', '{"name": "ClassC"}', '{"name": "ClassD"}']
     }, crs="EPSG:4326")
 
 
@@ -43,34 +56,35 @@ def temp_geojson_file(tmp_path, sample_geojson) -> str:
 
 
 def test_filter_with_default_params(sample_adata, temp_geojson_file):
-    """Test filtering with default parameters."""
-    # Ensure some points fall within the sample_geojson polygons for this test
-    # This is crucial for 'ClassA' and 'ClassB' columns to be generated
-    sample_adata.obs.loc[sample_adata.obs.index[:20], "X_centroid"] = np.random.rand(20) * 50 # Within polygon1 (0-50)
-    sample_adata.obs.loc[sample_adata.obs.index[:20], "Y_centroid"] = np.random.rand(20) * 50 # Within polygon1 (0-50)
-    sample_adata.obs.loc[sample_adata.obs.index[20:40], "X_centroid"] = np.random.rand(20) * 40 + 60 # Within polygon2 (60-100)
-    sample_adata.obs.loc[sample_adata.obs.index[20:40], "Y_centroid"] = np.random.rand(20) * 40 + 60 # Within polygon2 (60-100)
+    """Test filtering with deterministic data and overlapping polygons."""
     adata_annotated = filter_by_annotation(sample_adata, temp_geojson_file)
     
     assert "ClassA" in adata_annotated.obs.columns
     assert "ClassB" in adata_annotated.obs.columns
+    assert "ClassD" in adata_annotated.obs.columns # New assertion for ClassD
+    assert "ClassC" in adata_annotated.obs.columns
     assert "ANY" in adata_annotated.obs.columns
     assert "annotation" in adata_annotated.obs.columns
 
     # Check that 'ANY' column is True for cells inside any polygon
     inside_any = adata_annotated.obs["ANY"]
-    assert (inside_any == (adata_annotated.obs["ClassA"] | adata_annotated.obs["ClassB"])).all()
+    assert (inside_any == (adata_annotated.obs["ClassA"] | adata_annotated.obs["ClassB"] | adata_annotated.obs["ClassC"])).all()
 
-    # Check that 'annotation' column has expected labels
-    annotation_labels = adata_annotated.obs["annotation"]
-    assert (annotation_labels == "ClassA").sum() > 0 # At least some ClassA
-    assert (annotation_labels == "ClassB").sum() > 0 # At least some ClassB
-    assert (annotation_labels == "Unannotated").sum() > 0 # At least some Unannotated
-    assert all(
-        (label in ["ClassA", "ClassB", "Unannotated"])
-        for label in annotation_labels
-    )
+    # Check the 'annotation' column for specific cells
+    obs_df = adata_annotated.obs.set_index('CellID')
+    assert obs_df.loc["in_A_only", "annotation"] == "ClassA"
+    assert obs_df.loc["in_B_only", "annotation"] == "ClassB"
+    assert obs_df.loc["in_C_only", "annotation"] == "ClassC"
+    assert obs_df.loc["in_A_and_B_overlap", "annotation"] == "MIXED"
+    assert obs_df.loc["unannotated", "annotation"] == "Unannotated"
 
+    # Check that ClassD column exists and is all False
+    assert (adata_annotated.obs["ClassD"] == False).all()
+
+    # Check boolean columns for the MIXED cell
+    assert obs_df.loc["in_A_and_B_overlap", "ClassA"]
+    assert obs_df.loc["in_A_and_B_overlap", "ClassB"]
+    assert not obs_df.loc["in_A_and_B_overlap", "ClassC"]
 
 def test_filter_with_custom_params(sample_adata, temp_geojson_file):
     """Test filtering with custom cell_id_col and x_y parameters."""
@@ -80,6 +94,7 @@ def test_filter_with_custom_params(sample_adata, temp_geojson_file):
 
     assert "ClassA" in adata_annotated.obs.columns
     assert "ClassB" in adata_annotated.obs.columns
+    assert "ClassC" in adata_annotated.obs.columns
     assert "annotation_group" in adata_annotated.obs.columns
     assert "annotation" in adata_annotated.obs.columns
 
@@ -136,25 +151,22 @@ def test_all_cells_unannotated(sample_adata, tmp_path):
 
 def test_some_cells_annotated(sample_adata, temp_geojson_file):
     """Test scenario where some cells are annotated and some are not."""
-    # Modify sample_adata to ensure some points fall within the sample_geojson polygons
-    sample_adata.obs.loc[sample_adata.obs.index[:20], "X_centroid"] = np.random.rand(20) * 50
-    sample_adata.obs.loc[sample_adata.obs.index[:20], "Y_centroid"] = np.random.rand(20) * 50
-    sample_adata.obs.loc[sample_adata.obs.index[20:40], "X_centroid"] = np.random.rand(20) * 40 + 60
-    sample_adata.obs.loc[sample_adata.obs.index[20:40], "Y_centroid"] = np.random.rand(20) * 40 + 60
-
+    # This test uses the deterministic sample_adata which has annotated and unannotated cells
     adata_annotated = filter_by_annotation(sample_adata, temp_geojson_file)
 
     # Check that some cells are annotated with "ClassA"
     assert adata_annotated.obs["ClassA"].sum() > 0
-
     # Check that some cells are annotated with "ClassB"
     assert adata_annotated.obs["ClassB"].sum() > 0
-
+    # Check that some cells are annotated with "ClassC"
+    assert adata_annotated.obs["ClassC"].sum() > 0
     # Check that some cells are "Unannotated"
     assert (adata_annotated.obs["annotation"] == "Unannotated").sum() > 0
 
     # Check 'ANY' column correctly reflects cells within any annotation
-    assert (adata_annotated.obs["ANY"] == (adata_annotated.obs["ClassA"] | adata_annotated.obs["ClassB"])).all()
+    assert (adata_annotated.obs["ANY"] == (
+        adata_annotated.obs["ClassA"] | adata_annotated.obs["ClassB"] | adata_annotated.obs["ClassC"]
+        )).all()
 
 
 def test_new_obs_columns_present(sample_adata, temp_geojson_file):
@@ -162,8 +174,9 @@ def test_new_obs_columns_present(sample_adata, temp_geojson_file):
     adata_filtered = filter_by_annotation(sample_adata, temp_geojson_file)
     
     # Get expected columns from the GeoJSON (annotation classes) and the function's defaults
+    gdf = gpd.read_file(temp_geojson_file)
     expected_annotation_cols = [
-        f for f in gpd.read_file(temp_geojson_file)['classification'].apply(lambda x: eval(x)['name']).unique()
+        name for name in gdf['classification'].apply(lambda x: ast.literal_eval(x).get('name')).unique()
     ]
     expected_cols = expected_annotation_cols + ["ANY", "annotation"]
     

@@ -81,27 +81,17 @@ def filter_by_annotation(
     # --- Process spatial join results to create annotation columns ---
     
     # 1. Create boolean columns for each unique annotation class
-    # The sjoin operation creates a row for each cell-polygon intersection. This means a cell
-    # in multiple annotations will have multiple rows. We pivot this into a presence/absence
-    # matrix where rows are cells and columns are annotation classes.
-    
-    # Filter out cells that didn't join with any polygon (where class_name is NaN)
     annotated_cells = joined.dropna(subset=['class_name'])
 
+    # Use crosstab to create a matrix of cell IDs vs. annotation classes.
     if not annotated_cells.empty:
-        # Use crosstab to create a matrix of cell IDs vs. annotation classes.
-        # The values will be the count of intersections (usually 1).
         presence_matrix = pd.crosstab(annotated_cells[cell_id_col], annotated_cells['class_name'])
-        # Convert counts to a boolean presence/absence matrix.
         annotation_presence = (presence_matrix > 0)
     else:
-        # Handle the edge case where no cells are annotated at all.
         logger.warning("No cells were found inside any of the provided annotations.")
-        # Create an empty DataFrame to be populated with all-False columns later.
         annotation_presence = pd.DataFrame(index=pd.Index([], name=cell_id_col))
 
     # Ensure all unique GeoJSON classes are present as columns, filling missing ones with False.
-    # This guarantees that even if no cells fall into an annotation, its column exists.
     for geo_class in all_geojson_classes:
         if geo_class not in annotation_presence.columns:
             annotation_presence[geo_class] = False
@@ -109,46 +99,28 @@ def filter_by_annotation(
     # Reindex to include all original cells, filling unannotated ones with False.
     all_cell_ids = adata_copy.obs[cell_id_col].unique()
     annotation_presence = annotation_presence.reindex(all_cell_ids, fill_value=False)
-    annotation_presence = annotation_presence.astype(bool) # Ensure all class columns are boolean
+    annotation_presence = annotation_presence.astype(bool)
 
     # 2. Create the 'any_label' column: True if the cell is in ANY annotation class
     actual_annotation_cols = all_geojson_classes # These are the columns representing actual annotation classes
     annotation_presence[any_label] = annotation_presence[actual_annotation_cols].any(axis=1)
 
-    # 3. Create the 'annotation' column: a single string representing the first annotation found
-    #    Initialize with 'Unannotated' for cells not in any polygon.
-    
-    # def determine_annotation(row):
-    #     true_annotations = [col for col in actual_annotation_cols if row[col]]
-    #     if len(true_annotations) == 0:
-    #         return 'Unannotated'
-    #     elif len(true_annotations) == 1:
-    #         return true_annotations[0]
-    #     else:
-    #         return 'MIXED'
-    # annotation_presence['annotation'] = annotation_presence.apply(determine_annotation, axis=1)
-        
     # 3. Create the 'annotation' column: a single string representing the annotation status.
-    # This vectorized approach is more performant than using .apply().
     num_annotations = annotation_presence[actual_annotation_cols].sum(axis=1)
-    
-    # Default to Unannotated
     annotation_presence['annotation'] = 'Unannotated'
-    
-    # Set MIXED for cells in more than one annotation
     annotation_presence.loc[num_annotations > 1, 'annotation'] = 'MIXED'
     
     # Set single class name for cells in exactly one annotation
     single_mask = num_annotations == 1
     if single_mask.any():
-        # For rows where there's only one True value, idxmax() returns the column name of that True value.
-        annotation_presence.loc[single_mask, 'annotation'] = annotation_presence.loc[single_mask, actual_annotation_cols].idxmax(axis=1)
+        annotation_presence.loc[single_mask, 'annotation'] = annotation_presence.loc[
+            single_mask, actual_annotation_cols].idxmax(axis=1)
 
     # 4. Merge the new annotation columns back into adata.obs
     adata_copy.obs = adata_copy.obs.merge(annotation_presence.reset_index(), on=cell_id_col, how='left')
 
     # Fill any NaNs introduced by the merge (for cells that had no spatial annotation)
-    for col in actual_annotation_cols + [any_label]: # Apply fillna to all relevant boolean columns
+    for col in actual_annotation_cols + [any_label]:
         adata_copy.obs[col] = adata_copy.obs[col].fillna(False)
     adata_copy.obs['annotation'] = adata_copy.obs['annotation'].fillna('Unannotated')
 

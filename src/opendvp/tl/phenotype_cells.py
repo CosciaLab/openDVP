@@ -1,8 +1,34 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# Created on Mon Mar  2 19:56:08 2020
+# @author: Ajit Johnson Nirmal
+"""
+!!! abstract "Short Description"
+    `sm.tl.phenotype_cells`: This function annotates each cell in the dataset with a phenotype based on `scaled data` and a predefined `phenotype workflow`. Before using this function, ensure the data is scaled with the `sm.tl.rescale` function.
+    
+    *Description of the Phenotype Workflow File:*  
+    Find an example `phenotype_workflow.csv` [here](https://github.com/ajitjohnson/scimap/blob/master/scimap/tests/_data/phenotype_workflow.csv).
+    
+    The `phenotype_workflow` file outlines six gating strategies for cell phenotyping:
+    
+    - **allpos**: Requires all specified markers to be positive for a cell to be assigned the phenotype.
+    - **allneg**: Requires all specified markers to be negative for a cell to be assigned the phenotype.
+    - **anypos**: Requires at least one of the specified markers to be positive for a cell to be assigned the phenotype. For example, a macrophage could be identified if it is positive for any of the markers `CD68`, `CD163`, or `CD206`.
+    - **anyneg**: Requires at least one of the specified markers to be negative for a cell to be assigned the phenotype.
+    - **pos**: Specifies that a cell must be positive for the given marker(s) to be assigned the phenotype. If used for multiple markers, cells not meeting all criteria may still be classified as a potential phenotype, allowing for later refinement by the user. For instance, regulatory T cells could be defined as `CD4+` and `FOXP3+`; cells not fully meeting these criteria might be labeled as likely-regulatory T cells for further evaluation.
+    - **neg**: Specifies that a cell must be negative for the given marker(s) to be assigned the phenotype.
+    
+    *Recommendation*: Prioritize using positive markers to define phenotypes whenever possible.
+
+## Function
+"""
+
+# Library
 import numpy as np
 import pandas as pd
+import argparse
 
-## THIS FUNCTION IS FROM SCIMAP ## 
-## THIS IS HERE FOR SIMPLICITY, AND TO PREVENT ENV CONFLICTS ##
+
 
 def phenotype_cells (adata, 
                      phenotype, 
@@ -13,7 +39,9 @@ def phenotype_cells (adata,
                      pheno_threshold_abs=None,
                      verbose=True
                      ):
-    """Parameters:
+    """
+    
+Parameters:
     adata (anndata.AnnData):  
         The input AnnData object containing single-cell data for phenotyping.
 
@@ -38,11 +66,11 @@ def phenotype_cells (adata,
     verbose (bool):  
         If set to `True`, the function will print detailed messages about its progress and the steps being executed.
 
-    Returns:
+Returns:
     adata (anndata.AnnData):  
         The input AnnData object, updated to include the phenotype classifications for each cell. The phenotyping results can be found in `adata.obs[label]`, where `label` is the name specified by the user for the phenotype column.
 
-    Example:
+Example:    
     ```python
     
     # Load the phenotype workflow CSV file
@@ -83,7 +111,7 @@ def phenotype_cells (adata,
         p_list = phenotype.iloc[:,1].tolist()
         r_phenotype = lambda x: phenotype_parser(cell=x, p=phenotype) # Create lamda function
         all_phenotype = list(map(r_phenotype, p_list)) # Apply function
-        all_phenotype = dict(zip(p_list, all_phenotype, strict=False)) # Name the lists
+        all_phenotype = dict(zip(p_list, all_phenotype)) # Name the lists
 
         # Define function to check if there is any marker that does not satisfy the gate
         def gate_satisfation_lessthan (marker, data, gate):
@@ -178,7 +206,7 @@ def phenotype_cells (adata,
         # Apply the fuction to get the total score for all cell types
         r_prob_mapper = lambda x: prob_mapper (data=data, all_phenotype=all_phenotype, cell=x, gate=gate) # Create lamda function
         final_scores = list(map(r_prob_mapper, [*all_phenotype])) # Apply function
-        final_scores = dict(zip([*all_phenotype], final_scores, strict=False)) # Name the lists
+        final_scores = dict(zip([*all_phenotype], final_scores)) # Name the lists
 
         # Combine the final score to annotate the cells with a label
         final_score_df = pd.DataFrame()
@@ -189,7 +217,7 @@ def phenotype_cells (adata,
         final_score_df.columns = [*final_scores]
         final_score_df.index = data.index
         # Add a column called unknown if all markers have a value less than the gate (0.5)
-        unknown = group + '-rest'
+        unknown = group + str('-rest')
         final_score_df[unknown] = (final_score_df < gate).all(axis=1).astype(int)
 
         # Name each cell
@@ -281,7 +309,7 @@ def phenotype_cells (adata,
                 fail = list(x.loc[x['val'] < x['val'].sum() * pheno_threshold_percent/100].index)
             if pheno_threshold_abs is not None:
                 fail = list(x.loc[x['val'] < pheno_threshold_abs].index)
-            d[label] = d[label].replace(dict(zip(fail, ['Unknown'] * len(fail), strict=False )))
+            d[label] = d[label].replace(dict(zip(fail, ['Unknown'] * len(fail) )))
             # Return
             return d
 
@@ -302,3 +330,24 @@ def phenotype_cells (adata,
     #    adata.obs[i] = phenotype_labels[i]
 
     return adata
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='The phenotyping function takes in the `scaled data` and a prior knowledge based `phenotype workflow` file to assign phenotype annotation to each cell in the dataset')
+    parser.add_argument('--adata', type=str, help='anndata object')
+    parser.add_argument('--phenotype', type=str, default='phenotype', help='A gating strategy for phenotyping the cells. An example `workflow` provided [here](https://github.com/ajitjohnson/scimap/blob/master/scimap/tests/_data/phenotype_workflow.csv).')
+    parser.add_argument('--gate', type=int, default=0.5, help='By default rescale function, scales the data such that values above 0.5 are considered positive cells.')
+    parser.add_argument('--label', type=str, default='phenotype', help='Name the column underwhich the final phenotype calling will be saved.')
+    parser.add_argument('--imageid', type=str, default='imageid', help='Name of the column that contains the unique imageid')
+    parser.add_argument('--pheno_threshold_percent', type=float, default=True, help='Accepts values between (0-100). If any particular phenotype is below the user defined threshold, it is recategorised as unknown')
+    parser.add_argument('--pheno_threshold_abs', type=int, default=None, help='Serves the same purpose as that of pheno_threshold_percent. However, an absolute number can be passed')
+    parser.add_argument('--verbose', required=False, default=True, help='The function will print detailed messages about its progress.')
+    args = parser.parse_args()
+    
+    phenotype_cells(adata=args.adata,
+                   phenotype=args.phenotype, 
+                   gate=args.gate,
+                   label=args.label, 
+                   imageid=args.imageid, 
+                   phenotype_threshhold_percent=args.pheno_threshold_percent, 
+                   pheno_threshold_abs=args.pheno_threshold_abs)
+    

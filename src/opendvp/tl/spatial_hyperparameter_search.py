@@ -28,8 +28,6 @@ def spatial_hyperparameter_search(
         Column names in adata.obs representing the spatial coordinates.
     threshold_range : np.ndarray, default np.arange(1, 100, 1)
         Range of threshold values to test.
-    loguru_logger : Optional[logger], default None
-        Loguru logger for logging information during the process.
     return_df : bool, default False
         If True, return the DataFrame with threshold statistics along with the plot.
     plot_network_at : Optional[int], default None
@@ -47,12 +45,15 @@ def spatial_hyperparameter_search(
     # Initialize a list to store the stats for each threshold
     if x_y is None:
         x_y = ["x_centroid", "y_centroid"]
-    if not threshold_range:
+    for col in x_y:
+        if col not in adata.obs.columns:
+            raise ValueError(f"Column '{col}' not found in adata.obs")
+    if threshold_range is None:
         threshold_range = np.arange(1, 100, 1)
     stats = []
 
     coords = adata.obs[x_y].to_numpy()
-    total_nodes = len(coords)  # Total number of nodes
+    total_nodes = len(coords)
 
     for threshold in threshold_range:
         # Compute the spatial weights for each threshold

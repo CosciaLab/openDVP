@@ -32,15 +32,18 @@ def stats_ttest(
         The threshold for the FDR correction.
 
     Returns:
-    -------
+    ------- 
     None
         Results are saved to adata.var in-place.
     """
+    if group1 not in adata.obs[grouping].unique() or group2 not in adata.obs[grouping].unique():
+        raise ValueError(f"Given groups not found in {grouping}")
+    
     adata_copy = adata.copy()
     t_values = []
     p_values = []
-    FC = []
-    
+    diffs = []
+
     X = np.asarray(adata_copy.X)
     for column in adata_copy.var.index:
         mask1 = (adata_copy.obs[grouping] == group1).to_numpy(dtype=bool)
@@ -48,25 +51,23 @@ def stats_ttest(
         col_idx = adata_copy.var.index.get_loc(column)
         array_1 = X[mask1][:, col_idx].flatten()
         array_2 = X[mask2][:, col_idx].flatten()
-        result = pg.ttest(x=array_1, y=array_2, paired=False, alternative="two-sided", correction=False, r=0.707)
-        t_values.append(result.iloc[0,0])
+        result = pg.ttest(x=array_1, y=array_2, paired=False, alternative="two-sided")
+        t_values.append(result.iloc[0, 0])
         p_values.append(result.iloc[0,3])
-        FC.append(np.mean(array_1) - np.mean(array_2))
+        diffs.append(np.mean(array_1) - np.mean(array_2))
 
     # Add results to adata object
     adata_copy.var["t_val"] = t_values
     adata_copy.var["p_val"] = p_values
-    adata_copy.var["log2_FC"] = FC
+    adata_copy.var["mean_diff"] = diffs
     # Correct for multiple testing
     result_BH = smm.multipletests(adata_copy.var["p_val"].values, alpha=FDR_threshold, method='fdr_bh')
-    adata_copy.var["significant_BH"] = result_BH[0]
-    adata_copy.var["p_val_corr_BH"] = result_BH[1]
-    adata_copy.var['-log10(p_val_corr)_BH'] = -np.log10(adata_copy.var['p_val_corr_BH'])
+    adata_copy.var["sig"] = result_BH[0]
+    adata_copy.var["p_corr"] = result_BH[1]
+    adata_copy.var['-log10_p_corr'] = -np.log10(adata_copy.var['p_corr'])
 
-    logger.info(f"Testing for differential expression between {group1} and {group2}")
-    logger.info("Using pingouin.ttest to perform t-test, two-sided, not paired")
-    logger.info("Using statsmodels.stats.multitest.multipletests to correct for multiple testing")
+    logger.info(f"Using pingouin.ttest to perform unpaired two-sided t-test between {group1} and {group2}")
     logger.info(f"Using Benjamini-Hochberg for FDR correction, with a threshold of {FDR_threshold}")
-    logger.info(f"The test found {np.sum(adata_copy.var['significant_BH'])} proteins to be significantly")
+    logger.info(f"The test found {np.sum(adata_copy.var['sig'])} proteins to be significantly")
 
     return adata_copy

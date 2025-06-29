@@ -11,7 +11,10 @@ def filter_adata_by_gates(
 ) -> ad.AnnData:
     """Filter an AnnData object to retain only markers specified in the `gates` DataFrame.
 
-    Parameters
+    A very verbose function was created because of the specific way rescale works, 
+    It is finicky to small changes.    
+
+    Parameters:
     ----------
     adata : AnnData
         The annotated data matrix to be filtered (cells x markers).

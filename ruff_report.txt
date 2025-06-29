@@ -1,0 +1,3776 @@
+src/opendvp/experimental/plot_MLM_heatmap.py:13:5: ANN201 Missing return type annotation for public function `get_datetime`
+   |
+12 | # helper functions
+13 | def get_datetime():
+   |     ^^^^^^^^^^^^ ANN201
+14 |     return time.strftime("%Y%m%d_%H%M%S")
+   |
+   = help: Add return type annotation
+
+src/opendvp/experimental/plot_MLM_heatmap.py:13:5: D103 Missing docstring in public function
+   |
+12 | # helper functions
+13 | def get_datetime():
+   |     ^^^^^^^^^^^^ D103
+14 |     return time.strftime("%Y%m%d_%H%M%S")
+   |
+
+src/opendvp/experimental/plot_MLM_heatmap.py:21:5: ANN201 Missing return type annotation for public function `plot_MLM_heatmap`
+   |
+21 | def plot_MLM_heatmap(
+   |     ^^^^^^^^^^^^^^^^ ANN201
+22 |         adata, 
+23 |         groupby_analysis, 
+   |
+   = help: Add return type annotation
+
+src/opendvp/experimental/plot_MLM_heatmap.py:22:9: ANN001 Missing type annotation for function argument `adata`
+   |
+21 | def plot_MLM_heatmap(
+22 |         adata, 
+   |         ^^^^^ ANN001
+23 |         groupby_analysis, 
+24 |         groupby_plot, 
+   |
+
+src/opendvp/experimental/plot_MLM_heatmap.py:23:9: ANN001 Missing type annotation for function argument `groupby_analysis`
+   |
+21 | def plot_MLM_heatmap(
+22 |         adata, 
+23 |         groupby_analysis, 
+   |         ^^^^^^^^^^^^^^^^ ANN001
+24 |         groupby_plot, 
+25 |         n_pathways, 
+   |
+
+src/opendvp/experimental/plot_MLM_heatmap.py:24:9: ANN001 Missing type annotation for function argument `groupby_plot`
+   |
+22 |         adata, 
+23 |         groupby_analysis, 
+24 |         groupby_plot, 
+   |         ^^^^^^^^^^^^ ANN001
+25 |         n_pathways, 
+26 |         return_adata=False,
+   |
+
+src/opendvp/experimental/plot_MLM_heatmap.py:25:9: ANN001 Missing type annotation for function argument `n_pathways`
+   |
+23 |         groupby_analysis, 
+24 |         groupby_plot, 
+25 |         n_pathways, 
+   |         ^^^^^^^^^^ ANN001
+26 |         return_adata=False,
+27 |         return_acts=False,
+   |
+
+src/opendvp/experimental/plot_MLM_heatmap.py:26:9: ANN001 Missing type annotation for function argument `return_adata`
+   |
+24 |         groupby_plot, 
+25 |         n_pathways, 
+26 |         return_adata=False,
+   |         ^^^^^^^^^^^^ ANN001
+27 |         return_acts=False,
+28 |         **kwargs): 
+   |
+
+src/opendvp/experimental/plot_MLM_heatmap.py:27:9: ANN001 Missing type annotation for function argument `return_acts`
+   |
+25 |         n_pathways, 
+26 |         return_adata=False,
+27 |         return_acts=False,
+   |         ^^^^^^^^^^^ ANN001
+28 |         **kwargs): 
+29 |     """Description:
+   |
+
+src/opendvp/experimental/plot_MLM_heatmap.py:28:9: ANN003 Missing type annotation for `**kwargs`
+   |
+26 |         return_adata=False,
+27 |         return_acts=False,
+28 |         **kwargs): 
+   |         ^^^^^^^^ ANN003
+29 |     """Description:
+30 |         Perform an Over-Representation Analysis (ORA) using the Decoupler package and plot the results as a heatmap.
+   |
+
+src/opendvp/experimental/plot_MLM_heatmap.py:29:5: D205 1 blank line required between summary line and description
+   |
+27 |           return_acts=False,
+28 |           **kwargs): 
+29 | /     """Description:
+30 | |         Perform an Over-Representation Analysis (ORA) using the Decoupler package and plot the results as a heatmap.
+31 | |     Parameters:
+32 | |         adata: AnnData object
+33 | |             Annotated data matrix.
+34 | |         msigdb: DataFrame
+35 | |             A DataFrame with the gene sets from the Molecular Signatures Database (MSigDB).
+36 | |     """
+   | |_______^ D205
+37 |       print("version 1.0.0")
+   |
+   = help: Insert single blank line
+
+src/opendvp/experimental/plot_MLM_heatmap.py:63:121: E501 Line too long (124 > 120)
+   |
+62 |     print("Ranking top ", n_pathways, " pathways")
+63 |     pathways = dc.rank_sources_groups(adata=acts, groupby=groupby_analysis, reference='rest', method='t-test_overestim_var')
+   |                                                                                                                         ^^^^ E501
+64 |     source_markers = pathways.groupby('group').head(n_pathways).groupby('group')[
+65 |         'names'
+   |
+
+src/opendvp/experimental/plot_MLM_heatmap.py:95:5: D205 1 blank line required between summary line and description
+    |
+ 93 |       groupby_analysis: str,
+ 94 |   ) -> None:
+ 95 | /     """Description:
+ 96 | |     Plots gene expression by group with median-centered scaling and sorts genes by the mean difference in expression between groups.
+ 97 | |     Adds a second subplot with the combined expression of all genes per group.
+ 98 | |     """
+    | |_______^ D205
+ 99 |       #TODO max number of genes to plot, dynamic number of genes to plot, too many and switch to heatmap??
+100 |       #TODO summary plot should be violin plot, boxplot loses information about density
+    |
+    = help: Insert single blank line
+
+src/opendvp/experimental/plot_MLM_heatmap.py:96:121: E501 Line too long (132 > 120)
+   |
+94 | ) -> None:
+95 |     """Description:
+96 |     Plots gene expression by group with median-centered scaling and sorts genes by the mean difference in expression between groups.
+   |                                                                                                                         ^^^^^^^^^^^^ E501
+97 |     Adds a second subplot with the combined expression of all genes per group.
+98 |     """
+   |
+
+src/opendvp/experimental/plot_MLM_heatmap.py:106:5: S101 Use of `assert` detected
+    |
+105 |     # assert adata is ready
+106 |     assert adata_copy.var.index.name == "Genes", "adata.var.index should be 'Genes'"
+    |     ^^^^^^ S101
+107 |     assert adata_copy.var.index.isna().sum() == 0, "adata.var.index should not have any NA values"
+108 |     assert not any(";" in str(i) for i in adata_copy.var.index), "adata.var.index contains ';' characters, gene list should be cleane…
+    |
+
+src/opendvp/experimental/plot_MLM_heatmap.py:107:5: S101 Use of `assert` detected
+    |
+105 |     # assert adata is ready
+106 |     assert adata_copy.var.index.name == "Genes", "adata.var.index should be 'Genes'"
+107 |     assert adata_copy.var.index.isna().sum() == 0, "adata.var.index should not have any NA values"
+    |     ^^^^^^ S101
+108 |     assert not any(";" in str(i) for i in adata_copy.var.index), "adata.var.index contains ';' characters, gene list should be cleane…
+109 |     assert "mlm_estimate" in adata_copy.obsm, "mlm_estimate not found in adata.obsm."
+    |
+
+src/opendvp/experimental/plot_MLM_heatmap.py:108:5: S101 Use of `assert` detected
+    |
+106 |     assert adata_copy.var.index.name == "Genes", "adata.var.index should be 'Genes'"
+107 |     assert adata_copy.var.index.isna().sum() == 0, "adata.var.index should not have any NA values"
+108 |     assert not any(";" in str(i) for i in adata_copy.var.index), "adata.var.index contains ';' characters, gene list should be cleane…
+    |     ^^^^^^ S101
+109 |     assert "mlm_estimate" in adata_copy.obsm, "mlm_estimate not found in adata.obsm."
+    |
+
+src/opendvp/experimental/plot_MLM_heatmap.py:108:121: E501 Line too long (135 > 120)
+    |
+106 | …x should be 'Genes'"
+107 | …dex should not have any NA values"
+108 | … "adata.var.index contains ';' characters, gene list should be cleaned"
+    |                                                          ^^^^^^^^^^^^^^^ E501
+109 | …found in adata.obsm."
+    |
+
+src/opendvp/experimental/plot_MLM_heatmap.py:109:5: S101 Use of `assert` detected
+    |
+107 |     assert adata_copy.var.index.isna().sum() == 0, "adata.var.index should not have any NA values"
+108 |     assert not any(";" in str(i) for i in adata_copy.var.index), "adata.var.index contains ';' characters, gene list should be cleane…
+109 |     assert "mlm_estimate" in adata_copy.obsm, "mlm_estimate not found in adata.obsm."
+    |     ^^^^^^ S101
+110 |
+111 |     # # assert msigdb is ready
+    |
+
+src/opendvp/experimental/plot_MLM_heatmap.py:142:121: E501 Line too long (127 > 120)
+    |
+141 |     # Melt into long form for the first subplot
+142 |     df_long = expression_data.melt(id_vars='Group', value_vars=pathway_genes_present, var_name='Gene', value_name='Expression')
+    |                                                                                                                         ^^^^^^^ E501
+143 |     # Set categorical order for genes based on mean difference sorting
+144 |     df_long['Gene'] = pd.Categorical(df_long['Gene'], categories=sorted_genes, ordered=True)
+    |
+
+src/opendvp/experimental/plot_ORA_heatmap.py:9:5: ANN201 Missing return type annotation for public function `get_datetime`
+   |
+ 8 | # helper functions
+ 9 | def get_datetime():
+   |     ^^^^^^^^^^^^ ANN201
+10 |     return time.strftime("%Y%m%d_%H%M%S")
+   |
+   = help: Add return type annotation
+
+src/opendvp/experimental/plot_ORA_heatmap.py:9:5: D103 Missing docstring in public function
+   |
+ 8 | # helper functions
+ 9 | def get_datetime():
+   |     ^^^^^^^^^^^^ D103
+10 |     return time.strftime("%Y%m%d_%H%M%S")
+   |
+
+src/opendvp/experimental/plot_ORA_heatmap.py:12:5: ANN201 Missing return type annotation for public function `plot_ORA_heatmap`
+   |
+10 |     return time.strftime("%Y%m%d_%H%M%S")
+11 |
+12 | def plot_ORA_heatmap(
+   |     ^^^^^^^^^^^^^^^^ ANN201
+13 |         adata, 
+14 |         msigdb, 
+   |
+   = help: Add return type annotation
+
+src/opendvp/experimental/plot_ORA_heatmap.py:13:9: ANN001 Missing type annotation for function argument `adata`
+   |
+12 | def plot_ORA_heatmap(
+13 |         adata, 
+   |         ^^^^^ ANN001
+14 |         msigdb, 
+15 |         collection, 
+   |
+
+src/opendvp/experimental/plot_ORA_heatmap.py:14:9: ANN001 Missing type annotation for function argument `msigdb`
+   |
+12 | def plot_ORA_heatmap(
+13 |         adata, 
+14 |         msigdb, 
+   |         ^^^^^^ ANN001
+15 |         collection, 
+16 |         groupby_analysis, 
+   |
+
+src/opendvp/experimental/plot_ORA_heatmap.py:15:9: ANN001 Missing type annotation for function argument `collection`
+   |
+13 |         adata, 
+14 |         msigdb, 
+15 |         collection, 
+   |         ^^^^^^^^^^ ANN001
+16 |         groupby_analysis, 
+17 |         groupby_plot, 
+   |
+
+src/opendvp/experimental/plot_ORA_heatmap.py:16:9: ANN001 Missing type annotation for function argument `groupby_analysis`
+   |
+14 |         msigdb, 
+15 |         collection, 
+16 |         groupby_analysis, 
+   |         ^^^^^^^^^^^^^^^^ ANN001
+17 |         groupby_plot, 
+18 |         n_pathways, 
+   |
+
+src/opendvp/experimental/plot_ORA_heatmap.py:17:9: ANN001 Missing type annotation for function argument `groupby_plot`
+   |
+15 |         collection, 
+16 |         groupby_analysis, 
+17 |         groupby_plot, 
+   |         ^^^^^^^^^^^^ ANN001
+18 |         n_pathways, 
+19 |         return_adata=False,
+   |
+
+src/opendvp/experimental/plot_ORA_heatmap.py:18:9: ANN001 Missing type annotation for function argument `n_pathways`
+   |
+16 |         groupby_analysis, 
+17 |         groupby_plot, 
+18 |         n_pathways, 
+   |         ^^^^^^^^^^ ANN001
+19 |         return_adata=False,
+20 |         return_acts=False,
+   |
+
+src/opendvp/experimental/plot_ORA_heatmap.py:19:9: ANN001 Missing type annotation for function argument `return_adata`
+   |
+17 |         groupby_plot, 
+18 |         n_pathways, 
+19 |         return_adata=False,
+   |         ^^^^^^^^^^^^ ANN001
+20 |         return_acts=False,
+21 |         **kwargs): 
+   |
+
+src/opendvp/experimental/plot_ORA_heatmap.py:20:9: ANN001 Missing type annotation for function argument `return_acts`
+   |
+18 |         n_pathways, 
+19 |         return_adata=False,
+20 |         return_acts=False,
+   |         ^^^^^^^^^^^ ANN001
+21 |         **kwargs): 
+22 |     """Description:
+   |
+
+src/opendvp/experimental/plot_ORA_heatmap.py:21:9: ANN003 Missing type annotation for `**kwargs`
+   |
+19 |         return_adata=False,
+20 |         return_acts=False,
+21 |         **kwargs): 
+   |         ^^^^^^^^ ANN003
+22 |     """Description:
+23 |         Perform an Over-Representation Analysis (ORA) using the Decoupler package and plot the results as a heatmap.
+   |
+
+src/opendvp/experimental/plot_ORA_heatmap.py:22:5: D205 1 blank line required between summary line and description
+   |
+20 |           return_acts=False,
+21 |           **kwargs): 
+22 | /     """Description:
+23 | |         Perform an Over-Representation Analysis (ORA) using the Decoupler package and plot the results as a heatmap.
+24 | |     Parameters:
+25 | |         adata: AnnData object
+26 | |             Annotated data matrix.
+27 | |         msigdb: DataFrame
+28 | |             A DataFrame with the gene sets from the Molecular Signatures Database (MSigDB).
+29 | |     """
+   | |_______^ D205
+30 |       #TODO add option to save pathways as list_of_strings
+   |
+   = help: Insert single blank line
+
+src/opendvp/experimental/plot_ORA_heatmap.py:61:121: E501 Line too long (124 > 120)
+   |
+60 |     print("Ranking top ", n_pathways, " pathways")
+61 |     pathways = dc.rank_sources_groups(adata=acts, groupby=groupby_analysis, reference='rest', method='t-test_overestim_var')
+   |                                                                                                                         ^^^^ E501
+62 |     source_markers = pathways.groupby('group').head(n_pathways).groupby('group')[
+63 |         'names'
+   |
+
+src/opendvp/experimental/plot_ORA_source_variables.py:10:5: ANN201 Missing return type annotation for public function `get_datetime`
+   |
+ 9 | # helper functions
+10 | def get_datetime():
+   |     ^^^^^^^^^^^^ ANN201
+11 |     return time.strftime("%Y%m%d_%H%M%S")
+   |
+   = help: Add return type annotation
+
+src/opendvp/experimental/plot_ORA_source_variables.py:10:5: D103 Missing docstring in public function
+   |
+ 9 | # helper functions
+10 | def get_datetime():
+   |     ^^^^^^^^^^^^ D103
+11 |     return time.strftime("%Y%m%d_%H%M%S")
+   |
+
+src/opendvp/experimental/plot_ORA_source_variables.py:20:5: D205 1 blank line required between summary line and description
+   |
+18 |       groupby_analysis: str,
+19 |   ) -> None:
+20 | /     """Description:
+21 | |     Plots gene expression by group with median-centered scaling and sorts genes by the mean difference in expression between groups.
+22 | |     Adds a second subplot with the combined expression of all genes per group.
+23 | |     """
+   | |_______^ D205
+24 |       #TODO max number of genes to plot, dynamic number of genes to plot, too many and switch to heatmap??
+25 |       #TODO summary plot should be violin plot, boxplot loses information about density
+   |
+   = help: Insert single blank line
+
+src/opendvp/experimental/plot_ORA_source_variables.py:21:121: E501 Line too long (132 > 120)
+   |
+19 | ) -> None:
+20 |     """Description:
+21 |     Plots gene expression by group with median-centered scaling and sorts genes by the mean difference in expression between groups.
+   |                                                                                                                         ^^^^^^^^^^^^ E501
+22 |     Adds a second subplot with the combined expression of all genes per group.
+23 |     """
+   |
+
+src/opendvp/experimental/plot_ORA_source_variables.py:31:5: S101 Use of `assert` detected
+   |
+30 |     # assert adata is ready
+31 |     assert adata_copy.var.index.name == "Genes", "adata.var.index should be 'Genes'"
+   |     ^^^^^^ S101
+32 |     assert adata_copy.var.index.isna().sum() == 0, "adata.var.index should not have any NA values"
+33 |     assert not any(";" in str(i) for i in adata_copy.var.index), (
+   |
+
+src/opendvp/experimental/plot_ORA_source_variables.py:32:5: S101 Use of `assert` detected
+   |
+30 |     # assert adata is ready
+31 |     assert adata_copy.var.index.name == "Genes", "adata.var.index should be 'Genes'"
+32 |     assert adata_copy.var.index.isna().sum() == 0, "adata.var.index should not have any NA values"
+   |     ^^^^^^ S101
+33 |     assert not any(";" in str(i) for i in adata_copy.var.index), (
+34 |         "adata.var.index contains ';' characters, gene list should be cleaned"
+   |
+
+src/opendvp/experimental/plot_ORA_source_variables.py:33:5: S101 Use of `assert` detected
+   |
+31 |     assert adata_copy.var.index.name == "Genes", "adata.var.index should be 'Genes'"
+32 |     assert adata_copy.var.index.isna().sum() == 0, "adata.var.index should not have any NA values"
+33 |     assert not any(";" in str(i) for i in adata_copy.var.index), (
+   |     ^^^^^^ S101
+34 |         "adata.var.index contains ';' characters, gene list should be cleaned"
+35 |     )
+   |
+
+src/opendvp/experimental/plot_ORA_source_variables.py:36:5: S101 Use of `assert` detected
+   |
+34 |         "adata.var.index contains ';' characters, gene list should be cleaned"
+35 |     )
+36 |     assert "ora_estimate" in adata_copy.obsm, "ora_estimate not found in adata.obsm."
+   |     ^^^^^^ S101
+37 |
+38 |     # assert msigdb is ready
+   |
+
+src/opendvp/experimental/plot_ORA_source_variables.py:39:5: S101 Use of `assert` detected
+   |
+38 |     # assert msigdb is ready
+39 |     assert geneset in msigdb['geneset'].values, f"geneset {geneset} not found in msigdb"
+   |     ^^^^^^ S101
+40 |
+41 |     # Remove duplicates and get list of genes in the specified geneset
+   |
+
+src/opendvp/experimental/plot_ORA_source_variables.py:39:23: PD011 Use `.to_numpy()` instead of `.values`
+   |
+38 |     # assert msigdb is ready
+39 |     assert geneset in msigdb['geneset'].values, f"geneset {geneset} not found in msigdb"
+   |                       ^^^^^^^^^^^^^^^^^^^^^^^^ PD011
+40 |
+41 |     # Remove duplicates and get list of genes in the specified geneset
+   |
+
+src/opendvp/experimental/plot_ORA_source_variables.py:66:121: E501 Line too long (127 > 120)
+   |
+65 |     # Melt into long form for the first subplot
+66 |     df_long = expression_data.melt(id_vars='Group', value_vars=pathway_genes_present, var_name='Gene', value_name='Expression')
+   |                                                                                                                         ^^^^^^^ E501
+67 |     # Set categorical order for genes based on mean difference sorting
+68 |     df_long['Gene'] = pd.Categorical(df_long['Gene'], categories=sorted_genes, ordered=True)
+   |
+
+src/opendvp/io/adata_to_qupath.py:52:121: E501 Line too long (127 > 120)
+   |
+50 |     Raises:
+51 |         ValueError:
+52 |             If input types are incorrect, required columns are missing, or no matches are found between adata and geodataframe.
+   |                                                                                                                         ^^^^^^^ E501
+53 |
+54 |     Example:
+   |
+
+src/opendvp/io/adata_to_voronoi.py:9:5: C901 `adata_to_voronoi` is too complex (18 > 10)
+   |
+ 9 | def adata_to_voronoi(
+   |     ^^^^^^^^^^^^^^^^ C901
+10 |     adata: ad.AnnData,
+11 |     x_y: tuple = ("X_centroid", "Y_centroid"),
+   |
+
+src/opendvp/io/adata_to_voronoi.py:86:30: ANN001 Missing type annotation for function argument `vor`
+   |
+84 |     logger.info("Voronoi done")
+85 |
+86 |     def safe_voronoi_polygon(vor, i: int) -> shapely.Polygon | None:
+   |                              ^^^ ANN001
+87 |         region_index = vor.point_region[i]
+88 |         region = vor.regions[region_index]
+   |
+
+src/opendvp/io/import_thresholds.py:62:121: E501 Line too long (164 > 120)
+   |
+60 | …
+61 | …
+62 | …ers', 'log1p_gate_value': sample_id if sample_id is not None else 'log1p_gate_value'})
+   |                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+63 | …olist()}")
+64 | …
+   |
+
+src/opendvp/io/quant_to_adata.py:15:121: E501 Line too long (349 > 120)
+   |
+13 | …
+14 | …
+15 | … and marker intensities, and return an AnnData object suitable for spatial omics workflows. The function expects specific metadata columns and parses marker columns by splitting their names into mathematical operation and marker name.
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+16 | …
+17 | …
+   |
+
+src/opendvp/io/quant_to_adata.py:42:121: E501 Line too long (200 > 120)
+   |
+40 | …
+41 | …
+42 | …oid', 'Area', 'MajorAxisLength', 'MinorAxisLength', 'Eccentricity', 'Orientation', 'Extent', 'Solidity'.
+   |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+43 | … components for AnnData.var.
+44 | …
+   |
+
+src/opendvp/io/quant_to_adata.py:43:121: E501 Line too long (124 > 120)
+   |
+41 |     ------
+42 |     - The CSV file must contain the following metadata columns: 'CellID', 'Y_centroid', 'X_centroid', 'Area', 'MajorAxisLength', 'Mino…
+43 |     - All other columns are treated as marker intensities and are split into 'math' and 'marker' components for AnnData.var.
+   |                                                                                                                         ^^^^ E501
+44 |     - Raises ValueError if required metadata columns are missing or if the file is not a CSV.
+45 |     - The function logs the number of cells and variables loaded, and the time taken for the operation.
+   |
+
+src/opendvp/plotting/coefficient_of_variation.py:15:9: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `ax`
+   |
+13 |     group_by: str,
+14 |     return_fig: bool = False,
+15 |     ax: Any | None = None,
+   |         ^^^^^^^^^^ ANN401
+16 |     **kwargs
+17 | ) -> Figure | None:
+   |
+
+src/opendvp/plotting/coefficient_of_variation.py:16:5: ANN003 Missing type annotation for `**kwargs`
+   |
+14 |     return_fig: bool = False,
+15 |     ax: Any | None = None,
+16 |     **kwargs
+   |     ^^^^^^^^ ANN003
+17 | ) -> Figure | None:
+18 |     """Plot coefficient of variation (CV) for each group in AnnData.obs[group_by].
+   |
+
+src/opendvp/plotting/correlation_heatmap.py:17:9: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `ax`
+   |
+15 |     sample_label: str = "raw_file_id",
+16 |     return_fig: bool = False,
+17 |     ax: Any | None = None,
+   |         ^^^^^^^^^^ ANN401
+18 |     **kwargs,
+19 | ) -> Figure | None:
+   |
+
+src/opendvp/plotting/correlation_heatmap.py:18:5: ANN003 Missing type annotation for `**kwargs`
+   |
+16 |     return_fig: bool = False,
+17 |     ax: Any | None = None,
+18 |     **kwargs,
+   |     ^^^^^^^^ ANN003
+19 | ) -> Figure | None:
+20 |     """Plot a correlation heatmap of the protein abundance for all samples in adata.
+   |
+
+src/opendvp/plotting/density.py:15:9: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `ax`
+   |
+13 |     color_by: str,
+14 |     return_fig: bool = False,
+15 |     ax: Any | None = None,
+   |         ^^^^^^^^^^ ANN401
+16 |     **kwargs
+17 | ) -> Figure | None:
+   |
+
+src/opendvp/plotting/density.py:16:5: ANN003 Missing type annotation for `**kwargs`
+   |
+14 |     return_fig: bool = False,
+15 |     ax: Any | None = None,
+16 |     **kwargs
+   |     ^^^^^^^^ ANN003
+17 | ) -> Figure | None:
+18 |     """Plot density (KDE) plots of protein abundance grouped by a categorical variable in AnnData.obs.
+   |
+
+src/opendvp/plotting/density.py:43:5: PD901 Avoid using the generic variable name `df` for DataFrames
+   |
+42 |     X = np.asarray(adata_copy.X)
+43 |     df = pd.DataFrame(data=X, columns=adata_copy.var_names, index=adata_copy.obs[color_by])
+   |     ^^ PD901
+44 |     df = df.reset_index()
+45 |     df = pd.melt(df, id_vars=[color_by], var_name="Protein", value_name="Abundance")
+   |
+
+src/opendvp/plotting/density.py:44:5: PD901 Avoid using the generic variable name `df` for DataFrames
+   |
+42 |     X = np.asarray(adata_copy.X)
+43 |     df = pd.DataFrame(data=X, columns=adata_copy.var_names, index=adata_copy.obs[color_by])
+44 |     df = df.reset_index()
+   |     ^^ PD901
+45 |     df = pd.melt(df, id_vars=[color_by], var_name="Protein", value_name="Abundance")
+   |
+
+src/opendvp/plotting/density.py:45:5: PD901 Avoid using the generic variable name `df` for DataFrames
+   |
+43 |     df = pd.DataFrame(data=X, columns=adata_copy.var_names, index=adata_copy.obs[color_by])
+44 |     df = df.reset_index()
+45 |     df = pd.melt(df, id_vars=[color_by], var_name="Protein", value_name="Abundance")
+   |     ^^ PD901
+46 |
+47 |     if ax is None:
+   |
+
+src/opendvp/plotting/dual_axis_boxplots.py:28:10: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `ax1`
+   |
+26 |     return_fig: bool = False,
+27 |     show_plot: bool = True,
+28 |     ax1: Any | None = None,
+   |          ^^^^^^^^^^ ANN401
+29 |     ax2: Any | None = None,
+30 |     **kwargs
+   |
+
+src/opendvp/plotting/dual_axis_boxplots.py:29:10: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `ax2`
+   |
+27 |     show_plot: bool = True,
+28 |     ax1: Any | None = None,
+29 |     ax2: Any | None = None,
+   |          ^^^^^^^^^^ ANN401
+30 |     **kwargs
+31 | ) -> Figure | None:
+   |
+
+src/opendvp/plotting/dual_axis_boxplots.py:30:5: ANN003 Missing type annotation for `**kwargs`
+   |
+28 |     ax1: Any | None = None,
+29 |     ax2: Any | None = None,
+30 |     **kwargs
+   |     ^^^^^^^^ ANN003
+31 | ) -> Figure | None:
+32 |     """Generates a dual-axis plot with boxplots and stripplots for two features grouped by a specified feature key.
+   |
+
+src/opendvp/plotting/dual_axis_boxplots.py:82:5: PD901 Avoid using the generic variable name `df` for DataFrames
+   |
+80 |         The figure object if return_fig is True, otherwise None.
+81 |     """
+82 |     df = adata_obs.copy()
+   |     ^^ PD901
+83 |     df = df[[feature_key, feature_1, feature_2]]
+84 |     df = df.melt(id_vars=feature_key, var_name="variable", value_name="value")
+   |
+
+src/opendvp/plotting/dual_axis_boxplots.py:83:5: PD901 Avoid using the generic variable name `df` for DataFrames
+   |
+81 |     """
+82 |     df = adata_obs.copy()
+83 |     df = df[[feature_key, feature_1, feature_2]]
+   |     ^^ PD901
+84 |     df = df.melt(id_vars=feature_key, var_name="variable", value_name="value")
+85 |     groups = df[feature_key].unique()
+   |
+
+src/opendvp/plotting/dual_axis_boxplots.py:84:5: PD901 Avoid using the generic variable name `df` for DataFrames
+   |
+82 |     df = adata_obs.copy()
+83 |     df = df[[feature_key, feature_1, feature_2]]
+84 |     df = df.melt(id_vars=feature_key, var_name="variable", value_name="value")
+   |     ^^ PD901
+85 |     groups = df[feature_key].unique()
+86 |     try:
+   |
+
+src/opendvp/plotting/dual_axis_boxplots.py:86:5: SIM105 Use `contextlib.suppress(TypeError)` instead of `try`-`except`-`pass`
+   |
+84 |       df = df.melt(id_vars=feature_key, var_name="variable", value_name="value")
+85 |       groups = df[feature_key].unique()
+86 | /     try:
+87 | |         groups = sorted(groups)
+88 | |     except TypeError:
+89 | |         pass
+   | |____________^ SIM105
+90 |       x_base = np.arange(len(groups))
+91 |       group_to_x = {group: i for i, group in enumerate(groups)}
+   |
+   = help: Replace with `contextlib.suppress(TypeError)`
+
+src/opendvp/plotting/histogram_w_imputation.py:16:5: ANN003 Missing type annotation for `**kwargs`
+   |
+14 |     save: bool = False,
+15 |     save_name: str | None = None,
+16 |     **kwargs
+   |     ^^^^^^^^ ANN003
+17 | ) -> Figure | None:
+18 |     """Plot histograms for each sample showing raw and imputed values before and after imputation.
+   |
+
+src/opendvp/plotting/pca.py:13:5: C901 `pca` is too complex (13 > 10)
+   |
+11 | # nbformat not in dependencies, considering removing plotly from functions to simplify package
+12 |
+13 | def pca(
+   |     ^^^ C901
+14 |     adata: AnnData,
+15 |     color: str | None = None,
+   |
+
+src/opendvp/plotting/pca.py:19:29: B006 Do not use mutable data structures for argument defaults
+   |
+17 |     symbol: str | None = None,
+18 |     hoverwith: list[str] | None = None,
+19 |     choose_PCs: list[int] = [1, 2],
+   |                             ^^^^^^ B006
+20 |     multi_scatter: bool = False,
+21 |     how_many_PCs: int = 4,
+   |
+   = help: Replace with `None`; initialize within function
+
+src/opendvp/plotting/pca.py:25:15: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `**kwargs`
+   |
+23 |     save_path: str | None = None,
+24 |     return_fig: bool = False,
+25 |     **kwargs: Any
+   |               ^^^ ANN401
+26 | ) -> go.Figure | None:
+27 |     """Plot PCA of samples in an AnnData object using Plotly.
+   |
+
+src/opendvp/plotting/pca.py:69:5: PD901 Avoid using the generic variable name `df` for DataFrames
+   |
+68 |     X_pca = np.asarray(adata.obsm['X_pca'])
+69 |     df = pd.DataFrame(X_pca, columns=[f'PC{i+1}' for i in range(X_pca.shape[1])], index=adata.obs.index)
+   |     ^^ PD901
+70 |     df = pd.concat([df, adata.obs], axis=1)
+   |
+
+src/opendvp/plotting/pca.py:70:5: PD901 Avoid using the generic variable name `df` for DataFrames
+   |
+68 |     X_pca = np.asarray(adata.obsm['X_pca'])
+69 |     df = pd.DataFrame(X_pca, columns=[f'PC{i+1}' for i in range(X_pca.shape[1])], index=adata.obs.index)
+70 |     df = pd.concat([df, adata.obs], axis=1)
+   |     ^^ PD901
+71 |
+72 |     if multi_scatter and scatter_3d:
+   |
+
+src/opendvp/plotting/pca.py:79:121: E501 Line too long (156 > 120)
+   |
+77 | …(adata.uns['pca']['variance_ratio']*100)}
+78 | …
+79 | …olor=df[color] if color else None, symbol=df[symbol] if symbol else None, **kwargs
+   |                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+80 | …
+81 | …city': 0.8})
+   |
+
+src/opendvp/plotting/pca_loadings.py:15:9: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `ax`
+   |
+13 |     n_pcs: int = 2,
+14 |     return_fig: bool = False,
+15 |     ax: Any | None = None,
+   |         ^^^^^^^^^^ ANN401
+16 |     **kwargs
+17 | ) -> Figure | None:
+   |
+
+src/opendvp/plotting/pca_loadings.py:16:5: ANN003 Missing type annotation for `**kwargs`
+   |
+14 |     return_fig: bool = False,
+15 |     ax: Any | None = None,
+16 |     **kwargs
+   |     ^^^^^^^^ ANN003
+17 | ) -> Figure | None:
+18 |     """Plot PCA protein loadings for the top features in the first two principal components.
+   |
+
+src/opendvp/plotting/plot_graph_network.py:9:8: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `w`
+   |
+ 8 | def plot_graph_network(
+ 9 |     w: Any,
+   |        ^^^ ANN401
+10 |     coords: Any,
+11 |     threshold: float,
+   |
+
+src/opendvp/plotting/plot_graph_network.py:10:13: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `coords`
+   |
+ 8 | def plot_graph_network(
+ 9 |     w: Any,
+10 |     coords: Any,
+   |             ^^^ ANN401
+11 |     threshold: float,
+12 |     return_fig: bool = False,
+   |
+
+src/opendvp/plotting/plot_graph_network.py:13:9: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `ax`
+   |
+11 |     threshold: float,
+12 |     return_fig: bool = False,
+13 |     ax: Any | None = None,
+   |         ^^^^^^^^^^ ANN401
+14 |     **kwargs
+15 | ) -> Figure | None:
+   |
+
+src/opendvp/plotting/plot_graph_network.py:14:5: ANN003 Missing type annotation for `**kwargs`
+   |
+12 |     return_fig: bool = False,
+13 |     ax: Any | None = None,
+14 |     **kwargs
+   |     ^^^^^^^^ ANN003
+15 | ) -> Figure | None:
+16 |     """Plot the graph of connected nodes for a given threshold.
+   |
+
+src/opendvp/plotting/rankplot.py:20:9: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `ax`
+   |
+18 |     group_offset: dict[str, float] | None = None,
+19 |     return_fig: bool = False,
+20 |     ax: Any | None = None,
+   |         ^^^^^^^^^^ ANN401
+21 |     **kwargs
+22 | ) -> Figure | None:
+   |
+
+src/opendvp/plotting/rankplot.py:21:5: ANN003 Missing type annotation for `**kwargs`
+   |
+19 |     return_fig: bool = False,
+20 |     ax: Any | None = None,
+21 |     **kwargs
+   |     ^^^^^^^^ ANN003
+22 | ) -> Figure | None:
+23 |     """Plot a rank plot of average protein abundance in an AnnData object.
+   |
+
+src/opendvp/plotting/stacked_barplot.py:46:16: PD010 `.pivot_table` is preferred to `.pivot` or `.unstack`; provides same functionality
+   |
+44 |     """
+45 |     # Count frequencies of each phenotype within each RCN
+46 |     count_df = df.groupby([rcn_col, phenotype_col]).size().unstack(fill_value=0)
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ PD010
+47 |
+48 |     # Normalize to proportions if requested
+   |
+
+src/opendvp/plotting/upset.py:48:5: PD901 Avoid using the generic variable name `df` for DataFrames
+   |
+46 |     """
+47 |     # Convert to DataFrame
+48 |     df = adata.to_df()
+   |     ^^ PD901
+49 |
+50 |     # Exclude variables that are all NaN
+   |
+
+src/opendvp/plotting/upset.py:51:5: PD901 Avoid using the generic variable name `df` for DataFrames
+   |
+50 |     # Exclude variables that are all NaN
+51 |     df = df.loc[:, ~df.isna().all()]
+   |     ^^ PD901
+52 |
+53 |     # Compute presence/absence per cell: True if not NaN and > threshold
+   |
+
+src/opendvp/plotting/volcano.py:22:9: ANN401 Dynamically typed expressions (typing.Any) are disallowed in `ax`
+   |
+20 |     highlight_genes: list[str] | None = None,
+21 |     show_highlighted_genes_names: bool = True,
+22 |     ax: Any | None = None,
+   |         ^^^^^^^^^^ ANN401
+23 |     **kwargs
+24 | ) -> Figure | None:
+   |
+
+src/opendvp/plotting/volcano.py:23:5: ANN003 Missing type annotation for `**kwargs`
+   |
+21 |     show_highlighted_genes_names: bool = True,
+22 |     ax: Any | None = None,
+23 |     **kwargs
+   |     ^^^^^^^^ ANN003
+24 | ) -> Figure | None:
+25 |     """Plot a volcano plot from an AnnData object.
+   |
+
+src/opendvp/plotting/volcano.py:62:5: PD901 Avoid using the generic variable name `df` for DataFrames
+   |
+60 |     """
+61 |     adata_copy = adata.copy()
+62 |     df = adata_copy.var
+   |     ^^ PD901
+63 |     if ax is None:
+64 |         fig, ax = plt.subplots(figsize=(10, 10))
+   |
+
+src/opendvp/pp/rescale.py:1:1: UP009 [*] UTF-8 encoding declaration is unnecessary
+  |
+1 | # -*- coding: utf-8 -*-
+  | ^^^^^^^^^^^^^^^^^^^^^^^ UP009
+2 | # Created on Fri Mar  6 12:13:22 2020
+3 | # @author: Ajit Johnson Nirmal
+  |
+  = help: Remove unnecessary coding comment
+
+src/opendvp/pp/rescale.py:5:1: D205 1 blank line required between summary line and description
+   |
+ 3 |   # @author: Ajit Johnson Nirmal
+ 4 |
+ 5 | / """
+ 6 | | !!! abstract "Short Description"
+ 7 | |     `sm.pp.rescale`: The function allows users to rescale the data. This step is often performed to standardize the 
+ 8 | |     the expression of all markers to a common scale. The rescaling can be either performed automatically or manually. 
+ 9 | |     User defined gates can be passed to rescale the data manually, else the algorithm fits a GMM (gaussian mixed model) to 
+10 | |     identify the cutoff point. The resultant data is between 0-1 where values below 0.5 are considered non-expressing while 
+11 | |     above 0.5 is considered positive. 
+12 | |
+13 | | ## Function
+14 | | """
+   | |___^ D205
+15 |
+16 |   # Import library
+   |
+   = help: Insert single blank line
+
+src/opendvp/pp/rescale.py:5:1: D212 [*] Multi-line docstring summary should start at the first line
+   |
+ 3 |   # @author: Ajit Johnson Nirmal
+ 4 |
+ 5 | / """
+ 6 | | !!! abstract "Short Description"
+ 7 | |     `sm.pp.rescale`: The function allows users to rescale the data. This step is often performed to standardize the 
+ 8 | |     the expression of all markers to a common scale. The rescaling can be either performed automatically or manually. 
+ 9 | |     User defined gates can be passed to rescale the data manually, else the algorithm fits a GMM (gaussian mixed model) to 
+10 | |     identify the cutoff point. The resultant data is between 0-1 where values below 0.5 are considered non-expressing while 
+11 | |     above 0.5 is considered positive. 
+12 | |
+13 | | ## Function
+14 | | """
+   | |___^ D212
+15 |
+16 |   # Import library
+   |
+   = help: Remove whitespace after opening quotes
+
+src/opendvp/pp/rescale.py:9:121: E501 Line too long (123 > 120)
+   |
+ 7 |     `sm.pp.rescale`: The function allows users to rescale the data. This step is often performed to standardize the 
+ 8 |     the expression of all markers to a common scale. The rescaling can be either performed automatically or manually. 
+ 9 |     User defined gates can be passed to rescale the data manually, else the algorithm fits a GMM (gaussian mixed model) to 
+   |                                                                                                                         ^^^ E501
+10 |     identify the cutoff point. The resultant data is between 0-1 where values below 0.5 are considered non-expressing while 
+11 |     above 0.5 is considered positive. 
+   |
+
+src/opendvp/pp/rescale.py:10:121: E501 Line too long (124 > 120)
+   |
+ 8 |     the expression of all markers to a common scale. The rescaling can be either performed automatically or manually. 
+ 9 |     User defined gates can be passed to rescale the data manually, else the algorithm fits a GMM (gaussian mixed model) to 
+10 |     identify the cutoff point. The resultant data is between 0-1 where values below 0.5 are considered non-expressing while 
+   |                                                                                                                         ^^^^ E501
+11 |     above 0.5 is considered positive. 
+   |
+
+src/opendvp/pp/rescale.py:17:1: I001 [*] Import block is un-sorted or un-formatted
+   |
+16 |   # Import library
+17 | / import pandas as pd
+18 | | import numpy as np
+19 | | import argparse
+20 | | from sklearn.preprocessing import MinMaxScaler
+21 | | from sklearn.mixture import GaussianMixture
+22 | | import anndata as ad
+23 | | import json
+   | |___________^ I001
+   |
+   = help: Organize imports
+
+src/opendvp/pp/rescale.py:27:5: C901 `rescale` is too complex (36 > 10)
+   |
+26 | # Function
+27 | def rescale(
+   |     ^^^^^^^ C901
+28 |     adata,
+29 |     gate=None,
+   |
+
+src/opendvp/pp/rescale.py:27:5: ANN201 Missing return type annotation for public function `rescale`
+   |
+26 | # Function
+27 | def rescale(
+   |     ^^^^^^^ ANN201
+28 |     adata,
+29 |     gate=None,
+   |
+   = help: Add return type annotation
+
+src/opendvp/pp/rescale.py:28:5: ANN001 Missing type annotation for function argument `adata`
+   |
+26 | # Function
+27 | def rescale(
+28 |     adata,
+   |     ^^^^^ ANN001
+29 |     gate=None,
+30 |     log=True,
+   |
+
+src/opendvp/pp/rescale.py:29:5: ANN001 Missing type annotation for function argument `gate`
+   |
+27 | def rescale(
+28 |     adata,
+29 |     gate=None,
+   |     ^^^^ ANN001
+30 |     log=True,
+31 |     imageid='imageid',
+   |
+
+src/opendvp/pp/rescale.py:30:5: ANN001 Missing type annotation for function argument `log`
+   |
+28 |     adata,
+29 |     gate=None,
+30 |     log=True,
+   |     ^^^ ANN001
+31 |     imageid='imageid',
+32 |     failed_markers=None,
+   |
+
+src/opendvp/pp/rescale.py:31:5: ANN001 Missing type annotation for function argument `imageid`
+   |
+29 |     gate=None,
+30 |     log=True,
+31 |     imageid='imageid',
+   |     ^^^^^^^ ANN001
+32 |     failed_markers=None,
+33 |     method='all',
+   |
+
+src/opendvp/pp/rescale.py:32:5: ANN001 Missing type annotation for function argument `failed_markers`
+   |
+30 |     log=True,
+31 |     imageid='imageid',
+32 |     failed_markers=None,
+   |     ^^^^^^^^^^^^^^ ANN001
+33 |     method='all',
+34 |     verbose=True,
+   |
+
+src/opendvp/pp/rescale.py:33:5: ANN001 Missing type annotation for function argument `method`
+   |
+31 |     imageid='imageid',
+32 |     failed_markers=None,
+33 |     method='all',
+   |     ^^^^^^ ANN001
+34 |     verbose=True,
+35 |     random_state=0,
+   |
+
+src/opendvp/pp/rescale.py:34:5: ANN001 Missing type annotation for function argument `verbose`
+   |
+32 |     failed_markers=None,
+33 |     method='all',
+34 |     verbose=True,
+   |     ^^^^^^^ ANN001
+35 |     random_state=0,
+36 |     gmm_components=3,
+   |
+
+src/opendvp/pp/rescale.py:35:5: ANN001 Missing type annotation for function argument `random_state`
+   |
+33 |     method='all',
+34 |     verbose=True,
+35 |     random_state=0,
+   |     ^^^^^^^^^^^^ ANN001
+36 |     gmm_components=3,
+37 | ):
+   |
+
+src/opendvp/pp/rescale.py:36:5: ANN001 Missing type annotation for function argument `gmm_components`
+   |
+34 |     verbose=True,
+35 |     random_state=0,
+36 |     gmm_components=3,
+   |     ^^^^^^^^^^^^^^ ANN001
+37 | ):
+38 |     """
+   |
+
+src/opendvp/pp/rescale.py:38:5: D202 [*] No blank lines allowed after function docstring (found 1)
+   |
+36 |       gmm_components=3,
+37 |   ):
+38 | /     """
+39 | |     Parameters:
+40 | |         adata (AnnData Object, required):
+41 | |             An annotated data object that contains single-cell expression data.
+42 | |
+43 | |         gate (DataFrame, optional):
+44 | |             A pandas DataFrame where the first column lists markers, and subsequent columns contain gate values
+45 | |             for each image in the dataset. Column names must correspond to unique `imageid` identifiers, and the marker column must be…
+46 | |             If a single column of gate values is provided for a dataset with multiple images, the same gate will be uniformly applied …
+47 | |             In this case, ensure that the columns are named exactly "markers" and "gates".
+48 | |             If no gates are provided for specific markers, the function attempts to automatically determine gates using a Gaussian Mix…
+49 | |
+50 | |             Note: If you have used `napariGater()`, the gates are stored within `adata.uns['gates']`.
+51 | |             You can directly pass `adata.uns['gates']` to use these pre-defined gates.
+52 | |
+53 | |         log (bool, optional):
+54 | |             If `True`, the data in `adata.raw.X` will be log-transformed (using log1p) before gate application. This transformation is…
+55 | |
+56 | |         imageid (str, optional):
+57 | |             The name of the column in `adata` that contains Image IDs. This is necessary for matching manual gates specified in the `g…
+58 | |
+59 | |         failed_markers (dict, optional):
+60 | |             A dictionary mapping `imageid` to markers that failed quality control. This allows for the exclusion of specific markers f…
+61 | |
+62 | |         method (str, optional):
+63 | |             Specifies the gating strategy: `all` to pool data from all images for GMM application, or `by_image` to apply GMM separate…
+64 | |
+65 | |         random_state (int, optional):
+66 | |             The seed used by the random number generator for GMM. Ensures reproducibility of results.
+67 | |
+68 | |         verbose (bool, optional):
+69 | |             If `True`, detailed progress updates and diagnostic messages will be printed during the function's execution.
+70 | |
+71 | |         gmm_components (int, optional):
+72 | |             Number of components to use in the Gaussian Mixture Model for automatic gating.
+73 | |             Must be at least 2. Gate will be placed between the highest two components.
+74 | |             Default is 3.
+75 | |
+76 | |     Returns:
+77 | |         Modified AnnData Object (AnnData):
+78 | |             Returns the input `adata` object with updated expression data (`adata.X`) after rescaling. The gates applied, either provi…
+79 | |
+80 | |     Example:
+81 | |         ```python
+82 | |
+83 | |         # Example with manual gates
+84 | |         manual_gate = pd.DataFrame({'marker': ['CD3D', 'KI67'], 'gate': [7, 8]})
+85 | |         adata = sm.pp.rescale(adata, gate=manual_gate, failed_markers={'all': ['CD20', 'CD21']})
+86 | |
+87 | |         # Importing gates from a CSV
+88 | |         manual_gate = pd.read_csv('manual_gates.csv')
+89 | |         adata = sm.pp.rescale(adata, gate=manual_gate, failed_markers={'all': ['CD20', 'CD21']})
+90 | |
+91 | |         # Running without manual gates to use GMM for automatic gate determination
+92 | |         adata = sm.pp.rescale(adata, gate=None, failed_markers={'all': ['CD20', 'CD21']})
+93 | |
+94 | |         ```
+95 | |
+96 | |     """
+   | |_______^ D202
+97 |
+98 |       # log=True; imageid='imageid'; failed_markers=None; method='all'; random_state=0
+   |
+   = help: Remove blank line(s) after function docstring
+
+src/opendvp/pp/rescale.py:38:5: D205 1 blank line required between summary line and description
+   |
+36 |       gmm_components=3,
+37 |   ):
+38 | /     """
+39 | |     Parameters:
+40 | |         adata (AnnData Object, required):
+41 | |             An annotated data object that contains single-cell expression data.
+42 | |
+43 | |         gate (DataFrame, optional):
+44 | |             A pandas DataFrame where the first column lists markers, and subsequent columns contain gate values
+45 | |             for each image in the dataset. Column names must correspond to unique `imageid` identifiers, and the marker column must be…
+46 | |             If a single column of gate values is provided for a dataset with multiple images, the same gate will be uniformly applied …
+47 | |             In this case, ensure that the columns are named exactly "markers" and "gates".
+48 | |             If no gates are provided for specific markers, the function attempts to automatically determine gates using a Gaussian Mix…
+49 | |
+50 | |             Note: If you have used `napariGater()`, the gates are stored within `adata.uns['gates']`.
+51 | |             You can directly pass `adata.uns['gates']` to use these pre-defined gates.
+52 | |
+53 | |         log (bool, optional):
+54 | |             If `True`, the data in `adata.raw.X` will be log-transformed (using log1p) before gate application. This transformation is…
+55 | |
+56 | |         imageid (str, optional):
+57 | |             The name of the column in `adata` that contains Image IDs. This is necessary for matching manual gates specified in the `g…
+58 | |
+59 | |         failed_markers (dict, optional):
+60 | |             A dictionary mapping `imageid` to markers that failed quality control. This allows for the exclusion of specific markers f…
+61 | |
+62 | |         method (str, optional):
+63 | |             Specifies the gating strategy: `all` to pool data from all images for GMM application, or `by_image` to apply GMM separate…
+64 | |
+65 | |         random_state (int, optional):
+66 | |             The seed used by the random number generator for GMM. Ensures reproducibility of results.
+67 | |
+68 | |         verbose (bool, optional):
+69 | |             If `True`, detailed progress updates and diagnostic messages will be printed during the function's execution.
+70 | |
+71 | |         gmm_components (int, optional):
+72 | |             Number of components to use in the Gaussian Mixture Model for automatic gating.
+73 | |             Must be at least 2. Gate will be placed between the highest two components.
+74 | |             Default is 3.
+75 | |
+76 | |     Returns:
+77 | |         Modified AnnData Object (AnnData):
+78 | |             Returns the input `adata` object with updated expression data (`adata.X`) after rescaling. The gates applied, either provi…
+79 | |
+80 | |     Example:
+81 | |         ```python
+82 | |
+83 | |         # Example with manual gates
+84 | |         manual_gate = pd.DataFrame({'marker': ['CD3D', 'KI67'], 'gate': [7, 8]})
+85 | |         adata = sm.pp.rescale(adata, gate=manual_gate, failed_markers={'all': ['CD20', 'CD21']})
+86 | |
+87 | |         # Importing gates from a CSV
+88 | |         manual_gate = pd.read_csv('manual_gates.csv')
+89 | |         adata = sm.pp.rescale(adata, gate=manual_gate, failed_markers={'all': ['CD20', 'CD21']})
+90 | |
+91 | |         # Running without manual gates to use GMM for automatic gate determination
+92 | |         adata = sm.pp.rescale(adata, gate=None, failed_markers={'all': ['CD20', 'CD21']})
+93 | |
+94 | |         ```
+95 | |
+96 | |     """
+   | |_______^ D205
+97 |
+98 |       # log=True; imageid='imageid'; failed_markers=None; method='all'; random_state=0
+   |
+   = help: Insert single blank line
+
+src/opendvp/pp/rescale.py:38:5: D212 [*] Multi-line docstring summary should start at the first line
+   |
+36 |       gmm_components=3,
+37 |   ):
+38 | /     """
+39 | |     Parameters:
+40 | |         adata (AnnData Object, required):
+41 | |             An annotated data object that contains single-cell expression data.
+42 | |
+43 | |         gate (DataFrame, optional):
+44 | |             A pandas DataFrame where the first column lists markers, and subsequent columns contain gate values
+45 | |             for each image in the dataset. Column names must correspond to unique `imageid` identifiers, and the marker column must be…
+46 | |             If a single column of gate values is provided for a dataset with multiple images, the same gate will be uniformly applied …
+47 | |             In this case, ensure that the columns are named exactly "markers" and "gates".
+48 | |             If no gates are provided for specific markers, the function attempts to automatically determine gates using a Gaussian Mix…
+49 | |
+50 | |             Note: If you have used `napariGater()`, the gates are stored within `adata.uns['gates']`.
+51 | |             You can directly pass `adata.uns['gates']` to use these pre-defined gates.
+52 | |
+53 | |         log (bool, optional):
+54 | |             If `True`, the data in `adata.raw.X` will be log-transformed (using log1p) before gate application. This transformation is…
+55 | |
+56 | |         imageid (str, optional):
+57 | |             The name of the column in `adata` that contains Image IDs. This is necessary for matching manual gates specified in the `g…
+58 | |
+59 | |         failed_markers (dict, optional):
+60 | |             A dictionary mapping `imageid` to markers that failed quality control. This allows for the exclusion of specific markers f…
+61 | |
+62 | |         method (str, optional):
+63 | |             Specifies the gating strategy: `all` to pool data from all images for GMM application, or `by_image` to apply GMM separate…
+64 | |
+65 | |         random_state (int, optional):
+66 | |             The seed used by the random number generator for GMM. Ensures reproducibility of results.
+67 | |
+68 | |         verbose (bool, optional):
+69 | |             If `True`, detailed progress updates and diagnostic messages will be printed during the function's execution.
+70 | |
+71 | |         gmm_components (int, optional):
+72 | |             Number of components to use in the Gaussian Mixture Model for automatic gating.
+73 | |             Must be at least 2. Gate will be placed between the highest two components.
+74 | |             Default is 3.
+75 | |
+76 | |     Returns:
+77 | |         Modified AnnData Object (AnnData):
+78 | |             Returns the input `adata` object with updated expression data (`adata.X`) after rescaling. The gates applied, either provi…
+79 | |
+80 | |     Example:
+81 | |         ```python
+82 | |
+83 | |         # Example with manual gates
+84 | |         manual_gate = pd.DataFrame({'marker': ['CD3D', 'KI67'], 'gate': [7, 8]})
+85 | |         adata = sm.pp.rescale(adata, gate=manual_gate, failed_markers={'all': ['CD20', 'CD21']})
+86 | |
+87 | |         # Importing gates from a CSV
+88 | |         manual_gate = pd.read_csv('manual_gates.csv')
+89 | |         adata = sm.pp.rescale(adata, gate=manual_gate, failed_markers={'all': ['CD20', 'CD21']})
+90 | |
+91 | |         # Running without manual gates to use GMM for automatic gate determination
+92 | |         adata = sm.pp.rescale(adata, gate=None, failed_markers={'all': ['CD20', 'CD21']})
+93 | |
+94 | |         ```
+95 | |
+96 | |     """
+   | |_______^ D212
+97 |
+98 |       # log=True; imageid='imageid'; failed_markers=None; method='all'; random_state=0
+   |
+   = help: Remove whitespace after opening quotes
+
+src/opendvp/pp/rescale.py:45:121: E501 Line too long (151 > 120)
+   |
+43 | …
+44 | … subsequent columns contain gate values
+45 | …to unique `imageid` identifiers, and the marker column must be named "markers".
+   |                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+46 | …with multiple images, the same gate will be uniformly applied to all images.
+47 | …kers" and "gates".
+   |
+
+src/opendvp/pp/rescale.py:46:121: E501 Line too long (148 > 120)
+   |
+44 | …nd subsequent columns contain gate values
+45 | …d to unique `imageid` identifiers, and the marker column must be named "markers".
+46 | …t with multiple images, the same gate will be uniformly applied to all images.
+   |                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+47 | …arkers" and "gates".
+48 | …n attempts to automatically determine gates using a Gaussian Mixture Model (GMM).
+   |
+
+src/opendvp/pp/rescale.py:48:121: E501 Line too long (151 > 120)
+   |
+46 | …with multiple images, the same gate will be uniformly applied to all images.
+47 | …kers" and "gates".
+48 | …attempts to automatically determine gates using a Gaussian Mixture Model (GMM).
+   |                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+49 | …
+50 | … within `adata.uns['gates']`.
+   |
+
+src/opendvp/pp/rescale.py:54:121: E501 Line too long (254 > 120)
+   |
+53 | …
+54 | …s transformation is recommended when automatic gate identification through GMM is performed, as it helps in normalizing data distributions.
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+55 | …
+56 | …
+   |
+
+src/opendvp/pp/rescale.py:57:121: E501 Line too long (176 > 120)
+   |
+56 | …
+57 | …sary for matching manual gates specified in the `gate` DataFrame to their respective images.
+   |                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+58 | …
+59 | …
+   |
+
+src/opendvp/pp/rescale.py:60:121: E501 Line too long (290 > 120)
+   |
+59 | …
+60 | … specific markers from the analysis based on prior visual inspection or other criteria. The dictionary can use `all` as a key to specify markers that failed across all images.
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+61 | …
+62 | …
+   |
+
+src/opendvp/pp/rescale.py:63:121: E501 Line too long (315 > 120)
+   |
+62 | …
+63 | … apply GMM separately for each image. `all` may introduce batch effects, while `by_image` requires sufficient variation within each image to distinguish negative from positive populations effectively.
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+64 | …
+65 | …
+   |
+
+src/opendvp/pp/rescale.py:69:121: E501 Line too long (121 > 120)
+   |
+68 |         verbose (bool, optional):
+69 |             If `True`, detailed progress updates and diagnostic messages will be printed during the function's execution.
+   |                                                                                                                         ^ E501
+70 |
+71 |         gmm_components (int, optional):
+   |
+
+src/opendvp/pp/rescale.py:78:121: E501 Line too long (215 > 120)
+   |
+76 | …
+77 | …
+78 | …he gates applied, either provided manually or determined automatically, are stored within `adata.uns['gates']`.
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+79 | …
+80 | …
+   |
+
+src/opendvp/pp/rescale.py:129:25: B905 [*] `zip()` without an explicit `strict=` parameter
+    |
+127 |                 gate_mapping.markers.map(
+128 |                     dict(
+129 |                         zip(gate['markers'], gate['gates'])
+    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ B905
+130 |                     )  # these columns are hardcoded in CSV
+131 |                 )
+    |
+    = help: Add explicit value for parameter `strict=`
+
+src/opendvp/pp/rescale.py:138:28: PD015 Use `.merge` method instead of `pd.merge` function. They have equivalent functionality.
+    |
+136 |             manual_m = pd.melt(gate, id_vars=gate[['markers']])
+137 |             manual_m.columns = ['markers', 'imageid', 'm_gate']
+138 |             gate_mapping = pd.merge(
+    |                            ^^^^^^^^ PD015
+139 |                 m,
+140 |                 manual_m,
+    |
+
+src/opendvp/pp/rescale.py:149:9: ANN202 Missing return type annotation for private function `process_failed`
+    |
+148 |     # Addressing failed markers
+149 |     def process_failed(adata_subset, foramted_failed_markers):
+    |         ^^^^^^^^^^^^^^ ANN202
+150 |         if verbose:
+151 |             print(
+    |
+    = help: Add return type annotation
+
+src/opendvp/pp/rescale.py:149:24: ANN001 Missing type annotation for function argument `adata_subset`
+    |
+148 |     # Addressing failed markers
+149 |     def process_failed(adata_subset, foramted_failed_markers):
+    |                        ^^^^^^^^^^^^ ANN001
+150 |         if verbose:
+151 |             print(
+    |
+
+src/opendvp/pp/rescale.py:149:38: ANN001 Missing type annotation for function argument `foramted_failed_markers`
+    |
+148 |     # Addressing failed markers
+149 |     def process_failed(adata_subset, foramted_failed_markers):
+    |                                      ^^^^^^^^^^^^^^^^^^^^^^^ ANN001
+150 |         if verbose:
+151 |             print(
+    |
+
+src/opendvp/pp/rescale.py:167:13: ANN202 Missing return type annotation for private function `process_failed_internal`
+    |
+165 |         fm_sub = foramted_failed_markers[adata_subset.obs[imageid].unique()].dropna()
+166 |
+167 |         def process_failed_internal(fail_mark, data_subset):
+    |             ^^^^^^^^^^^^^^^^^^^^^^^ ANN202
+168 |             return data_subset[fail_mark].max()
+    |
+    = help: Add return type annotation
+
+src/opendvp/pp/rescale.py:167:37: ANN001 Missing type annotation for function argument `fail_mark`
+    |
+165 |         fm_sub = foramted_failed_markers[adata_subset.obs[imageid].unique()].dropna()
+166 |
+167 |         def process_failed_internal(fail_mark, data_subset):
+    |                                     ^^^^^^^^^ ANN001
+168 |             return data_subset[fail_mark].max()
+    |
+
+src/opendvp/pp/rescale.py:167:48: ANN001 Missing type annotation for function argument `data_subset`
+    |
+165 |         fm_sub = foramted_failed_markers[adata_subset.obs[imageid].unique()].dropna()
+166 |
+167 |         def process_failed_internal(fail_mark, data_subset):
+    |                                                ^^^^^^^^^^^ ANN001
+168 |             return data_subset[fail_mark].max()
+    |
+
+src/opendvp/pp/rescale.py:170:9: E731 Do not assign a `lambda` expression, use a `def`
+    |
+168 |               return data_subset[fail_mark].max()
+169 |
+170 | /         r_process_failed_internal = lambda x: process_failed_internal(
+171 | |             fail_mark=x, data_subset=data_subset
+172 | |         )
+    | |_________^ E731
+173 |           f_g = list(map(r_process_failed_internal, [x[0] for x in fm_sub.values]))
+174 |           subset_gate = pd.DataFrame(
+    |
+    = help: Rewrite `r_process_failed_internal` as a `def`
+
+src/opendvp/pp/rescale.py:173:66: PD011 Use `.to_numpy()` instead of `.values`
+    |
+171 |             fail_mark=x, data_subset=data_subset
+172 |         )
+173 |         f_g = list(map(r_process_failed_internal, [x[0] for x in fm_sub.values]))
+    |                                                                  ^^^^^^^^^^^^^ PD011
+174 |         subset_gate = pd.DataFrame(
+175 |             {
+    |
+
+src/opendvp/pp/rescale.py:176:43: PD011 Use `.to_numpy()` instead of `.values`
+    |
+174 |         subset_gate = pd.DataFrame(
+175 |             {
+176 |                 'markers': [x[0] for x in fm_sub.values],
+    |                                           ^^^^^^^^^^^^^ PD011
+177 |                 'imageid': adata_subset.obs[imageid].unique()[0],
+178 |                 'gate': f_g,
+    |
+
+src/opendvp/pp/rescale.py:200:13: PD901 Avoid using the generic variable name `df` for DataFrames
+    |
+198 |             failed_markers.pop('all', None)
+199 |
+200 |             df = pd.DataFrame(columns=adata.obs[imageid].unique())
+    |             ^^ PD901
+201 |             for i in range(len(all_failed)):
+202 |                 df.loc[i] = np.repeat(all_failed[i], len(df.columns))
+    |
+
+src/opendvp/pp/rescale.py:211:9: SIM108 Use ternary operator `foramted_failed_markers = pd.concat([fail, df], axis=0) if 'all' in fm else fail` instead of `if`-`else`-block
+    |
+209 |           )
+210 |           # merge
+211 | /         if 'all' in fm:
+212 | |             foramted_failed_markers = pd.concat([fail, df], axis=0)
+213 | |         else:
+214 | |             foramted_failed_markers = fail
+    | |__________________________________________^ SIM108
+215 |
+216 |           # send the adata objects that need to be processed
+    |
+    = help: Replace `if`-`else`-block with `foramted_failed_markers = pd.concat([fail, df], axis=0) if 'all' in fm else fail`
+
+src/opendvp/pp/rescale.py:222:9: E731 Do not assign a `lambda` expression, use a `def`
+    |
+220 |           ]
+221 |           # apply the process_failed function
+222 | /         r_process_failed = lambda x: process_failed(
+223 | |             adata_subset=x, foramted_failed_markers=foramted_failed_markers
+224 | |         )
+    | |_________^ E731
+225 |           failed_gates = list(map(r_process_failed, adata_list))
+226 |           # combine the results and merge with gate_mapping
+    |
+    = help: Rewrite `r_process_failed` as a `def`
+
+src/opendvp/pp/rescale.py:238:9: ANN202 Missing return type annotation for private function `clipping`
+    |
+237 |     # trim the data before applying GMM
+238 |     def clipping(x):
+    |         ^^^^^^^^ ANN202
+239 |         clip = x.clip(
+240 |             lower=np.percentile(x, 0.01), upper=np.percentile(x, 99.99)
+    |
+    = help: Add return type annotation
+
+src/opendvp/pp/rescale.py:238:18: ANN001 Missing type annotation for function argument `x`
+    |
+237 |     # trim the data before applying GMM
+238 |     def clipping(x):
+    |                  ^ ANN001
+239 |         clip = x.clip(
+240 |             lower=np.percentile(x, 0.01), upper=np.percentile(x, 99.99)
+    |
+
+src/opendvp/pp/rescale.py:245:9: ANN202 Missing return type annotation for private function `gmm_gating`
+    |
+244 |     # Find GMM based gates
+245 |     def gmm_gating(marker, data, gmm_components):
+    |         ^^^^^^^^^^ ANN202
+246 |         """Internal function to identify gates using GMM
+    |
+    = help: Add return type annotation
+
+src/opendvp/pp/rescale.py:245:20: ANN001 Missing type annotation for function argument `marker`
+    |
+244 |     # Find GMM based gates
+245 |     def gmm_gating(marker, data, gmm_components):
+    |                    ^^^^^^ ANN001
+246 |         """Internal function to identify gates using GMM
+    |
+
+src/opendvp/pp/rescale.py:245:28: ANN001 Missing type annotation for function argument `data`
+    |
+244 |     # Find GMM based gates
+245 |     def gmm_gating(marker, data, gmm_components):
+    |                            ^^^^ ANN001
+246 |         """Internal function to identify gates using GMM
+    |
+
+src/opendvp/pp/rescale.py:245:34: ANN001 Missing type annotation for function argument `gmm_components`
+    |
+244 |     # Find GMM based gates
+245 |     def gmm_gating(marker, data, gmm_components):
+    |                                  ^^^^^^^^^^^^^^ ANN001
+246 |         """Internal function to identify gates using GMM
+    |
+
+src/opendvp/pp/rescale.py:246:9: D415 First line should end with a period, question mark, or exclamation point
+    |
+244 |       # Find GMM based gates
+245 |       def gmm_gating(marker, data, gmm_components):
+246 | /         """Internal function to identify gates using GMM
+247 | |
+248 | |         Parameters:
+249 | |             marker: marker name
+250 | |             data: expression data
+251 | |             gmm_components: number of components for GMM (minimum 2)
+252 | |         """
+    | |___________^ D415
+253 |           # Ensure minimum of 2 components
+254 |           gmm_components = max(2, gmm_components)
+    |
+    = help: Add closing punctuation
+
+src/opendvp/pp/rescale.py:257:19: PD011 Use `.to_numpy()` instead of `.values`
+    |
+256 |         # Prepare data for GMM
+257 |         data_gm = data[marker].values.reshape(-1, 1)
+    |                   ^^^^^^^^^^^^^^^^^^^ PD011
+258 |         data_gm = data_gm[~np.isnan(data_gm), None]
+    |
+
+src/opendvp/pp/rescale.py:276:9: ANN202 Missing return type annotation for private function `gmm_gating_internal`
+    |
+275 |     # Running gmm_gating on the dataset
+276 |     def gmm_gating_internal(adata_subset, gate_mapping, method):
+    |         ^^^^^^^^^^^^^^^^^^^ ANN202
+277 |         if verbose:
+278 |             print(
+    |
+    = help: Add return type annotation
+
+src/opendvp/pp/rescale.py:276:29: ANN001 Missing type annotation for function argument `adata_subset`
+    |
+275 |     # Running gmm_gating on the dataset
+276 |     def gmm_gating_internal(adata_subset, gate_mapping, method):
+    |                             ^^^^^^^^^^^^ ANN001
+277 |         if verbose:
+278 |             print(
+    |
+
+src/opendvp/pp/rescale.py:276:43: ANN001 Missing type annotation for function argument `gate_mapping`
+    |
+275 |     # Running gmm_gating on the dataset
+276 |     def gmm_gating_internal(adata_subset, gate_mapping, method):
+    |                                           ^^^^^^^^^^^^ ANN001
+277 |         if verbose:
+278 |             print(
+    |
+
+src/opendvp/pp/rescale.py:276:57: ANN001 Missing type annotation for function argument `method`
+    |
+275 |     # Running gmm_gating on the dataset
+276 |     def gmm_gating_internal(adata_subset, gate_mapping, method):
+    |                                                         ^^^^^^ ANN001
+277 |         if verbose:
+278 |             print(
+    |
+
+src/opendvp/pp/rescale.py:290:30: PD003 `.isna` is preferred to `.isnull`; functionality is equivalent
+    |
+288 |             image_specific = gate_mapping.copy()
+289 |             marker_to_gate = list(
+290 |                 gate_mapping[gate_mapping.gate.isnull()].markers.unique()
+    |                              ^^^^^^^^^^^^^^^^^^^^^^^^ PD003
+291 |             )
+292 |         else:
+    |
+
+src/opendvp/pp/rescale.py:296:30: PD011 Use `.to_numpy()` instead of `.values`
+    |
+294 |                 gate_mapping['imageid'].isin(adata_subset.obs[imageid].unique())
+295 |             ]
+296 |             marker_to_gate = image_specific[image_specific.gate.isnull()].markers.values
+    |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ PD011
+297 |
+298 |         if verbose and len(marker_to_gate) > 0:
+    |
+
+src/opendvp/pp/rescale.py:296:45: PD003 `.isna` is preferred to `.isnull`; functionality is equivalent
+    |
+294 |                 gate_mapping['imageid'].isin(adata_subset.obs[imageid].unique())
+295 |             ]
+296 |             marker_to_gate = image_specific[image_specific.gate.isnull()].markers.values
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^ PD003
+297 |
+298 |         if verbose and len(marker_to_gate) > 0:
+    |
+
+src/opendvp/pp/rescale.py:307:9: E731 Do not assign a `lambda` expression, use a `def`
+    |
+305 |               data_subset_clipped = np.log1p(data_subset_clipped)
+306 |           # identify the gates for the markers
+307 | /         r_gmm_gating = lambda x: gmm_gating(
+308 | |             marker=x, data=data_subset_clipped, gmm_components=gmm_components
+309 | |         )
+    | |_________^ E731
+310 |           gates = list(map(r_gmm_gating, marker_to_gate))
+311 |           # create a df with results
+    |
+    = help: Rewrite `r_gmm_gating` as a `def`
+
+src/opendvp/pp/rescale.py:312:33: PD003 `.isna` is preferred to `.isnull`; functionality is equivalent
+    |
+310 |         gates = list(map(r_gmm_gating, marker_to_gate))
+311 |         # create a df with results
+312 |         result = image_specific[image_specific.gate.isnull()]
+    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^ PD003
+313 |         mapping = dict(zip(marker_to_gate, gates))
+314 |         for i in result.index:
+    |
+
+src/opendvp/pp/rescale.py:313:24: B905 [*] `zip()` without an explicit `strict=` parameter
+    |
+311 |         # create a df with results
+312 |         result = image_specific[image_specific.gate.isnull()]
+313 |         mapping = dict(zip(marker_to_gate, gates))
+    |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^ B905
+314 |         for i in result.index:
+315 |             result.loc[i, 'gate'] = mapping[result.loc[i, 'markers']]
+    |
+    = help: Add explicit value for parameter `strict=`
+
+src/opendvp/pp/rescale.py:321:31: PD003 `.isna` is preferred to `.isnull`; functionality is equivalent
+    |
+320 |     # Create a list of image IDs that need to go through the GMM
+321 |     gmm_images = gate_mapping[gate_mapping.gate.isnull()].imageid.unique()
+    |                               ^^^^^^^^^^^^^^^^^^^^^^^^ PD003
+322 |
+323 |     # Check if any image needs to pass through the GMM protocol
+    |
+
+src/opendvp/pp/rescale.py:326:9: SIM108 Use ternary operator `adata_list = [adata] if method == 'all' else [adata[adata.obs[imageid] == i] for i in gmm_images]` instead of `if`-`else`-block
+    |
+324 |       if len(gmm_images) > 0:
+325 |           # Create a list of adata that need to go through the GMM
+326 | /         if method == 'all':
+327 | |             adata_list = [adata]
+328 | |         else:
+329 | |             adata_list = [adata[adata.obs[imageid] == i] for i in gmm_images]
+    | |_____________________________________________________________________________^ SIM108
+330 |           # run function
+331 |           r_gmm_gating_internal = lambda x: gmm_gating_internal(
+    |
+    = help: Replace `if`-`else`-block with `adata_list = [adata] if method == 'all' else [adata[adata.obs[imageid] == i] for i in gmm_images]`
+
+src/opendvp/pp/rescale.py:331:9: E731 Do not assign a `lambda` expression, use a `def`
+    |
+329 |               adata_list = [adata[adata.obs[imageid] == i] for i in gmm_images]
+330 |           # run function
+331 | /         r_gmm_gating_internal = lambda x: gmm_gating_internal(
+332 | |             adata_subset=x, gate_mapping=gate_mapping, method=method
+333 | |         )
+    | |_________^ E731
+334 |           all_gates = list(map(r_gmm_gating_internal, adata_list))
+    |
+    = help: Rewrite `r_gmm_gating_internal` as a `def`
+
+src/opendvp/pp/rescale.py:343:43: B905 [*] `zip()` without an explicit `strict=` parameter
+    |
+341 |         # use this to merge with gate_mapping
+342 |         gate_mapping.gate = gate_mapping.gate.fillna(
+343 |             gate_mapping.markers.map(dict(zip(result.markers, result.gate)))
+    |                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ B905
+344 |         )
+    |
+    = help: Add explicit value for parameter `strict=`
+
+src/opendvp/pp/rescale.py:347:9: ANN202 Missing return type annotation for private function `data_scaler`
+    |
+346 |     # Rescaling function
+347 |     def data_scaler(adata_subset, gate_mapping):
+    |         ^^^^^^^^^^^ ANN202
+348 |         if verbose:
+349 |             print('\nScaling Image: ' + str(adata_subset.obs[imageid].unique()[0]))
+    |
+    = help: Add return type annotation
+
+src/opendvp/pp/rescale.py:347:21: ANN001 Missing type annotation for function argument `adata_subset`
+    |
+346 |     # Rescaling function
+347 |     def data_scaler(adata_subset, gate_mapping):
+    |                     ^^^^^^^^^^^^ ANN001
+348 |         if verbose:
+349 |             print('\nScaling Image: ' + str(adata_subset.obs[imageid].unique()[0]))
+    |
+
+src/opendvp/pp/rescale.py:347:35: ANN001 Missing type annotation for function argument `gate_mapping`
+    |
+346 |     # Rescaling function
+347 |     def data_scaler(adata_subset, gate_mapping):
+    |                                   ^^^^^^^^^^^^ ANN001
+348 |         if verbose:
+349 |             print('\nScaling Image: ' + str(adata_subset.obs[imageid].unique()[0]))
+    |
+
+src/opendvp/pp/rescale.py:364:13: ANN202 Missing return type annotation for private function `data_scaler_internal`
+    |
+363 |         # organise gates
+364 |         def data_scaler_internal(marker, gate_mapping_sub):
+    |             ^^^^^^^^^^^^^^^^^^^^ ANN202
+365 |             if verbose:
+366 |                 gate_value = gate_mapping_sub[gate_mapping_sub.markers == marker][
+    |
+    = help: Add return type annotation
+
+src/opendvp/pp/rescale.py:364:34: ANN001 Missing type annotation for function argument `marker`
+    |
+363 |         # organise gates
+364 |         def data_scaler_internal(marker, gate_mapping_sub):
+    |                                  ^^^^^^ ANN001
+365 |             if verbose:
+366 |                 gate_value = gate_mapping_sub[gate_mapping_sub.markers == marker][
+    |
+
+src/opendvp/pp/rescale.py:364:42: ANN001 Missing type annotation for function argument `gate_mapping_sub`
+    |
+363 |         # organise gates
+364 |         def data_scaler_internal(marker, gate_mapping_sub):
+    |                                          ^^^^^^^^^^^^^^^^ ANN001
+365 |             if verbose:
+366 |                 gate_value = gate_mapping_sub[gate_mapping_sub.markers == marker][
+    |
+
+src/opendvp/pp/rescale.py:366:30: PD011 Use `.to_numpy()` instead of `.values`
+    |
+364 |           def data_scaler_internal(marker, gate_mapping_sub):
+365 |               if verbose:
+366 |                   gate_value = gate_mapping_sub[gate_mapping_sub.markers == marker][
+    |  ______________________________^
+367 | |                     'gate'
+368 | |                 ].values[0]
+    | |________________________^ PD011
+369 |                   print(f'Scaling {marker} (gate: {gate_value:.3f})')
+370 |               # find the gate
+    |
+
+src/opendvp/pp/rescale.py:371:19: PD011 Use `.to_numpy()` instead of `.values`
+    |
+369 |                 print(f'Scaling {marker} (gate: {gate_value:.3f})')
+370 |             # find the gate
+371 |             moi = gate_mapping_sub[gate_mapping_sub.markers == marker]['gate'].values[0]
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ PD011
+372 |
+373 |             # Find the closest value to the gate
+    |
+
+src/opendvp/pp/rescale.py:374:41: PD011 Use `.to_numpy()` instead of `.values`
+    |
+373 |             # Find the closest value to the gate
+374 |             absolute_val_array = np.abs(data_subset[marker].values - float(moi))
+    |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^ PD011
+375 |             # throw error if the array has nan values
+376 |             if np.isnan(absolute_val_array).any():
+    |
+
+src/opendvp/pp/rescale.py:382:31: PD011 Use `.to_numpy()` instead of `.values`
+    |
+380 |             # smallest diff
+381 |             smallest_difference_index = absolute_val_array.argmin()
+382 |             closest_element = data_subset[marker].values[smallest_difference_index]
+    |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^ PD011
+383 |
+384 |             # rescale the data based on the identified gate
+    |
+
+src/opendvp/pp/rescale.py:401:43: PD011 Use `.to_numpy()` instead of `.values`
+    |
+399 |             # Scale it
+400 |             h = pd.DataFrame(
+401 |                 scaler_high.fit_transform(high.values.reshape(-1, 1)), index=high.index
+    |                                           ^^^^^^^^^^^ PD011
+402 |             )
+403 |             l = pd.DataFrame(
+    |
+
+src/opendvp/pp/rescale.py:403:13: E741 Ambiguous variable name: `l`
+    |
+401 |                 scaler_high.fit_transform(high.values.reshape(-1, 1)), index=high.index
+402 |             )
+403 |             l = pd.DataFrame(
+    |             ^ E741
+404 |                 scaler_low.fit_transform(low.values.reshape(-1, 1)), index=low.index
+405 |             )
+    |
+
+src/opendvp/pp/rescale.py:404:42: PD011 Use `.to_numpy()` instead of `.values`
+    |
+402 |             )
+403 |             l = pd.DataFrame(
+404 |                 scaler_low.fit_transform(low.values.reshape(-1, 1)), index=low.index
+    |                                          ^^^^^^^^^^ PD011
+405 |             )
+406 |             # Merge the high and low and resort it
+    |
+
+src/opendvp/pp/rescale.py:415:9: E731 Do not assign a `lambda` expression, use a `def`
+    |
+414 |           # run internal function
+415 | /         r_data_scaler_internal = lambda x: data_scaler_internal(
+416 | |             marker=x, gate_mapping_sub=gate_mapping_sub
+417 | |         )
+    | |_________^ E731
+418 |           scaled_subset = list(
+419 |               map(r_data_scaler_internal, gate_mapping_sub.markers.values)
+    |
+    = help: Rewrite `r_data_scaler_internal` as a `def`
+
+src/opendvp/pp/rescale.py:427:40: PD011 Use `.to_numpy()` instead of `.values`
+    |
+425 |             scaled_subset_result.append(scaled_subset[i])
+426 |         scaled_subset_result = pd.concat(scaled_subset_result, join='outer', axis=1)
+427 |         scaled_subset_result.columns = gate_mapping_sub.markers.values
+    |                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ PD011
+428 |         # scaled_subset_result[scaled_subset_result['CD3E'] > 0.5]['CD3E'].count(axis=1).sum()
+    |
+
+src/opendvp/pp/rescale.py:437:5: E731 Do not assign a `lambda` expression, use a `def`
+    |
+436 |     # Run the scaler function
+437 |     r_data_scaler = lambda x: data_scaler(adata_subset=x, gate_mapping=gate_mapping)
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E731
+438 |     scaled_subset = list(map(r_data_scaler, adata_list))
+    |
+    = help: Rewrite `r_data_scaler` as a `def`
+
+src/opendvp/pp/rescale.py:533:40: UP015 [*] Unnecessary mode argument
+    |
+531 |     failed_markers = None
+532 |     if args.failed_markers:
+533 |         with open(args.failed_markers, 'r') as f:
+    |                                        ^^^ UP015
+534 |             failed_markers = json.load(f)
+    |
+    = help: Remove mode argument
+
+src/opendvp/tl/filter_by_abs_value.py:9:5: C901 `filter_by_abs_value` is too complex (18 > 10)
+   |
+ 9 | def filter_by_abs_value(
+   |     ^^^^^^^^^^^^^^^^^^^ C901
+10 |     adata: ad.AnnData,
+11 |     feature_name: str,
+   |
+
+src/opendvp/tl/filter_by_annotation.py:2:1: UP035 [*] Import from `collections.abc` instead: `Sequence`
+  |
+1 | import ast
+2 | from typing import Sequence
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^ UP035
+3 |
+4 | import anndata as ad
+  |
+  = help: Import from `collections.abc`
+
+src/opendvp/tl/filter_by_annotation.py:6:17: F401 [*] `numpy` imported but unused
+  |
+4 | import anndata as ad
+5 | import geopandas as gpd
+6 | import numpy as np
+  |                 ^^ F401
+7 | import pandas as pd
+  |
+  = help: Remove unused import: `numpy`
+
+src/opendvp/tl/filter_features_byNaNs.py:6:18: F401 [*] `pandas` imported but unused
+  |
+4 | import anndata as ad
+5 | import numpy as np
+6 | import pandas as pd
+  |                  ^^ F401
+7 |
+8 | from opendvp.utils import logger
+  |
+  = help: Remove unused import: `pandas`
+
+src/opendvp/tl/filter_features_byNaNs.py:111:121: E501 Line too long (123 > 120)
+    |
+109 |     # Store the complete adata_copy.var (with all calculated metrics) into adata.uns
+110 |     adata_copy.uns['filter_features_byNaNs_qc_metrics'] = adata_copy.var.copy()
+111 |     logger.info("Complete QC metrics for all initial features stored in `adata.uns['filter_features_byNaNs_qc_metrics']`.")
+    |                                                                                                                         ^^^ E501
+112 |
+113 |     # Apply the filtering mask
+    |
+
+src/opendvp/tl/phenotype_cells.py:2:1: UP009 [*] UTF-8 encoding declaration is unnecessary
+  |
+1 | #!/usr/bin/env python3
+2 | # -*- coding: utf-8 -*-
+  | ^^^^^^^^^^^^^^^^^^^^^^^ UP009
+3 | # Created on Mon Mar  2 19:56:08 2020
+4 | # @author: Ajit Johnson Nirmal
+  |
+  = help: Remove unnecessary coding comment
+
+src/opendvp/tl/phenotype_cells.py:5:1: D205 1 blank line required between summary line and description
+   |
+ 3 |   # Created on Mon Mar  2 19:56:08 2020
+ 4 |   # @author: Ajit Johnson Nirmal
+ 5 | / """
+ 6 | | !!! abstract "Short Description"
+ 7 | |     `sm.tl.phenotype_cells`: This function annotates each cell in the dataset with a phenotype based on `scaled data` and a predefined…
+ 8 | |     
+ 9 | |     *Description of the Phenotype Workflow File:*  
+10 | |     Find an example `phenotype_workflow.csv` [here](https://github.com/ajitjohnson/scimap/blob/master/scimap/tests/_data/phenotype_wor…
+11 | |     
+12 | |     The `phenotype_workflow` file outlines six gating strategies for cell phenotyping:
+13 | |     
+14 | |     - **allpos**: Requires all specified markers to be positive for a cell to be assigned the phenotype.
+15 | |     - **allneg**: Requires all specified markers to be negative for a cell to be assigned the phenotype.
+16 | |     - **anypos**: Requires at least one of the specified markers to be positive for a cell to be assigned the phenotype. For example, …
+17 | |     - **anyneg**: Requires at least one of the specified markers to be negative for a cell to be assigned the phenotype.
+18 | |     - **pos**: Specifies that a cell must be positive for the given marker(s) to be assigned the phenotype. If used for multiple marke…
+19 | |     - **neg**: Specifies that a cell must be negative for the given marker(s) to be assigned the phenotype.
+20 | |     
+21 | |     *Recommendation*: Prioritize using positive markers to define phenotypes whenever possible.
+22 | |
+23 | | ## Function
+24 | | """
+   | |___^ D205
+25 |
+26 |   # Library
+   |
+   = help: Insert single blank line
+
+src/opendvp/tl/phenotype_cells.py:5:1: D212 [*] Multi-line docstring summary should start at the first line
+   |
+ 3 |   # Created on Mon Mar  2 19:56:08 2020
+ 4 |   # @author: Ajit Johnson Nirmal
+ 5 | / """
+ 6 | | !!! abstract "Short Description"
+ 7 | |     `sm.tl.phenotype_cells`: This function annotates each cell in the dataset with a phenotype based on `scaled data` and a predefined…
+ 8 | |     
+ 9 | |     *Description of the Phenotype Workflow File:*  
+10 | |     Find an example `phenotype_workflow.csv` [here](https://github.com/ajitjohnson/scimap/blob/master/scimap/tests/_data/phenotype_wor…
+11 | |     
+12 | |     The `phenotype_workflow` file outlines six gating strategies for cell phenotyping:
+13 | |     
+14 | |     - **allpos**: Requires all specified markers to be positive for a cell to be assigned the phenotype.
+15 | |     - **allneg**: Requires all specified markers to be negative for a cell to be assigned the phenotype.
+16 | |     - **anypos**: Requires at least one of the specified markers to be positive for a cell to be assigned the phenotype. For example, …
+17 | |     - **anyneg**: Requires at least one of the specified markers to be negative for a cell to be assigned the phenotype.
+18 | |     - **pos**: Specifies that a cell must be positive for the given marker(s) to be assigned the phenotype. If used for multiple marke…
+19 | |     - **neg**: Specifies that a cell must be negative for the given marker(s) to be assigned the phenotype.
+20 | |     
+21 | |     *Recommendation*: Prioritize using positive markers to define phenotypes whenever possible.
+22 | |
+23 | | ## Function
+24 | | """
+   | |___^ D212
+25 |
+26 |   # Library
+   |
+   = help: Remove whitespace after opening quotes
+
+src/opendvp/tl/phenotype_cells.py:7:121: E501 Line too long (245 > 120)
+  |
+5 | …
+6 | …
+7 | …a` and a predefined `phenotype workflow`. Before using this function, ensure the data is scaled with the `sm.tl.rescale` function.
+  |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+8 | …
+9 | …
+  |
+
+src/opendvp/tl/phenotype_cells.py:16:121: E501 Line too long (236 > 120)
+   |
+14 | …
+15 | …
+16 | …otype. For example, a macrophage could be identified if it is positive for any of the markers `CD68`, `CD163`, or `CD206`.
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+17 | …otype.
+18 | …d for multiple markers, cells not meeting all criteria may still be classified as a potential phenotype, allowing for later refinemen…
+   |
+
+src/opendvp/tl/phenotype_cells.py:18:121: E501 Line too long (444 > 120)
+   |
+16 | …type. For example, a macrophage could be identified if it is positive for any of the markers `CD68`, `CD163`, or `CD206`.
+17 | …type.
+18 | … for multiple markers, cells not meeting all criteria may still be classified as a potential phenotype, allowing for later refinement by the user. For instance, regulatory T cells could be defined as `CD4+` and `FOXP3+`; cells not fully meeting these criteria might be labeled as likely-regulatory T cells for further evaluation.
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+19 | …
+   |
+
+src/opendvp/tl/phenotype_cells.py:27:1: I001 [*] Import block is un-sorted or un-formatted
+   |
+26 |   # Library
+27 | / import numpy as np
+28 | | import pandas as pd
+29 | | import argparse
+   | |_______________^ I001
+   |
+   = help: Organize imports
+
+src/opendvp/tl/phenotype_cells.py:33:5: C901 `phenotype_cells` is too complex (28 > 10)
+   |
+33 | def phenotype_cells (adata, 
+   |     ^^^^^^^^^^^^^^^ C901
+34 |                      phenotype, 
+35 |                      gate = 0.5, 
+   |
+
+src/opendvp/tl/phenotype_cells.py:33:5: ANN201 Missing return type annotation for public function `phenotype_cells`
+   |
+33 | def phenotype_cells (adata, 
+   |     ^^^^^^^^^^^^^^^ ANN201
+34 |                      phenotype, 
+35 |                      gate = 0.5, 
+   |
+   = help: Add return type annotation
+
+src/opendvp/tl/phenotype_cells.py:33:22: ANN001 Missing type annotation for function argument `adata`
+   |
+33 | def phenotype_cells (adata, 
+   |                      ^^^^^ ANN001
+34 |                      phenotype, 
+35 |                      gate = 0.5, 
+   |
+
+src/opendvp/tl/phenotype_cells.py:34:22: ANN001 Missing type annotation for function argument `phenotype`
+   |
+33 | def phenotype_cells (adata, 
+34 |                      phenotype, 
+   |                      ^^^^^^^^^ ANN001
+35 |                      gate = 0.5, 
+36 |                      label="phenotype", 
+   |
+
+src/opendvp/tl/phenotype_cells.py:35:22: ANN001 Missing type annotation for function argument `gate`
+   |
+33 | def phenotype_cells (adata, 
+34 |                      phenotype, 
+35 |                      gate = 0.5, 
+   |                      ^^^^ ANN001
+36 |                      label="phenotype", 
+37 |                      imageid='imageid',
+   |
+
+src/opendvp/tl/phenotype_cells.py:36:22: ANN001 Missing type annotation for function argument `label`
+   |
+34 |                      phenotype, 
+35 |                      gate = 0.5, 
+36 |                      label="phenotype", 
+   |                      ^^^^^ ANN001
+37 |                      imageid='imageid',
+38 |                      pheno_threshold_percent=None, 
+   |
+
+src/opendvp/tl/phenotype_cells.py:37:22: ANN001 Missing type annotation for function argument `imageid`
+   |
+35 |                      gate = 0.5, 
+36 |                      label="phenotype", 
+37 |                      imageid='imageid',
+   |                      ^^^^^^^ ANN001
+38 |                      pheno_threshold_percent=None, 
+39 |                      pheno_threshold_abs=None,
+   |
+
+src/opendvp/tl/phenotype_cells.py:38:22: ANN001 Missing type annotation for function argument `pheno_threshold_percent`
+   |
+36 |                      label="phenotype", 
+37 |                      imageid='imageid',
+38 |                      pheno_threshold_percent=None, 
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^ ANN001
+39 |                      pheno_threshold_abs=None,
+40 |                      verbose=True
+   |
+
+src/opendvp/tl/phenotype_cells.py:39:22: ANN001 Missing type annotation for function argument `pheno_threshold_abs`
+   |
+37 |                      imageid='imageid',
+38 |                      pheno_threshold_percent=None, 
+39 |                      pheno_threshold_abs=None,
+   |                      ^^^^^^^^^^^^^^^^^^^ ANN001
+40 |                      verbose=True
+41 |                      ):
+   |
+
+src/opendvp/tl/phenotype_cells.py:40:22: ANN001 Missing type annotation for function argument `verbose`
+   |
+38 |                      pheno_threshold_percent=None, 
+39 |                      pheno_threshold_abs=None,
+40 |                      verbose=True
+   |                      ^^^^^^^ ANN001
+41 |                      ):
+42 |     """
+   |
+
+src/opendvp/tl/phenotype_cells.py:42:5: D205 1 blank line required between summary line and description
+   |
+40 |                        verbose=True
+41 |                        ):
+42 | /     """
+43 | |     
+44 | | Parameters:
+45 | |     adata (anndata.AnnData):  
+46 | |         The input AnnData object containing single-cell data for phenotyping.
+47 | |
+48 | |     phenotype (pd.DataFrame):  
+49 | |         A DataFrame specifying the gating strategy for cell phenotyping. It should outline the workflow for phenotype classification b…
+50 | |         
+51 | |     gate (float, optional):  
+52 | |         The threshold value for determining positive cell classification based on scaled data. By convention, values above this thresh…
+53 | |         
+54 | |     label (str):  
+55 | |         The name of the column in `adata.obs` where the final phenotype classifications will be stored. This label will be used to acc…
+56 | |         
+57 | |     imageid (str, optional):  
+58 | |         The name of the column in `adata.obs` that contains unique image identifiers. This is crucial for analyses that require differ…
+59 | |         
+60 | |     pheno_threshold_percent (float, optional):  
+61 | |         A threshold value (between 0 and 100) specifying the minimum percentage of cells that must exhibit a particular phenotype for …
+62 | |         
+63 | |     pheno_threshold_abs (int, optional):  
+64 | |         Similar to `pheno_threshold_percent`, but uses an absolute cell count instead of a percentage. Phenotypes with cell counts bel…
+65 | |     
+66 | |     verbose (bool):  
+67 | |         If set to `True`, the function will print detailed messages about its progress and the steps being executed.
+68 | |
+69 | | Returns:
+70 | |     adata (anndata.AnnData):  
+71 | |         The input AnnData object, updated to include the phenotype classifications for each cell. The phenotyping results can be found…
+72 | |
+73 | | Example:    
+74 | |     ```python
+75 | |     
+76 | |     # Load the phenotype workflow CSV file
+77 | |     phenotype = pd.read_csv('path/to/csv/file/')  
+78 | |     
+79 | |     # Apply phenotyping to cells based on the specified workflow
+80 | |     adata = sm.tl.phenotype_cells(adata, phenotype=phenotype, gate=0.5, label="phenotype")
+81 | |     
+82 | |     ```
+83 | |
+84 | |     """
+   | |_______^ D205
+85 |       # Create a dataframe from the adata object
+86 |       data = pd.DataFrame(adata.X, columns = adata.var.index, index= adata.obs.index)
+   |
+   = help: Insert single blank line
+
+src/opendvp/tl/phenotype_cells.py:42:5: D212 [*] Multi-line docstring summary should start at the first line
+   |
+40 |                        verbose=True
+41 |                        ):
+42 | /     """
+43 | |     
+44 | | Parameters:
+45 | |     adata (anndata.AnnData):  
+46 | |         The input AnnData object containing single-cell data for phenotyping.
+47 | |
+48 | |     phenotype (pd.DataFrame):  
+49 | |         A DataFrame specifying the gating strategy for cell phenotyping. It should outline the workflow for phenotype classification b…
+50 | |         
+51 | |     gate (float, optional):  
+52 | |         The threshold value for determining positive cell classification based on scaled data. By convention, values above this thresh…
+53 | |         
+54 | |     label (str):  
+55 | |         The name of the column in `adata.obs` where the final phenotype classifications will be stored. This label will be used to acc…
+56 | |         
+57 | |     imageid (str, optional):  
+58 | |         The name of the column in `adata.obs` that contains unique image identifiers. This is crucial for analyses that require differ…
+59 | |         
+60 | |     pheno_threshold_percent (float, optional):  
+61 | |         A threshold value (between 0 and 100) specifying the minimum percentage of cells that must exhibit a particular phenotype for …
+62 | |         
+63 | |     pheno_threshold_abs (int, optional):  
+64 | |         Similar to `pheno_threshold_percent`, but uses an absolute cell count instead of a percentage. Phenotypes with cell counts bel…
+65 | |     
+66 | |     verbose (bool):  
+67 | |         If set to `True`, the function will print detailed messages about its progress and the steps being executed.
+68 | |
+69 | | Returns:
+70 | |     adata (anndata.AnnData):  
+71 | |         The input AnnData object, updated to include the phenotype classifications for each cell. The phenotyping results can be found…
+72 | |
+73 | | Example:    
+74 | |     ```python
+75 | |     
+76 | |     # Load the phenotype workflow CSV file
+77 | |     phenotype = pd.read_csv('path/to/csv/file/')  
+78 | |     
+79 | |     # Apply phenotyping to cells based on the specified workflow
+80 | |     adata = sm.tl.phenotype_cells(adata, phenotype=phenotype, gate=0.5, label="phenotype")
+81 | |     
+82 | |     ```
+83 | |
+84 | |     """
+   | |_______^ D212
+85 |       # Create a dataframe from the adata object
+86 |       data = pd.DataFrame(adata.X, columns = adata.var.index, index= adata.obs.index)
+   |
+   = help: Remove whitespace after opening quotes
+
+src/opendvp/tl/phenotype_cells.py:44:1: D207 [*] Docstring is under-indented
+   |
+42 |     """
+43 |     
+44 | Parameters:
+   | ^ D207
+45 |     adata (anndata.AnnData):  
+46 |         The input AnnData object containing single-cell data for phenotyping.
+   |
+   = help: Increase indentation
+
+src/opendvp/tl/phenotype_cells.py:49:121: E501 Line too long (316 > 120)
+   |
+48 | …
+49 | …pe classification based on marker expression levels. An example workflow is available at [this GitHub link](https://github.com/ajitjohnson/scimap/blob/master/scimap/tests/_data/phenotype_workflow.csv).
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+50 | …
+51 | …
+   |
+
+src/opendvp/tl/phenotype_cells.py:52:121: E501 Line too long (181 > 120)
+   |
+51 | …
+52 | …d data. By convention, values above this threshold are considered to indicate positive cells. 
+   |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+53 | …
+54 | …
+   |
+
+src/opendvp/tl/phenotype_cells.py:55:121: E501 Line too long (190 > 120)
+   |
+54 | …
+55 | …l be stored. This label will be used to access the phenotyping results within the `AnnData` object.
+   |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+56 | …
+57 | …
+   |
+
+src/opendvp/tl/phenotype_cells.py:58:121: E501 Line too long (285 > 120)
+   |
+57 | …
+58 | …that require differentiation of data based on the source image, especially when using phenotype threshold parameters (`pheno_threshold_percent` or `pheno_threshold_abs`).
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+59 | …
+60 | …
+   |
+
+src/opendvp/tl/phenotype_cells.py:61:121: E501 Line too long (315 > 120)
+   |
+60 | …
+61 | …ular phenotype for it to be considered valid. Phenotypes not meeting this threshold are reclassified as 'unknown'. This parameter is useful for minimizing the impact of low-frequency false positives. 
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+62 | …
+63 | …
+   |
+
+src/opendvp/tl/phenotype_cells.py:64:121: E501 Line too long (270 > 120)
+   |
+63 | …
+64 | …ith cell counts below this threshold are reclassified as 'unknown'. This can help in addressing rare phenotype classifications that may not be meaningful. 
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+65 | …
+66 | …
+   |
+
+src/opendvp/tl/phenotype_cells.py:69:1: D207 [*] Docstring is under-indented
+   |
+67 |         If set to `True`, the function will print detailed messages about its progress and the steps being executed.
+68 |
+69 | Returns:
+   | ^ D207
+70 |     adata (anndata.AnnData):  
+71 |         The input AnnData object, updated to include the phenotype classifications for each cell. The phenotyping results can be found…
+   |
+   = help: Increase indentation
+
+src/opendvp/tl/phenotype_cells.py:71:121: E501 Line too long (231 > 120)
+   |
+69 | …
+70 | …
+71 | …g results can be found in `adata.obs[label]`, where `label` is the name specified by the user for the phenotype column.
+   |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+72 | …
+73 | …
+   |
+
+src/opendvp/tl/phenotype_cells.py:73:1: D207 [*] Docstring is under-indented
+   |
+71 |         The input AnnData object, updated to include the phenotype classifications for each cell. The phenotyping results can be found…
+72 |
+73 | Example:    
+   | ^ D207
+74 |     ```python
+   |
+   = help: Increase indentation
+
+src/opendvp/tl/phenotype_cells.py:73:1: D416 [*] Section name should end with a colon ("Example")
+   |
+71 |         The input AnnData object, updated to include the phenotype classifications for each cell. The phenotyping results can be found…
+72 |
+73 | Example:    
+   | ^^^^^^^ D416
+74 |     ```python
+   |
+   = help: Add colon to "Example"
+
+src/opendvp/tl/phenotype_cells.py:89:9: C901 `phenotype_cells` is too complex (17 > 10)
+   |
+88 |     # Function to calculate the phenotype scores
+89 |     def phenotype_cells (data,phenotype,gate,group):
+   |         ^^^^^^^^^^^^^^^ C901
+90 |
+91 |         # Subset the phenotype based on the group
+   |
+
+src/opendvp/tl/phenotype_cells.py:89:9: ANN202 Missing return type annotation for private function `phenotype_cells`
+   |
+88 |     # Function to calculate the phenotype scores
+89 |     def phenotype_cells (data,phenotype,gate,group):
+   |         ^^^^^^^^^^^^^^^ ANN202
+90 |
+91 |         # Subset the phenotype based on the group
+   |
+   = help: Add return type annotation
+
+src/opendvp/tl/phenotype_cells.py:89:26: ANN001 Missing type annotation for function argument `data`
+   |
+88 |     # Function to calculate the phenotype scores
+89 |     def phenotype_cells (data,phenotype,gate,group):
+   |                          ^^^^ ANN001
+90 |
+91 |         # Subset the phenotype based on the group
+   |
+
+src/opendvp/tl/phenotype_cells.py:89:31: ANN001 Missing type annotation for function argument `phenotype`
+   |
+88 |     # Function to calculate the phenotype scores
+89 |     def phenotype_cells (data,phenotype,gate,group):
+   |                               ^^^^^^^^^ ANN001
+90 |
+91 |         # Subset the phenotype based on the group
+   |
+
+src/opendvp/tl/phenotype_cells.py:89:41: ANN001 Missing type annotation for function argument `gate`
+   |
+88 |     # Function to calculate the phenotype scores
+89 |     def phenotype_cells (data,phenotype,gate,group):
+   |                                         ^^^^ ANN001
+90 |
+91 |         # Subset the phenotype based on the group
+   |
+
+src/opendvp/tl/phenotype_cells.py:89:46: ANN001 Missing type annotation for function argument `group`
+   |
+88 |     # Function to calculate the phenotype scores
+89 |     def phenotype_cells (data,phenotype,gate,group):
+   |                                              ^^^^^ ANN001
+90 |
+91 |         # Subset the phenotype based on the group
+   |
+
+src/opendvp/tl/phenotype_cells.py:95:13: ANN202 Missing return type annotation for private function `phenotype_parser`
+   |
+94 |         # Parser to parse the CSV file into four categories
+95 |         def phenotype_parser (p, cell):
+   |             ^^^^^^^^^^^^^^^^ ANN202
+96 |             # Get the index and subset the phenotype row being passed in
+97 |             location = p.iloc[:,1] == cell
+   |
+   = help: Add return type annotation
+
+src/opendvp/tl/phenotype_cells.py:95:31: ANN001 Missing type annotation for function argument `p`
+   |
+94 |         # Parser to parse the CSV file into four categories
+95 |         def phenotype_parser (p, cell):
+   |                               ^ ANN001
+96 |             # Get the index and subset the phenotype row being passed in
+97 |             location = p.iloc[:,1] == cell
+   |
+
+src/opendvp/tl/phenotype_cells.py:95:34: ANN001 Missing type annotation for function argument `cell`
+   |
+94 |         # Parser to parse the CSV file into four categories
+95 |         def phenotype_parser (p, cell):
+   |                                  ^^^^ ANN001
+96 |             # Get the index and subset the phenotype row being passed in
+97 |             location = p.iloc[:,1] == cell
+   |
+
+src/opendvp/tl/phenotype_cells.py:112:9: E731 Do not assign a `lambda` expression, use a `def`
+    |
+110 |         # Run the phenotype_parser function on all rows
+111 |         p_list = phenotype.iloc[:,1].tolist()
+112 |         r_phenotype = lambda x: phenotype_parser(cell=x, p=phenotype) # Create lamda function
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E731
+113 |         all_phenotype = list(map(r_phenotype, p_list)) # Apply function
+114 |         all_phenotype = dict(zip(p_list, all_phenotype)) # Name the lists
+    |
+    = help: Rewrite `r_phenotype` as a `def`
+
+src/opendvp/tl/phenotype_cells.py:114:30: B905 [*] `zip()` without an explicit `strict=` parameter
+    |
+112 |         r_phenotype = lambda x: phenotype_parser(cell=x, p=phenotype) # Create lamda function
+113 |         all_phenotype = list(map(r_phenotype, p_list)) # Apply function
+114 |         all_phenotype = dict(zip(p_list, all_phenotype)) # Name the lists
+    |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^ B905
+115 |
+116 |         # Define function to check if there is any marker that does not satisfy the gate
+    |
+    = help: Add explicit value for parameter `strict=`
+
+src/opendvp/tl/phenotype_cells.py:117:13: ANN202 Missing return type annotation for private function `gate_satisfation_lessthan`
+    |
+116 |         # Define function to check if there is any marker that does not satisfy the gate
+117 |         def gate_satisfation_lessthan (marker, data, gate):
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^ ANN202
+118 |             fail = np.where(data[marker] < gate, 1, 0) # 1 is fail
+119 |             return fail
+    |
+    = help: Add return type annotation
+
+src/opendvp/tl/phenotype_cells.py:117:40: ANN001 Missing type annotation for function argument `marker`
+    |
+116 |         # Define function to check if there is any marker that does not satisfy the gate
+117 |         def gate_satisfation_lessthan (marker, data, gate):
+    |                                        ^^^^^^ ANN001
+118 |             fail = np.where(data[marker] < gate, 1, 0) # 1 is fail
+119 |             return fail
+    |
+
+src/opendvp/tl/phenotype_cells.py:117:48: ANN001 Missing type annotation for function argument `data`
+    |
+116 |         # Define function to check if there is any marker that does not satisfy the gate
+117 |         def gate_satisfation_lessthan (marker, data, gate):
+    |                                                ^^^^ ANN001
+118 |             fail = np.where(data[marker] < gate, 1, 0) # 1 is fail
+119 |             return fail
+    |
+
+src/opendvp/tl/phenotype_cells.py:117:54: ANN001 Missing type annotation for function argument `gate`
+    |
+116 |         # Define function to check if there is any marker that does not satisfy the gate
+117 |         def gate_satisfation_lessthan (marker, data, gate):
+    |                                                      ^^^^ ANN001
+118 |             fail = np.where(data[marker] < gate, 1, 0) # 1 is fail
+119 |             return fail
+    |
+
+src/opendvp/tl/phenotype_cells.py:121:9: E731 Do not assign a `lambda` expression, use a `def`
+    |
+119 |             return fail
+120 |         # Corresponding lamda function
+121 |         r_gate_satisfation_lessthan = lambda x: gate_satisfation_lessthan(marker=x, data=data, gate=gate)
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E731
+122 |
+123 |         # Define function to check if there is any marker that does not satisfy the gate
+    |
+    = help: Rewrite `r_gate_satisfation_lessthan` as a `def`
+
+src/opendvp/tl/phenotype_cells.py:124:13: ANN202 Missing return type annotation for private function `gate_satisfation_morethan`
+    |
+123 |         # Define function to check if there is any marker that does not satisfy the gate
+124 |         def gate_satisfation_morethan (marker, data, gate):
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^ ANN202
+125 |             fail = np.where(data[marker] > gate, 1, 0)
+126 |             return fail
+    |
+    = help: Add return type annotation
+
+src/opendvp/tl/phenotype_cells.py:124:40: ANN001 Missing type annotation for function argument `marker`
+    |
+123 |         # Define function to check if there is any marker that does not satisfy the gate
+124 |         def gate_satisfation_morethan (marker, data, gate):
+    |                                        ^^^^^^ ANN001
+125 |             fail = np.where(data[marker] > gate, 1, 0)
+126 |             return fail
+    |
+
+src/opendvp/tl/phenotype_cells.py:124:48: ANN001 Missing type annotation for function argument `data`
+    |
+123 |         # Define function to check if there is any marker that does not satisfy the gate
+124 |         def gate_satisfation_morethan (marker, data, gate):
+    |                                                ^^^^ ANN001
+125 |             fail = np.where(data[marker] > gate, 1, 0)
+126 |             return fail
+    |
+
+src/opendvp/tl/phenotype_cells.py:124:54: ANN001 Missing type annotation for function argument `gate`
+    |
+123 |         # Define function to check if there is any marker that does not satisfy the gate
+124 |         def gate_satisfation_morethan (marker, data, gate):
+    |                                                      ^^^^ ANN001
+125 |             fail = np.where(data[marker] > gate, 1, 0)
+126 |             return fail
+    |
+
+src/opendvp/tl/phenotype_cells.py:128:9: E731 Do not assign a `lambda` expression, use a `def`
+    |
+126 |             return fail
+127 |         # Corresponding lamda function
+128 |         r_gate_satisfation_morethan = lambda x: gate_satisfation_morethan(marker=x, data=data, gate=gate)
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E731
+129 |
+130 |         def prob_mapper (data, all_phenotype, cell, gate):
+    |
+    = help: Rewrite `r_gate_satisfation_morethan` as a `def`
+
+src/opendvp/tl/phenotype_cells.py:130:13: ANN202 Missing return type annotation for private function `prob_mapper`
+    |
+128 |         r_gate_satisfation_morethan = lambda x: gate_satisfation_morethan(marker=x, data=data, gate=gate)
+129 |
+130 |         def prob_mapper (data, all_phenotype, cell, gate):
+    |             ^^^^^^^^^^^ ANN202
+131 |             
+132 |             if verbose:
+    |
+    = help: Add return type annotation
+
+src/opendvp/tl/phenotype_cells.py:130:26: ANN001 Missing type annotation for function argument `data`
+    |
+128 |         r_gate_satisfation_morethan = lambda x: gate_satisfation_morethan(marker=x, data=data, gate=gate)
+129 |
+130 |         def prob_mapper (data, all_phenotype, cell, gate):
+    |                          ^^^^ ANN001
+131 |             
+132 |             if verbose:
+    |
+
+src/opendvp/tl/phenotype_cells.py:130:32: ANN001 Missing type annotation for function argument `all_phenotype`
+    |
+128 |         r_gate_satisfation_morethan = lambda x: gate_satisfation_morethan(marker=x, data=data, gate=gate)
+129 |
+130 |         def prob_mapper (data, all_phenotype, cell, gate):
+    |                                ^^^^^^^^^^^^^ ANN001
+131 |             
+132 |             if verbose:
+    |
+
+src/opendvp/tl/phenotype_cells.py:130:47: ANN001 Missing type annotation for function argument `cell`
+    |
+128 |         r_gate_satisfation_morethan = lambda x: gate_satisfation_morethan(marker=x, data=data, gate=gate)
+129 |
+130 |         def prob_mapper (data, all_phenotype, cell, gate):
+    |                                               ^^^^ ANN001
+131 |             
+132 |             if verbose:
+    |
+
+src/opendvp/tl/phenotype_cells.py:130:53: ANN001 Missing type annotation for function argument `gate`
+    |
+128 |         r_gate_satisfation_morethan = lambda x: gate_satisfation_morethan(marker=x, data=data, gate=gate)
+129 |
+130 |         def prob_mapper (data, all_phenotype, cell, gate):
+    |                                                     ^^^^ ANN001
+131 |             
+132 |             if verbose:
+    |
+
+src/opendvp/tl/phenotype_cells.py:149:29: PD011 Use `.to_numpy()` instead of `.values`
+    |
+147 |             # Positive marker score
+148 |             if len(pos) != 0:
+149 |                 pos_score = data[pos].mean(axis=1).values
+    |                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ PD011
+150 |                 pos_fail = list(map(r_gate_satisfation_lessthan, pos)) if len(pos) > 1 else []
+151 |                 pos_fail = np.amax(pos_fail, axis=0) if len(pos) > 1 else []
+    |
+
+src/opendvp/tl/phenotype_cells.py:158:29: PD011 Use `.to_numpy()` instead of `.values`
+    |
+156 |             # Negative marker score
+157 |             if len(neg) != 0:
+158 |                 neg_score = (1-data[neg]).mean(axis=1).values
+    |                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ PD011
+159 |                 neg_fail = list(map(r_gate_satisfation_morethan, neg)) if len(neg) > 1 else []
+160 |                 neg_fail = np.amax(neg_fail, axis=0) if len(neg) > 1 else []
+    |
+
+src/opendvp/tl/phenotype_cells.py:166:77: PD011 Use `.to_numpy()` instead of `.values`
+    |
+165 |             # Any positive score
+166 |             anypos_score = np.repeat(0, len(data)) if len(anypos) == 0 else data[anypos].max(axis=1).values
+    |                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ PD011
+167 |
+168 |             # Any negative score
+    |
+
+src/opendvp/tl/phenotype_cells.py:169:77: PD011 Use `.to_numpy()` instead of `.values`
+    |
+168 |             # Any negative score
+169 |             anyneg_score = np.repeat(0, len(data)) if len(anyneg) == 0 else (1-data[anyneg]).max(axis=1).values
+    |                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ PD011
+170 |
+171 |             # All positive score
+    |
+
+src/opendvp/tl/phenotype_cells.py:176:32: PD011 Use `.to_numpy()` instead of `.values`
+    |
+174 | …         allpos_score['score'] = allpos_score.max(axis=1)
+175 | …         allpos_score.loc[(allpos_score < gate).any(axis = 1), 'score'] = 0
+176 | …         allpos_score = allpos_score['score'].values + 0.01 # A small value is added to give an edge over the matching positive cell
+    |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ PD011
+177 | …     else:
+178 | …         allpos_score = np.repeat(0, len(data))
+    |
+
+src/opendvp/tl/phenotype_cells.py:176:121: E501 Line too long (139 > 120)
+    |
+174 | …
+175 | …1), 'score'] = 0
+176 | … # A small value is added to give an edge over the matching positive cell
+    |                                                        ^^^^^^^^^^^^^^^^^^^ E501
+177 | …
+178 | …
+    |
+
+src/opendvp/tl/phenotype_cells.py:186:32: PD011 Use `.to_numpy()` instead of `.values`
+    |
+184 |                 allneg_score['score'] = allneg_score.max(axis=1)
+185 |                 allneg_score.loc[(allneg_score < gate).any(axis = 1), 'score'] = 0
+186 |                 allneg_score = allneg_score['score'].values + 0.01
+    |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ PD011
+187 |             else:
+188 |                 allneg_score = np.repeat(0, len(data))
+    |
+
+src/opendvp/tl/phenotype_cells.py:200:121: E501 Line too long (140 > 120)
+    |
+198 | …
+199 | …
+200 | …nyneg_score + allpos_score + allneg_score) / number_of_non_empty_features
+    |                                                       ^^^^^^^^^^^^^^^^^^^^ E501
+201 | …
+202 | …ail': neg_fail}
+    |
+
+src/opendvp/tl/phenotype_cells.py:207:9: E731 Do not assign a `lambda` expression, use a `def`
+    |
+206 |         # Apply the fuction to get the total score for all cell types
+207 |         r_prob_mapper = lambda x: prob_mapper (data=data, all_phenotype=all_phenotype, cell=x, gate=gate) # Create lamda function
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E731
+208 |         final_scores = list(map(r_prob_mapper, [*all_phenotype])) # Apply function
+209 |         final_scores = dict(zip([*all_phenotype], final_scores)) # Name the lists
+    |
+    = help: Rewrite `r_prob_mapper` as a `def`
+
+src/opendvp/tl/phenotype_cells.py:207:121: E501 Line too long (129 > 120)
+    |
+206 |         # Apply the fuction to get the total score for all cell types
+207 |         r_prob_mapper = lambda x: prob_mapper (data=data, all_phenotype=all_phenotype, cell=x, gate=gate) # Create lamda function
+    |                                                                                                                         ^^^^^^^^^ E501
+208 |         final_scores = list(map(r_prob_mapper, [*all_phenotype])) # Apply function
+209 |         final_scores = dict(zip([*all_phenotype], final_scores)) # Name the lists
+    |
+
+src/opendvp/tl/phenotype_cells.py:209:29: B905 [*] `zip()` without an explicit `strict=` parameter
+    |
+207 |         r_prob_mapper = lambda x: prob_mapper (data=data, all_phenotype=all_phenotype, cell=x, gate=gate) # Create lamda function
+208 |         final_scores = list(map(r_prob_mapper, [*all_phenotype])) # Apply function
+209 |         final_scores = dict(zip([*all_phenotype], final_scores)) # Name the lists
+    |                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ B905
+210 |
+211 |         # Combine the final score to annotate the cells with a label
+    |
+    = help: Add explicit value for parameter `strict=`
+
+src/opendvp/tl/phenotype_cells.py:214:13: PD901 Avoid using the generic variable name `df` for DataFrames
+    |
+212 |         final_score_df = pd.DataFrame()
+213 |         for i in [*final_scores]:
+214 |             df = pd.DataFrame(final_scores[i][i])
+    |             ^^ PD901
+215 |             final_score_df= pd.concat([final_score_df, df], axis=1)
+216 |         # Name the columns
+    |
+
+src/opendvp/tl/phenotype_cells.py:220:27: UP018 [*] Unnecessary `str` call (rewrite as a literal)
+    |
+218 |         final_score_df.index = data.index
+219 |         # Add a column called unknown if all markers have a value less than the gate (0.5)
+220 |         unknown = group + str('-rest')
+    |                           ^^^^^^^^^^^^ UP018
+221 |         final_score_df[unknown] = (final_score_df < gate).all(axis=1).astype(int)
+    |
+    = help: Replace with string literal
+
+src/opendvp/tl/phenotype_cells.py:230:13: PD901 Avoid using the generic variable name `df` for DataFrames
+    |
+228 |         pos_fail_all = pd.DataFrame()
+229 |         for i in [*final_scores]:
+230 |             df = pd.DataFrame(final_scores[i]['pos_fail'])
+    |             ^^ PD901
+231 |             df.columns = [i] if len(df) != 0 else []
+232 |             pos_fail_all= pd.concat([pos_fail_all, df], axis=1)
+    |
+
+src/opendvp/tl/phenotype_cells.py:237:13: PD901 Avoid using the generic variable name `df` for DataFrames
+    |
+235 |         neg_fail_all = pd.DataFrame()
+236 |         for i in [*final_scores]:
+237 |             df = pd.DataFrame(final_scores[i]['neg_fail'])
+    |             ^^ PD901
+238 |             df.columns = [i] if len(df) != 0 else []
+239 |             neg_fail_all= pd.concat([neg_fail_all, df], axis=1)
+    |
+
+src/opendvp/tl/phenotype_cells.py:268:13: SIM105 Use `contextlib.suppress(BaseException)` instead of `try`-`except`-`pass`
+    |
+266 |               # Find the column with the cell-type of interest
+267 |               column_of_interest = [] # Empty list to hold the column name
+268 | /             try:
+269 | |                 column_of_interest = phenotype_labels.columns[phenotype_labels.eq(i).any()]
+270 | |             except:
+271 | |                 pass
+    | |____________________^ SIM105
+272 |               # If the cell-type of interest was not found just add NA
+273 |               if len(column_of_interest) == 0:
+    |
+    = help: Replace with `contextlib.suppress(BaseException)`
+
+src/opendvp/tl/phenotype_cells.py:270:13: E722 Do not use bare `except`
+    |
+268 |             try:
+269 |                 column_of_interest = phenotype_labels.columns[phenotype_labels.eq(i).any()]
+270 |             except:
+    |             ^^^^^^ E722
+271 |                 pass
+272 |             # If the cell-type of interest was not found just add NA
+    |
+
+src/opendvp/tl/phenotype_cells.py:270:13: S110 `try`-`except`-`pass` detected, consider logging the exception
+    |
+268 |               try:
+269 |                   column_of_interest = phenotype_labels.columns[phenotype_labels.eq(i).any()]
+270 | /             except:
+271 | |                 pass
+    | |____________________^ S110
+272 |               # If the cell-type of interest was not found just add NA
+273 |               if len(column_of_interest) == 0:
+    |
+
+src/opendvp/tl/phenotype_cells.py:281:121: E501 Line too long (127 > 120)
+    |
+279 |                 if verbose:
+280 |                     print("-- Subsetting " + str(i))
+281 |                 phenotype_l = pd.DataFrame(phenotype_cells(data = d, group = i, phenotype=phenotype, gate=gate), columns = [i])
+    |                                                                                                                         ^^^^^^^ E501
+282 |                 phenotype_labels = phenotype_labels.merge(phenotype_l, how='outer', left_index=True, right_index=True)
+    |
+
+src/opendvp/tl/phenotype_cells.py:291:31: PD011 Use `.to_numpy()` instead of `.values`
+    |
+289 |         print("Consolidating the phenotypes across all groups")
+290 |     phenotype_labels_Consolidated = phenotype_labels.fillna(method='ffill', axis = 1)
+291 |     phenotype_labels[label] = phenotype_labels_Consolidated.iloc[:,-1].values
+    |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ PD011
+292 |
+293 |     # replace nan to 'other cells'
+    |
+
+src/opendvp/tl/phenotype_cells.py:303:13: ANN202 Missing return type annotation for private function `remove_phenotype`
+    |
+302 |         # Function to remove phenotypes that are less than the given threshold
+303 |         def remove_phenotype(p, ID, pheno_threshold_percent, pheno_threshold_abs):
+    |             ^^^^^^^^^^^^^^^^ ANN202
+304 |             d = p[p[imageid] == ID]
+305 |             x = pd.DataFrame(d.groupby([label]).size())
+    |
+    = help: Add return type annotation
+
+src/opendvp/tl/phenotype_cells.py:303:30: ANN001 Missing type annotation for function argument `p`
+    |
+302 |         # Function to remove phenotypes that are less than the given threshold
+303 |         def remove_phenotype(p, ID, pheno_threshold_percent, pheno_threshold_abs):
+    |                              ^ ANN001
+304 |             d = p[p[imageid] == ID]
+305 |             x = pd.DataFrame(d.groupby([label]).size())
+    |
+
+src/opendvp/tl/phenotype_cells.py:303:33: ANN001 Missing type annotation for function argument `ID`
+    |
+302 |         # Function to remove phenotypes that are less than the given threshold
+303 |         def remove_phenotype(p, ID, pheno_threshold_percent, pheno_threshold_abs):
+    |                                 ^^ ANN001
+304 |             d = p[p[imageid] == ID]
+305 |             x = pd.DataFrame(d.groupby([label]).size())
+    |
+
+src/opendvp/tl/phenotype_cells.py:303:37: ANN001 Missing type annotation for function argument `pheno_threshold_percent`
+    |
+302 |         # Function to remove phenotypes that are less than the given threshold
+303 |         def remove_phenotype(p, ID, pheno_threshold_percent, pheno_threshold_abs):
+    |                                     ^^^^^^^^^^^^^^^^^^^^^^^ ANN001
+304 |             d = p[p[imageid] == ID]
+305 |             x = pd.DataFrame(d.groupby([label]).size())
+    |
+
+src/opendvp/tl/phenotype_cells.py:303:62: ANN001 Missing type annotation for function argument `pheno_threshold_abs`
+    |
+302 |         # Function to remove phenotypes that are less than the given threshold
+303 |         def remove_phenotype(p, ID, pheno_threshold_percent, pheno_threshold_abs):
+    |                                                              ^^^^^^^^^^^^^^^^^^^ ANN001
+304 |             d = p[p[imageid] == ID]
+305 |             x = pd.DataFrame(d.groupby([label]).size())
+    |
+
+src/opendvp/tl/phenotype_cells.py:312:46: B905 [*] `zip()` without an explicit `strict=` parameter
+    |
+310 |             if pheno_threshold_abs is not None:
+311 |                 fail = list(x.loc[x['val'] < pheno_threshold_abs].index)
+312 |             d[label] = d[label].replace(dict(zip(fail, ['Unknown'] * len(fail) )))
+    |                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ B905
+313 |             # Return
+314 |             return d
+    |
+    = help: Add explicit value for parameter `strict=`
+
+src/opendvp/tl/phenotype_cells.py:317:9: E731 Do not assign a `lambda` expression, use a `def`
+    |
+316 |           # Apply function to all images
+317 | /         r_remove_phenotype = lambda x: remove_phenotype (p=p, ID=x,
+318 | |                                                          pheno_threshold_percent=pheno_threshold_percent,
+319 | |                                                          pheno_threshold_abs=pheno_threshold_abs) # Create lamda function
+    | |_________________________________________________________________________________________________^ E731
+320 |           final_phrnotypes= list(map(r_remove_phenotype, list(p[imageid].unique()))) # Apply function
+    |
+    = help: Rewrite `r_remove_phenotype` as a `def`
+
+src/opendvp/tl/phenotype_cells.py:319:121: E501 Line too long (121 > 120)
+    |
+317 |         r_remove_phenotype = lambda x: remove_phenotype (p=p, ID=x,
+318 |                                                          pheno_threshold_percent=pheno_threshold_percent,
+319 |                                                          pheno_threshold_abs=pheno_threshold_abs) # Create lamda function
+    |                                                                                                                         ^ E501
+320 |         final_phrnotypes= list(map(r_remove_phenotype, list(p[imageid].unique()))) # Apply function
+    |
+
+src/opendvp/tl/phenotype_cells.py:335:121: E501 Line too long (216 > 120)
+    |
+334 | …
+335 | … a prior knowledge based `phenotype workflow` file to assign phenotype annotation to each cell in the dataset')
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+336 | …
+337 | …ping the cells. An example `workflow` provided [here](https://github.com/ajitjohnson/scimap/blob/master/scimap/tests/_data/phenotype…
+    |
+
+src/opendvp/tl/phenotype_cells.py:337:121: E501 Line too long (254 > 120)
+    |
+335 | …nowledge based `phenotype workflow` file to assign phenotype annotation to each cell in the dataset')
+336 | …
+337 | …ells. An example `workflow` provided [here](https://github.com/ajitjohnson/scimap/blob/master/scimap/tests/_data/phenotype_workflow.csv).')
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+338 | …at values above 0.5 are considered positive cells.')
+339 | …ype calling will be saved.')
+    |
+
+src/opendvp/tl/phenotype_cells.py:338:121: E501 Line too long (167 > 120)
+    |
+336 | …
+337 | …ting strategy for phenotyping the cells. An example `workflow` provided [here](https://github.com/ajitjohnson/scimap/blob/master/sci…
+338 | …e function, scales the data such that values above 0.5 are considered positive cells.')
+    |                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+339 | … column underwhich the final phenotype calling will be saved.')
+340 | …the column that contains the unique imageid')
+    |
+
+src/opendvp/tl/phenotype_cells.py:339:121: E501 Line too long (143 > 120)
+    |
+337 | …, help='A gating strategy for phenotyping the cells. An example `workflow` provided [here](https://github.com/ajitjohnson/scimap/blo…
+338 | …fault rescale function, scales the data such that values above 0.5 are considered positive cells.')
+339 | …lp='Name the column underwhich the final phenotype calling will be saved.')
+    |                                                      ^^^^^^^^^^^^^^^^^^^^^^^ E501
+340 | …lp='Name of the column that contains the unique imageid')
+341 | …ault=True, help='Accepts values between (0-100). If any particular phenotype is below the user defined threshold, it is recategorise…
+    |
+
+src/opendvp/tl/phenotype_cells.py:340:121: E501 Line too long (125 > 120)
+    |
+338 | …lp='By default rescale function, scales the data such that values above 0.5 are considered positive cells.')
+339 | …type', help='Name the column underwhich the final phenotype calling will be saved.')
+340 | …geid', help='Name of the column that contains the unique imageid')
+    |                                                               ^^^^^ E501
+341 | …loat, default=True, help='Accepts values between (0-100). If any particular phenotype is below the user defined threshold, it is rec…
+342 | …default=None, help='Serves the same purpose as that of pheno_threshold_percent. However, an absolute number can be passed')
+    |
+
+src/opendvp/tl/phenotype_cells.py:341:121: E501 Line too long (214 > 120)
+    |
+339 | …inal phenotype calling will be saved.')
+340 | … the unique imageid')
+341 | …een (0-100). If any particular phenotype is below the user defined threshold, it is recategorised as unknown')
+    |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+342 | …s that of pheno_threshold_percent. However, an absolute number can be passed')
+343 | …d messages about its progress.')
+    |
+
+src/opendvp/tl/phenotype_cells.py:342:121: E501 Line too long (182 > 120)
+    |
+340 | …mn that contains the unique imageid')
+341 | …epts values between (0-100). If any particular phenotype is below the user defined threshold, it is recategorised as unknown')
+342 | …e same purpose as that of pheno_threshold_percent. However, an absolute number can be passed')
+    |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+343 | …ll print detailed messages about its progress.')
+344 | …
+    |
+
+src/opendvp/tl/phenotype_cells.py:343:121: E501 Line too long (136 > 120)
+    |
+341 | …default=True, help='Accepts values between (0-100). If any particular phenotype is below the user defined threshold, it is recategor…
+342 | …t=None, help='Serves the same purpose as that of pheno_threshold_percent. However, an absolute number can be passed')
+343 | …, help='The function will print detailed messages about its progress.')
+    |                                                         ^^^^^^^^^^^^^^^^ E501
+344 | …
+    |
+
+src/opendvp/tl/spatial_autocorrelation.py:13:5: C901 `spatial_autocorrelation` is too complex (13 > 10)
+   |
+13 | def spatial_autocorrelation(
+   |     ^^^^^^^^^^^^^^^^^^^^^^^ C901
+14 |     adata: ad.AnnData,
+15 |     method: str = "moran",
+   |
+
+src/opendvp/tl/stats_average_samples.py:50:5: PD901 Avoid using the generic variable name `df` for DataFrames
+   |
+48 |     # It's more efficient to work with a pandas DataFrame for groupby operations.
+49 |     X_dense = adata.X.toarray() if hasattr(adata.X, "toarray") else np.asarray(adata.X)
+50 |     df = pd.DataFrame(X_dense, columns=adata.var_names, index=adata.obs.index)
+   |     ^^ PD901
+51 |
+52 |     # Add the grouping categories to the DataFrame for the groupby operation
+   |
+
+src/opendvp/tl/stats_bootstrap.py:14:5: C901 `stats_bootstrap` is too complex (13 > 10)
+   |
+14 | def stats_bootstrap(
+   |     ^^^^^^^^^^^^^^^ C901
+15 |     dataframe : pd.DataFrame,
+16 |     n_bootstrap : int = 100,
+   |
+
+src/opendvp/tl/stats_bootstrap.py:14:5: ANN201 Missing return type annotation for public function `stats_bootstrap`
+   |
+14 | def stats_bootstrap(
+   |     ^^^^^^^^^^^^^^^ ANN201
+15 |     dataframe : pd.DataFrame,
+16 |     n_bootstrap : int = 100,
+   |
+   = help: Add return type annotation
+
+src/opendvp/tl/stats_bootstrap.py:100:121: E501 Line too long (127 > 120)
+    |
+ 98 |         subset_sizes = [10, 50, 100]
+ 99 |     if not replace and max(subset_sizes) > dataframe.shape[0]:
+100 |         raise ValueError("A subset size is larger than the number of rows in the dataframe when sampling without replacement.")
+    |                                                                                                                         ^^^^^^^ E501
+101 |
+102 |     rng = np.random.default_rng(seed=random_seed)
+    |
+
+src/opendvp/tl/stats_bootstrap.py:123:121: E501 Line too long (152 > 120)
+    |
+121 | …'bootstrap_id'])
+122 | …cv_summary'])
+123 | … else (empty_summary if return_summary else (empty_df if return_raw else None))
+    |                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+124 | …
+125 | …
+    |
+
+src/opendvp/utils/parse_color_for_qupath.py:52:121: E501 Line too long (122 > 120)
+   |
+50 |                 # Handle RGB fraction tuples (0-1)
+51 |                 parsed_colors[name] = list(int(c * 255) for c in color)
+52 |             elif isinstance(color, list) and len(color) == 3 and all(isinstance(c, int) and 0 <= c <= 255 for c in color):
+   |                                                                                                                         ^^ E501
+53 |                 # Already in [R, G, B] format with values 0-255
+54 |                 parsed_colors[name] = color
+   |
+
+src/opendvp/utils/utils.py:8:5: ANN201 Missing return type annotation for public function `get_datetime`
+  |
+8 | def get_datetime():
+  |     ^^^^^^^^^^^^ ANN201
+9 |     return time.strftime("%Y%m%d_%H%M")
+  |
+  = help: Add return type annotation
+
+src/opendvp/utils/utils.py:8:5: D103 Missing docstring in public function
+  |
+8 | def get_datetime():
+  |     ^^^^^^^^^^^^ D103
+9 |     return time.strftime("%Y%m%d_%H%M")
+  |
+
+src/opendvp/utils/utils.py:11:5: ANN201 Missing return type annotation for public function `switch_adat_var_index`
+   |
+ 9 |     return time.strftime("%Y%m%d_%H%M")
+10 |
+11 | def switch_adat_var_index(adata, new_index):
+   |     ^^^^^^^^^^^^^^^^^^^^^ ANN201
+12 |     """Switch the index of adata.var to a new index. Useful for switching between gene names and protein names.
+13 |     """
+   |
+   = help: Add return type annotation
+
+src/opendvp/utils/utils.py:11:27: ANN001 Missing type annotation for function argument `adata`
+   |
+ 9 |     return time.strftime("%Y%m%d_%H%M")
+10 |
+11 | def switch_adat_var_index(adata, new_index):
+   |                           ^^^^^ ANN001
+12 |     """Switch the index of adata.var to a new index. Useful for switching between gene names and protein names.
+13 |     """
+   |
+
+src/opendvp/utils/utils.py:11:34: ANN001 Missing type annotation for function argument `new_index`
+   |
+ 9 |     return time.strftime("%Y%m%d_%H%M")
+10 |
+11 | def switch_adat_var_index(adata, new_index):
+   |                                  ^^^^^^^^^ ANN001
+12 |     """Switch the index of adata.var to a new index. Useful for switching between gene names and protein names.
+13 |     """
+   |
+
+src/opendvp/utils/utils.py:12:5: D200 One-line docstring should fit on one line
+   |
+11 |   def switch_adat_var_index(adata, new_index):
+12 | /     """Switch the index of adata.var to a new index. Useful for switching between gene names and protein names.
+13 | |     """
+   | |_______^ D200
+14 |       adata_copy = adata.copy()
+15 |       adata_copy.var[adata_copy.var.index.name] = adata_copy.var.index
+   |
+   = help: Reformat to one line
+
+src/opendvp/utils/utils.py:16:41: PD002 `inplace=True` should be avoided; it has inconsistent behavior
+   |
+14 |     adata_copy = adata.copy()
+15 |     adata_copy.var[adata_copy.var.index.name] = adata_copy.var.index
+16 |     adata_copy.var.set_index(new_index, inplace=True)
+   |                                         ^^^^^^^^^^^^ PD002
+17 |     adata_copy.var.index.name = new_index
+18 |     return adata_copy
+   |
+   = help: Assign to variable; remove `inplace` arg
+
+src/opendvp/utils/utils.py:20:5: ANN201 Missing return type annotation for public function `check_link`
+   |
+18 |     return adata_copy
+19 |
+20 | def check_link(sdata, shape_element_key, adata, adata_obs_key):
+   |     ^^^^^^^^^^ ANN201
+21 |     shape_index = sdata[shape_element_key].index.to_list()
+22 |     cell_ids = adata.obs[adata_obs_key].to_list()
+   |
+   = help: Add return type annotation: `None`
+
+src/opendvp/utils/utils.py:20:5: D103 Missing docstring in public function
+   |
+18 |     return adata_copy
+19 |
+20 | def check_link(sdata, shape_element_key, adata, adata_obs_key):
+   |     ^^^^^^^^^^ D103
+21 |     shape_index = sdata[shape_element_key].index.to_list()
+22 |     cell_ids = adata.obs[adata_obs_key].to_list()
+   |
+
+src/opendvp/utils/utils.py:20:16: ANN001 Missing type annotation for function argument `sdata`
+   |
+18 |     return adata_copy
+19 |
+20 | def check_link(sdata, shape_element_key, adata, adata_obs_key):
+   |                ^^^^^ ANN001
+21 |     shape_index = sdata[shape_element_key].index.to_list()
+22 |     cell_ids = adata.obs[adata_obs_key].to_list()
+   |
+
+src/opendvp/utils/utils.py:20:23: ANN001 Missing type annotation for function argument `shape_element_key`
+   |
+18 |     return adata_copy
+19 |
+20 | def check_link(sdata, shape_element_key, adata, adata_obs_key):
+   |                       ^^^^^^^^^^^^^^^^^ ANN001
+21 |     shape_index = sdata[shape_element_key].index.to_list()
+22 |     cell_ids = adata.obs[adata_obs_key].to_list()
+   |
+
+src/opendvp/utils/utils.py:20:42: ANN001 Missing type annotation for function argument `adata`
+   |
+18 |     return adata_copy
+19 |
+20 | def check_link(sdata, shape_element_key, adata, adata_obs_key):
+   |                                          ^^^^^ ANN001
+21 |     shape_index = sdata[shape_element_key].index.to_list()
+22 |     cell_ids = adata.obs[adata_obs_key].to_list()
+   |
+
+src/opendvp/utils/utils.py:20:49: ANN001 Missing type annotation for function argument `adata_obs_key`
+   |
+18 |     return adata_copy
+19 |
+20 | def check_link(sdata, shape_element_key, adata, adata_obs_key):
+   |                                                 ^^^^^^^^^^^^^ ANN001
+21 |     shape_index = sdata[shape_element_key].index.to_list()
+22 |     cell_ids = adata.obs[adata_obs_key].to_list()
+   |
+
+src/opendvp/utils/utils.py:23:5: S101 Use of `assert` detected
+   |
+21 |     shape_index = sdata[shape_element_key].index.to_list()
+22 |     cell_ids = adata.obs[adata_obs_key].to_list()
+23 |     assert shape_index[:5] == cell_ids[:5], "First 5 CellIDs do not match."
+   |     ^^^^^^ S101
+24 |     assert shape_index[-5:] == cell_ids[-5:], "Last 5 CellIDs do not match."
+25 |     assert sdata[shape_element_key].index.dtype == adata.obs[adata_obs_key].dtype, "Data types do not match."
+   |
+
+src/opendvp/utils/utils.py:24:5: S101 Use of `assert` detected
+   |
+22 |     cell_ids = adata.obs[adata_obs_key].to_list()
+23 |     assert shape_index[:5] == cell_ids[:5], "First 5 CellIDs do not match."
+24 |     assert shape_index[-5:] == cell_ids[-5:], "Last 5 CellIDs do not match."
+   |     ^^^^^^ S101
+25 |     assert sdata[shape_element_key].index.dtype == adata.obs[adata_obs_key].dtype, "Data types do not match."
+26 |     print("Success, no problems found")
+   |
+
+src/opendvp/utils/utils.py:25:5: S101 Use of `assert` detected
+   |
+23 |     assert shape_index[:5] == cell_ids[:5], "First 5 CellIDs do not match."
+24 |     assert shape_index[-5:] == cell_ids[-5:], "Last 5 CellIDs do not match."
+25 |     assert sdata[shape_element_key].index.dtype == adata.obs[adata_obs_key].dtype, "Data types do not match."
+   |     ^^^^^^ S101
+26 |     print("Success, no problems found")
+   |
+
+src/opendvp/utils/utils.py:28:5: ANN201 Missing return type annotation for public function `ensure_one_based_index`
+   |
+26 |     print("Success, no problems found")
+27 |
+28 | def ensure_one_based_index(adata, cellid_col="CellID"):
+   |     ^^^^^^^^^^^^^^^^^^^^^^ ANN201
+29 |     """Ensures the specified CellID column and index are 1-based.
+30 |     Converts data to integers if needed.
+   |
+   = help: Add return type annotation
+
+src/opendvp/utils/utils.py:28:28: ANN001 Missing type annotation for function argument `adata`
+   |
+26 |     print("Success, no problems found")
+27 |
+28 | def ensure_one_based_index(adata, cellid_col="CellID"):
+   |                            ^^^^^ ANN001
+29 |     """Ensures the specified CellID column and index are 1-based.
+30 |     Converts data to integers if needed.
+   |
+
+src/opendvp/utils/utils.py:28:35: ANN001 Missing type annotation for function argument `cellid_col`
+   |
+26 |     print("Success, no problems found")
+27 |
+28 | def ensure_one_based_index(adata, cellid_col="CellID"):
+   |                                   ^^^^^^^^^^ ANN001
+29 |     """Ensures the specified CellID column and index are 1-based.
+30 |     Converts data to integers if needed.
+   |
+
+src/opendvp/utils/utils.py:29:5: D205 1 blank line required between summary line and description
+   |
+28 |   def ensure_one_based_index(adata, cellid_col="CellID"):
+29 | /     """Ensures the specified CellID column and index are 1-based.
+30 | |     Converts data to integers if needed.
+31 | |     
+32 | |     Parameters:
+33 | |     - adata: AnnData object
+34 | |     - cellid_col: str, name of the column with cell IDs (default: "CellID")
+35 | |     
+36 | |     Returns:
+37 | |     - adata: updated AnnData object
+38 | |     """
+   | |_______^ D205
+39 |       # Check if the column exists
+40 |       if cellid_col not in adata.obs.columns:
+   |
+   = help: Insert single blank line
+
+src/opendvp/utils/utils.py:62:5: ANN201 Missing return type annotation for public function `create_vertical_legend`
+   |
+62 | def create_vertical_legend(color_dict, title="Legend"):
+   |     ^^^^^^^^^^^^^^^^^^^^^^ ANN201
+63 |
+64 |     fig, ax = plt.subplots(figsize=(3, len(color_dict) * 0.5))
+   |
+   = help: Add return type annotation
+
+src/opendvp/utils/utils.py:62:5: D103 Missing docstring in public function
+   |
+62 | def create_vertical_legend(color_dict, title="Legend"):
+   |     ^^^^^^^^^^^^^^^^^^^^^^ D103
+63 |
+64 |     fig, ax = plt.subplots(figsize=(3, len(color_dict) * 0.5))
+   |
+
+src/opendvp/utils/utils.py:62:28: ANN001 Missing type annotation for function argument `color_dict`
+   |
+62 | def create_vertical_legend(color_dict, title="Legend"):
+   |                            ^^^^^^^^^^ ANN001
+63 |
+64 |     fig, ax = plt.subplots(figsize=(3, len(color_dict) * 0.5))
+   |
+
+src/opendvp/utils/utils.py:62:40: ANN001 Missing type annotation for function argument `title`
+   |
+62 | def create_vertical_legend(color_dict, title="Legend"):
+   |                                        ^^^^^ ANN001
+63 |
+64 |     fig, ax = plt.subplots(figsize=(3, len(color_dict) * 0.5))
+   |
+
+src/opendvp/utils/utils.py:73:5: F841 Local variable `legend` is assigned to but never used
+   |
+72 |     # Draw legend as a vertical list
+73 |     legend = ax.legend(
+   |     ^^^^^^ F841
+74 |         handles=patches,
+75 |         title=title,
+   |
+   = help: Remove assignment to unused variable `legend`
+
+src/opendvp/utils/utils.py:85:5: ANN201 Missing return type annotation for public function `print_color_dict`
+   |
+85 | def print_color_dict(dictionary):
+   |     ^^^^^^^^^^^^^^^^ ANN201
+86 |
+87 |     fig, ax = plt.subplots(figsize=(8, len(dictionary) * 0.5))
+   |
+   = help: Add return type annotation: `None`
+
+src/opendvp/utils/utils.py:85:5: D103 Missing docstring in public function
+   |
+85 | def print_color_dict(dictionary):
+   |     ^^^^^^^^^^^^^^^^ D103
+86 |
+87 |     fig, ax = plt.subplots(figsize=(8, len(dictionary) * 0.5))
+   |
+
+src/opendvp/utils/utils.py:85:22: ANN001 Missing type annotation for function argument `dictionary`
+   |
+85 | def print_color_dict(dictionary):
+   |                      ^^^^^^^^^^ ANN001
+86 |
+87 |     fig, ax = plt.subplots(figsize=(8, len(dictionary) * 0.5))
+   |
+
+src/opendvp/utils/utils.py:89:22: A001 Variable `hex` is shadowing a Python builtin
+   |
+87 |     fig, ax = plt.subplots(figsize=(8, len(dictionary) * 0.5))
+88 |
+89 |     for index,(name, hex) in enumerate(dictionary.items()):
+   |                      ^^^ A001
+90 |         ax.add_patch(plt.Rectangle((0, index), 1, 1, color=hex))
+91 |         ax.text(1.1, index + 0.5, name, ha='left', va='center', fontsize=12)
+   |
+
+tests/imaging/test_mask_to_polygons.py:1:1: I001 [*] Import block is un-sorted or un-formatted
+   |
+ 1 | / import os
+ 2 | | import tempfile
+ 3 | |
+ 4 | | import geopandas as gpd
+ 5 | | import numpy as np
+ 6 | | import pytest
+ 7 | | import tifffile
+ 8 | | from shapely.geometry import MultiPolygon, Polygon
+   | |__________________________________________________^ I001
+ 9 |
+10 |   # Helper function for counting coordinates in geometries
+   |
+   = help: Organize imports
+
+tests/imaging/test_mask_to_polygons.py:11:5: ANN202 Missing return type annotation for private function `_count_coords`
+   |
+10 | # Helper function for counting coordinates in geometries
+11 | def _count_coords(geometry):
+   |     ^^^^^^^^^^^^^ ANN202
+12 |     """Counts total coordinates in a Polygon or MultiPolygon."""
+13 |     if isinstance(geometry, Polygon):
+   |
+   = help: Add return type annotation
+
+tests/imaging/test_mask_to_polygons.py:22:1: E402 Module level import not at top of file
+   |
+20 |     return 0
+21 |
+22 | from opendvp.imaging.mask_to_polygons import mask_to_polygons
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+   |
+
+tests/io/test_DIANN_to_adata.py:3:8: F401 [*] `pytest` imported but unused
+  |
+1 | from pathlib import Path
+2 |
+3 | import pytest
+  |        ^^^^^^ F401
+4 |
+5 | from opendvp.io import DIANN_to_adata
+  |
+  = help: Remove unused import: `pytest`
+
+tests/io/test_adata_to_voronoi.py:23:12: PD004 `.notna` is preferred to `.notnull`; functionality is equivalent
+   |
+21 |     assert gdf is not None
+22 |     assert "geometry" in gdf.columns
+23 |     assert gdf.geometry.notnull().all()
+   |            ^^^^^^^^^^^^^^^^^^^^ PD004
+   |
+
+tests/io/test_adata_to_voronoi.py:45:42: PD002 `inplace=True` should be avoided; it has inconsistent behavior
+   |
+43 | def test_classify_by_missing_column(basic_adata):
+44 |     adata = basic_adata.copy()
+45 |     adata.obs.drop(columns=["celltype"], inplace=True)
+   |                                          ^^^^^^^^^^^^ PD002
+46 |     with pytest.raises(ValueError, match="celltype not in adata.obs.columns"):
+47 |         adata_to_voronoi(adata, classify_by="celltype")
+   |
+   = help: Assign to variable; remove `inplace` arg
+
+tests/io/test_export_adata.py:1:1: I001 [*] Import block is un-sorted or un-formatted
+  |
+1 | / import pytest
+2 | | import anndata as ad
+3 | | import numpy as np
+4 | | import pandas as pd
+5 | |
+6 | | from opendvp.io import export_adata
+  | |___________________________________^ I001
+  |
+  = help: Organize imports
+
+tests/io/test_export_figure.py:1:1: I001 [*] Import block is un-sorted or un-formatted
+  |
+1 | / import matplotlib.pyplot as plt
+2 | |
+3 | | from opendvp.io import export_figure
+  | |____________________________________^ I001
+4 |
+5 |   def test_export_figure_callable(tmp_path) -> None:
+  |
+  = help: Organize imports
+
+tests/io/test_import_thresholds.py:25:5: PD901 Avoid using the generic variable name `df` for DataFrames
+   |
+24 | def test_missing_gate_value_column(tmp_path):
+25 |     df = pd.DataFrame({'marker_id': ['CD3'], 'sample_id': ['sample1']})
+   |     ^^ PD901
+26 |     file_path = tmp_path / "bad.csv"
+27 |     df.to_csv(file_path, index=False)
+   |
+
+tests/io/test_import_thresholds.py:32:5: PD901 Avoid using the generic variable name `df` for DataFrames
+   |
+31 | def test_missing_sample_id_column(tmp_path):
+32 |     df = pd.DataFrame({'marker_id': ['CD3'], 'gate_value': [1.0]})
+   |     ^^ PD901
+33 |     file_path = tmp_path / "bad.csv"
+34 |     df.to_csv(file_path, index=False)
+   |
+
+tests/io/test_import_thresholds.py:39:5: PD901 Avoid using the generic variable name `df` for DataFrames
+   |
+38 | def test_filter_zero_gates(gates_csv):
+39 |     df = import_thresholds(gates_csv, log1p=False)
+   |     ^^ PD901
+40 |     assert (df['gate_value'] == 0.0).sum() == 0
+41 |     assert 'marker_id' in df.columns
+   |
+
+tests/io/test_import_thresholds.py:44:5: PD901 Avoid using the generic variable name `df` for DataFrames
+   |
+43 | def test_log1p_transformation(gates_csv):
+44 |     df = import_thresholds(gates_csv)
+   |     ^^ PD901
+45 |     assert 'markers' in df.columns
+46 |     assert df.shape[0] == 3  # Only 3 rows with gate_value != 0.0
+   |
+
+tests/io/test_import_thresholds.py:50:5: PD901 Avoid using the generic variable name `df` for DataFrames
+   |
+49 | def test_filter_by_sample(gates_csv):
+50 |     df = import_thresholds(gates_csv, sample_id='sample1')
+   |     ^^ PD901
+51 |     assert 'sample1' in df.columns
+52 |     assert df.shape[0] == 2  # Two valid gates for sample1
+   |
+
+tests/io/test_quant_to_adata.py:29:5: PD901 Avoid using the generic variable name `df` for DataFrames
+   |
+27 |         'mean_CD8': [0.5, 0.8, 1.1]
+28 |     }
+29 |     df = pd.DataFrame(data)
+   |     ^^ PD901
+30 |     file_path = tmp_path / "quant.csv"
+31 |     df.to_csv(file_path, index=False)
+   |
+
+tests/io/test_quant_to_adata.py:56:5: PD901 Avoid using the generic variable name `df` for DataFrames
+   |
+55 | def test_missing_metadata_columns(tmp_path):
+56 |     df = pd.DataFrame({'CellID': [1], 'mean_CD3': [1.0]})
+   |     ^^ PD901
+57 |     path = tmp_path / "missing_meta.csv"
+58 |     df.to_csv(path, index=False)
+   |
+
+tests/metrics/test_coefficient_of_variation.py:114:5: PD901 Avoid using the generic variable name `df` for DataFrames
+    |
+112 | def test_invalid_nan_policy():
+113 |     """Test that an invalid nan_policy string raises ValueError."""
+114 |     df = pd.DataFrame({'a': [1, 2, 3]})
+    |     ^^ PD901
+115 |     with pytest.raises(ValueError, match="nan_policy must be 'propagate', 'raise', or 'omit'"):
+116 |         coefficient_of_variation(df, nan_policy='invalid_policy')
+    |
+
+tests/metrics/test_coefficient_of_variation.py:121:5: PD901 Avoid using the generic variable name `df` for DataFrames
+    |
+119 | def test_invalid_axis():
+120 |     """Test that an invalid axis value raises ValueError."""
+121 |     df = pd.DataFrame({'a': [1, 2, 3]})
+    |     ^^ PD901
+122 |     with pytest.raises(ValueError, match="axis must be 0 \\(columns\\) or 1 \\(rows\\)"):
+123 |         coefficient_of_variation(df, axis=2)
+    |
+
+tests/tl/test_filter_by_abs_value.py:77:121: E501 Line too long (135 > 120)
+   |
+75 |     lower_bound = 9.0
+76 |     upper_bound = 11.0
+77 |     adata_filtered = filter_by_abs_value(sample_adata, feature_name, lower_bound=lower_bound, upper_bound=upper_bound, mode='absolute')
+   |                                                                                                                         ^^^^^^^^^^^^^^^ E501
+78 |     
+79 |     filter_col = f"{feature_name}_filter"
+   |
+
+tests/tl/test_filter_by_abs_value.py:125:121: E501 Line too long (135 > 120)
+    |
+123 | …
+124 | …
+125 | …ame, lower_bound=lower_bound, upper_bound=upper_bound, mode='quantile')
+    |                                                          ^^^^^^^^^^^^^^^ E501
+126 | …
+127 | …
+    |
+
+tests/tl/test_filter_by_abs_value.py:136:121: E501 Line too long (122 > 120)
+    |
+135 |     assert ((original_data[mask] >= actual_lower_threshold) & (original_data[mask] <= actual_upper_threshold)).all()
+136 |     assert not ((original_data[~mask] >= actual_lower_threshold) & (original_data[~mask] <= actual_upper_threshold)).any()
+    |                                                                                                                         ^^ E501
+137 |     assert mask.sum() > 0 and mask.sum() < sample_adata.n_obs
+    |
+
+tests/tl/test_filter_by_abs_value.py:162:121: E501 Line too long (135 > 120)
+    |
+160 | …
+161 | …
+162 | …ame, lower_bound=lower_bound, upper_bound=upper_bound, mode='quantile')
+    |                                                          ^^^^^^^^^^^^^^^ E501
+163 | …
+164 | …
+    |
+
+tests/tl/test_filter_by_abs_value.py:173:121: E501 Line too long (122 > 120)
+    |
+172 |     assert ((original_data[mask] >= actual_lower_threshold) & (original_data[mask] <= actual_upper_threshold)).all()
+173 |     assert not ((original_data[~mask] >= actual_lower_threshold) & (original_data[~mask] <= actual_upper_threshold)).any()
+    |                                                                                                                         ^^ E501
+174 |     assert mask.sum() > 0 and mask.sum() < sample_adata.n_obs
+    |
+
+tests/tl/test_filter_by_abs_value.py:181:121: E501 Line too long (133 > 120)
+    |
+179 | def test_error_feature_not_found(sample_adata):
+180 |     """Test ValueError when feature_name is not found in X or obs."""
+181 |     with pytest.raises(ValueError, match="Feature 'non_existent_feature' not found in either adata.var_names or adata.obs.columns."):
+    |                                                                                                                         ^^^^^^^^^^^^^ E501
+182 |         filter_by_abs_value(sample_adata, "non_existent_feature", lower_bound=10)
+    |
+
+tests/tl/test_filter_by_abs_value.py:246:121: E501 Line too long (121 > 120)
+    |
+244 |     feature_name = "marker_3"
+245 |     # Set bounds so tight that no cells pass (e.g., outside the data's typical range)
+246 |     adata_filtered = filter_by_abs_value(sample_adata, feature_name, lower_bound=1000, upper_bound=1001, mode='absolute')
+    |                                                                                                                         ^ E501
+247 |     mask = adata_filtered.obs[f"{feature_name}_filter"]
+248 |     assert mask.sum() == 0 # Expect 0 cells to pass
+    |
+
+tests/tl/test_filter_by_abs_value.py:254:121: E501 Line too long (122 > 120)
+    |
+252 |     feature_name = "marker_4"
+253 |     # Set bounds so wide that all cells pass
+254 |     adata_filtered = filter_by_abs_value(sample_adata, feature_name, lower_bound=-1000, upper_bound=1000, mode='absolute')
+    |                                                                                                                         ^^ E501
+255 |     mask = adata_filtered.obs[f"{feature_name}_filter"]
+256 |     assert mask.sum() == sample_adata.n_obs # Expect all cells to pass
+    |
+
+tests/tl/test_filter_by_annotation.py:5:17: F401 [*] `numpy` imported but unused
+  |
+3 | import anndata as ad
+4 | import geopandas as gpd
+5 | import numpy as np
+  |                 ^^ F401
+6 | import pandas as pd
+7 | import pytest
+  |
+  = help: Remove unused import: `numpy`
+
+tests/tl/test_filter_by_annotation.py:71:121: E501 Line too long (128 > 120)
+   |
+69 |     # Check that 'ANY' column is True for cells inside any polygon
+70 |     inside_any = adata_annotated.obs["ANY"]
+71 |     assert (inside_any == (adata_annotated.obs["ClassA"] | adata_annotated.obs["ClassB"] | adata_annotated.obs["ClassC"])).all()
+   |                                                                                                                         ^^^^^^^^ E501
+72 |
+73 |     # Check the 'annotation' column for specific cells
+   |
+
+tests/tl/test_filter_by_annotation.py:82:13: E712 Avoid equality comparisons to `False`; use `not adata_annotated.obs["ClassD"]:` for false checks
+   |
+81 |     # Check that ClassD column exists and is all False
+82 |     assert (adata_annotated.obs["ClassD"] == False).all()
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E712
+83 |
+84 |     # Check boolean columns for the MIXED cell
+   |
+   = help: Replace with `not adata_annotated.obs["ClassD"]`
+
+tests/tl/test_filter_by_annotation.py:92:121: E501 Line too long (121 > 120)
+   |
+90 |     """Test filtering with custom cell_id_col and x_y parameters."""
+91 |     adata_annotated = filter_by_annotation(
+92 |         sample_adata, temp_geojson_file, cell_id_col="CellID", x_y=("custom_x", "custom_y"), any_label="annotation_group"
+   |                                                                                                                         ^ E501
+93 |     )
+   |
+
+tests/tl/test_filter_by_annotation.py:147:13: E712 Avoid equality comparisons to `False`; use `not adata_annotated.obs["FarAwayClass"]:` for false checks
+    |
+145 |     adata_annotated = filter_by_annotation(sample_adata, str(filepath))
+146 |
+147 |     assert (adata_annotated.obs["FarAwayClass"] == False).all()  # All False for the annotation class
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E712
+148 |     assert (adata_annotated.obs["annotation"] == "Unannotated").all()  # All "Unannotated"
+149 |     assert (adata_annotated.obs["ANY"] == False).all()
+    |
+    = help: Replace with `not adata_annotated.obs["FarAwayClass"]`
+
+tests/tl/test_filter_by_annotation.py:149:13: E712 Avoid equality comparisons to `False`; use `not adata_annotated.obs["ANY"]:` for false checks
+    |
+147 |     assert (adata_annotated.obs["FarAwayClass"] == False).all()  # All False for the annotation class
+148 |     assert (adata_annotated.obs["annotation"] == "Unannotated").all()  # All "Unannotated"
+149 |     assert (adata_annotated.obs["ANY"] == False).all()
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E712
+    |
+    = help: Replace with `not adata_annotated.obs["ANY"]`
+
+tests/tl/test_filter_by_ratio.py:70:13: E712 Avoid equality comparisons to `False`; use `not ...:` for false checks
+   |
+69 |     # Where ratio is nan, pass should be False
+70 |     assert (adata_filtered.obs["DAPI_ratio_pass"][zero_indices] == False).all()
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E712
+   |
+   = help: Replace comparison
+
+tests/tl/test_filter_by_ratio.py:104:13: E712 Avoid equality comparisons to `False`; use `not adata_filtered.obs["DAPI_ratio_pass"]:` for false checks
+    |
+102 |     """Test scenario where no cells pass the filter (very strict range)."""
+103 |     adata_filtered = filter_by_ratio(sample_adata, "marker_A", "marker_B", min_ratio=1000, max_ratio=2000)
+104 |     assert (adata_filtered.obs["DAPI_ratio_pass"] == False).all()
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E712
+    |
+    = help: Replace with `not adata_filtered.obs["DAPI_ratio_pass"]`
+
+tests/tl/test_filter_by_ratio.py:110:13: E712 Avoid equality comparisons to `True`; use `adata_filtered.obs["DAPI_ratio_pass"]:` for truth checks
+    |
+108 |     """Test scenario where all cells pass the filter (very permissive range)."""
+109 |     adata_filtered = filter_by_ratio(sample_adata, "marker_A", "marker_B", min_ratio=-1000, max_ratio=1000)
+110 |     assert (adata_filtered.obs["DAPI_ratio_pass"] == True).all()
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E712
+    |
+    = help: Replace with `adata_filtered.obs["DAPI_ratio_pass"]`
+
+tests/tl/test_filter_features_byNaNs.py:84:121: E501 Line too long (125 > 120)
+   |
+82 |     # Check that 'mean' and 'nan_proportions' in returned adata.var match 'overall_' in uns
+83 |     assert np.allclose(filtered_adata.var['mean'], qc_df.loc[filtered_adata.var_names, 'overall_mean'])
+84 |     assert np.allclose(filtered_adata.var['nan_proportions'], qc_df.loc[filtered_adata.var_names, 'overall_nan_proportions'])
+   |                                                                                                                         ^^^^^ E501
+85 |
+86 | def test_filtering_with_grouping_any():
+   |
+
+tests/tl/test_filter_features_byNaNs.py:103:121: E501 Line too long (124 > 120)
+    |
+102 |     expected_kept_proteins = ['protein_0', 'protein_1', 'protein_3']
+103 |     filtered_adata = filter_features_byNaNs(adata, threshold=0.7, grouping='sample_group', valid_in_ANY_or_ALL_groups='ANY')
+    |                                                                                                                         ^^^^ E501
+104 |     assert filtered_adata.shape[1] == len(expected_kept_proteins)
+105 |     assert all(p in filtered_adata.var_names for p in expected_kept_proteins)
+    |
+
+tests/tl/test_filter_features_byNaNs.py:152:121: E501 Line too long (124 > 120)
+    |
+150 |     expected_kept_proteins = ['protein_3']
+151 |
+152 |     filtered_adata = filter_features_byNaNs(adata, threshold=0.7, grouping='sample_group', valid_in_ANY_or_ALL_groups='ALL')
+    |                                                                                                                         ^^^^ E501
+153 |
+154 |     assert filtered_adata.shape[1] == len(expected_kept_proteins)
+    |
+
+tests/tl/test_impute_gaussian.py:6:8: F401 [*] `pytest` imported but unused
+  |
+4 | import numpy as np
+5 | import pandas as pd
+6 | import pytest
+  |        ^^^^^^ F401
+7 |
+8 | from opendvp.tl.impute_gaussian import impute_gaussian
+  |
+  = help: Remove unused import: `pytest`
+
+tests/tl/test_spatial_autocorrelation.py:1:1: I001 [*] Import block is un-sorted or un-formatted
+  |
+1 | / import anndata as ad
+2 | | import numpy as np
+3 | | import pandas as pd
+4 | | import pytest
+5 | | from unittest.mock import patch
+6 | |
+7 | | from opendvp.tl import spatial_autocorrelation
+  | |______________________________________________^ I001
+8 |
+9 |   # --- Fixtures ---
+  |
+  = help: Organize imports
+
+tests/tl/test_spatial_autocorrelation.py:83:20: PD003 `.isna` is preferred to `.isnull`; functionality is equivalent
+   |
+81 |     for col in expected_cols:
+82 |         assert col in adata_spatial.var.columns
+83 |         assert not adata_spatial.var[col].isnull().all() # Ensure not all values are NaN
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ PD003
+84 |
+85 | def test_geary_c_run(adata_spatial):
+   |
+
+tests/tl/test_spatial_autocorrelation.py:94:20: PD003 `.isna` is preferred to `.isnull`; functionality is equivalent
+   |
+92 |     for col in expected_cols:
+93 |         assert col in adata_spatial.var.columns
+94 |         assert not adata_spatial.var[col].isnull().all()
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ PD003
+95 |
+96 | def test_invalid_method(adata_spatial):
+   |
+
+tests/tl/test_spatial_autocorrelation.py:104:54: PD002 `inplace=True` should be avoided; it has inconsistent behavior
+    |
+102 |     """Test that missing coordinate columns raise an error."""
+103 |     adata_no_coords = adata_spatial.copy()
+104 |     adata_no_coords.obs.drop(columns=['x_centroid'], inplace=True)
+    |                                                      ^^^^^^^^^^^^ PD002
+105 |     with pytest.raises(KeyError):
+106 |         spatial_autocorrelation(adata_no_coords, method="moran")
+    |
+    = help: Assign to variable; remove `inplace` arg
+
+tests/tl/test_spatial_hyperparameter_search.py:1:1: I001 [*] Import block is un-sorted or un-formatted
+  |
+1 | / import numpy as np
+2 | | import pandas as pd
+3 | | import anndata as ad
+4 | | import pytest
+5 | | from opendvp.tl.spatial_hyperparameter_search import spatial_hyperparameter_search
+  | |__________________________________________________________________________________^ I001
+6 |
+7 |   @pytest.fixture
+  |
+  = help: Organize imports
+
+tests/tl/test_stats_bootstrap.py:19:5: PD901 Avoid using the generic variable name `df` for DataFrames
+   |
+17 |         "constant": np.full(100, 50.0),
+18 |     }
+19 |     df = pd.DataFrame(data)
+   |     ^^ PD901
+20 |     df.loc[10:20, "with_nans"] = np.nan
+21 |     return df
+   |
+
+Found 348 errors.
+[*] 32 fixable with the `--fix` option (30 hidden fixes can be enabled with the `--unsafe-fixes` option).

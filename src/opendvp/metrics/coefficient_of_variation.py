@@ -3,13 +3,16 @@ import pandas as pd
 
 
 def coefficient_of_variation(
-    df: pd.DataFrame, axis: int = 0, nan_policy: str = "propagate"
+    df: pd.DataFrame, 
+    axis: int = 0, 
+    nan_policy: str = "propagate", 
+    ddof: int = 1
 ) -> pd.Series:
     """Calculate the coefficient of variation.
      
     (CV = std / mean) along a specified axis of a DataFrame.
 
-    Parameters
+    Parameters:
     ----------
     df : pandas.DataFrame
         Input DataFrame.
@@ -19,6 +22,11 @@ def coefficient_of_variation(
         - 'propagate': returns NaN if NaN is present
         - 'raise': raises ValueError if NaN is present
         - 'omit': ignores NaNs in the calculation
+    ddof : int, default 1
+        Delta Degrees of Freedom used in the std calculation. 
+        The divisor used in calculations is N - ddof,
+        default is 1
+        
 
     Returns:
     -------
@@ -32,27 +40,19 @@ def coefficient_of_variation(
     """
     if nan_policy not in {"propagate", "raise", "omit"}:
         raise ValueError("nan_policy must be 'propagate', 'raise', or 'omit'")
-
     if nan_policy == "raise" and df.isna().any().any():
-        raise ValueError(
-            "NaN values found in DataFrame and nan_policy is set to 'raise'"
-        )
-
+        raise ValueError("NaN values found in DataFrame and nan_policy is set to 'raise'")
     if axis not in (0, 1):
         raise ValueError("axis must be 0 (columns) or 1 (rows)")
 
-    # Map axis to pandas-accepted values (0, 1, 'index', 'columns')
-    axis_label = "index" if axis == 0 else "columns"
-
     if nan_policy == "omit":
-        mean = df.mean(axis=axis_label, skipna=True)
-        std = df.std(axis=axis_label, skipna=True)
+        mean = df.mean(axis=axis, skipna=True)
+        std = df.std(axis=axis, skipna=True, ddof=ddof)
     else:  # 'propagate'
-        mean = df.mean(axis=axis_label, skipna=False)
-        std = df.std(axis=axis_label, skipna=False)
+        mean = df.mean(axis=axis, skipna=False)
+        std = df.std(axis=axis, skipna=False, ddof=ddof)
 
     with np.errstate(divide="ignore", invalid="ignore"):
         cv = std / mean
-        cv = cv.replace([np.inf, -np.inf], np.nan)
 
     return cv

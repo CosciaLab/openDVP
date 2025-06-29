@@ -15,7 +15,7 @@ def spatial_autocorrelation(
     method: str = "moran",
     x_y: Sequence[str] = ("x_centroid", "y_centroid"),
     k : int = 8,
-    threshold : float = 10.0,
+    threshold : int | float = 10.0,
     island_threshold : float = 0.1
 ) -> None:
     """Compute spatial autocorrelation statistics (Moran's I or Geary's C) for each gene in an AnnData object.
@@ -30,9 +30,9 @@ def spatial_autocorrelation(
         Names of columns in `adata.obs` containing spatial coordinates.
     k : int, default 8
         Number of neighbors for Moran's I (ignored for Geary's C).
-    threshold : float, default 10.0
+    threshold : int or float, default 10.0
         Distance threshold for neighbors for Geary's C (ignored for Moran's I).
-    island_threshold : float, default 0.1
+    island_threshold : float, default 0.1 (10%)
         If more than this fraction of samples are islands (no neighbors), raises error.
 
     Returns:
@@ -84,6 +84,19 @@ def spatial_autocorrelation(
     logger.info(f"Starting calculation for {adata.n_vars} genes")
     for gene in tqdm(adata.var.index, desc=f"Running {method.title()}", leave=True):
         feature_values = np.asarray(adata[:, gene].X).flatten()
+
+        # Pre-computation check for invalid values that would cause issues.
+        if not np.all(np.isfinite(feature_values)):
+            results.append(np.nan)
+            failed_genes.append(gene)
+            logger.warning(f"Skipping gene {gene}: contains NaN or Inf values.")
+            continue
+        if np.var(feature_values) == 0:
+            results.append(np.nan)
+            failed_genes.append(gene)
+            logger.warning(f"Skipping gene {gene}: has zero variance (all values are constant).")
+            continue
+
         try:
             if method.lower() == "moran":
                 result = esda.moran.Moran(feature_values, w)
@@ -101,24 +114,24 @@ def spatial_autocorrelation(
         logger.warning(f"{len(failed_genes)} genes failed during {method.upper()} calculation")
 
     if method.lower() == "moran":
-        adata.var['Moran_I'] = pd.Series(
+        adata.var[f'Moran_I_k{k}'] = pd.Series(
             [getattr(r, 'I', np.nan) if pd.notna(r) else np.nan for r in results],
             index=adata.var.index
         )
-        adata.var['Moran_p_sim'] = pd.Series(
+        adata.var[f'Moran_p_sim_k{k}'] = pd.Series(
             [getattr(r, 'p_sim', np.nan) if pd.notna(r) else np.nan for r in results],
             index=adata.var.index
         )
-        adata.var['Moran_Zscore'] = pd.Series(
+        adata.var[f'Moran_Zscore_k{k}'] = pd.Series(
             [getattr(r, 'z_sim', np.nan) if pd.notna(r) else np.nan for r in results],
             index=adata.var.index
         )
     elif method.lower() == "geary":
-        adata.var[f'Geary_C_k{threshold}'] = pd.Series(
+        adata.var[f'Geary_C_threshold{threshold}'] = pd.Series(
             [getattr(r, 'C', np.nan) if pd.notna(r) else np.nan for r in results],
             index=adata.var.index
         )
-        adata.var[f'Geary_p_sim_k{threshold}'] = pd.Series(
+        adata.var[f'Geary_p_sim_threshold{threshold}'] = pd.Series(
             [getattr(r, 'p_sim', np.nan) if pd.notna(r) else np.nan for r in results],
             index=adata.var.index
         )

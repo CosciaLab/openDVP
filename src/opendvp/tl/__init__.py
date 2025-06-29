@@ -5,7 +5,6 @@ from .filter_by_ratio import filter_by_ratio
 from .filter_features_byNaNs import filter_features_byNaNs
 
 from .impute_gaussian import impute_gaussian
-from .impute_single import impute_single
 
 from .spatial_autocorrelation import spatial_autocorrelation
 from .spatial_hyperparameter_search import spatial_hyperparameter_search
@@ -26,7 +25,6 @@ __all__ = [
     "phenotype_cells",
     "filter_features_byNaNs",
     "impute_gaussian",
-    "impute_single",
     "spatial_hyperparameter_search",
     "stats_average_samples",
     "stats_anova",

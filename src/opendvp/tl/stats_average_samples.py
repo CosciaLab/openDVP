@@ -1,55 +1,69 @@
-
 import anndata as ad
 import numpy as np
 import pandas as pd
+
+from opendvp.utils import logger
 
 
 def stats_average_samples(
     adata: ad.AnnData,
     categories: list[str]
 ) -> ad.AnnData:
-    """Calculate averages for all permutations of given categories in adata.obs.
+    """Average samples based on specified categories in adata.obs.
+
+    This function groups cells by unique combinations of the provided `categories`
+    and computes the mean expression for each feature within each group. The result
+    is a new, smaller AnnData object where each observation corresponds to a
+    unique category combination.
+
+    The original, pre-averaged AnnData object is stored in the `.uns` attribute
+    of the returned object under the key 'pre_averaged_adata'.
 
     Parameters
     ----------
     adata : AnnData
-        Annotated data matrix with observations (cells) and variables (features).
+        The annotated data matrix to be averaged.
     categories : list of str
-        List of categories (column names in adata.obs) to calculate averages for.
+        A list of column names in `adata.obs` to group by for averaging.
 
     Returns:
     -------
     AnnData
-        AnnData object containing category combinations and their corresponding averages.
+        A new AnnData object where observations are the unique category combinations
+        and variables are the averaged features.
+
+    Raises:
+    ------
+    ValueError
+        If any of the specified categories are not in `adata.obs.columns`.
     """
-    #LEGACY CODE
-    print(f" --- --- --- Calculating averages for {categories} --- --- --- ")
+    logger.info(f"Averaging samples by categories: {categories}")
 
-    adata_copy = adata.copy()
-    # Get the unique values for each category
-    unique_values = [adata_copy.obs[cat].unique() for cat in categories]
-    
-    # Generate all possible combinations of category values
-    combinations = pd.MultiIndex.from_product(unique_values, names=categories)
-    
-    # Create an empty DataFrame to store averages
-    avg_df = pd.DataFrame(index=combinations, columns=adata_copy.var_names)
-    
-    # Loop through each category combination
-    for combination in combinations:
+    # --- 1. Validation ---
+    missing_cats = [cat for cat in categories if cat not in adata.obs.columns]
+    if missing_cats:
+        raise ValueError(f"Categories not found in adata.obs: {missing_cats}")
 
-        # Select cells that match the current category combination
-        mask = np.all(np.vstack([adata_copy.obs[cat] == val for cat, val in zip(categories, combination, strict=False)]), axis=0)
-        selected_cells = np.asarray(adata.X)[mask]
-        
-        # Calculate average for the selected cells and store it in the DataFrame
-        avg_values = np.mean(selected_cells, axis=0)
-        avg_df.loc[combination] = avg_values
-    
-    df_reset = avg_df.reset_index()
+    # --- 2. Data Preparation ---
+    # It's more efficient to work with a pandas DataFrame for groupby operations.
+    X_dense = adata.X.toarray() if hasattr(adata.X, "toarray") else np.asarray(adata.X)
+    df = pd.DataFrame(X_dense, columns=adata.var_names, index=adata.obs.index)
 
-    adata_res = ad.AnnData(X=df_reset.iloc[:,2:].values, 
-                            obs=df_reset[categories], 
-                            var=adata_copy.var)
+    # Add the grouping categories to the DataFrame for the groupby operation
+    df_with_groups = pd.concat([df, adata.obs[categories]], axis=1)
+
+    # --- 3. Group and Average ---
+    avg_df = df_with_groups.groupby(categories).mean()
+
+    # --- 4. Create New AnnData Object ---
+    new_obs = avg_df.index.to_frame(index=False)
+    new_X = avg_df.to_numpy()
+    adata_res = ad.AnnData(X=new_X, obs=new_obs, var=adata.var.copy())
+
+    # --- 5. Store Original Data for Provenance ---
+    logger.info("Storing original AnnData object in `.uns['pre_averaged_adata']`.")
+    adata_res.uns['pre_averaged_adata'] = adata.copy()
+
+    logger.success(f"Averaging complete. New AnnData shape: {adata_res.shape}")
 
     return adata_res

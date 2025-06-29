@@ -91,8 +91,10 @@ pyproj = "3.7.1.*"
 
 [tool.ruff]
 line-length = 120
-target-version = "py311"  # Match your supported Python version
-per-file-ignores = { "tests/**/*.py" = ["S101", "D103", "ANN201", "ANN001"] }
+target-version = "py311"
+
+[tool.ruff.lint]
+per-file-ignores = {"tests/**/*.py" = ["S101", "D103", "ANN201", "ANN001"] }
 exclude = [
     ".git",
     "__pycache__",
@@ -105,7 +107,6 @@ exclude = [
     "tests/data",
 ]
 
-[tool.ruff.lint]
 select = [
     "E",    # pycodestyle errors
     "F",    # Pyflakes
@@ -124,8 +125,6 @@ select = [
 ignore = [
     "D100", # Ignore missing docstring in public module
     "D104", # Ignore missing docstring in public package
-    "ANN101", # Missing type annotation for self
-    "ANN102", # Missing type annotation for cls
 ]
 
 [tool.ruff.lint.pydocstyle]

@@ -47,7 +47,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../_static/documentation_options.js?v=46e1a7d4"></script>
+    <script src="../../_static/documentation_options.js?v=e4e9a439"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -165,12 +165,9 @@
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">API Reference</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 has-children"><a class="reference internal" href="../io.html">Input / Output</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.adata_to_qupath.html">opendvp.io.adata_to_qupath</a></li>
-<li class="toctree-l3"><a class="reference internal" href="opendvp.io.geojson_to_sdata.html">opendvp.io.geojson_to_sdata</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.import_thresholds.html">opendvp.io.import_thresholds</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.quant_to_adata.html">opendvp.io.quant_to_adata</a></li>
-<li class="toctree-l3"><a class="reference internal" href="opendvp.io.sdata_to_qupath.html">opendvp.io.sdata_to_qupath</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.segmask_to_qupath.html">opendvp.io.segmask_to_qupath</a></li>
-<li class="toctree-l3"><a class="reference internal" href="opendvp.io.adata_to_perseus.html">opendvp.io.adata_to_perseus</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.DIANN_to_adata.html">opendvp.io.DIANN_to_adata</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.import_perseus.html">opendvp.io.import_perseus</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.export_adata.html">opendvp.io.export_adata</a></li>
@@ -211,7 +208,6 @@
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.filter_by_ratio.html">opendvp.tl.filter_by_ratio</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.filter_features_byNaNs.html">opendvp.tl.filter_features_byNaNs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.impute_gaussian.html">opendvp.tl.impute_gaussian</a></li>
-<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.impute_single.html">opendvp.tl.impute_single</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.spatial_autocorrelation.html">opendvp.tl.spatial_autocorrelation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.spatial_hyperparameter_search.html">opendvp.tl.spatial_hyperparameter_search</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.stats_anova.html">opendvp.tl.stats_anova</a></li>
@@ -402,7 +398,7 @@ document.write(`
 <h1>opendvp.tl.filter_by_annotation<a class="headerlink" href="#opendvp-tl-filter-by-annotation" title="Link to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="opendvp.tl.filter_by_annotation">
-<span class="sig-prename descclassname"><span class="pre">opendvp.tl.</span></span><span class="sig-name descname"><span class="pre">filter_by_annotation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_to_geojson</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">any_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'artefact'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.tl.filter_by_annotation" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendvp.tl.</span></span><span class="sig-name descname"><span class="pre">filter_by_annotation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_to_geojson</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_id_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'CellID'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('X_centroid',</span> <span class="pre">'Y_centroid')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">any_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ANY'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.tl.filter_by_annotation" title="Link to this definition">#</a></dt>
 <dd><p>Filter cells by annotation in a geojson file using spatial indexing.</p>
 <p>This function assigns annotation classes to cells in an AnnData object by spatially joining cell centroids
 with polygons from a GeoJSON file. Each annotation class becomes a boolean column in <code class="docutils literal notranslate"><span class="pre">adata.obs</span></code>.</p>
@@ -412,15 +408,20 @@ with polygons from a GeoJSON file. Each annotation class becomes a boolean colum
 </dd>
 </dl>
 <section id="parameters">
-<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h2>
+<h2>Parameters:<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h2>
 <dl class="simple">
 <dt>adata<span class="classifier">ad.AnnData</span></dt><dd><p>AnnData object with cell centroids in <code class="docutils literal notranslate"><span class="pre">adata.obs[['X_centroid',</span> <span class="pre">'Y_centroid']]</span></code> and unique ‘CellID’.</p>
 </dd>
 <dt>path_to_geojson<span class="classifier">str</span></dt><dd><p>Path to the GeoJSON file containing polygon annotations with a ‘classification’ property.</p>
 </dd>
-<dt>any_label<span class="classifier">str, default ‘artefact’</span></dt><dd><p>Name for the column indicating if a cell is inside any annotation.</p>
+<dt>cell_id_col<span class="classifier">str, default ‘CellID’</span></dt><dd><p>Name of the column in <code class="docutils literal notranslate"><span class="pre">adata.obs</span></code> that uniquely identifies each cell.</p>
 </dd>
-<dt>plot_QC<span class="classifier">bool, default True</span></dt><dd><p>If True, enables plotting for quality control (not implemented).</p>
+<dt>x_y<span class="classifier">Sequence[str], default (“X_centroid”, “Y_centroid”)</span></dt><dd><p>Names of columns in <code class="docutils literal notranslate"><span class="pre">adata.obs</span></code> containing the X and Y spatial coordinates of cells.</p>
+</dd>
+<dt>any_label<span class="classifier">str, default ‘ANY’</span></dt><dd><p>Name for the column indicating if a cell is inside any annotation.
+This is to be used for naming the group of annotations, for example:
+If pathologist annotated tissue regions, call this: ‘tissue_ann’
+If microscopist annotated imaging artefacts, call this: ‘img_arts’</p>
 </dd>
 </dl>
 </section>

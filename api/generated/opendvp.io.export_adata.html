@@ -47,7 +47,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../_static/documentation_options.js?v=46e1a7d4"></script>
+    <script src="../../_static/documentation_options.js?v=e4e9a439"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -165,12 +165,9 @@
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">API Reference</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="../io.html">Input / Output</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.adata_to_qupath.html">opendvp.io.adata_to_qupath</a></li>
-<li class="toctree-l3"><a class="reference internal" href="opendvp.io.geojson_to_sdata.html">opendvp.io.geojson_to_sdata</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.import_thresholds.html">opendvp.io.import_thresholds</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.quant_to_adata.html">opendvp.io.quant_to_adata</a></li>
-<li class="toctree-l3"><a class="reference internal" href="opendvp.io.sdata_to_qupath.html">opendvp.io.sdata_to_qupath</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.segmask_to_qupath.html">opendvp.io.segmask_to_qupath</a></li>
-<li class="toctree-l3"><a class="reference internal" href="opendvp.io.adata_to_perseus.html">opendvp.io.adata_to_perseus</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.DIANN_to_adata.html">opendvp.io.DIANN_to_adata</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.import_perseus.html">opendvp.io.import_perseus</a></li>
 <li class="toctree-l3 current active"><a class="current reference internal" href="#">opendvp.io.export_adata</a></li>
@@ -211,7 +208,6 @@
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.filter_by_ratio.html">opendvp.tl.filter_by_ratio</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.filter_features_byNaNs.html">opendvp.tl.filter_features_byNaNs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.impute_gaussian.html">opendvp.tl.impute_gaussian</a></li>
-<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.impute_single.html">opendvp.tl.impute_single</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.spatial_autocorrelation.html">opendvp.tl.spatial_autocorrelation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.spatial_hyperparameter_search.html">opendvp.tl.spatial_hyperparameter_search</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.stats_anova.html">opendvp.tl.stats_anova</a></li>
@@ -402,21 +398,31 @@ document.write(`
 <h1>opendvp.io.export_adata<a class="headerlink" href="#opendvp-io-export-adata" title="Link to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="opendvp.io.export_adata">
-<span class="sig-prename descclassname"><span class="pre">opendvp.io.</span></span><span class="sig-name descname"><span class="pre">export_adata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_to_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">checkpoint_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.io.export_adata" title="Link to this definition">#</a></dt>
-<dd><p>Save an AnnData object as both .h5ad and .parquet files in a checkpoint directory.</p>
+<span class="sig-prename descclassname"><span class="pre">opendvp.io.</span></span><span class="sig-name descname"><span class="pre">export_adata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_to_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">checkpoint_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">export_as_cvs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata_cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parquet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">perseus</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.io.export_adata" title="Link to this definition">#</a></dt>
+<dd><p>Save an AnnData object as both .h5ad and optionally .parquet, .csv, or Perseus files in a checkpoint directory.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
 </dd>
 </dl>
 <section id="parameters">
-<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h2>
+<h2>Parameters:<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h2>
 <dl class="simple">
 <dt>adata<span class="classifier">AnnData</span></dt><dd><p>AnnData object to save.</p>
 </dd>
 <dt>path_to_dir<span class="classifier">str</span></dt><dd><p>Directory where the checkpoint folder will be created.</p>
 </dd>
 <dt>checkpoint_name<span class="classifier">str</span></dt><dd><p>Name for the checkpoint folder and file prefix.</p>
+</dd>
+<dt>export_as_cvs<span class="classifier">bool, optional</span></dt><dd><p>If True, exports the data and metadata as .csv (tab-delimited) or .parquet files. Default is False.</p>
+</dd>
+<dt>metadata_cols<span class="classifier">list, optional</span></dt><dd><p>List of columns from adata.obs to include in the metadata file. If None, all columns are included.</p>
+</dd>
+<dt>metadata_index<span class="classifier">str, optional</span></dt><dd><p>Column from adata.obs to use as index in the exported files. If None, uses the default index.</p>
+</dd>
+<dt>parquet<span class="classifier">bool, optional</span></dt><dd><p>If True, exports as .parquet files instead of .csv. Only used if export_as_cvs is True.</p>
+</dd>
+<dt>perseus<span class="classifier">bool, optional</span></dt><dd><p>If True, exports Perseus-compatible files in a subfolder. Default is False.</p>
 </dd>
 </dl>
 </section>
@@ -426,6 +432,20 @@ document.write(`
 <dt>None</dt><dd><p>This function saves files to disk and does not return a value.</p>
 </dd>
 </dl>
+</section>
+<section id="example">
+<h2>Example:<a class="headerlink" href="#example" title="Link to this heading">#</a></h2>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">opendvp.io.export_adata</span><span class="w"> </span><span class="kn">import</span> <span class="n">export_adata</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">anndata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ad</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">obs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;celltype&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">5</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">5</span><span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;cell</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">var</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;gene</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">adata</span> <span class="o">=</span> <span class="n">ad</span><span class="o">.</span><span class="n">AnnData</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">obs</span><span class="o">=</span><span class="n">obs</span><span class="p">,</span> <span class="n">var</span><span class="o">=</span><span class="n">var</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">export_adata</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">path_to_dir</span><span class="o">=</span><span class="s1">&#39;checkpoints&#39;</span><span class="p">,</span> <span class="n">checkpoint_name</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="n">export_as_cvs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">perseus</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 </dd></dl>
 

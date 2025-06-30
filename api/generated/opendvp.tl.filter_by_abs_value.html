@@ -47,7 +47,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../_static/documentation_options.js?v=46e1a7d4"></script>
+    <script src="../../_static/documentation_options.js?v=e4e9a439"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -165,12 +165,9 @@
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">API Reference</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 has-children"><a class="reference internal" href="../io.html">Input / Output</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.adata_to_qupath.html">opendvp.io.adata_to_qupath</a></li>
-<li class="toctree-l3"><a class="reference internal" href="opendvp.io.geojson_to_sdata.html">opendvp.io.geojson_to_sdata</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.import_thresholds.html">opendvp.io.import_thresholds</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.quant_to_adata.html">opendvp.io.quant_to_adata</a></li>
-<li class="toctree-l3"><a class="reference internal" href="opendvp.io.sdata_to_qupath.html">opendvp.io.sdata_to_qupath</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.segmask_to_qupath.html">opendvp.io.segmask_to_qupath</a></li>
-<li class="toctree-l3"><a class="reference internal" href="opendvp.io.adata_to_perseus.html">opendvp.io.adata_to_perseus</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.DIANN_to_adata.html">opendvp.io.DIANN_to_adata</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.import_perseus.html">opendvp.io.import_perseus</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.export_adata.html">opendvp.io.export_adata</a></li>
@@ -211,7 +208,6 @@
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.filter_by_ratio.html">opendvp.tl.filter_by_ratio</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.filter_features_byNaNs.html">opendvp.tl.filter_features_byNaNs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.impute_gaussian.html">opendvp.tl.impute_gaussian</a></li>
-<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.impute_single.html">opendvp.tl.impute_single</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.spatial_autocorrelation.html">opendvp.tl.spatial_autocorrelation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.spatial_hyperparameter_search.html">opendvp.tl.spatial_hyperparameter_search</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.stats_anova.html">opendvp.tl.stats_anova</a></li>
@@ -402,10 +398,13 @@ document.write(`
 <h1>opendvp.tl.filter_by_abs_value<a class="headerlink" href="#opendvp-tl-filter-by-abs-value" title="Link to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="opendvp.tl.filter_by_abs_value">
-<span class="sig-prename descclassname"><span class="pre">opendvp.tl.</span></span><span class="sig-name descname"><span class="pre">filter_by_abs_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">marker</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'quantile'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'above'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.tl.filter_by_abs_value" title="Link to this definition">#</a></dt>
-<dd><p>Filter cells in an AnnData object by absolute marker value or quantile threshold.</p>
-<p>This function creates a boolean mask for each cell based on a marker’s value, using either an absolute threshold or a quantile.
-The result is stored as a new column in <code class="docutils literal notranslate"><span class="pre">adata.obs</span></code> and the filtered AnnData is returned.</p>
+<span class="sig-prename descclassname"><span class="pre">opendvp.tl.</span></span><span class="sig-name descname"><span class="pre">filter_by_abs_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_bound</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper_bound</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'absolute'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.tl.filter_by_abs_value" title="Link to this definition">#</a></dt>
+<dd><p>Filter cells in an AnnData object by a range of values for a specified feature.</p>
+<p>This function creates a boolean mask for each cell based on a feature’s value,
+using either absolute thresholds or quantile-based thresholds. The feature can
+be a marker from <code class="docutils literal notranslate"><span class="pre">adata.X</span></code> or a continuous variable from <code class="docutils literal notranslate"><span class="pre">adata.obs</span></code>.
+Cells with feature values within the specified lower and upper bounds (inclusive)
+will pass the filter.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://anndata.readthedocs.io/en/stable/generated/anndata.AnnData.html#anndata.AnnData" title="(in anndata v0.11.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnnData</span></code></a></span></p>
@@ -416,27 +415,38 @@ The result is stored as a new column in <code class="docutils literal notranslat
 <dl class="simple">
 <dt>adata<span class="classifier">ad.AnnData</span></dt><dd><p>AnnData object containing the data matrix and metadata.</p>
 </dd>
-<dt>marker<span class="classifier">str</span></dt><dd><p>Name of the marker to filter on (must be present in <code class="docutils literal notranslate"><span class="pre">adata.var_names</span></code>).</p>
+<dt>feature_name<span class="classifier">str</span></dt><dd><p>Name of the feature to filter on. The function will automatically determine
+if this feature is a marker in <code class="docutils literal notranslate"><span class="pre">adata.var_names</span></code> or a continuous variable
+in <code class="docutils literal notranslate"><span class="pre">adata.obs</span></code>. If found in both, a ValueError will be raised.</p>
 </dd>
-<dt>mode<span class="classifier">{‘absolute’, ‘quantile’}, default ‘quantile’</span></dt><dd><p>Whether to use an absolute value or quantile as the threshold.</p>
+<dt>lower_bound<span class="classifier">float, int, or None, default None</span></dt><dd><p>The lower threshold for filtering. If None, no lower bound is applied.
+If <code class="docutils literal notranslate"><span class="pre">mode</span></code> is ‘absolute’, this is the direct value.
+If <code class="docutils literal notranslate"><span class="pre">mode</span></code> is ‘quantile’, this is the quantile (0 &lt;= value &lt;= 1).</p>
 </dd>
-<dt>value<span class="classifier">float or int, default 0.5</span></dt><dd><p>The threshold value. If mode is ‘absolute’, this is the absolute threshold. If ‘quantile’, this is the quantile (0 &lt; value &lt; 1).</p>
+<dt>upper_bound<span class="classifier">float, int, or None, default None</span></dt><dd><p>The upper threshold for filtering. If None, no upper bound is applied.
+If <code class="docutils literal notranslate"><span class="pre">mode</span></code> is ‘absolute’, this is the direct value.
+If <code class="docutils literal notranslate"><span class="pre">mode</span></code> is ‘quantile’, this is the quantile (0 &lt;= value &lt;= 1).</p>
 </dd>
-<dt>keep<span class="classifier">{‘above’, ‘below’}, default ‘above’</span></dt><dd><p>Whether to keep cells ‘above’ or ‘below’ the threshold.</p>
+<dt>mode<span class="classifier">{‘absolute’, ‘quantile’}, default ‘absolute’</span></dt><dd><p>Determines how <code class="docutils literal notranslate"><span class="pre">lower_bound</span></code> and <code class="docutils literal notranslate"><span class="pre">upper_bound</span></code> are interpreted:
+‘absolute’: Bounds are direct numerical values.
+‘quantile’: Bounds are quantiles (e.g., 0.25 for 25th percentile).</p>
 </dd>
 </dl>
 </section>
 <section id="returns">
 <h2>Returns:<a class="headerlink" href="#returns" title="Link to this heading">#</a></h2>
 <dl class="simple">
-<dt>ad.AnnData</dt><dd><p>A copy of the input AnnData with a new boolean column in <code class="docutils literal notranslate"><span class="pre">.obs</span></code> indicating which cells passed the filter.</p>
+<dt>ad.AnnData</dt><dd><p>A copy of the input AnnData with a new boolean column in <code class="docutils literal notranslate"><span class="pre">.obs</span></code> indicating which cells passed the filter.
+The new column name will be <code class="docutils literal notranslate"><span class="pre">f&quot;{feature_name}_filtered_by_{mode}&quot;</span></code>.</p>
 </dd>
 </dl>
 </section>
 <section id="raises">
 <h2>Raises:<a class="headerlink" href="#raises" title="Link to this heading">#</a></h2>
 <dl class="simple">
-<dt>ValueError</dt><dd><p>If marker is not found, mutually exclusive arguments are violated, or parameters are invalid.</p>
+<dt>ValueError</dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">feature_name</span></code> is not found in <code class="docutils literal notranslate"><span class="pre">adata.var_names</span></code> or <code class="docutils literal notranslate"><span class="pre">adata.obs.columns</span></code>,
+if <code class="docutils literal notranslate"><span class="pre">feature_name</span></code> is found in both, if bounds are invalid,
+or if the <code class="docutils literal notranslate"><span class="pre">adata.obs</span></code> column is not numeric when used for filtering.</p>
 </dd>
 </dl>
 </section>

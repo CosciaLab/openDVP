@@ -47,7 +47,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../_static/documentation_options.js?v=46e1a7d4"></script>
+    <script src="../../_static/documentation_options.js?v=e4e9a439"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -165,12 +165,9 @@
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">API Reference</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 has-children"><a class="reference internal" href="../io.html">Input / Output</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.adata_to_qupath.html">opendvp.io.adata_to_qupath</a></li>
-<li class="toctree-l3"><a class="reference internal" href="opendvp.io.geojson_to_sdata.html">opendvp.io.geojson_to_sdata</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.import_thresholds.html">opendvp.io.import_thresholds</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.quant_to_adata.html">opendvp.io.quant_to_adata</a></li>
-<li class="toctree-l3"><a class="reference internal" href="opendvp.io.sdata_to_qupath.html">opendvp.io.sdata_to_qupath</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.segmask_to_qupath.html">opendvp.io.segmask_to_qupath</a></li>
-<li class="toctree-l3"><a class="reference internal" href="opendvp.io.adata_to_perseus.html">opendvp.io.adata_to_perseus</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.DIANN_to_adata.html">opendvp.io.DIANN_to_adata</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.import_perseus.html">opendvp.io.import_perseus</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.export_adata.html">opendvp.io.export_adata</a></li>
@@ -211,7 +208,6 @@
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.filter_by_ratio.html">opendvp.tl.filter_by_ratio</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.filter_features_byNaNs.html">opendvp.tl.filter_features_byNaNs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.impute_gaussian.html">opendvp.tl.impute_gaussian</a></li>
-<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.impute_single.html">opendvp.tl.impute_single</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.spatial_autocorrelation.html">opendvp.tl.spatial_autocorrelation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.spatial_hyperparameter_search.html">opendvp.tl.spatial_hyperparameter_search</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.stats_anova.html">opendvp.tl.stats_anova</a></li>
@@ -403,34 +399,28 @@ document.write(`
 <dl class="py function">
 <dt class="sig sig-object py" id="opendvp.tl.phenotype_cells">
 <span class="sig-prename descclassname"><span class="pre">opendvp.tl.</span></span><span class="sig-name descname"><span class="pre">phenotype_cells</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phenotype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'phenotype'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">imageid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'imageid'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pheno_threshold_percent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pheno_threshold_abs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.tl.phenotype_cells" title="Link to this definition">#</a></dt>
-<dd><p>Parameters:
-adata (anndata.AnnData):</p>
-<blockquote>
-<div><p>The input AnnData object containing single-cell data for phenotyping.</p>
-</div></blockquote>
-<dl class="simple">
-<dt>phenotype (pd.DataFrame):</dt><dd><p>A DataFrame specifying the gating strategy for cell phenotyping. It should outline the workflow for phenotype classification based on marker expression levels. An example workflow is available at [this GitHub link](<a class="github reference external" href="https://github.com/ajitjohnson/scimap/blob/master/scimap/tests/_data/phenotype_workflow.csv">ajitjohnson/scimap</a>).</p>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>adata</strong> (<a class="reference external" href="https://anndata.readthedocs.io/en/stable/generated/anndata.AnnData.html#anndata.AnnData" title="(in anndata v0.11.4)"><em>anndata.AnnData</em></a>) – The input AnnData object containing single-cell data for phenotyping.</p></li>
+<li><p><strong>phenotype</strong> (<em>pd.DataFrame</em>) – A DataFrame specifying the gating strategy for cell phenotyping. It should outline the workflow for phenotype classification based on marker expression levels. An example workflow is available at [this GitHub link](<a class="github reference external" href="https://github.com/ajitjohnson/scimap/blob/master/scimap/tests/_data/phenotype_workflow.csv">ajitjohnson/scimap</a>).</p></li>
+<li><p><strong>gate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em>, </em><em>optional</em>) – The threshold value for determining positive cell classification based on scaled data. By convention, values above this threshold are considered to indicate positive cells.</p></li>
+<li><p><strong>label</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The name of the column in <code class="docutils literal notranslate"><span class="pre">adata.obs</span></code> where the final phenotype classifications will be stored. This label will be used to access the phenotyping results within the <code class="docutils literal notranslate"><span class="pre">AnnData</span></code> object.</p></li>
+<li><p><strong>imageid</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em>) – The name of the column in <code class="docutils literal notranslate"><span class="pre">adata.obs</span></code> that contains unique image identifiers. This is crucial for analyses that require differentiation of data based on the source image, especially when using phenotype threshold parameters (<code class="docutils literal notranslate"><span class="pre">pheno_threshold_percent</span></code> or <code class="docutils literal notranslate"><span class="pre">pheno_threshold_abs</span></code>).</p></li>
+<li><p><strong>pheno_threshold_percent</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em>, </em><em>optional</em>) – A threshold value (between 0 and 100) specifying the minimum percentage of cells that must exhibit a particular phenotype for it to be considered valid. Phenotypes not meeting this threshold are reclassified as ‘unknown’. This parameter is useful for minimizing the impact of low-frequency false positives.</p></li>
+<li><p><strong>pheno_threshold_abs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>optional</em>) – Similar to <code class="docutils literal notranslate"><span class="pre">pheno_threshold_percent</span></code>, but uses an absolute cell count instead of a percentage. Phenotypes with cell counts below this threshold are reclassified as ‘unknown’. This can help in addressing rare phenotype classifications that may not be meaningful.</p></li>
+<li><p><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, the function will print detailed messages about its progress and the steps being executed.</p></li>
+</ul>
 </dd>
-<dt>gate (float, optional):</dt><dd><p>The threshold value for determining positive cell classification based on scaled data. By convention, values above this threshold are considered to indicate positive cells.</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The input AnnData object, updated to include the phenotype classifications for each cell. The phenotyping results can be found in <code class="docutils literal notranslate"><span class="pre">adata.obs[label]</span></code>, where <code class="docutils literal notranslate"><span class="pre">label</span></code> is the name specified by the user for the phenotype column.</p>
 </dd>
-<dt>label (str):</dt><dd><p>The name of the column in <code class="docutils literal notranslate"><span class="pre">adata.obs</span></code> where the final phenotype classifications will be stored. This label will be used to access the phenotyping results within the <code class="docutils literal notranslate"><span class="pre">AnnData</span></code> object.</p>
-</dd>
-<dt>imageid (str, optional):</dt><dd><p>The name of the column in <code class="docutils literal notranslate"><span class="pre">adata.obs</span></code> that contains unique image identifiers. This is crucial for analyses that require differentiation of data based on the source image, especially when using phenotype threshold parameters (<code class="docutils literal notranslate"><span class="pre">pheno_threshold_percent</span></code> or <code class="docutils literal notranslate"><span class="pre">pheno_threshold_abs</span></code>).</p>
-</dd>
-<dt>pheno_threshold_percent (float, optional):</dt><dd><p>A threshold value (between 0 and 100) specifying the minimum percentage of cells that must exhibit a particular phenotype for it to be considered valid. Phenotypes not meeting this threshold are reclassified as ‘unknown’. This parameter is useful for minimizing the impact of low-frequency false positives.</p>
-</dd>
-<dt>pheno_threshold_abs (int, optional):</dt><dd><p>Similar to <code class="docutils literal notranslate"><span class="pre">pheno_threshold_percent</span></code>, but uses an absolute cell count instead of a percentage. Phenotypes with cell counts below this threshold are reclassified as ‘unknown’. This can help in addressing rare phenotype classifications that may not be meaningful.</p>
-</dd>
-<dt>verbose (bool):</dt><dd><p>If set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, the function will print detailed messages about its progress and the steps being executed.</p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>adata (<a class="reference external" href="https://anndata.readthedocs.io/en/stable/generated/anndata.AnnData.html#anndata.AnnData" title="(in anndata v0.11.4)">anndata.AnnData</a>)</p>
 </dd>
 </dl>
-<p>Returns:
-adata (anndata.AnnData):</p>
-<blockquote>
-<div><p>The input AnnData object, updated to include the phenotype classifications for each cell. The phenotyping results can be found in <code class="docutils literal notranslate"><span class="pre">adata.obs[label]</span></code>, where <code class="docutils literal notranslate"><span class="pre">label</span></code> is the name specified by the user for the phenotype column.</p>
-</div></blockquote>
-<p>Example:
-<a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>python</p>
+<p class="rubric">Example</p>
+<p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>python</p>
 <p># Load the phenotype workflow CSV file
 phenotype = pd.read_csv(‘path/to/csv/file/’)</p>
 <p># Apply phenotyping to cells based on the specified workflow

@@ -47,7 +47,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../_static/documentation_options.js?v=46e1a7d4"></script>
+    <script src="../../_static/documentation_options.js?v=e4e9a439"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -56,8 +56,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/generated/opendvp.io.segmask_to_qupath';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="opendvp.io.adata_to_perseus" href="opendvp.io.adata_to_perseus.html" />
-    <link rel="prev" title="opendvp.io.sdata_to_qupath" href="opendvp.io.sdata_to_qupath.html" />
+    <link rel="next" title="opendvp.io.DIANN_to_adata" href="opendvp.io.DIANN_to_adata.html" />
+    <link rel="prev" title="opendvp.io.quant_to_adata" href="opendvp.io.quant_to_adata.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -165,12 +165,9 @@
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">API Reference</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="../io.html">Input / Output</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.adata_to_qupath.html">opendvp.io.adata_to_qupath</a></li>
-<li class="toctree-l3"><a class="reference internal" href="opendvp.io.geojson_to_sdata.html">opendvp.io.geojson_to_sdata</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.import_thresholds.html">opendvp.io.import_thresholds</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.quant_to_adata.html">opendvp.io.quant_to_adata</a></li>
-<li class="toctree-l3"><a class="reference internal" href="opendvp.io.sdata_to_qupath.html">opendvp.io.sdata_to_qupath</a></li>
 <li class="toctree-l3 current active"><a class="current reference internal" href="#">opendvp.io.segmask_to_qupath</a></li>
-<li class="toctree-l3"><a class="reference internal" href="opendvp.io.adata_to_perseus.html">opendvp.io.adata_to_perseus</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.DIANN_to_adata.html">opendvp.io.DIANN_to_adata</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.import_perseus.html">opendvp.io.import_perseus</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.export_adata.html">opendvp.io.export_adata</a></li>
@@ -211,7 +208,6 @@
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.filter_by_ratio.html">opendvp.tl.filter_by_ratio</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.filter_features_byNaNs.html">opendvp.tl.filter_features_byNaNs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.impute_gaussian.html">opendvp.tl.impute_gaussian</a></li>
-<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.impute_single.html">opendvp.tl.impute_single</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.spatial_autocorrelation.html">opendvp.tl.spatial_autocorrelation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.spatial_hyperparameter_search.html">opendvp.tl.spatial_hyperparameter_search</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.stats_anova.html">opendvp.tl.stats_anova</a></li>
@@ -402,7 +398,7 @@ document.write(`
 <h1>opendvp.io.segmask_to_qupath<a class="headerlink" href="#opendvp-io-segmask-to-qupath" title="Link to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="opendvp.io.segmask_to_qupath">
-<span class="sig-prename descclassname"><span class="pre">opendvp.io.</span></span><span class="sig-name descname"><span class="pre">segmask_to_qupath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_to_mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simplify_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">export_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_gdf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.io.segmask_to_qupath" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendvp.io.</span></span><span class="sig-name descname"><span class="pre">segmask_to_qupath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_to_mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simplify_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_as_detection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.io.segmask_to_qupath" title="Link to this definition">#</a></dt>
 <dd><p>Convert a segmentation mask (TIFF) to QuPath-compatible detections as a GeoDataFrame or GeoJSON file.</p>
 <p>This function loads a 2D segmentation mask image, converts it to polygons using spatialdata,
 and prepares the result for QuPath detection import. Optionally, it can simplify the geometry,
@@ -464,20 +460,20 @@ export the detections as a GeoJSON file, and/or return the resulting GeoDataFram
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="opendvp.io.sdata_to_qupath.html"
+       href="opendvp.io.quant_to_adata.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">opendvp.io.sdata_to_qupath</p>
+        <p class="prev-next-title">opendvp.io.quant_to_adata</p>
       </div>
     </a>
     <a class="right-next"
-       href="opendvp.io.adata_to_perseus.html"
+       href="opendvp.io.DIANN_to_adata.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">opendvp.io.adata_to_perseus</p>
+        <p class="prev-next-title">opendvp.io.DIANN_to_adata</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

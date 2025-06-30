@@ -49,7 +49,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=46e1a7d4"></script>
+    <script src="../_static/documentation_options.js?v=e4e9a439"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -167,12 +167,9 @@
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">API Reference</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 has-children"><a class="reference internal" href="io.html">Input / Output</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.io.adata_to_qupath.html">opendvp.io.adata_to_qupath</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/opendvp.io.geojson_to_sdata.html">opendvp.io.geojson_to_sdata</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.io.import_thresholds.html">opendvp.io.import_thresholds</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.io.quant_to_adata.html">opendvp.io.quant_to_adata</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/opendvp.io.sdata_to_qupath.html">opendvp.io.sdata_to_qupath</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.io.segmask_to_qupath.html">opendvp.io.segmask_to_qupath</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/opendvp.io.adata_to_perseus.html">opendvp.io.adata_to_perseus</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.io.DIANN_to_adata.html">opendvp.io.DIANN_to_adata</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.io.import_perseus.html">opendvp.io.import_perseus</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.io.export_adata.html">opendvp.io.export_adata</a></li>
@@ -213,7 +210,6 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.tl.filter_by_ratio.html">opendvp.tl.filter_by_ratio</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.tl.filter_features_byNaNs.html">opendvp.tl.filter_features_byNaNs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.tl.impute_gaussian.html">opendvp.tl.impute_gaussian</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/opendvp.tl.impute_single.html">opendvp.tl.impute_single</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.tl.spatial_autocorrelation.html">opendvp.tl.spatial_autocorrelation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.tl.spatial_hyperparameter_search.html">opendvp.tl.spatial_hyperparameter_search</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.tl.stats_anova.html">opendvp.tl.stats_anova</a></li>
@@ -413,8 +409,8 @@ document.write(`
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.tl.filter_adata_by_gates.html#opendvp.tl.filter_adata_by_gates" title="opendvp.tl.filter_adata_by_gates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tl.filter_adata_by_gates</span></code></a>(adata, gates[, ...])</p></td>
 <td><p>Filter an AnnData object to retain only markers specified in the <code class="docutils literal notranslate"><span class="pre">gates</span></code> DataFrame.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/opendvp.tl.filter_by_abs_value.html#opendvp.tl.filter_by_abs_value" title="opendvp.tl.filter_by_abs_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tl.filter_by_abs_value</span></code></a>(adata, marker[, ...])</p></td>
-<td><p>Filter cells in an AnnData object by absolute marker value or quantile threshold.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/opendvp.tl.filter_by_abs_value.html#opendvp.tl.filter_by_abs_value" title="opendvp.tl.filter_by_abs_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tl.filter_by_abs_value</span></code></a>(adata, feature_name)</p></td>
+<td><p>Filter cells in an AnnData object by a range of values for a specified feature.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.tl.filter_by_annotation.html#opendvp.tl.filter_by_annotation" title="opendvp.tl.filter_by_annotation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tl.filter_by_annotation</span></code></a>(adata, path_to_geojson)</p></td>
 <td><p>Filter cells by annotation in a geojson file using spatial indexing.</p></td>
@@ -435,9 +431,6 @@ document.write(`
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.tl.impute_gaussian.html#opendvp.tl.impute_gaussian" title="opendvp.tl.impute_gaussian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tl.impute_gaussian</span></code></a>(adata[, mean_shift, ...])</p></td>
 <td><p>Impute missing values in an AnnData object using a Gaussian distribution.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/opendvp.tl.impute_single.html#opendvp.tl.impute_single" title="opendvp.tl.impute_single"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tl.impute_single</span></code></a>(array[, mean_shift, ...])</p></td>
-<td><p>Impute missing values.</p></td>
 </tr>
 </tbody>
 </table>
@@ -465,7 +458,7 @@ document.write(`
 <td><p>Perform one-way ANOVA for all columns of an AnnData object across all groups in a categorical column.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/opendvp.tl.stats_average_samples.html#opendvp.tl.stats_average_samples" title="opendvp.tl.stats_average_samples"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tl.stats_average_samples</span></code></a>(adata, categories)</p></td>
-<td><p>Calculate averages for all permutations of given categories in adata.obs.</p></td>
+<td><p>Average samples based on specified categories in adata.obs.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.tl.stats_bootstrap.html#opendvp.tl.stats_bootstrap" title="opendvp.tl.stats_bootstrap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tl.stats_bootstrap</span></code></a>(dataframe[, n_bootstrap, ...])</p></td>
 <td><p>Evaluate the variability of feature-level coefficient of variation (CV) via bootstrapping.</p></td>
@@ -482,7 +475,7 @@ document.write(`
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.tl.phenotype_cells.html#opendvp.tl.phenotype_cells" title="opendvp.tl.phenotype_cells"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tl.phenotype_cells</span></code></a>(adata, phenotype[, gate, ...])</p></td>
-<td><p>Parameters: adata (anndata.AnnData):     The input AnnData object containing single-cell data for phenotyping.</p></td>
+<td><p></p></td>
 </tr>
 </tbody>
 </table>

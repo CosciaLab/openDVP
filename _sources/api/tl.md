@@ -21,7 +21,6 @@
     :toctree: generated
 
     tl.impute_gaussian
-    tl.impute_single
 ```
 
 ## Spatial

@@ -47,7 +47,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../_static/documentation_options.js?v=46e1a7d4"></script>
+    <script src="../../_static/documentation_options.js?v=e4e9a439"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -165,12 +165,9 @@
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">API Reference</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 has-children"><a class="reference internal" href="../io.html">Input / Output</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.adata_to_qupath.html">opendvp.io.adata_to_qupath</a></li>
-<li class="toctree-l3"><a class="reference internal" href="opendvp.io.geojson_to_sdata.html">opendvp.io.geojson_to_sdata</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.import_thresholds.html">opendvp.io.import_thresholds</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.quant_to_adata.html">opendvp.io.quant_to_adata</a></li>
-<li class="toctree-l3"><a class="reference internal" href="opendvp.io.sdata_to_qupath.html">opendvp.io.sdata_to_qupath</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.segmask_to_qupath.html">opendvp.io.segmask_to_qupath</a></li>
-<li class="toctree-l3"><a class="reference internal" href="opendvp.io.adata_to_perseus.html">opendvp.io.adata_to_perseus</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.DIANN_to_adata.html">opendvp.io.DIANN_to_adata</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.import_perseus.html">opendvp.io.import_perseus</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.export_adata.html">opendvp.io.export_adata</a></li>
@@ -211,7 +208,6 @@
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.filter_by_ratio.html">opendvp.tl.filter_by_ratio</a></li>
 <li class="toctree-l3 current active"><a class="current reference internal" href="#">opendvp.tl.filter_features_byNaNs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.impute_gaussian.html">opendvp.tl.impute_gaussian</a></li>
-<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.impute_single.html">opendvp.tl.impute_single</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.spatial_autocorrelation.html">opendvp.tl.spatial_autocorrelation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.spatial_hyperparameter_search.html">opendvp.tl.spatial_hyperparameter_search</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.stats_anova.html">opendvp.tl.stats_anova</a></li>
@@ -402,7 +398,7 @@ document.write(`
 <h1>opendvp.tl.filter_features_byNaNs<a class="headerlink" href="#opendvp-tl-filter-features-bynans" title="Link to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="opendvp.tl.filter_features_byNaNs">
-<span class="sig-prename descclassname"><span class="pre">opendvp.tl.</span></span><span class="sig-name descname"><span class="pre">filter_features_byNaNs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grouping</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qc_export_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valid_in_ANY_or_ALL_groups</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ANY'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.tl.filter_features_byNaNs" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendvp.tl.</span></span><span class="sig-name descname"><span class="pre">filter_features_byNaNs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grouping</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valid_in_ANY_or_ALL_groups</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ANY'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.tl.filter_features_byNaNs" title="Link to this definition">#</a></dt>
 <dd><p>Filter out proteins that have a NaN proportion above the threshold, for each group in the grouping variable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -416,9 +412,8 @@ document.write(`
 </dd>
 <dt>threshold<span class="classifier">float, default 0.7</span></dt><dd><p>Proportion of valid values above which a protein is considered valid (between 0 and 1).</p>
 </dd>
-<dt>grouping<span class="classifier">Optional[str], default None</span></dt><dd><p>Name of the column in adata.obs to discriminate the groups by. If provided, filtering is done per group.</p>
-</dd>
-<dt>qc_export_path<span class="classifier">Optional[str], default None</span></dt><dd><p>Path to save the dataframe with the filtering results. If None, no file is saved.</p>
+<dt>grouping<span class="classifier">Optional[str], default None</span></dt><dd><p>Name of the column in adata.obs to discriminate the groups by.
+If provided, counting of NaNs and validity is done per group.</p>
 </dd>
 <dt>valid_in_ANY_or_ALL_groups<span class="classifier">{‘ANY’, ‘ALL’}, default ‘ANY’</span></dt><dd><p>‘ANY’ means that if a protein passes the threshold in any group it will be kept.
 ‘ALL’ means that a protein must pass validity threshold for all groups to be kept (more stringent).</p>
@@ -428,7 +423,11 @@ document.write(`
 <section id="returns">
 <h2>Returns:<a class="headerlink" href="#returns" title="Link to this heading">#</a></h2>
 <dl class="simple">
-<dt>AnnData</dt><dd><p>Filtered AnnData object.</p>
+<dt>AnnData</dt><dd><p>Filtered AnnData object.
+The quality control metrics (e.g., NaN counts, valid proportions) are added to <code class="docutils literal notranslate"><span class="pre">adata.var</span></code>.
+A complete QC matrix for all initial features is stored in <code class="docutils literal notranslate"><span class="pre">adata.uns['filter_features_byNaNs_qc_metrics']</span></code>.
+The <code class="docutils literal notranslate"><span class="pre">adata.var</span></code> of the returned object will contain its original columns, plus ‘mean’ and ‘nan_proportions’
+(derived from ‘overall_mean’ and ‘overall_nan_proportions’).</p>
 </dd>
 </dl>
 </section>

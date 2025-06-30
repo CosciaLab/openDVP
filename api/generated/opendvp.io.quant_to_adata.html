@@ -47,7 +47,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../_static/documentation_options.js?v=46e1a7d4"></script>
+    <script src="../../_static/documentation_options.js?v=e4e9a439"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -56,7 +56,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/generated/opendvp.io.quant_to_adata';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="opendvp.io.sdata_to_qupath" href="opendvp.io.sdata_to_qupath.html" />
+    <link rel="next" title="opendvp.io.segmask_to_qupath" href="opendvp.io.segmask_to_qupath.html" />
     <link rel="prev" title="opendvp.io.import_thresholds" href="opendvp.io.import_thresholds.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -165,12 +165,9 @@
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">API Reference</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="../io.html">Input / Output</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.adata_to_qupath.html">opendvp.io.adata_to_qupath</a></li>
-<li class="toctree-l3"><a class="reference internal" href="opendvp.io.geojson_to_sdata.html">opendvp.io.geojson_to_sdata</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.import_thresholds.html">opendvp.io.import_thresholds</a></li>
 <li class="toctree-l3 current active"><a class="current reference internal" href="#">opendvp.io.quant_to_adata</a></li>
-<li class="toctree-l3"><a class="reference internal" href="opendvp.io.sdata_to_qupath.html">opendvp.io.sdata_to_qupath</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.segmask_to_qupath.html">opendvp.io.segmask_to_qupath</a></li>
-<li class="toctree-l3"><a class="reference internal" href="opendvp.io.adata_to_perseus.html">opendvp.io.adata_to_perseus</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.DIANN_to_adata.html">opendvp.io.DIANN_to_adata</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.import_perseus.html">opendvp.io.import_perseus</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.export_adata.html">opendvp.io.export_adata</a></li>
@@ -211,7 +208,6 @@
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.filter_by_ratio.html">opendvp.tl.filter_by_ratio</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.filter_features_byNaNs.html">opendvp.tl.filter_features_byNaNs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.impute_gaussian.html">opendvp.tl.impute_gaussian</a></li>
-<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.impute_single.html">opendvp.tl.impute_single</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.spatial_autocorrelation.html">opendvp.tl.spatial_autocorrelation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.spatial_hyperparameter_search.html">opendvp.tl.spatial_hyperparameter_search</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.stats_anova.html">opendvp.tl.stats_anova</a></li>
@@ -402,19 +398,52 @@ document.write(`
 <h1>opendvp.io.quant_to_adata<a class="headerlink" href="#opendvp-io-quant-to-adata" title="Link to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="opendvp.io.quant_to_adata">
-<span class="sig-prename descclassname"><span class="pre">opendvp.io.</span></span><span class="sig-name descname"><span class="pre">quant_to_adata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">csv_data_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.io.quant_to_adata" title="Link to this definition">#</a></dt>
-<dd><p>Read the quantification data from a csv file and return an anndata object.</p>
+<span class="sig-prename descclassname"><span class="pre">opendvp.io.</span></span><span class="sig-name descname"><span class="pre">quant_to_adata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_into_1_based</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'CellID'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">meta_columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.io.quant_to_adata" title="Link to this definition">#</a></dt>
+<dd><p>Convert cell quantification CSV data to an AnnData object for downstream analysis.</p>
+<p>This module provides a function to read a CSV file containing single-cell quantification data, extract metadata and marker intensities, and return an AnnData object suitable for spatial omics workflows. The function expects specific metadata columns and parses marker columns by splitting their names into mathematical operation and marker name.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>csv_data_path</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – path to the csv file</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://anndata.readthedocs.io/en/stable/generated/anndata.AnnData.html#anndata.AnnData" title="(in anndata v0.11.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnnData</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>an anndata object.</p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://anndata.readthedocs.io/en/stable/generated/anndata.AnnData.html#anndata.AnnData" title="(in anndata v0.11.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnnData</span></code></a></span></p>
 </dd>
 </dl>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h2>
+<dl class="simple">
+<dt>path<span class="classifier">str</span></dt><dd><p>Path to the CSV file containing cell quantification data.</p>
+</dd>
+<dt>index_into_1_based<span class="classifier">str | None</span></dt><dd><p>Column name to which to check if 0 exists, and if so add 1 to all values
+This is done so that cell index matches segmentation mask values
+If None, no modifications will be performed</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h2>Returns:<a class="headerlink" href="#returns" title="Link to this heading">#</a></h2>
+<dl class="simple">
+<dt>ad.AnnData</dt><dd><p>AnnData object with cell metadata in <code class="docutils literal notranslate"><span class="pre">.obs</span></code> and marker intensities in <code class="docutils literal notranslate"><span class="pre">.X</span></code> and <code class="docutils literal notranslate"><span class="pre">.var</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="examples">
+<h2>Examples:<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">opendvp.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">quant_to_adata</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">adata</span> <span class="o">=</span> <span class="n">quant_to_adata</span><span class="p">(</span><span class="s1">&#39;my_quantification.csv&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">adata</span><span class="p">)</span>
+<span class="go">AnnData object with n_obs * n_vars = ...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">adata</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="notes">
+<h2>Notes:<a class="headerlink" href="#notes" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The CSV file must contain the following metadata columns: ‘CellID’, ‘Y_centroid’, ‘X_centroid’, ‘Area’, ‘MajorAxisLength’, ‘MinorAxisLength’, ‘Eccentricity’, ‘Orientation’, ‘Extent’, ‘Solidity’.</p></li>
+<li><p>All other columns are treated as marker intensities and are split into ‘math’ and ‘marker’ components for AnnData.var.</p></li>
+<li><p>Raises ValueError if required metadata columns are missing or if the file is not a CSV.</p></li>
+<li><p>The function logs the number of cells and variables loaded, and the time taken for the operation.</p></li>
+</ul>
+</section>
 </dd></dl>
 
 </section>
@@ -440,11 +469,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="opendvp.io.sdata_to_qupath.html"
+       href="opendvp.io.segmask_to_qupath.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">opendvp.io.sdata_to_qupath</p>
+        <p class="prev-next-title">opendvp.io.segmask_to_qupath</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

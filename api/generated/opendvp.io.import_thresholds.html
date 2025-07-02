@@ -47,7 +47,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../_static/documentation_options.js?v=e4e9a439"></script>
+    <script src="../../_static/documentation_options.js?v=4861a642"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -229,7 +229,18 @@
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../Tutorials/index.html">Tutorials will go here</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../Tutorials/basics/index.html">Basics index.md</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../Tutorials/basics/Test1.html">Test H1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../Tutorials/basics/Tutorial_1.html">Image single-cell analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../Tutorials/basics/Tutorial_2.html">Import necessary packages</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../Tutorials/basics/Tutorial_3.html">Proccessing of proteomic data</a></li>
 </ul>
 </details></li>
 </ul>
@@ -398,7 +409,7 @@ document.write(`
 <h1>opendvp.io.import_thresholds<a class="headerlink" href="#opendvp-io-import-thresholds" title="Link to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="opendvp.io.import_thresholds">
-<span class="sig-prename descclassname"><span class="pre">opendvp.io.</span></span><span class="sig-name descname"><span class="pre">import_thresholds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gates_csv_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log1p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.io.import_thresholds" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendvp.io.</span></span><span class="sig-name descname"><span class="pre">import_thresholds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gates_csv_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scimap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.io.import_thresholds" title="Link to this definition">#</a></dt>
 <dd><p>Read gate thresholds from a CSV file, filter, and optionally log1p-transform for scimap compatibility.</p>
 <p>This function loads a CSV file containing gate thresholds, validates required columns, filters out rows
 with gate values of 0.0 (assumed not gated), optionally selects gates for a specific sample, and can
@@ -408,7 +419,7 @@ log1p-transform gate values for downstream analysis (e.g., scimap). Logs progres
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>gates_csv_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Path to the CSV file containing gate thresholds. Must end with ‘.csv’.</p></li>
 <li><p><strong>sample_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>optional</em>) – If provided, only gates for this sample will be returned and the output column will be named accordingly.</p></li>
-<li><p><strong>log1p</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>default True</em>) – If True, applies log1p transformation to gate values and formats output for scimap.</p></li>
+<li><p><strong>scimap</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>default True</em>) – If True, applies log1p transformation and column rename, returning formats output for scimap.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>

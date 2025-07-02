@@ -7,19 +7,19 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta property="og:title" content="OpenDVP" />
+<meta property="og:title" content="openDVP - community empowered Deep Visual Proteomics" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="index.html" />
 <meta property="og:site_name" content="openDVP" />
-<meta property="og:description" content="Welcome to the documentation for opendvp." />
+<meta property="og:description" content="opendvp is a python package containing different tools enabling users to perform deep visual proteomics. To perform quality control and image analysis of multiplex immunofluorescence. Also to integ..." />
 <meta property="og:image:width" content="1146" />
 <meta property="og:image:height" content="600" />
-<meta property="og:image" content="_images/social_previews/summary_index_9641057a.png" />
-<meta property="og:image:alt" content="Welcome to the documentation for opendvp." />
-<meta name="description" content="Welcome to the documentation for opendvp." />
+<meta property="og:image" content="_images/social_previews/summary_index_8008bf3b.png" />
+<meta property="og:image:alt" content="opendvp is a python package containing different tools enabling users to perform deep visual proteomics. To perform quality control and image analysis of multiplex immunofluorescence. Also to integ..." />
+<meta name="description" content="opendvp is a python package containing different tools enabling users to perform deep visual proteomics. To perform quality control and image analysis of multiplex immunofluorescence. Also to integ..." />
 <meta name="twitter:card" content="summary_large_image" />
 
-    <title>OpenDVP &#8212; openDVP</title>
+    <title>openDVP - community empowered Deep Visual Proteomics &#8212; openDVP</title>
   
   
   
@@ -49,7 +49,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="_static/documentation_options.js?v=e4e9a439"></script>
+    <script src="_static/documentation_options.js?v=4861a642"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -232,7 +232,18 @@
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="Tutorials/index.html">Tutorials will go here</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="Tutorials/basics/index.html">Basics index.md</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="Tutorials/basics/Test1.html">Test H1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Tutorials/basics/Tutorial_1.html">Image single-cell analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Tutorials/basics/Tutorial_2.html">Import necessary packages</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="Tutorials/basics/Tutorial_3.html">Proccessing of proteomic data</a></li>
 </ul>
 </details></li>
 </ul>
@@ -362,7 +373,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -373,11 +386,32 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>OpenDVP</h1>
+    <h1>openDVP - community empowered Deep Visual Proteomics</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting started</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-time-trying-python">First time trying python?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#there-are-three-alternatives-to-install-opendvp">There are three alternatives to install openDVP:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorials">Tutorials</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-1-image-analysis">Tutorial 1: Image analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-2-integration-of-imaging-with-proteomics">Tutorial 2: Integration of imaging with proteomics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-3-downstream-proteomics-analysis">Tutorial 3: Downstream proteomics analysis</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contact">Contact</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citation">Citation</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -387,11 +421,84 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="opendvp">
-<h1>OpenDVP<a class="headerlink" href="#opendvp" title="Link to this heading">#</a></h1>
-<p>Welcome to the documentation for <code class="docutils literal notranslate"><span class="pre">opendvp</span></code>.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="opendvp-community-empowered-deep-visual-proteomics">
+<h1>openDVP - community empowered Deep Visual Proteomics<a class="headerlink" href="#opendvp-community-empowered-deep-visual-proteomics" title="Link to this heading">#</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">opendvp</span></code> is a python package containing different tools enabling users to perform deep visual proteomics. To perform quality control and image analysis of multiplex immunofluorescence. Also to integrate imaging datasets with proteomic datasets with <a class="reference external" href="https://github.com/scverse/spatialdata">Spatialdata</a>. Lastly, it contains a powerful toolkit for label-free downstream proteomic analysis.</p>
+<p>It is a package that leverages the <a class="reference internal" href="#"><span class="xref myst">scverse</span></a> ecosystem, designed for easy interoperability with <code class="docutils literal notranslate"><span class="pre">anndata</span></code>, <code class="docutils literal notranslate"><span class="pre">scanpy</span></code>, <code class="docutils literal notranslate"><span class="pre">decoupler</span></code>, <code class="docutils literal notranslate"><span class="pre">scimap</span></code>, and other related packages.</p>
+<section id="getting-started">
+<h2>Getting started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h2>
+<p>Please check our <a class="reference internal" href="api/index.html"><span class="std std-doc">API documentation</span></a> for detailed functionalities.</p>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
+<p>You need at least Python 3.10 installed.</p>
+<section id="first-time-trying-python">
+<h3>First time trying python?<a class="headerlink" href="#first-time-trying-python" title="Link to this heading">#</a></h3>
+<details>
+<summary> Click here for extra instructions</summary>
+<ol class="arabic simple">
+<li><p>IF you need software to run jupyter notebooks, I suggest you install <a class="reference external" href="https://code.visualstudio.com/download">Visual Studio Code</a>.</p></li>
+<li><p>Install <code class="docutils literal notranslate"><span class="pre">uv</span></code>, a python environment manager, following instructions at <a class="reference external" href="https://docs.astral.sh/uv/getting-started/installation/">installing uv</a>.</p></li>
+<li><p>Create a local folder you would like to use for your project, and open that folder it in <code class="docutils literal notranslate"><span class="pre">VSCode</span></code></p></li>
+<li><p>Open the terminal and run:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">uv</span> <span class="n">init</span>
+</pre></div>
+</div>
+<p>your project folder will be created, then run:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">uv</span> <span class="n">add</span> <span class="n">opendvp</span>
+</pre></div>
+</div>
+<p><strong>OR</strong> to install spatialdata capabilities:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">uv</span> <span class="n">add</span> <span class="s1">&#39;opendvp[spatialdata]&#39;</span>
+</pre></div>
+</div>
+</details>
+</section>
+<section id="there-are-three-alternatives-to-install-opendvp">
+<h3>There are three alternatives to install openDVP:<a class="headerlink" href="#there-are-three-alternatives-to-install-opendvp" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Install the latest stable release from <a class="reference external" href="https://pypi.org/project/openDVP/">PyPI</a> with minimal dependencies:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>openDVP
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Install the latest stable release from <a class="reference external" href="https://pypi.org/project/openDVP/">PyPI</a> with spatialdata capabilities:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="s1">&#39;openDVP[spatialdata]&#39;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Install the latest development version from github:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">CosciaLab</span><span class="o">/</span><span class="n">openDVP</span><span class="o">.</span><span class="n">git</span><span class="nd">@main</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="tutorials">
+<h2>Tutorials<a class="headerlink" href="#tutorials" title="Link to this heading">#</a></h2>
+<section id="tutorial-1-image-analysis">
+<h3>Tutorial 1: Image analysis<a class="headerlink" href="#tutorial-1-image-analysis" title="Link to this heading">#</a></h3>
+</section>
+<section id="tutorial-2-integration-of-imaging-with-proteomics">
+<h3>Tutorial 2: Integration of imaging with proteomics<a class="headerlink" href="#tutorial-2-integration-of-imaging-with-proteomics" title="Link to this heading">#</a></h3>
+</section>
+<section id="tutorial-3-downstream-proteomics-analysis">
+<h3>Tutorial 3: Downstream proteomics analysis<a class="headerlink" href="#tutorial-3-downstream-proteomics-analysis" title="Link to this heading">#</a></h3>
+</section>
+</section>
+<section id="contact">
+<h2>Contact<a class="headerlink" href="#contact" title="Link to this heading">#</a></h2>
+<p>For questions about openDVP and the DVP workflow you are very welcome to post a message in the <a class="reference external" href="https://github.com/CosciaLab/openDVP/discussions">discussion board</a>. For issues with the software, please post issues on <a class="reference external" href="https://github.com/CosciaLab/openDVP/issues">Github Issues</a>.</p>
+</section>
+<section id="citation">
+<h2>Citation<a class="headerlink" href="#citation" title="Link to this heading">#</a></h2>
+<p>Not yet available.</p>
 <div class="toctree-wrapper compound">
 </div>
+</section>
 </section>
 
 
@@ -420,6 +527,34 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting started</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-time-trying-python">First time trying python?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#there-are-three-alternatives-to-install-opendvp">There are three alternatives to install openDVP:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorials">Tutorials</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-1-image-analysis">Tutorial 1: Image analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-2-integration-of-imaging-with-proteomics">Tutorial 2: Integration of imaging with proteomics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-3-downstream-proteomics-analysis">Tutorial 3: Downstream proteomics analysis</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contact">Contact</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citation">Citation</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

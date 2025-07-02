@@ -1,0 +1,1200 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Proccessing of proteomic data" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="Tutorials/basics/Tutorial_3.html" />
+<meta property="og:site_name" content="openDVP" />
+<meta property="og:description" content="Package import: Load adata object: First step, describe the dataset: Let’s plot some data: Filter dataset by NaNs: We expect a lot of proteins to be removed because this is a subsampled dataset. Ma..." />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="_images/social_previews/summary_Tutorials_basics_Tutorial_3_8116453a.png" />
+<meta property="og:image:alt" content="Package import: Load adata object: First step, describe the dataset: Let’s plot some data: Filter dataset by NaNs: We expect a lot of proteins to be removed because this is a subsampled dataset. Ma..." />
+<meta name="description" content="Package import: Load adata object: First step, describe the dataset: Let’s plot some data: Filter dataset by NaNs: We expect a lot of proteins to be removed because this is a subsampled dataset. Ma..." />
+<meta name="twitter:card" content="summary_large_image" />
+
+    <title>Proccessing of proteomic data &#8212; openDVP</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=4861a642"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Tutorials/basics/Tutorial_3';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="../../references.html" />
+    <link rel="prev" title="Import necessary packages" href="Tutorial_2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">openDVP</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../api/index.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../api/io.html">Input / Output</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.adata_to_qupath.html">opendvp.io.adata_to_qupath</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.import_thresholds.html">opendvp.io.import_thresholds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.quant_to_adata.html">opendvp.io.quant_to_adata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.segmask_to_qupath.html">opendvp.io.segmask_to_qupath</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.DIANN_to_adata.html">opendvp.io.DIANN_to_adata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.import_perseus.html">opendvp.io.import_perseus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.export_adata.html">opendvp.io.export_adata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.export_figure.html">opendvp.io.export_figure</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../api/metrics.html">Metrics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.metrics.coefficient_of_variation.html">opendvp.metrics.coefficient_of_variation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.metrics.nan_difference.html">opendvp.metrics.nan_difference</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../api/plotting.html">Plotting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.dynamic_histogram.html">opendvp.plotting.dynamic_histogram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.plot_graph_network.html">opendvp.plotting.plot_graph_network</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.stacked_barplot.html">opendvp.plotting.stacked_barplot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.abundance_histograms.html">opendvp.plotting.abundance_histograms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.correlation_heatmap.html">opendvp.plotting.correlation_heatmap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.coefficient_of_variation.html">opendvp.plotting.coefficient_of_variation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.density.html">opendvp.plotting.density</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.dual_axis_boxplots.html">opendvp.plotting.dual_axis_boxplots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.histogram_w_imputation.html">opendvp.plotting.histogram_w_imputation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.pca_loadings.html">opendvp.plotting.pca_loadings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.pca.html">opendvp.plotting.pca</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.rankplot.html">opendvp.plotting.rankplot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.upset.html">opendvp.plotting.upset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.volcano.html">opendvp.plotting.volcano</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../api/pp.html">Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.pp.impute_marker_with_annotation.html">opendvp.pp.impute_marker_with_annotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.pp.rescale.html">opendvp.pp.rescale</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../api/tl.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.filter_adata_by_gates.html">opendvp.tl.filter_adata_by_gates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.filter_by_abs_value.html">opendvp.tl.filter_by_abs_value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.filter_by_annotation.html">opendvp.tl.filter_by_annotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.filter_by_ratio.html">opendvp.tl.filter_by_ratio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.filter_features_byNaNs.html">opendvp.tl.filter_features_byNaNs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.impute_gaussian.html">opendvp.tl.impute_gaussian</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.spatial_autocorrelation.html">opendvp.tl.spatial_autocorrelation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.spatial_hyperparameter_search.html">opendvp.tl.spatial_hyperparameter_search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.stats_anova.html">opendvp.tl.stats_anova</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.stats_average_samples.html">opendvp.tl.stats_average_samples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.stats_bootstrap.html">opendvp.tl.stats_bootstrap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.stats_ttest.html">opendvp.tl.stats_ttest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.phenotype_cells.html">opendvp.tl.phenotype_cells</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../api/utils.html">Utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.utils.parse_color_for_qupath.html">opendvp.utils.parse_color_for_qupath</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../api/imaging.html">Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.imaging.mask_to_polygons.html">opendvp.imaging.mask_to_polygons</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Tutorials will go here</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Basics index.md</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Tutorial_1.html">Image single-cell analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Tutorial_2.html">Import necessary packages</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Proccessing of proteomic data</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/Tutorials/basics/Tutorial_3.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Proccessing of proteomic data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#package-import">Package import</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-adata-object">Load adata object</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-step-describe-the-dataset">First step, describe the dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-plot-some-data">Let’s plot some data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-dataset-by-nans">Filter dataset by NaNs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imputation">Imputation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scanpy-s-pca">Scanpy’s PCA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heatmap">heatmap</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#differential-analysis">Differential analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-with-volcano-plot">plotting with volcano plot</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="proccessing-of-proteomic-data">
+<h1>Proccessing of proteomic data<a class="headerlink" href="#proccessing-of-proteomic-data" title="Link to this heading">#</a></h1>
+<section id="package-import">
+<h2>Package import<a class="headerlink" href="#package-import" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">opendvp</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dvp</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">anndata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ad</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scanpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sc</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+</div>
+</div>
+</section>
+<section id="load-adata-object">
+<h2>Load adata object<a class="headerlink" href="#load-adata-object" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span> <span class="o">=</span> <span class="n">ad</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="s2">&quot;data/checkpoints/1_loaded/20250701_1252_1_loaded_adata.h5ad&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 10 × 6763
+    obs: &#39;Precursors.Identified&#39;, &#39;Proteins.Identified&#39;, &#39;Average.Missed.Tryptic.Cleavages&#39;, &#39;LCMS_run_id&#39;, &#39;RCN&#39;, &#39;RCN_long&#39;, &#39;QuPath_class&#39;
+    var: &#39;Protein.Group&#39;, &#39;Protein.Names&#39;, &#39;Genes&#39;, &#39;First.Protein.Description&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="first-step-describe-the-dataset">
+<h2>First step, describe the dataset<a class="headerlink" href="#first-step-describe-the-dataset" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dvp</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">dual_axis_boxplots</span><span class="p">(</span><span class="n">adata_obs</span><span class="o">=</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">,</span> <span class="n">feature_key</span><span class="o">=</span><span class="s2">&quot;RCN&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/54d1f9ff5bb72b63ffd825e23321cfefd924071b0bc075a32b8eceaf1469f62e.png" src="../../_images/54d1f9ff5bb72b63ffd825e23321cfefd924071b0bc075a32b8eceaf1469f62e.png" />
+</div>
+</div>
+</section>
+<section id="let-s-plot-some-data">
+<h2>Let’s plot some data<a class="headerlink" href="#let-s-plot-some-data" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Log2 transform the data</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dvp</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">density</span><span class="p">(</span><span class="n">adata</span><span class="o">=</span><span class="n">adata</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="s2">&quot;RCN&quot;</span><span class="p">)</span>
+<span class="n">dvp</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">density</span><span class="p">(</span><span class="n">adata</span><span class="o">=</span><span class="n">adata</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="s2">&quot;QuPath_class&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/555da664bf2db55b10a74255a30fcc65f02046abcf2f3fafe670d95d264edd7e.png" src="../../_images/555da664bf2db55b10a74255a30fcc65f02046abcf2f3fafe670d95d264edd7e.png" />
+<img alt="../../_images/8a0a8bed359401d2887767f49a3a8b8863d0e6d36dfdbf5848c11c02c3dad4f3.png" src="../../_images/8a0a8bed359401d2887767f49a3a8b8863d0e6d36dfdbf5848c11c02c3dad4f3.png" />
+</div>
+</div>
+</section>
+<section id="filter-dataset-by-nans">
+<h2>Filter dataset by NaNs<a class="headerlink" href="#filter-dataset-by-nans" title="Link to this heading">#</a></h2>
+<p>We expect a lot of proteins to be removed because this is a subsampled dataset.<br />
+Many protein hits were present in other groups not present here.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_filtered</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">filter_features_byNaNs</span><span class="p">(</span><span class="n">adata</span><span class="o">=</span><span class="n">adata</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">grouping</span><span class="o">=</span><span class="s2">&quot;RCN&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">15:17:07.39</span> | <span class=" -Color -Color-Bold">INFO</span> | Filtering protein with at least 70.0% valid values in ANY group
+<span class=" -Color -Color-Green">15:17:07.39</span> | <span class=" -Color -Color-Bold">INFO</span> | Calculating overall QC metrics for all features.
+<span class=" -Color -Color-Green">15:17:07.40</span> | <span class=" -Color -Color-Bold">INFO</span> | Filtering by groups, RCN: [&#39;RCN1&#39;, &#39;RCN3&#39;]
+<span class=" -Color -Color-Green">15:17:07.40</span> | <span class=" -Color -Color-Bold">INFO</span> |  RCN1 has 5 samples
+<span class=" -Color -Color-Green">15:17:07.40</span> | <span class=" -Color -Color-Bold">INFO</span> |  RCN3 has 5 samples
+<span class=" -Color -Color-Green">15:17:07.41</span> | <span class=" -Color -Color-Bold">INFO</span> | Keeping proteins that pass &#39;ANY&#39; group criteria.
+<span class=" -Color -Color-Green">15:17:07.41</span> | <span class=" -Color -Color-Bold">INFO</span> | Complete QC metrics for all initial features stored in `adata.uns[&#39;filter_features_byNaNs_qc_metrics&#39;]`.
+<span class=" -Color -Color-Green">15:17:07.41</span> | <span class=" -Color -Color-Bold">INFO</span> | 4637 proteins were kept.
+<span class=" -Color -Color-Green">15:17:07.41</span> | <span class=" -Color -Color-Bold">INFO</span> | 2126 proteins were removed.
+<span class=" -Color -Color-Green">15:17:07.41</span> | <span class=" -Color -Color-Bold -Color-Bold-Green">SUCCESS</span> | filter_features_byNaNs complete.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_filtered</span><span class="o">.</span><span class="n">uns</span><span class="p">[</span><span class="s1">&#39;filter_features_byNaNs_qc_metrics&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Protein.Group</th>
+      <th>Protein.Names</th>
+      <th>Genes</th>
+      <th>First.Protein.Description</th>
+      <th>overall_mean</th>
+      <th>overall_nan_count</th>
+      <th>overall_valid_count</th>
+      <th>overall_nan_proportions</th>
+      <th>overall_valid</th>
+      <th>RCN1_mean</th>
+      <th>...</th>
+      <th>RCN1_nan_proportions</th>
+      <th>RCN1_valid</th>
+      <th>RCN3_mean</th>
+      <th>RCN3_nan_count</th>
+      <th>RCN3_valid_count</th>
+      <th>RCN3_nan_proportions</th>
+      <th>RCN3_valid</th>
+      <th>valid_in_all_groups</th>
+      <th>valid_in_any_group</th>
+      <th>not_valid_in_any_group</th>
+    </tr>
+    <tr>
+      <th>Gene</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>TMA7</th>
+      <td>A0A024R1R8;Q9Y2S6</td>
+      <td>TMA7B_HUMAN;TMA7_HUMAN</td>
+      <td>TMA7;TMA7B</td>
+      <td>Translation machinery-associated protein 7B</td>
+      <td>13.391</td>
+      <td>5</td>
+      <td>5</td>
+      <td>0.5</td>
+      <td>False</td>
+      <td>13.029</td>
+      <td>...</td>
+      <td>0.4</td>
+      <td>False</td>
+      <td>13.933</td>
+      <td>3</td>
+      <td>2</td>
+      <td>0.6</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>IGLV8-61</th>
+      <td>A0A075B6I0</td>
+      <td>LV861_HUMAN</td>
+      <td>IGLV8-61</td>
+      <td>Immunoglobulin lambda variable 8-61</td>
+      <td>13.666</td>
+      <td>6</td>
+      <td>4</td>
+      <td>0.6</td>
+      <td>False</td>
+      <td>12.395</td>
+      <td>...</td>
+      <td>0.8</td>
+      <td>False</td>
+      <td>14.090</td>
+      <td>2</td>
+      <td>3</td>
+      <td>0.4</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>IGLV3-10</th>
+      <td>A0A075B6K4</td>
+      <td>LV310_HUMAN</td>
+      <td>IGLV3-10</td>
+      <td>Immunoglobulin lambda variable 3-10</td>
+      <td>14.216</td>
+      <td>6</td>
+      <td>4</td>
+      <td>0.6</td>
+      <td>False</td>
+      <td>13.335</td>
+      <td>...</td>
+      <td>0.6</td>
+      <td>False</td>
+      <td>15.097</td>
+      <td>3</td>
+      <td>2</td>
+      <td>0.6</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>IGLV3-9</th>
+      <td>A0A075B6K5</td>
+      <td>LV39_HUMAN</td>
+      <td>IGLV3-9</td>
+      <td>Immunoglobulin lambda variable 3-9</td>
+      <td>15.293</td>
+      <td>0</td>
+      <td>10</td>
+      <td>0.0</td>
+      <td>True</td>
+      <td>13.680</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>True</td>
+      <td>16.906</td>
+      <td>0</td>
+      <td>5</td>
+      <td>0.0</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>IGKV2-28</th>
+      <td>A0A075B6P5;P01615</td>
+      <td>KV228_HUMAN;KVD28_HUMAN</td>
+      <td>IGKV2-28;IGKV2D-28</td>
+      <td>Immunoglobulin kappa variable 2-28</td>
+      <td>15.343</td>
+      <td>1</td>
+      <td>9</td>
+      <td>0.1</td>
+      <td>True</td>
+      <td>14.014</td>
+      <td>...</td>
+      <td>0.2</td>
+      <td>True</td>
+      <td>16.407</td>
+      <td>0</td>
+      <td>5</td>
+      <td>0.0</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 22 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_filtered</span><span class="o">.</span><span class="n">uns</span><span class="p">[</span><span class="s1">&#39;filter_features_byNaNs_qc_metrics&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;Protein.Group&#39;, &#39;Protein.Names&#39;, &#39;Genes&#39;, &#39;First.Protein.Description&#39;,
+       &#39;overall_mean&#39;, &#39;overall_nan_count&#39;, &#39;overall_valid_count&#39;,
+       &#39;overall_nan_proportions&#39;, &#39;overall_valid&#39;, &#39;RCN1_mean&#39;,
+       &#39;RCN1_nan_count&#39;, &#39;RCN1_valid_count&#39;, &#39;RCN1_nan_proportions&#39;,
+       &#39;RCN1_valid&#39;, &#39;RCN3_mean&#39;, &#39;RCN3_nan_count&#39;, &#39;RCN3_valid_count&#39;,
+       &#39;RCN3_nan_proportions&#39;, &#39;RCN3_valid&#39;, &#39;valid_in_all_groups&#39;,
+       &#39;valid_in_any_group&#39;, &#39;not_valid_in_any_group&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this dataframe, stored away in adata.uns, you can see all th qc metrics of the filtering</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Store filtered adata</span>
+<span class="n">dvp</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">export_adata</span><span class="p">(</span><span class="n">adata</span><span class="o">=</span><span class="n">adata_filtered</span><span class="p">,</span> <span class="n">path_to_dir</span><span class="o">=</span><span class="s2">&quot;data/checkpoints&quot;</span><span class="p">,</span> <span class="n">checkpoint_name</span><span class="o">=</span><span class="s2">&quot;2_filtered&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">15:17:12.78</span> | <span class=" -Color -Color-Bold">INFO</span> | Writing h5ad
+<span class=" -Color -Color-Green">15:17:12.84</span> | <span class=" -Color -Color-Bold -Color-Bold-Green">SUCCESS</span> | Wrote h5ad file
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="imputation">
+<h2>Imputation<a class="headerlink" href="#imputation" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_imputed</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">impute_gaussian</span><span class="p">(</span><span class="n">adata</span><span class="o">=</span><span class="n">adata_filtered</span><span class="p">,</span> <span class="n">mean_shift</span><span class="o">=-</span><span class="mf">1.8</span><span class="p">,</span> <span class="n">std_dev_shift</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">15:17:31.45</span> | <span class=" -Color -Color-Bold">INFO</span> | Storing original data in `adata.layers[&#39;unimputed&#39;]`.
+<span class=" -Color -Color-Green">15:17:31.45</span> | <span class=" -Color -Color-Bold">INFO</span> | Imputation with Gaussian distribution PER PROTEIN
+<span class=" -Color -Color-Green">15:17:31.46</span> | <span class=" -Color -Color-Bold">INFO</span> | Mean number of missing values per sample: 572.6 out of 4637 proteins
+<span class=" -Color -Color-Green">15:17:31.46</span> | <span class=" -Color -Color-Bold">INFO</span> | Mean number of missing values per protein: 1.23 out of 10 samples
+<span class=" -Color -Color-Green">15:17:33.35</span> | <span class=" -Color -Color-Bold">INFO</span> | Imputation complete. QC metrics stored in `adata.uns[&#39;impute_gaussian_qc_metrics&#39;]`.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_imputed</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 10 × 4637
+    obs: &#39;Precursors.Identified&#39;, &#39;Proteins.Identified&#39;, &#39;Average.Missed.Tryptic.Cleavages&#39;, &#39;LCMS_run_id&#39;, &#39;RCN&#39;, &#39;RCN_long&#39;, &#39;QuPath_class&#39;
+    var: &#39;Protein.Group&#39;, &#39;Protein.Names&#39;, &#39;Genes&#39;, &#39;First.Protein.Description&#39;, &#39;mean&#39;, &#39;nan_proportions&#39;
+    uns: &#39;filter_features_byNaNs_qc_metrics&#39;, &#39;impute_gaussian_qc_metrics&#39;
+    layers: &#39;unimputed&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Like the previous process, the imputation stores two quality control datasets.<br />
+First, the <code class="docutils literal notranslate"><span class="pre">impute_gaussian_qc_metrics</span></code>
+Showing you per protein:</p>
+<ul class="simple">
+<li><p>how many values were imputed</p></li>
+<li><p>the distribution used</p></li>
+<li><p>the values used to impute with</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_imputed</span><span class="o">.</span><span class="n">uns</span><span class="p">[</span><span class="s1">&#39;impute_gaussian_qc_metrics&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>n_imputed</th>
+      <th>imputation_mean</th>
+      <th>imputation_stddev</th>
+      <th>imputed_values</th>
+    </tr>
+    <tr>
+      <th>Gene</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>IGLV3-9</th>
+      <td>0</td>
+      <td>15.292778</td>
+      <td>1.840310</td>
+      <td>NAN</td>
+    </tr>
+    <tr>
+      <th>IGKV2-28</th>
+      <td>1</td>
+      <td>15.343103</td>
+      <td>1.346909</td>
+      <td>[12.4703]</td>
+    </tr>
+    <tr>
+      <th>IGHV3-64</th>
+      <td>6</td>
+      <td>13.710045</td>
+      <td>1.247562</td>
+      <td>[11.1396, 12.2713, 12.2389, 10.8992, 11.9149, ...</td>
+    </tr>
+    <tr>
+      <th>IGKV2D-29</th>
+      <td>0</td>
+      <td>16.213394</td>
+      <td>1.481762</td>
+      <td>NAN</td>
+    </tr>
+    <tr>
+      <th>IGKV1-27</th>
+      <td>0</td>
+      <td>13.452261</td>
+      <td>1.394043</td>
+      <td>NAN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>WASF2</th>
+      <td>0</td>
+      <td>15.135411</td>
+      <td>0.255652</td>
+      <td>NAN</td>
+    </tr>
+    <tr>
+      <th>MAU2</th>
+      <td>1</td>
+      <td>12.475482</td>
+      <td>0.455856</td>
+      <td>[11.636]</td>
+    </tr>
+    <tr>
+      <th>ENPP4</th>
+      <td>0</td>
+      <td>12.008373</td>
+      <td>0.630813</td>
+      <td>NAN</td>
+    </tr>
+    <tr>
+      <th>MORC2</th>
+      <td>1</td>
+      <td>12.330734</td>
+      <td>0.783775</td>
+      <td>[10.7335]</td>
+    </tr>
+    <tr>
+      <th>SEC23IP</th>
+      <td>0</td>
+      <td>14.050191</td>
+      <td>0.227216</td>
+      <td>NAN</td>
+    </tr>
+  </tbody>
+</table>
+<p>4637 rows × 4 columns</p>
+</div></div></div>
+</div>
+<p>Second, the unimputed values are stored inside the layers compartment of the adata object.<br />
+This is a backup in case imputation has done something wrong.<br />
+You can always call those values by <code class="docutils literal notranslate"><span class="pre">adata_imputed.layers['unimputed']</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dvp</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">export_adata</span><span class="p">(</span><span class="n">adata</span><span class="o">=</span><span class="n">adata_imputed</span><span class="p">,</span> <span class="n">path_to_dir</span><span class="o">=</span><span class="s2">&quot;data/checkpoints&quot;</span><span class="p">,</span> <span class="n">checkpoint_name</span><span class="o">=</span><span class="s2">&quot;3_imputed&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">15:18:23.45</span> | <span class=" -Color -Color-Bold">INFO</span> | Writing h5ad
+<span class=" -Color -Color-Green">15:18:23.51</span> | <span class=" -Color -Color-Bold -Color-Bold-Green">SUCCESS</span> | Wrote h5ad file
+</pre></div>
+</div>
+</div>
+</div>
+<section id="scanpy-s-pca">
+<h3>Scanpy’s PCA<a class="headerlink" href="#scanpy-s-pca" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">pca</span><span class="p">(</span><span class="n">adata_imputed</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Scanpy is a very powerful data analysis package created for single-cell RNA sequencing.<br />
+We use it here because it is very convenient, and it already expects the AnnData format we have.<br />
+Beware of using Scanpy for proteomics datasets, assumptions will vary.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_imputed</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 10 × 4637
+    obs: &#39;Precursors.Identified&#39;, &#39;Proteins.Identified&#39;, &#39;Average.Missed.Tryptic.Cleavages&#39;, &#39;LCMS_run_id&#39;, &#39;RCN&#39;, &#39;RCN_long&#39;, &#39;QuPath_class&#39;
+    var: &#39;Protein.Group&#39;, &#39;Protein.Names&#39;, &#39;Genes&#39;, &#39;First.Protein.Description&#39;, &#39;mean&#39;, &#39;nan_proportions&#39;
+    uns: &#39;filter_features_byNaNs_qc_metrics&#39;, &#39;impute_gaussian_qc_metrics&#39;, &#39;pca&#39;
+    obsm: &#39;X_pca&#39;
+    varm: &#39;PCs&#39;
+    layers: &#39;unimputed&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># let&#39;s plot it</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">pca</span><span class="p">(</span><span class="n">adata_imputed</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;RCN&quot;</span><span class="p">,</span> <span class="n">annotate_var_explained</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/f36b58ef4cefbdd026f0c199598e55e93a3e0cd53d92fea6403a6a29bd5882e7.png" src="../../_images/f36b58ef4cefbdd026f0c199598e55e93a3e0cd53d92fea6403a6a29bd5882e7.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># let&#39;s plot the direction of each feature</span>
+<span class="n">dvp</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">pca_loadings</span><span class="p">(</span><span class="n">adata_imputed</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4 [-0.38130396 -0.40484619]
+52 [-0.39167196  0.581337  ]
+</pre></div>
+</div>
+<img alt="../../_images/bc3f8ca6d91d58768a6a55d8f1565ebc8183131fb7859763db989ad91e6762ad.png" src="../../_images/bc3f8ca6d91d58768a6a55d8f1565ebc8183131fb7859763db989ad91e6762ad.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dvp</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">export_adata</span><span class="p">(</span><span class="n">adata</span><span class="o">=</span><span class="n">adata_imputed</span><span class="p">,</span> <span class="n">path_to_dir</span><span class="o">=</span><span class="s2">&quot;data/checkpoints&quot;</span><span class="p">,</span> <span class="n">checkpoint_name</span><span class="o">=</span><span class="s2">&quot;4_pca&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">15:19:19.65</span> | <span class=" -Color -Color-Bold">INFO</span> | Writing h5ad
+<span class=" -Color -Color-Green">15:19:19.71</span> | <span class=" -Color -Color-Bold -Color-Bold-Green">SUCCESS</span> | Wrote h5ad file
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="heatmap">
+<h3>heatmap<a class="headerlink" href="#heatmap" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">adata_imputed</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">adata_imputed</span><span class="o">.</span><span class="n">var_names</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">adata_imputed</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">RCN</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">dataframe</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">z_score</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;bwr&quot;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.matrix.ClusterGrid at 0x156e4c790&gt;
+</pre></div>
+</div>
+<img alt="../../_images/617d5afd9887da34f2ee59511b4de45ae8c5ad49eb9a06bf3390118a616d23ca.png" src="../../_images/617d5afd9887da34f2ee59511b4de45ae8c5ad49eb9a06bf3390118a616d23ca.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="differential-analysis">
+<h2>Differential analysis<a class="headerlink" href="#differential-analysis" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ttest</span>
+<span class="n">adata_DAP</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">stats_ttest</span><span class="p">(</span><span class="n">adata_imputed</span><span class="p">,</span> <span class="n">grouping</span><span class="o">=</span><span class="s2">&quot;RCN&quot;</span><span class="p">,</span> <span class="n">group1</span><span class="o">=</span><span class="s2">&quot;RCN1&quot;</span><span class="p">,</span> <span class="n">group2</span><span class="o">=</span><span class="s2">&quot;RCN3&quot;</span><span class="p">,</span> <span class="n">FDR_threshold</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">15:20:10.81</span> | <span class=" -Color -Color-Bold">INFO</span> | Using pingouin.ttest to perform unpaired two-sided t-test between RCN1 and RCN3
+<span class=" -Color -Color-Green">15:20:10.81</span> | <span class=" -Color -Color-Bold">INFO</span> | Using Benjamini-Hochberg for FDR correction, with a threshold of 0.05
+<span class=" -Color -Color-Green">15:20:10.81</span> | <span class=" -Color -Color-Bold">INFO</span> | The test found 1997 proteins to be significantly
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_DAP</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 10 × 4637
+    obs: &#39;Precursors.Identified&#39;, &#39;Proteins.Identified&#39;, &#39;Average.Missed.Tryptic.Cleavages&#39;, &#39;LCMS_run_id&#39;, &#39;RCN&#39;, &#39;RCN_long&#39;, &#39;QuPath_class&#39;
+    var: &#39;Protein.Group&#39;, &#39;Protein.Names&#39;, &#39;Genes&#39;, &#39;First.Protein.Description&#39;, &#39;mean&#39;, &#39;nan_proportions&#39;, &#39;t_val&#39;, &#39;p_val&#39;, &#39;mean_diff&#39;, &#39;sig&#39;, &#39;p_corr&#39;, &#39;-log10_p_corr&#39;
+    uns: &#39;filter_features_byNaNs_qc_metrics&#39;, &#39;impute_gaussian_qc_metrics&#39;, &#39;pca&#39;, &#39;RCN_colors&#39;
+    obsm: &#39;X_pca&#39;
+    varm: &#39;PCs&#39;
+    layers: &#39;unimputed&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dvp</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">export_adata</span><span class="p">(</span><span class="n">adata</span><span class="o">=</span><span class="n">adata_DAP</span><span class="p">,</span> <span class="n">path_to_dir</span><span class="o">=</span><span class="s2">&quot;data/checkpoints&quot;</span><span class="p">,</span> <span class="n">checkpoint_name</span><span class="o">=</span><span class="s2">&quot;5_DAP&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">15:21:26.28</span> | <span class=" -Color -Color-Bold">INFO</span> | Writing h5ad
+<span class=" -Color -Color-Green">15:21:26.37</span> | <span class=" -Color -Color-Bold -Color-Bold-Green">SUCCESS</span> | Wrote h5ad file
+</pre></div>
+</div>
+</div>
+</div>
+<section id="plotting-with-volcano-plot">
+<h3>plotting with volcano plot<a class="headerlink" href="#plotting-with-volcano-plot" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dvp</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">volcano</span><span class="p">(</span><span class="n">adata_DAP</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;mean_diff&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;-log10_p_corr&quot;</span><span class="p">,</span> <span class="n">FDR</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">significant</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tag_top</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">group1</span><span class="o">=</span><span class="s2">&quot;Tumor samples&quot;</span><span class="p">,</span> <span class="n">group2</span><span class="o">=</span><span class="s2">&quot;Immune samples&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/aa9a055aa2f2514d1dd6e2c82b4365b8b96d3b868da87f186a770b57e3ea4738.png" src="../../_images/aa9a055aa2f2514d1dd6e2c82b4365b8b96d3b868da87f186a770b57e3ea4738.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Tutorial_2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Import necessary packages</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../references.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#package-import">Package import</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-adata-object">Load adata object</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-step-describe-the-dataset">First step, describe the dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-plot-some-data">Let’s plot some data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-dataset-by-nans">Filter dataset by NaNs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imputation">Imputation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scanpy-s-pca">Scanpy’s PCA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heatmap">heatmap</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#differential-analysis">Differential analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-with-volcano-plot">plotting with volcano plot</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jose Nimo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

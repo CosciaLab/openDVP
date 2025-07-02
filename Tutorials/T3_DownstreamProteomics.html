@@ -2,19 +2,19 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="../../" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta property="og:title" content="Proccessing of proteomic data" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="Tutorials/basics/Tutorial_3.html" />
+<meta property="og:url" content="Tutorials/T3_DownstreamProteomics.html" />
 <meta property="og:site_name" content="openDVP" />
 <meta property="og:description" content="Package import: Load adata object: First step, describe the dataset: Let’s plot some data: Filter dataset by NaNs: We expect a lot of proteins to be removed because this is a subsampled dataset. Ma..." />
 <meta property="og:image:width" content="1146" />
 <meta property="og:image:height" content="600" />
-<meta property="og:image" content="_images/social_previews/summary_Tutorials_basics_Tutorial_3_8116453a.png" />
+<meta property="og:image" content="_images/social_previews/summary_Tutorials_T3_DownstreamProteomics_8116453a.png" />
 <meta property="og:image:alt" content="Package import: Load adata object: First step, describe the dataset: Let’s plot some data: Filter dataset by NaNs: We expect a lot of proteins to be removed because this is a subsampled dataset. Ma..." />
 <meta name="description" content="Package import: Load adata object: First step, describe the dataset: Let’s plot some data: Filter dataset by NaNs: We expect a lot of proteins to be removed because this is a subsampled dataset. Ma..." />
 <meta name="twitter:card" content="summary_large_image" />
@@ -29,37 +29,37 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../_static/documentation_options.js?v=4861a642"></script>
-    <script src="../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../../_static/copybutton.js?v=f281be69"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'Tutorials/basics/Tutorial_3';</script>
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="../../references.html" />
-    <link rel="prev" title="Import necessary packages" href="Tutorial_2.html" />
+    <script src="../_static/documentation_options.js?v=f39d245f"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Tutorials/T3_DownstreamProteomics';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Workflows" href="../Workflows/index.html" />
+    <link rel="prev" title="Integrating proteomics and imaging data" href="T2_ProteomicsIntegration.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -91,7 +91,7 @@
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
-      action="../../search.html"
+      action="../search.html"
       method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
   <input type="search"
@@ -140,7 +140,7 @@
     
   
 
-<a class="navbar-brand logo" href="../../index.html">
+<a class="navbar-brand logo" href="../index.html">
   
   
   
@@ -164,89 +164,13 @@
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../api/index.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../api/io.html">Input / Output</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.adata_to_qupath.html">opendvp.io.adata_to_qupath</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.import_thresholds.html">opendvp.io.import_thresholds</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.quant_to_adata.html">opendvp.io.quant_to_adata</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.segmask_to_qupath.html">opendvp.io.segmask_to_qupath</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.DIANN_to_adata.html">opendvp.io.DIANN_to_adata</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.import_perseus.html">opendvp.io.import_perseus</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.export_adata.html">opendvp.io.export_adata</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.export_figure.html">opendvp.io.export_figure</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Tutorials</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="T1_ImageAnalysis.html">Image Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="T2_ProteomicsIntegration.html">Integrating proteomics and imaging data</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Proccessing of proteomic data</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../api/metrics.html">Metrics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.metrics.coefficient_of_variation.html">opendvp.metrics.coefficient_of_variation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.metrics.nan_difference.html">opendvp.metrics.nan_difference</a></li>
-</ul>
-</details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../api/plotting.html">Plotting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.dynamic_histogram.html">opendvp.plotting.dynamic_histogram</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.plot_graph_network.html">opendvp.plotting.plot_graph_network</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.stacked_barplot.html">opendvp.plotting.stacked_barplot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.abundance_histograms.html">opendvp.plotting.abundance_histograms</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.correlation_heatmap.html">opendvp.plotting.correlation_heatmap</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.coefficient_of_variation.html">opendvp.plotting.coefficient_of_variation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.density.html">opendvp.plotting.density</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.dual_axis_boxplots.html">opendvp.plotting.dual_axis_boxplots</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.histogram_w_imputation.html">opendvp.plotting.histogram_w_imputation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.pca_loadings.html">opendvp.plotting.pca_loadings</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.pca.html">opendvp.plotting.pca</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.rankplot.html">opendvp.plotting.rankplot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.upset.html">opendvp.plotting.upset</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.volcano.html">opendvp.plotting.volcano</a></li>
-</ul>
-</details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../api/pp.html">Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.pp.impute_marker_with_annotation.html">opendvp.pp.impute_marker_with_annotation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.pp.rescale.html">opendvp.pp.rescale</a></li>
-</ul>
-</details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../api/tl.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.filter_adata_by_gates.html">opendvp.tl.filter_adata_by_gates</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.filter_by_abs_value.html">opendvp.tl.filter_by_abs_value</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.filter_by_annotation.html">opendvp.tl.filter_by_annotation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.filter_by_ratio.html">opendvp.tl.filter_by_ratio</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.filter_features_byNaNs.html">opendvp.tl.filter_features_byNaNs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.impute_gaussian.html">opendvp.tl.impute_gaussian</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.spatial_autocorrelation.html">opendvp.tl.spatial_autocorrelation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.spatial_hyperparameter_search.html">opendvp.tl.spatial_hyperparameter_search</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.stats_anova.html">opendvp.tl.stats_anova</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.stats_average_samples.html">opendvp.tl.stats_average_samples</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.stats_bootstrap.html">opendvp.tl.stats_bootstrap</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.stats_ttest.html">opendvp.tl.stats_ttest</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.phenotype_cells.html">opendvp.tl.phenotype_cells</a></li>
-</ul>
-</details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../api/utils.html">Utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.utils.parse_color_for_qupath.html">opendvp.utils.parse_color_for_qupath</a></li>
-</ul>
-</details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../api/imaging.html">Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.imaging.mask_to_polygons.html">opendvp.imaging.mask_to_polygons</a></li>
-</ul>
-</details></li>
-</ul>
-</details></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Tutorials will go here</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Basics index.md</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="Tutorial_1.html">Image single-cell analysis</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Tutorial_2.html">Import necessary packages</a></li>
-
-
-
-
-
-
-
-
-
-<li class="toctree-l3 current active"><a class="current reference internal" href="#">Proccessing of proteomic data</a></li>
-</ul>
-</details></li>
-</ul>
-</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../Workflows/index.html">Workflows</a></li>
 </ul>
 
     </div>
@@ -301,7 +225,7 @@
       
       
       
-      <li><a href="../../_sources/Tutorials/basics/Tutorial_3.ipynb" target="_blank"
+      <li><a href="../_sources/Tutorials/T3_DownstreamProteomics.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -475,7 +399,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/54d1f9ff5bb72b63ffd825e23321cfefd924071b0bc075a32b8eceaf1469f62e.png" src="../../_images/54d1f9ff5bb72b63ffd825e23321cfefd924071b0bc075a32b8eceaf1469f62e.png" />
+<img alt="../_images/54d1f9ff5bb72b63ffd825e23321cfefd924071b0bc075a32b8eceaf1469f62e.png" src="../_images/54d1f9ff5bb72b63ffd825e23321cfefd924071b0bc075a32b8eceaf1469f62e.png" />
 </div>
 </div>
 </section>
@@ -497,8 +421,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/555da664bf2db55b10a74255a30fcc65f02046abcf2f3fafe670d95d264edd7e.png" src="../../_images/555da664bf2db55b10a74255a30fcc65f02046abcf2f3fafe670d95d264edd7e.png" />
-<img alt="../../_images/8a0a8bed359401d2887767f49a3a8b8863d0e6d36dfdbf5848c11c02c3dad4f3.png" src="../../_images/8a0a8bed359401d2887767f49a3a8b8863d0e6d36dfdbf5848c11c02c3dad4f3.png" />
+<img alt="../_images/555da664bf2db55b10a74255a30fcc65f02046abcf2f3fafe670d95d264edd7e.png" src="../_images/555da664bf2db55b10a74255a30fcc65f02046abcf2f3fafe670d95d264edd7e.png" />
+<img alt="../_images/8a0a8bed359401d2887767f49a3a8b8863d0e6d36dfdbf5848c11c02c3dad4f3.png" src="../_images/8a0a8bed359401d2887767f49a3a8b8863d0e6d36dfdbf5848c11c02c3dad4f3.png" />
 </div>
 </div>
 </section>
@@ -977,7 +901,7 @@ Beware of using Scanpy for proteomics datasets, assumptions will vary.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/f36b58ef4cefbdd026f0c199598e55e93a3e0cd53d92fea6403a6a29bd5882e7.png" src="../../_images/f36b58ef4cefbdd026f0c199598e55e93a3e0cd53d92fea6403a6a29bd5882e7.png" />
+<img alt="../_images/f36b58ef4cefbdd026f0c199598e55e93a3e0cd53d92fea6403a6a29bd5882e7.png" src="../_images/f36b58ef4cefbdd026f0c199598e55e93a3e0cd53d92fea6403a6a29bd5882e7.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -992,7 +916,7 @@ Beware of using Scanpy for proteomics datasets, assumptions will vary.</p>
 52 [-0.39167196  0.581337  ]
 </pre></div>
 </div>
-<img alt="../../_images/bc3f8ca6d91d58768a6a55d8f1565ebc8183131fb7859763db989ad91e6762ad.png" src="../../_images/bc3f8ca6d91d58768a6a55d8f1565ebc8183131fb7859763db989ad91e6762ad.png" />
+<img alt="../_images/bc3f8ca6d91d58768a6a55d8f1565ebc8183131fb7859763db989ad91e6762ad.png" src="../_images/bc3f8ca6d91d58768a6a55d8f1565ebc8183131fb7859763db989ad91e6762ad.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1022,7 +946,7 @@ Beware of using Scanpy for proteomics datasets, assumptions will vary.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.matrix.ClusterGrid at 0x156e4c790&gt;
 </pre></div>
 </div>
-<img alt="../../_images/617d5afd9887da34f2ee59511b4de45ae8c5ad49eb9a06bf3390118a616d23ca.png" src="../../_images/617d5afd9887da34f2ee59511b4de45ae8c5ad49eb9a06bf3390118a616d23ca.png" />
+<img alt="../_images/617d5afd9887da34f2ee59511b4de45ae8c5ad49eb9a06bf3390118a616d23ca.png" src="../_images/617d5afd9887da34f2ee59511b4de45ae8c5ad49eb9a06bf3390118a616d23ca.png" />
 </div>
 </div>
 </section>
@@ -1084,7 +1008,7 @@ Beware of using Scanpy for proteomics datasets, assumptions will vary.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/aa9a055aa2f2514d1dd6e2c82b4365b8b96d3b868da87f186a770b57e3ea4738.png" src="../../_images/aa9a055aa2f2514d1dd6e2c82b4365b8b96d3b868da87f186a770b57e3ea4738.png" />
+<img alt="../_images/aa9a055aa2f2514d1dd6e2c82b4365b8b96d3b868da87f186a770b57e3ea4738.png" src="../_images/aa9a055aa2f2514d1dd6e2c82b4365b8b96d3b868da87f186a770b57e3ea4738.png" />
 </div>
 </div>
 </section>
@@ -1103,20 +1027,20 @@ Beware of using Scanpy for proteomics datasets, assumptions will vary.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="Tutorial_2.html"
+       href="T2_ProteomicsIntegration.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Import necessary packages</p>
+        <p class="prev-next-title">Integrating proteomics and imaging data</p>
       </div>
     </a>
     <a class="right-next"
-       href="../../references.html"
+       href="../Workflows/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
+        <p class="prev-next-title">Workflows</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1191,8 +1115,8 @@ By Jose Nimo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

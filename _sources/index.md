@@ -1,11 +1,19 @@
 # openDVP - community empowered Deep Visual Proteomics
 
+[![Docs](https://img.shields.io/badge/docs-online-blue.svg)](https://coscialab.github.io/openDVP/)
+[![CI](https://github.com/CosciaLab/openDVP/actions/workflows/testing.yml/badge.svg)](https://github.com/CosciaLab/openDVP/actions/workflows/testing.yml)
+[![Python versions](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-blue.svg)](https://www.python.org/)
+[![Platforms](https://img.shields.io/badge/platform-linux%20%7C%20windows%20%7C%20macos-lightgrey.svg)](https://github.com/CosciaLab/openDVP/actions/workflows/testing.yml)
+[![PyPI version](https://img.shields.io/pypi/v/openDVP.svg)](https://pypi.org/project/openDVP/)
+[![License](https://img.shields.io/github/license/CosciaLab/openDVP.svg)](https://github.com/CosciaLab/opendvp/blob/main/LICENSE)
 
 `opendvp` is a python package containing different tools enabling users to perform deep visual proteomics. To perform quality control and image analysis of multiplex immunofluorescence. Also to integrate imaging datasets with proteomic datasets with [Spatialdata](https://github.com/scverse/spatialdata). Lastly, it contains a powerful toolkit for label-free downstream proteomic analysis.
 
 It is a package that leverages the [scverse]() ecosystem, designed for easy interoperability with `anndata`, `scanpy`, `decoupler`, `scimap`, and other related packages.
 
 ## Getting started
+
+openDVP is a framework that has both experimental and software aspects.
 
 Please check our [API documentation](api/index.md) for detailed functionalities.
 
@@ -56,11 +64,9 @@ pip install git+https://github.com/CosciaLab/openDVP.git@main
 
 ## Tutorials
 
-### Tutorial 1: Image analysis
-
-### Tutorial 2: Integration of imaging with proteomics
-
-### Tutorial 3: Downstream proteomics analysis
+- [Tutorial 1: Image analysis](Tutorials/T1_ImageAnalysis)
+- [Tutorial 2: Integration of imaging with proteomics](Tutorials/T2_ProteomicsIntegration)
+- [Tutorial 3: Downstream proteomics analysis](Tutorials/T3_DownstreamProteomics)
 
 
 ## Contact
@@ -76,7 +82,7 @@ Not yet available.
 :maxdepth: 2
 :hidden:
 
-api/index
+API/index
 Tutorials/index
-references
+Workflows/index
 ```

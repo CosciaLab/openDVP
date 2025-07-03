@@ -49,7 +49,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="_static/documentation_options.js?v=f39d245f"></script>
+    <script src="_static/documentation_options.js?v=dd742493"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -58,7 +58,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Tutorials" href="Tutorials/index.html" />
+    <link rel="next" title="API Reference" href="api/index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -165,13 +165,71 @@
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="Tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="Tutorials/T1_ImageAnalysis.html">Image Analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Tutorials/T2_ProteomicsIntegration.html">Integrating proteomics and imaging data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Tutorials/T3_DownstreamProteomics.html">Proccessing of proteomic data</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="api/index.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="api/io.html">Input / Output</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.io.adata_to_qupath.html">opendvp.io.adata_to_qupath</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.io.import_thresholds.html">opendvp.io.import_thresholds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.io.quant_to_adata.html">opendvp.io.quant_to_adata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.io.segmask_to_qupath.html">opendvp.io.segmask_to_qupath</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.io.DIANN_to_adata.html">opendvp.io.DIANN_to_adata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.io.import_perseus.html">opendvp.io.import_perseus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.io.export_adata.html">opendvp.io.export_adata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.io.export_figure.html">opendvp.io.export_figure</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="Workflows/index.html">Workflows</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="api/metrics.html">Metrics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.metrics.coefficient_of_variation.html">opendvp.metrics.coefficient_of_variation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.metrics.nan_difference.html">opendvp.metrics.nan_difference</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="api/plotting.html">Plotting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.dynamic_histogram.html">opendvp.plotting.dynamic_histogram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.plot_graph_network.html">opendvp.plotting.plot_graph_network</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.stacked_barplot.html">opendvp.plotting.stacked_barplot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.abundance_histograms.html">opendvp.plotting.abundance_histograms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.correlation_heatmap.html">opendvp.plotting.correlation_heatmap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.coefficient_of_variation.html">opendvp.plotting.coefficient_of_variation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.density.html">opendvp.plotting.density</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.dual_axis_boxplots.html">opendvp.plotting.dual_axis_boxplots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.histogram_w_imputation.html">opendvp.plotting.histogram_w_imputation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.pca_loadings.html">opendvp.plotting.pca_loadings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.pca.html">opendvp.plotting.pca</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.rankplot.html">opendvp.plotting.rankplot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.upset.html">opendvp.plotting.upset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.volcano.html">opendvp.plotting.volcano</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="api/pp.html">Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.pp.impute_marker_with_annotation.html">opendvp.pp.impute_marker_with_annotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.pp.rescale.html">opendvp.pp.rescale</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="api/tl.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.tl.filter_adata_by_gates.html">opendvp.tl.filter_adata_by_gates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.tl.filter_by_abs_value.html">opendvp.tl.filter_by_abs_value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.tl.filter_by_annotation.html">opendvp.tl.filter_by_annotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.tl.filter_by_ratio.html">opendvp.tl.filter_by_ratio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.tl.filter_features_byNaNs.html">opendvp.tl.filter_features_byNaNs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.tl.impute_gaussian.html">opendvp.tl.impute_gaussian</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.tl.spatial_autocorrelation.html">opendvp.tl.spatial_autocorrelation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.tl.spatial_hyperparameter_search.html">opendvp.tl.spatial_hyperparameter_search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.tl.stats_anova.html">opendvp.tl.stats_anova</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.tl.stats_average_samples.html">opendvp.tl.stats_average_samples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.tl.stats_bootstrap.html">opendvp.tl.stats_bootstrap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.tl.stats_ttest.html">opendvp.tl.stats_ttest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.tl.phenotype_cells.html">opendvp.tl.phenotype_cells</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="api/utils.html">Utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.utils.parse_color_for_qupath.html">opendvp.utils.parse_color_for_qupath</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="api/imaging.html">Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.imaging.mask_to_polygons.html">opendvp.imaging.mask_to_polygons</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
 </ul>
 
     </div>
@@ -349,7 +407,7 @@ document.write(`
 <a class="reference external" href="https://pypi.org/project/openDVP/"><img alt="PyPI version" src="https://img.shields.io/pypi/v/openDVP.svg" /></a>
 <a class="reference external" href="https://github.com/CosciaLab/opendvp/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/CosciaLab/openDVP.svg" /></a></p>
 <p><code class="docutils literal notranslate"><span class="pre">opendvp</span></code> is a python package containing different tools enabling users to perform deep visual proteomics. To perform quality control and image analysis of multiplex immunofluorescence. Also to integrate imaging datasets with proteomic datasets with <a class="reference external" href="https://github.com/scverse/spatialdata">Spatialdata</a>. Lastly, it contains a powerful toolkit for label-free downstream proteomic analysis.</p>
-<p>It is a package that leverages the <a class="reference internal" href="#"><span class="xref myst">scverse</span></a> ecosystem, designed for easy interoperability with <code class="docutils literal notranslate"><span class="pre">anndata</span></code>, <code class="docutils literal notranslate"><span class="pre">scanpy</span></code>, <code class="docutils literal notranslate"><span class="pre">decoupler</span></code>, <code class="docutils literal notranslate"><span class="pre">scimap</span></code>, and other related packages.</p>
+<p>It is a package that leverages the <a class="reference external" href="https://www.scverse.org/">scverse</a> ecosystem, designed for easy interoperability with <code class="docutils literal notranslate"><span class="pre">anndata</span></code>, <code class="docutils literal notranslate"><span class="pre">scanpy</span></code>, <code class="docutils literal notranslate"><span class="pre">decoupler</span></code>, <code class="docutils literal notranslate"><span class="pre">scimap</span></code>, and other related packages.</p>
 <section id="getting-started">
 <h2>Getting started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h2>
 <p>openDVP is a framework that has both experimental and software aspects.</p>
@@ -406,9 +464,9 @@ document.write(`
 <section id="tutorials">
 <h2>Tutorials<a class="headerlink" href="#tutorials" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="Tutorials/T1_ImageAnalysis.html"><span class="doc std std-doc">Tutorial 1: Image analysis</span></a></p></li>
-<li><p><a class="reference internal" href="Tutorials/T2_ProteomicsIntegration.html"><span class="doc std std-doc">Tutorial 2: Integration of imaging with proteomics</span></a></p></li>
-<li><p><a class="reference internal" href="Tutorials/T3_DownstreamProteomics.html"><span class="doc std std-doc">Tutorial 3: Downstream proteomics analysis</span></a></p></li>
+<li><p><a class="reference internal" href="#tutorials/T1_ImageAnalysis"><span class="xref myst">Tutorial 1: Image analysis</span></a></p></li>
+<li><p><a class="reference internal" href="#tutorials/T2_ProteomicsIntegration"><span class="xref myst">Tutorial 2: Integration of imaging with proteomics</span></a></p></li>
+<li><p><a class="reference internal" href="#tutorials/T3_DownstreamProteomics"><span class="xref myst">Tutorial 3: Downstream proteomics analysis</span></a></p></li>
 </ul>
 </section>
 <section id="contact">
@@ -435,11 +493,11 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="right-next"
-       href="Tutorials/index.html"
+       href="api/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Tutorials</p>
+        <p class="prev-next-title">API Reference</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

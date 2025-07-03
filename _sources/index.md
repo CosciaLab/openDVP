@@ -9,7 +9,7 @@
 
 `opendvp` is a python package containing different tools enabling users to perform deep visual proteomics. To perform quality control and image analysis of multiplex immunofluorescence. Also to integrate imaging datasets with proteomic datasets with [Spatialdata](https://github.com/scverse/spatialdata). Lastly, it contains a powerful toolkit for label-free downstream proteomic analysis.
 
-It is a package that leverages the [scverse]() ecosystem, designed for easy interoperability with `anndata`, `scanpy`, `decoupler`, `scimap`, and other related packages.
+It is a package that leverages the [scverse](https://www.scverse.org/) ecosystem, designed for easy interoperability with `anndata`, `scanpy`, `decoupler`, `scimap`, and other related packages.
 
 ## Getting started
 
@@ -64,9 +64,9 @@ pip install git+https://github.com/CosciaLab/openDVP.git@main
 
 ## Tutorials
 
-- [Tutorial 1: Image analysis](Tutorials/T1_ImageAnalysis)
-- [Tutorial 2: Integration of imaging with proteomics](Tutorials/T2_ProteomicsIntegration)
-- [Tutorial 3: Downstream proteomics analysis](Tutorials/T3_DownstreamProteomics)
+- [Tutorial 1: Image analysis](tutorials/T1_ImageAnalysis)
+- [Tutorial 2: Integration of imaging with proteomics](tutorials/T2_ProteomicsIntegration)
+- [Tutorial 3: Downstream proteomics analysis](tutorials/T3_DownstreamProteomics)
 
 
 ## Contact
@@ -82,7 +82,7 @@ Not yet available.
 :maxdepth: 2
 :hidden:
 
-API/index
-Tutorials/index
-Workflows/index
+api/index
+tutorials/index
+workflows/index
 ```

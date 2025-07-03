@@ -47,7 +47,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../_static/documentation_options.js?v=f39d245f"></script>
+    <script src="../../_static/documentation_options.js?v=dd742493"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -162,13 +162,71 @@
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../Tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../Tutorials/T1_ImageAnalysis.html">Image Analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../Tutorials/T2_ProteomicsIntegration.html">Integrating proteomics and imaging data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../Tutorials/T3_DownstreamProteomics.html">Proccessing of proteomic data</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../index.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../io.html">Input / Output</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.io.adata_to_qupath.html">opendvp.io.adata_to_qupath</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.io.import_thresholds.html">opendvp.io.import_thresholds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.io.quant_to_adata.html">opendvp.io.quant_to_adata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.io.segmask_to_qupath.html">opendvp.io.segmask_to_qupath</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.io.DIANN_to_adata.html">opendvp.io.DIANN_to_adata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.io.import_perseus.html">opendvp.io.import_perseus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.io.export_adata.html">opendvp.io.export_adata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.io.export_figure.html">opendvp.io.export_figure</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Workflows/index.html">Workflows</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../metrics.html">Metrics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.metrics.coefficient_of_variation.html">opendvp.metrics.coefficient_of_variation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.metrics.nan_difference.html">opendvp.metrics.nan_difference</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../plotting.html">Plotting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.dynamic_histogram.html">opendvp.plotting.dynamic_histogram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.plot_graph_network.html">opendvp.plotting.plot_graph_network</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.stacked_barplot.html">opendvp.plotting.stacked_barplot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.abundance_histograms.html">opendvp.plotting.abundance_histograms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.correlation_heatmap.html">opendvp.plotting.correlation_heatmap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.coefficient_of_variation.html">opendvp.plotting.coefficient_of_variation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.density.html">opendvp.plotting.density</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.dual_axis_boxplots.html">opendvp.plotting.dual_axis_boxplots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.histogram_w_imputation.html">opendvp.plotting.histogram_w_imputation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.pca_loadings.html">opendvp.plotting.pca_loadings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.pca.html">opendvp.plotting.pca</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.rankplot.html">opendvp.plotting.rankplot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.upset.html">opendvp.plotting.upset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.volcano.html">opendvp.plotting.volcano</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../pp.html">Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.pp.impute_marker_with_annotation.html">opendvp.pp.impute_marker_with_annotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.pp.rescale.html">opendvp.pp.rescale</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tl.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.filter_adata_by_gates.html">opendvp.tl.filter_adata_by_gates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.filter_by_abs_value.html">opendvp.tl.filter_by_abs_value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.filter_by_annotation.html">opendvp.tl.filter_by_annotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.filter_by_ratio.html">opendvp.tl.filter_by_ratio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.filter_features_byNaNs.html">opendvp.tl.filter_features_byNaNs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.impute_gaussian.html">opendvp.tl.impute_gaussian</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.spatial_autocorrelation.html">opendvp.tl.spatial_autocorrelation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.spatial_hyperparameter_search.html">opendvp.tl.spatial_hyperparameter_search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.stats_anova.html">opendvp.tl.stats_anova</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.stats_average_samples.html">opendvp.tl.stats_average_samples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.stats_bootstrap.html">opendvp.tl.stats_bootstrap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.stats_ttest.html">opendvp.tl.stats_ttest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.phenotype_cells.html">opendvp.tl.phenotype_cells</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../utils.html">Utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.utils.parse_color_for_qupath.html">opendvp.utils.parse_color_for_qupath</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../imaging.html">Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.imaging.mask_to_polygons.html">opendvp.imaging.mask_to_polygons</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
 </ul>
 
     </div>

@@ -61,12 +61,11 @@ pip install 'openDVP[spatialdata]'
 pip install git+https://github.com/CosciaLab/openDVP.git@main
 ```
 
-
 ## Tutorials
 
-- [Tutorial 1: Image analysis](tutorials/T1_ImageAnalysis)
-- [Tutorial 2: Integration of imaging with proteomics](tutorials/T2_ProteomicsIntegration)
-- [Tutorial 3: Downstream proteomics analysis](tutorials/T3_DownstreamProteomics)
+- [Tutorial 1: Image analysis](Tutorials/T1_ImageAnalysis)
+- [Tutorial 2: Integration of imaging with proteomics](Tutorials/T2_ProteomicsIntegration)
+- [Tutorial 3: Downstream proteomics analysis](Tutorials/T3_DownstreamProteomics)
 
 
 ## Contact

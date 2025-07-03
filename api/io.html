@@ -167,6 +167,7 @@
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">API Reference</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">Input / Output</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.io.adata_to_qupath.html">opendvp.io.adata_to_qupath</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/opendvp.io.adata_to_voronoi.html">opendvp.io.adata_to_voronoi</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.io.import_thresholds.html">opendvp.io.import_thresholds</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.io.quant_to_adata.html">opendvp.io.quant_to_adata</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.io.segmask_to_qupath.html">opendvp.io.segmask_to_qupath</a></li>
@@ -400,13 +401,16 @@ document.write(`
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.io.adata_to_qupath.html#opendvp.io.adata_to_qupath" title="opendvp.io.adata_to_qupath"><code class="xref py py-obj docutils literal notranslate"><span class="pre">io.adata_to_qupath</span></code></a>(adata, geodataframe[, ...])</p></td>
 <td><p>Export a GeoDataFrame with QuPath-compatible annotations, using AnnData for classification and color mapping.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/opendvp.io.import_thresholds.html#opendvp.io.import_thresholds" title="opendvp.io.import_thresholds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">io.import_thresholds</span></code></a>(gates_csv_path[, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/opendvp.io.adata_to_voronoi.html#opendvp.io.adata_to_voronoi" title="opendvp.io.adata_to_voronoi"><code class="xref py py-obj docutils literal notranslate"><span class="pre">io.adata_to_voronoi</span></code></a>(adata[, x_y, ...])</p></td>
+<td><p>Generate a GeoDataFrame of Voronoi polygons from AnnData centroids.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.io.import_thresholds.html#opendvp.io.import_thresholds" title="opendvp.io.import_thresholds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">io.import_thresholds</span></code></a>(gates_csv_path[, ...])</p></td>
 <td><p>Read gate thresholds from a CSV file, filter, and optionally log1p-transform for scimap compatibility.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.io.quant_to_adata.html#opendvp.io.quant_to_adata" title="opendvp.io.quant_to_adata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">io.quant_to_adata</span></code></a>(path[, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/opendvp.io.quant_to_adata.html#opendvp.io.quant_to_adata" title="opendvp.io.quant_to_adata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">io.quant_to_adata</span></code></a>(path[, ...])</p></td>
 <td><p>Convert cell quantification CSV data to an AnnData object for downstream analysis.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/opendvp.io.segmask_to_qupath.html#opendvp.io.segmask_to_qupath" title="opendvp.io.segmask_to_qupath"><code class="xref py py-obj docutils literal notranslate"><span class="pre">io.segmask_to_qupath</span></code></a>(path_to_mask[, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.io.segmask_to_qupath.html#opendvp.io.segmask_to_qupath" title="opendvp.io.segmask_to_qupath"><code class="xref py py-obj docutils literal notranslate"><span class="pre">io.segmask_to_qupath</span></code></a>(path_to_mask[, ...])</p></td>
 <td><p>Convert a segmentation mask (TIFF) to QuPath-compatible detections as a GeoDataFrame or GeoJSON file.</p></td>
 </tr>
 </tbody>

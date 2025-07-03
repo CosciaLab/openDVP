@@ -9,6 +9,7 @@
     :toctree: generated
     
     io.adata_to_qupath
+    io.adata_to_voronoi
     io.import_thresholds
     io.quant_to_adata
     io.segmask_to_qupath

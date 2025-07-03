@@ -7,17 +7,17 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta property="og:title" content="opendvp.io.adata_to_perseus" />
+<meta property="og:title" content="opendvp.io.adata_to_voronoi" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="api/generated/opendvp.io.adata_to_perseus.html" />
+<meta property="og:url" content="api/generated/opendvp.io.adata_to_voronoi.html" />
 <meta property="og:site_name" content="openDVP" />
 <meta property="og:image:width" content="1146" />
 <meta property="og:image:height" content="600" />
-<meta property="og:image" content="_images/social_previews/summary_api_generated_opendvp.io.adata_to_perseus_69e2318e.png" />
+<meta property="og:image" content="_images/social_previews/summary_api_generated_opendvp.io.adata_to_voronoi_4dc2449b.png" />
 <meta property="og:image:alt" content="" />
 <meta name="twitter:card" content="summary_large_image" />
 
-    <title>opendvp.io.adata_to_perseus &#8212; openDVP</title>
+    <title>opendvp.io.adata_to_voronoi &#8212; openDVP</title>
   
   
   
@@ -53,9 +53,11 @@
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'api/generated/opendvp.io.adata_to_perseus';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/generated/opendvp.io.adata_to_voronoi';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="opendvp.io.import_thresholds" href="opendvp.io.import_thresholds.html" />
+    <link rel="prev" title="opendvp.io.adata_to_qupath" href="opendvp.io.adata_to_qupath.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -118,8 +120,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -161,10 +161,11 @@
  </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../index.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../io.html">Input / Output</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">API Reference</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../io.html">Input / Output</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.adata_to_qupath.html">opendvp.io.adata_to_qupath</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">opendvp.io.adata_to_voronoi</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.import_thresholds.html">opendvp.io.import_thresholds</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.quant_to_adata.html">opendvp.io.quant_to_adata</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.segmask_to_qupath.html">opendvp.io.segmask_to_qupath</a></li>
@@ -281,7 +282,7 @@
       
       
       
-      <li><a href="../../_sources/api/generated/opendvp.io.adata_to_perseus.rst" target="_blank"
+      <li><a href="../../_sources/api/generated/opendvp.io.adata_to_voronoi.rst" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -352,7 +353,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -363,11 +366,19 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>opendvp.io.adata_to_perseus</h1>
+    <h1>opendvp.io.adata_to_voronoi</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#opendvp.io.adata_to_voronoi"><code class="docutils literal notranslate"><span class="pre">adata_to_voronoi()</span></code></a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -377,8 +388,71 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="opendvp-io-adata-to-perseus">
-<h1>opendvp.io.adata_to_perseus<a class="headerlink" href="#opendvp-io-adata-to-perseus" title="Link to this heading">#</a></h1>
+  <section id="opendvp-io-adata-to-voronoi">
+<h1>opendvp.io.adata_to_voronoi<a class="headerlink" href="#opendvp-io-adata-to-voronoi" title="Link to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="opendvp.io.adata_to_voronoi">
+<span class="sig-name descname"><span class="pre">adata_to_voronoi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('X_centroid',</span> <span class="pre">'Y_centroid')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classify_by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voronoi_area_quantile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.98</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">merge_adjacent_shapes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_as_detection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.io.adata_to_voronoi" title="Link to this definition">#</a></dt>
+<dd><p>Generate a GeoDataFrame of Voronoi polygons from AnnData centroids.</p>
+<p>This function computes Voronoi polygons from centroid coordinates in AnnData.obs
+Optionally annotates them with class labels and colors for QuPath, and returns a GeoDataFrame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">GeoDataFrame</span></code> | <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+</dl>
+<section id="parameters">
+<h2>Parameters:<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h2>
+<dl class="simple">
+<dt>adata: AnnData</dt><dd><p>AnnData object with cell metadata and centroid coordinates.</p>
+</dd>
+<dt>x_y: tuple, default (“X_centroid”, “Y_centroid”)</dt><dd><p>Tuple of column names in adata.obs for X and Y coordinates.</p>
+</dd>
+<dt>classify_by: str or None, optional</dt><dd><p>Column in adata.obs to use for classifying detections (e.g., cell type).</p>
+</dd>
+<dt>color_dict: dict or None, optional</dt><dd><p>Dictionary mapping class/category names to RGB color lists.</p>
+</dd>
+<dt>voronoi_area_quantile: float or None, default 0.98</dt><dd><p>Area quantile threshold for filtering large Voronoi polygons.</p>
+</dd>
+<dt>merge_adjacent_shapes: bool, default False</dt><dd><p>If True, merges adjacent polygons of the same class.</p>
+</dd>
+<dt>save_as_detection: bool, default True</dt><dd><p>If True, sets ‘objectType’ to ‘detection’ for QuPath.</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h2>Returns:<a class="headerlink" href="#returns" title="Link to this heading">#</a></h2>
+<dl class="simple">
+<dt>GeoDataFrame:</dt><dd><p>GeoDataFrame of Voronoi polygons with optional class/color annotation.</p>
+</dd>
+</dl>
+</section>
+<section id="raises">
+<h2>Raises:<a class="headerlink" href="#raises" title="Link to this heading">#</a></h2>
+<dl class="simple">
+<dt>ValueError:</dt><dd><p>If required columns are missing or input types are incorrect.</p>
+</dd>
+</dl>
+</section>
+<section id="examples">
+<h2>Examples:<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">anndata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ad</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">opendvp.io.adata_to_voronoi</span><span class="w"> </span><span class="kn">import</span> <span class="n">adata_to_voronoi</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">obs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+<span class="gp">... </span>    <span class="s1">&#39;X_centroid&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="s1">&#39;Y_centroid&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="s1">&#39;celltype&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">]</span>
+<span class="gp">... </span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">adata</span> <span class="o">=</span> <span class="n">ad</span><span class="o">.</span><span class="n">AnnData</span><span class="p">(</span><span class="n">obs</span><span class="o">=</span><span class="n">obs</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gdf</span> <span class="o">=</span> <span class="n">adata_to_voronoi</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">classify_by</span><span class="o">=</span><span class="s1">&#39;celltype&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">gdf</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
 </section>
 
 
@@ -392,12 +466,45 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="opendvp.io.adata_to_qupath.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">opendvp.io.adata_to_qupath</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="opendvp.io.import_thresholds.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">opendvp.io.import_thresholds</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#opendvp.io.adata_to_voronoi"><code class="docutils literal notranslate"><span class="pre">adata_to_voronoi()</span></code></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

@@ -35,10 +35,13 @@ Ready to explore the proteomics of more complex tissues? or you are planning a l
 
 Requirements and workflow vary so much between projects that it is not worth generalizing. But there are four main components:
 
-1. Image processing
-2. Image analysis
-3. Sample collection and LCMS
-4. Downstream proteomic analysis
+1. Image acquisition
+2. Image processing
+3. Image analysis
+4. Sampling strategy
+5. Sample collection
+6. Sample prepatation and LCMS
+7. Downstream proteomic analysis
 
 openDVP highly recommends utilizing open-source image processing pipelines: MCMICRO and SOPA are wonderful examples, each with their tradeoffs.
 

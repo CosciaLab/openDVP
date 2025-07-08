@@ -7,19 +7,19 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta property="og:title" content="Integrating proteomics and imaging data" />
+<meta property="og:title" content="Import necessary packages" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="Tutorials/T2_ProteomicsIntegration.html" />
 <meta property="og:site_name" content="openDVP" />
-<meta property="og:description" content="Import necessary packages: Load DIANN data into an adata object: Let’s see the loaded metadata Export adata for transparency: Load shapes of cut samples: Create spatialdata object: Load multiplex i..." />
+<meta property="og:description" content="Load DIANN data into an adata object: Let’s see the loaded metadata Export adata for transparency: Load shapes of cut samples: Create spatialdata object: Load multiplex immunofluorescence into spat..." />
 <meta property="og:image:width" content="1146" />
 <meta property="og:image:height" content="600" />
-<meta property="og:image" content="_images/social_previews/summary_Tutorials_T2_ProteomicsIntegration_b40aff6f.png" />
-<meta property="og:image:alt" content="Import necessary packages: Load DIANN data into an adata object: Let’s see the loaded metadata Export adata for transparency: Load shapes of cut samples: Create spatialdata object: Load multiplex i..." />
-<meta name="description" content="Import necessary packages: Load DIANN data into an adata object: Let’s see the loaded metadata Export adata for transparency: Load shapes of cut samples: Create spatialdata object: Load multiplex i..." />
+<meta property="og:image" content="_images/social_previews/summary_Tutorials_T2_ProteomicsIntegration_57287881.png" />
+<meta property="og:image:alt" content="Load DIANN data into an adata object: Let’s see the loaded metadata Export adata for transparency: Load shapes of cut samples: Create spatialdata object: Load multiplex immunofluorescence into spat..." />
+<meta name="description" content="Load DIANN data into an adata object: Let’s see the loaded metadata Export adata for transparency: Load shapes of cut samples: Create spatialdata object: Load multiplex immunofluorescence into spat..." />
 <meta name="twitter:card" content="summary_large_image" />
 
-    <title>Integrating proteomics and imaging data &#8212; openDVP</title>
+    <title>Import necessary packages &#8212; openDVP</title>
   
   
   
@@ -59,7 +59,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Proccessing of proteomic data" href="T3_DownstreamProteomics.html" />
-    <link rel="prev" title="Image Analysis" href="T1_ImageAnalysis.html" />
+    <link rel="prev" title="Image single-cell analysis" href="T1_ImageAnalysis.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -230,8 +230,17 @@
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Tutorials</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="T1_ImageAnalysis.html">Image Analysis</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Integrating proteomics and imaging data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="T1_ImageAnalysis.html">Image single-cell analysis</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Import necessary packages</a></li>
+
+
+
+
+
+
+
+
+
 <li class="toctree-l2"><a class="reference internal" href="T3_DownstreamProteomics.html">Proccessing of proteomic data</a></li>
 </ul>
 </details></li>
@@ -374,7 +383,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Integrating proteomics and imaging data</h1>
+    <h1>Import necessary packages</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -384,17 +393,18 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-necessary-packages">Import necessary packages</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-diann-data-into-an-adata-object">Load DIANN data into an adata object</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#export-adata-for-transparency">Export adata for transparency</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-shapes-of-cut-samples">Load shapes of cut samples</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-spatialdata-object">Create spatialdata object</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-multiplex-immunofluorescence-into-spatialdata-object">Load multiplex immunofluorescence into spatialdata object</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-proteomics-matrix-adata-object-to-spatialdata-object">Load proteomics matrix (adata object) to spatialdata object</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-geodataframe-with-shapes-that-match-proteomic-samples">Load the geodataframe with shapes that match proteomic samples</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-data-interactively">Visualize data interactively</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-spatialdata-object-for-future-use">Write spatialdata object for future use</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Import necessary packages</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-diann-data-into-an-adata-object">Load DIANN data into an adata object</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#export-adata-for-transparency">Export adata for transparency</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-shapes-of-cut-samples">Load shapes of cut samples</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#create-spatialdata-object">Create spatialdata object</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-multiplex-immunofluorescence-into-spatialdata-object">Load multiplex immunofluorescence into spatialdata object</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-proteomics-matrix-adata-object-to-spatialdata-object">Load proteomics matrix (adata object) to spatialdata object</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-geodataframe-with-shapes-that-match-proteomic-samples">Load the geodataframe with shapes that match proteomic samples</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-data-interactively">Visualize data interactively</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#write-spatialdata-object-for-future-use">Write spatialdata object for future use</a></li>
 </ul>
+
             </nav>
         </div>
     </div>
@@ -405,10 +415,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="integrating-proteomics-and-imaging-data">
-<h1>Integrating proteomics and imaging data<a class="headerlink" href="#integrating-proteomics-and-imaging-data" title="Link to this heading">#</a></h1>
-<section id="import-necessary-packages">
-<h2>Import necessary packages<a class="headerlink" href="#import-necessary-packages" title="Link to this heading">#</a></h2>
+  <section id="import-necessary-packages">
+<h1>Import necessary packages<a class="headerlink" href="#import-necessary-packages" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">opendvp</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dvp</span>
@@ -423,7 +431,7 @@ document.write(`
 </div>
 </section>
 <section id="load-diann-data-into-an-adata-object">
-<h2>Load DIANN data into an adata object<a class="headerlink" href="#load-diann-data-into-an-adata-object" title="Link to this heading">#</a></h2>
+<h1>Load DIANN data into an adata object<a class="headerlink" href="#load-diann-data-into-an-adata-object" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">DIANN_to_adata</span><span class="p">(</span>
@@ -606,7 +614,7 @@ document.write(`
 </div>
 </section>
 <section id="export-adata-for-transparency">
-<h2>Export adata for transparency<a class="headerlink" href="#export-adata-for-transparency" title="Link to this heading">#</a></h2>
+<h1>Export adata for transparency<a class="headerlink" href="#export-adata-for-transparency" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dvp</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">export_adata</span><span class="p">(</span><span class="n">adata</span><span class="o">=</span><span class="n">adata</span><span class="p">,</span> <span class="n">path_to_dir</span><span class="o">=</span><span class="s2">&quot;data/checkpoints&quot;</span><span class="p">,</span> <span class="n">checkpoint_name</span><span class="o">=</span><span class="s2">&quot;1_loaded&quot;</span><span class="p">)</span>
@@ -622,7 +630,7 @@ document.write(`
 </div>
 </section>
 <section id="load-shapes-of-cut-samples">
-<h2>Load shapes of cut samples<a class="headerlink" href="#load-shapes-of-cut-samples" title="Link to this heading">#</a></h2>
+<h1>Load shapes of cut samples<a class="headerlink" href="#load-shapes-of-cut-samples" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;data/proteomics/collection_shapes.geojson&quot;</span><span class="p">)</span>
@@ -697,7 +705,7 @@ document.write(`
 </div>
 </section>
 <section id="create-spatialdata-object">
-<h2>Create spatialdata object<a class="headerlink" href="#create-spatialdata-object" title="Link to this heading">#</a></h2>
+<h1>Create spatialdata object<a class="headerlink" href="#create-spatialdata-object" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sdata</span> <span class="o">=</span> <span class="n">spatialdata</span><span class="o">.</span><span class="n">SpatialData</span><span class="p">()</span>
@@ -707,7 +715,7 @@ document.write(`
 </div>
 </section>
 <section id="load-multiplex-immunofluorescence-into-spatialdata-object">
-<h2>Load multiplex immunofluorescence into spatialdata object<a class="headerlink" href="#load-multiplex-immunofluorescence-into-spatialdata-object" title="Link to this heading">#</a></h2>
+<h1>Load multiplex immunofluorescence into spatialdata object<a class="headerlink" href="#load-multiplex-immunofluorescence-into-spatialdata-object" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># first load as array using dask-image</span>
@@ -857,7 +865,7 @@ with coordinate systems:
 </div>
 </section>
 <section id="load-proteomics-matrix-adata-object-to-spatialdata-object">
-<h2>Load proteomics matrix (adata object) to spatialdata object<a class="headerlink" href="#load-proteomics-matrix-adata-object-to-spatialdata-object" title="Link to this heading">#</a></h2>
+<h1>Load proteomics matrix (adata object) to spatialdata object<a class="headerlink" href="#load-proteomics-matrix-adata-object-to-spatialdata-object" title="Link to this heading">#</a></h1>
 <p>First we must label the matrix, to let spatialdata know which coordinate system to use.<br />
 In this case, this means labelling which slide it was.</p>
 <div class="cell docutils container">
@@ -922,7 +930,7 @@ with coordinate systems:
 </div>
 </section>
 <section id="load-the-geodataframe-with-shapes-that-match-proteomic-samples">
-<h2>Load the geodataframe with shapes that match proteomic samples<a class="headerlink" href="#load-the-geodataframe-with-shapes-that-match-proteomic-samples" title="Link to this heading">#</a></h2>
+<h1>Load the geodataframe with shapes that match proteomic samples<a class="headerlink" href="#load-the-geodataframe-with-shapes-that-match-proteomic-samples" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -1199,7 +1207,7 @@ with coordinate systems:
 </div>
 </section>
 <section id="visualize-data-interactively">
-<h2>Visualize data interactively<a class="headerlink" href="#visualize-data-interactively" title="Link to this heading">#</a></h2>
+<h1>Visualize data interactively<a class="headerlink" href="#visualize-data-interactively" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">napari_spatialdata</span><span class="o">.</span><span class="n">Interactive</span><span class="p">(</span><span class="n">sdata</span><span class="p">)</span>
@@ -1214,7 +1222,7 @@ with coordinate systems:
 </div>
 </section>
 <section id="write-spatialdata-object-for-future-use">
-<h2>Write spatialdata object for future use<a class="headerlink" href="#write-spatialdata-object-for-future-use" title="Link to this heading">#</a></h2>
+<h1>Write spatialdata object for future use<a class="headerlink" href="#write-spatialdata-object-for-future-use" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sdata</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;outputs/spatialdata.zarr&quot;</span><span class="p">)</span>
@@ -1227,7 +1235,6 @@ with coordinate systems:
 </div>
 </div>
 </div>
-</section>
 </section>
 
 
@@ -1247,7 +1254,7 @@ with coordinate systems:
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Image Analysis</p>
+        <p class="prev-next-title">Image single-cell analysis</p>
       </div>
     </a>
     <a class="right-next"
@@ -1275,17 +1282,18 @@ with coordinate systems:
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-necessary-packages">Import necessary packages</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-diann-data-into-an-adata-object">Load DIANN data into an adata object</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#export-adata-for-transparency">Export adata for transparency</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-shapes-of-cut-samples">Load shapes of cut samples</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-spatialdata-object">Create spatialdata object</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-multiplex-immunofluorescence-into-spatialdata-object">Load multiplex immunofluorescence into spatialdata object</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-proteomics-matrix-adata-object-to-spatialdata-object">Load proteomics matrix (adata object) to spatialdata object</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-geodataframe-with-shapes-that-match-proteomic-samples">Load the geodataframe with shapes that match proteomic samples</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-data-interactively">Visualize data interactively</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-spatialdata-object-for-future-use">Write spatialdata object for future use</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Import necessary packages</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-diann-data-into-an-adata-object">Load DIANN data into an adata object</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#export-adata-for-transparency">Export adata for transparency</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-shapes-of-cut-samples">Load shapes of cut samples</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#create-spatialdata-object">Create spatialdata object</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-multiplex-immunofluorescence-into-spatialdata-object">Load multiplex immunofluorescence into spatialdata object</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-proteomics-matrix-adata-object-to-spatialdata-object">Load proteomics matrix (adata object) to spatialdata object</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-geodataframe-with-shapes-that-match-proteomic-samples">Load the geodataframe with shapes that match proteomic samples</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-data-interactively">Visualize data interactively</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#write-spatialdata-object-for-future-use">Write spatialdata object for future use</a></li>
 </ul>
+
   </nav></div>
 
 </div></div>

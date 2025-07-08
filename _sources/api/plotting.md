@@ -25,7 +25,6 @@
     plotting.dual_axis_boxplots
     plotting.histogram_w_imputation
     plotting.pca_loadings
-    plotting.pca
     plotting.rankplot
     plotting.upset
     plotting.volcano

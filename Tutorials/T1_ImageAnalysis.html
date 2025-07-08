@@ -7,19 +7,19 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta property="og:title" content="Image Analysis" />
+<meta property="og:title" content="Image single-cell analysis" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="Tutorials/T1_ImageAnalysis.html" />
 <meta property="og:site_name" content="openDVP" />
-<meta property="og:description" content="In this tutorial I will show you how to perform quality control on your image processing and segmentation results. Part 1: Visualize segmentation in QuPath: QuPath is a great piece of software crea..." />
+<meta property="og:description" content="In this tutorial I will show you how to perform quality control on your image processing and segmentation results. This tutorial assumes that you have already processed and quantified your images, ..." />
 <meta property="og:image:width" content="1146" />
 <meta property="og:image:height" content="600" />
-<meta property="og:image" content="_images/social_previews/summary_Tutorials_T1_ImageAnalysis_65c255ff.png" />
-<meta property="og:image:alt" content="In this tutorial I will show you how to perform quality control on your image processing and segmentation results. Part 1: Visualize segmentation in QuPath: QuPath is a great piece of software crea..." />
-<meta name="description" content="In this tutorial I will show you how to perform quality control on your image processing and segmentation results. Part 1: Visualize segmentation in QuPath: QuPath is a great piece of software crea..." />
+<meta property="og:image" content="_images/social_previews/summary_Tutorials_T1_ImageAnalysis_ab6e64a4.png" />
+<meta property="og:image:alt" content="In this tutorial I will show you how to perform quality control on your image processing and segmentation results. This tutorial assumes that you have already processed and quantified your images, ..." />
+<meta name="description" content="In this tutorial I will show you how to perform quality control on your image processing and segmentation results. This tutorial assumes that you have already processed and quantified your images, ..." />
 <meta name="twitter:card" content="summary_large_image" />
 
-    <title>Image Analysis &#8212; openDVP</title>
+    <title>Image single-cell analysis &#8212; openDVP</title>
   
   
   
@@ -58,7 +58,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Tutorials/T1_ImageAnalysis';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Integrating proteomics and imaging data" href="T2_ProteomicsIntegration.html" />
+    <link rel="next" title="Import necessary packages" href="T2_ProteomicsIntegration.html" />
     <link rel="prev" title="Tutorials" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -230,8 +230,17 @@
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Tutorials</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Image Analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="T2_ProteomicsIntegration.html">Integrating proteomics and imaging data</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Image single-cell analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="T2_ProteomicsIntegration.html">Import necessary packages</a></li>
+
+
+
+
+
+
+
+
+
 <li class="toctree-l2"><a class="reference internal" href="T3_DownstreamProteomics.html">Proccessing of proteomic data</a></li>
 </ul>
 </details></li>
@@ -374,7 +383,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Image Analysis</h1>
+    <h1>Image single-cell analysis</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -384,27 +393,35 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-visualize-segmentation-in-qupath">Part 1: Visualize segmentation in QuPath</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-visualize-interactively-in-napari-or-qupath">Let’s visualize interactively in Napari or Qupath</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-napari">For Napari</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-qupath">For QuPath</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-necesary-packages-and-data">Import necesary packages and data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-download-the-demo-data">Let’s download the demo data</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quant-to-adata">Quant to adata</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-cells">Filter cells</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-cells-too-big">Filter cells too big</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-visualize-segmentation">Part 1: Visualize segmentation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-interactively-in-qupath">Visualize interactively in QuPath</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-interactively-in-napari">Visualize interactively in Napari</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-analyze-the-single-cell-data">Part 2: Analyze the single cell data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-cells-by-area">Filter cells by Area</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-by-initial-nuclear-stain-signal">Filter by initial nuclear stain signal</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-by-ratio-of-nuclear-stain-between-last-and-first-dapi-images">Filter by ratio of nuclear stain between last and first DAPI images</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-by-manual-annotations">Filter by manual annotations</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qupath-qc">QuPath QC</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#napari-qc-not-quite-possible-without-spatialdata-object-check-tutorial-3">Napari QC not quite possible without spatialdata object, check tutorial #3</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phenotype-my-cells">Phenotype my cells</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qc-phenotypes">QC phenotypes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phenotype-the-cells">Phenotype the cells</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-manually-assigned-thresholds">Import manually assigned thresholds</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-adata-ready-for-phenotyping">Get adata ready for phenotyping</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rescale-data-based-on-thresholds">Rescale data based on thresholds</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#phenotype-cells">Phenotype cells</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quality-control-of-phenotypes-using-qupath">Quality control of phenotypes using QuPath</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cellular-neighborhoods">Cellular neighborhoods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cellular-neighborhoods">Cellular neighborhoods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quality-control-with-merged-shapes">Quality control with merged shapes</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -416,9 +433,13 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="image-analysis">
-<h1>Image Analysis<a class="headerlink" href="#image-analysis" title="Link to this heading">#</a></h1>
-<p>In this tutorial I will show you how to perform quality control on your image processing and segmentation results.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="image-single-cell-analysis">
+<h1>Image single-cell analysis<a class="headerlink" href="#image-single-cell-analysis" title="Link to this heading">#</a></h1>
+<p>In this tutorial I will show you how to perform quality control on your image processing and segmentation results.<br />
+This tutorial assumes that you have already processed and quantified your images, and thus you have a quantification matrix.<br />
+For information to how to get here from raw images go to the image processing section.</p>
+<section id="import-necesary-packages-and-data">
+<h2>Import necesary packages and data<a class="headerlink" href="#import-necesary-packages-and-data" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#lets take a quick look</span>
@@ -437,36 +458,35 @@ document.write(`
 <div class="cell_output docutils container">
 </div>
 </div>
-<section id="part-1-visualize-segmentation-in-qupath">
-<h2>Part 1: Visualize segmentation in QuPath<a class="headerlink" href="#part-1-visualize-segmentation-in-qupath" title="Link to this heading">#</a></h2>
-<p>QuPath is a great piece of software created to allow users to see their images in a smooth manner.</p>
-<p>Here is our demo data, this is how it should look like</p>
+<section id="let-s-download-the-demo-data">
+<h3>Let’s download the demo data<a class="headerlink" href="#let-s-download-the-demo-data" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="w"> </span>tree
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Cyan">.</span>
-├── Tutorial_1.ipynb
-├── <span class=" -Color -Color-Bold -Color-Bold-Cyan">data</span>
-│   ├── <span class=" -Color -Color-Bold -Color-Bold-Cyan">image</span>
-│   │   └── <span class=" -Color -Color-Red">mIF.ome.tif</span>
-│   ├── <span class=" -Color -Color-Bold -Color-Bold-Cyan">manual_artefact_annotations</span>
-│   │   └── <span class=" -Color -Color-Red">artefacts.geojson</span>
-│   ├── <span class=" -Color -Color-Bold -Color-Bold-Cyan">quantification</span>
-│   │   └── <span class=" -Color -Color-Red">quant.csv</span>
-│   └── <span class=" -Color -Color-Bold -Color-Bold-Cyan">segmentation</span>
-│       └── <span class=" -Color -Color-Red">segmentation_mask.tif</span>
-└── <span class=" -Color -Color-Bold -Color-Bold-Cyan">outputs</span>
-    └── segmentation_for_qupath.geojson
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://zenodo.org/records/15830141/files/data.tar.gz?download=1&quot;</span>
+<span class="n">output_path</span> <span class="o">=</span> <span class="s2">&quot;demodata.gz&quot;</span>  
 
-7 directories, 6 files
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">8192</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">chunk</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Download complete: </span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>Now you have to decompress it</p>
+</section>
+</section>
+<section id="part-1-visualize-segmentation">
+<h2>Part 1: Visualize segmentation<a class="headerlink" href="#part-1-visualize-segmentation" title="Link to this heading">#</a></h2>
+<p>First step is to ensure that the segmentation is good enough. Cell segmentation is a critical step and it must be controlled.<br />
+QuPath is a great piece of software created to allow users to see their images in a smooth manner.<br />
+However QuPath is usually not happy with us dropping a .tif mask into it.. Therefore, openDVP has utilities for translating a standard segmentation mask into QuPath compatible shapes, these shapes also allow you to continue part of your analysis in QuPath if you want.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># let&#39;s perform some quick QC</span>
@@ -498,64 +518,43 @@ Number of segmented objects 16808
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x106a77d10&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x2c24b8200&gt;
 </pre></div>
 </div>
 <img alt="../_images/061c0ce75161e05b63b7cf763eab21076c2510147b257647ba5c295ff60d46dc.png" src="../_images/061c0ce75161e05b63b7cf763eab21076c2510147b257647ba5c295ff60d46dc.png" />
 </div>
 </div>
-</section>
-<section id="let-s-visualize-interactively-in-napari-or-qupath">
-<h2>Let’s visualize interactively in Napari or Qupath<a class="headerlink" href="#let-s-visualize-interactively-in-napari-or-qupath" title="Link to this heading">#</a></h2>
-<section id="for-napari">
-<h3>For Napari<a class="headerlink" href="#for-napari" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#load image</span>
-<span class="n">image</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">&quot;data/image/mIF.ome.tif&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># this should produce a napari window with image and segmentation mask</span>
-<span class="n">viewer</span> <span class="o">=</span> <span class="n">napari</span><span class="o">.</span><span class="n">Viewer</span><span class="p">()</span>
-<span class="n">viewer</span><span class="o">.</span><span class="n">add_image</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;mIF_image&quot;</span><span class="p">)</span>
-<span class="n">viewer</span><span class="o">.</span><span class="n">add_labels</span><span class="p">(</span><span class="n">seg</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Segmentation&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we can zoom in to check</span>
+<span class="n">io</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">seg</span><span class="p">[:</span><span class="mi">500</span><span class="p">,:</span><span class="mi">500</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Labels layer &#39;Segmentation&#39; at 0x2b9e33890&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x2c240f9e0&gt;
 </pre></div>
 </div>
+<img alt="../_images/9da365e66c945f04d682469b2a437f1fb048ad78f241fca0308858d7daba9c8f.png" src="../_images/9da365e66c945f04d682469b2a437f1fb048ad78f241fca0308858d7daba9c8f.png" />
 </div>
 </div>
-</section>
-<section id="for-qupath">
-<h3>For QuPath<a class="headerlink" href="#for-qupath" title="Link to this heading">#</a></h3>
+<p>You could plot and check various regions of the tissue, and overlay with the image, but this starts to get bulky and slow. We recommend an interactive session where one can zoom in and out, and check different channels.</p>
+<section id="visualize-interactively-in-qupath">
+<h3>Visualize interactively in QuPath<a class="headerlink" href="#visualize-interactively-in-qupath" title="Link to this heading">#</a></h3>
+<p>Now let’s transform this into polygons that QuPath can digest</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># transform mask into shapes</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># transform mask into a geodataframe containing the polygons</span>
 <span class="n">gdf</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">segmask_to_qupath</span><span class="p">(</span><span class="n">path_to_segmentation</span><span class="p">,</span> <span class="n">simplify_value</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">save_as_detection</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">gdf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Blue">INFO    </span> no axes information specified in the object, setting `dims` to: <span class=" -Color -Color-Bold">(</span><span class=" -Color -Color-Green">&#39;y&#39;</span>, <span class=" -Color -Color-Green">&#39;x&#39;</span><span class=" -Color -Color-Bold">)</span>
-<span class=" -Color -Color-Green">13:18:26.98</span> | <span class=" -Color -Color-Bold">INFO</span> | Simplifying the geometry with tolerance 1
+<span class=" -Color -Color-Green">16:13:05.55</span> | <span class=" -Color -Color-Bold">INFO</span> | Simplifying the geometry with tolerance 1
 </pre></div>
 </div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -615,34 +614,92 @@ Number of segmented objects 16808
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s2">&quot;outputs/segmentation_for_qupath.geojson&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># now lets write that geodataframe into a file</span>
+<span class="n">gdf</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s2">&quot;outputs/segmentation_for_qupath.geojson&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 </div>
 </div>
-<p>This file you just drag and drop into qupath after you have loaded the image.</p>
+<p>Now open QuPath, drag the image into it, and then draft that .geojson file, you should be able to see the shapes :)</p>
+<a class="reference internal image-reference" href="../_images/mIF_seg.png"><img alt="viz_segmentation_in_qupath" src="../_images/mIF_seg.png" style="width: 600px;" />
+</a>
 </section>
-</section>
-<section id="quant-to-adata">
-<h2>Quant to adata<a class="headerlink" href="#quant-to-adata" title="Link to this heading">#</a></h2>
+<section id="visualize-interactively-in-napari">
+<h3>Visualize interactively in Napari<a class="headerlink" href="#visualize-interactively-in-napari" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">quant_to_adata</span><span class="p">(</span><span class="s2">&quot;data/quantification/quant.csv&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#load image</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">&quot;data/image/mIF.ome.tif&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># this should produce a napari window with image and segmentation mask</span>
+<span class="n">viewer</span> <span class="o">=</span> <span class="n">napari</span><span class="o">.</span><span class="n">Viewer</span><span class="p">()</span>
+<span class="n">viewer</span><span class="o">.</span><span class="n">add_image</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;mIF_image&quot;</span><span class="p">)</span>
+<span class="n">viewer</span><span class="o">.</span><span class="n">add_labels</span><span class="p">(</span><span class="n">seg</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Segmentation&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">15:14:06.74</span> | <span class=" -Color -Color-Bold">INFO</span> | Detected 0 in &#39;CellID&#39; — shifting all values by +1 for 1-based indexing.
-<span class=" -Color -Color-Green">15:14:06.75</span> | <span class=" -Color -Color-Bold">INFO</span> |  16808 cells and 15 variables
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Labels layer &#39;Segmentation&#39; at 0x315445e50&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Napari is a great python-based software that keeps getting better. It has a little learning curve, I suggest you check <a class="reference external" href="https://napari.org/stable/howtos/layers/image.html#loading-multichannel-images">Loading multichannel images</a> for more details of image controls and check this <a class="reference external" href="https://napari.org/stable/howtos/layers/labels.html#creating-deleting-merging-and-splitting-connected-components">Segmentation masks info</a>.</p>
+</section>
+</section>
+<section id="part-2-analyze-the-single-cell-data">
+<h2>Part 2: Analyze the single cell data<a class="headerlink" href="#part-2-analyze-the-single-cell-data" title="Link to this heading">#</a></h2>
+<p>openDVP follows the guidelines of the scverse ecosystem for the most replicable and interoperable data formats and functions python can offer life scientists and bioinformaticians.<br />
+A big part is using <a class="reference external" href="https://anndata.readthedocs.io/en/stable/">AnnData</a>, a really nice data object that stores data and its metadata all together.<br />
+For life scientists it also means you could use functions already created by very popular and well-maintained packages, like <a class="reference external" href="https://scanpy.readthedocs.io/en/1.10.x/index.html">Scanpy</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#transform the .csv matrix to an AnnData object</span>
+<span class="n">adata</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">quant_to_adata</span><span class="p">(</span><span class="s2">&quot;data/quantification/quant.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:13:11.75</span> | <span class=" -Color -Color-Bold">INFO</span> | Detected 0 in &#39;CellID&#39; — shifting all values by +1 for 1-based indexing.
+<span class=" -Color -Color-Green">16:13:11.75</span> | <span class=" -Color -Color-Bold">INFO</span> |  16808 cells and 15 variables
+</pre></div>
+</div>
+</div>
+</div>
+<p>adata is composed of three main compartments:</p>
+<ol class="arabic simple">
+<li><p>X , which stores all the numerical data</p></li>
+<li><p>adata.obs, which stores all the metadata of the observations (here X,Y coordinates, morphological features)</p></li>
+<li><p>adata.var, which stores all the metadata for the variables, aka the markers</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#chech first 25 values of adata.X</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">X</span><span class="p">[:</span><span class="mi">5</span><span class="p">,:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 5.70393701,  7.23228346,  5.71811024, 29.96377953, 21.42992126],
+       [ 5.53472222,  6.14583333,  4.83159722, 23.3125    , 13.00520833],
+       [ 5.56097561,  6.38922764,  4.97764228, 24.02845528, 15.96341463],
+       [ 5.52616279,  6.00581395,  4.74127907, 21.62209302, 10.7122093 ],
+       [ 5.5971564 ,  6.38125329,  5.00105319, 24.71879937, 22.37651395]])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cell metadata</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -743,505 +800,14 @@ Number of segmented objects 16808
       <td>196.610173</td>
       <td>0.896601</td>
     </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>16803</th>
-      <td>16804</td>
-      <td>4993.579685</td>
-      <td>106.373030</td>
-      <td>571.0</td>
-      <td>52.291050</td>
-      <td>14.719719</td>
-      <td>0.959562</td>
-      <td>-1.563557</td>
-      <td>116.870058</td>
-      <td>0.976068</td>
-    </tr>
-    <tr>
-      <th>16804</th>
-      <td>16805</td>
-      <td>4993.413242</td>
-      <td>810.385845</td>
-      <td>438.0</td>
-      <td>40.105247</td>
-      <td>14.334812</td>
-      <td>0.933940</td>
-      <td>1.531591</td>
-      <td>90.970563</td>
-      <td>0.962637</td>
-    </tr>
-    <tr>
-      <th>16805</th>
-      <td>16806</td>
-      <td>4994.153535</td>
-      <td>645.010101</td>
-      <td>495.0</td>
-      <td>50.864135</td>
-      <td>13.112118</td>
-      <td>0.966202</td>
-      <td>1.538209</td>
-      <td>111.248737</td>
-      <td>0.951923</td>
-    </tr>
-    <tr>
-      <th>16806</th>
-      <td>16807</td>
-      <td>4993.835570</td>
-      <td>1244.718121</td>
-      <td>298.0</td>
-      <td>28.947821</td>
-      <td>13.495126</td>
-      <td>0.884686</td>
-      <td>-1.561806</td>
-      <td>69.213203</td>
-      <td>0.973856</td>
-    </tr>
-    <tr>
-      <th>16807</th>
-      <td>16808</td>
-      <td>4994.250774</td>
-      <td>4186.876161</td>
-      <td>323.0</td>
-      <td>33.325316</td>
-      <td>13.027177</td>
-      <td>0.920429</td>
-      <td>-1.564638</td>
-      <td>77.213203</td>
-      <td>0.984756</td>
-    </tr>
   </tbody>
 </table>
-<p>16808 rows × 10 columns</p>
-</div></div></div>
-</div>
-</section>
-<section id="filter-cells">
-<h2>Filter cells<a class="headerlink" href="#filter-cells" title="Link to this heading">#</a></h2>
-<section id="filter-cells-too-big">
-<h3>Filter cells too big<a class="headerlink" href="#filter-cells-too-big" title="Link to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>CellID</th>
-      <th>Y_centroid</th>
-      <th>X_centroid</th>
-      <th>Area</th>
-      <th>MajorAxisLength</th>
-      <th>MinorAxisLength</th>
-      <th>Eccentricity</th>
-      <th>Orientation</th>
-      <th>Extent</th>
-      <th>Solidity</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>17.612598</td>
-      <td>53.337008</td>
-      <td>1270.0</td>
-      <td>48.198269</td>
-      <td>36.841132</td>
-      <td>0.644782</td>
-      <td>0.359469</td>
-      <td>146.669048</td>
-      <td>0.949178</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>6.598958</td>
-      <td>126.006944</td>
-      <td>576.0</td>
-      <td>45.835698</td>
-      <td>18.372329</td>
-      <td>0.916152</td>
-      <td>1.513685</td>
-      <td>113.112698</td>
-      <td>0.886154</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>3</td>
-      <td>17.416667</td>
-      <td>156.656504</td>
-      <td>984.0</td>
-      <td>40.751104</td>
-      <td>31.700565</td>
-      <td>0.628380</td>
-      <td>-1.528462</td>
-      <td>121.396970</td>
-      <td>0.955340</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4</td>
-      <td>4.982558</td>
-      <td>179.337209</td>
-      <td>344.0</td>
-      <td>34.620290</td>
-      <td>13.577757</td>
-      <td>0.919884</td>
-      <td>1.474818</td>
-      <td>82.627417</td>
-      <td>0.971751</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>5</td>
-      <td>19.159558</td>
-      <td>228.598210</td>
-      <td>1899.0</td>
-      <td>54.446578</td>
-      <td>49.053930</td>
-      <td>0.433912</td>
-      <td>1.287374</td>
-      <td>196.610173</td>
-      <td>0.896601</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>16803</th>
-      <td>16804</td>
-      <td>4993.579685</td>
-      <td>106.373030</td>
-      <td>571.0</td>
-      <td>52.291050</td>
-      <td>14.719719</td>
-      <td>0.959562</td>
-      <td>-1.563557</td>
-      <td>116.870058</td>
-      <td>0.976068</td>
-    </tr>
-    <tr>
-      <th>16804</th>
-      <td>16805</td>
-      <td>4993.413242</td>
-      <td>810.385845</td>
-      <td>438.0</td>
-      <td>40.105247</td>
-      <td>14.334812</td>
-      <td>0.933940</td>
-      <td>1.531591</td>
-      <td>90.970563</td>
-      <td>0.962637</td>
-    </tr>
-    <tr>
-      <th>16805</th>
-      <td>16806</td>
-      <td>4994.153535</td>
-      <td>645.010101</td>
-      <td>495.0</td>
-      <td>50.864135</td>
-      <td>13.112118</td>
-      <td>0.966202</td>
-      <td>1.538209</td>
-      <td>111.248737</td>
-      <td>0.951923</td>
-    </tr>
-    <tr>
-      <th>16806</th>
-      <td>16807</td>
-      <td>4993.835570</td>
-      <td>1244.718121</td>
-      <td>298.0</td>
-      <td>28.947821</td>
-      <td>13.495126</td>
-      <td>0.884686</td>
-      <td>-1.561806</td>
-      <td>69.213203</td>
-      <td>0.973856</td>
-    </tr>
-    <tr>
-      <th>16807</th>
-      <td>16808</td>
-      <td>4994.250774</td>
-      <td>4186.876161</td>
-      <td>323.0</td>
-      <td>33.325316</td>
-      <td>13.027177</td>
-      <td>0.920429</td>
-      <td>-1.564638</td>
-      <td>77.213203</td>
-      <td>0.984756</td>
-    </tr>
-  </tbody>
-</table>
-<p>16808 rows × 10 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">filter_by_abs_value</span><span class="p">(</span><span class="n">adata</span><span class="o">=</span><span class="n">adata</span><span class="p">,</span><span class="n">feature_name</span><span class="o">=</span><span class="s2">&quot;Area&quot;</span><span class="p">,</span> <span class="n">lower_bound</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">upper_bound</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;quantile&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">15:14:06.77</span> | <span class=" -Color -Color-Bold">INFO</span> | Starting filter_by_abs_value for feature &#39;Area&#39;...
-<span class=" -Color -Color-Green">15:14:06.77</span> | <span class=" -Color -Color-Bold">INFO</span> | Feature &#39;Area&#39; identified from adata.obs.
-<span class=" -Color -Color-Green">15:14:06.77</span> | <span class=" -Color -Color-Bold">INFO</span> | Keeping cells with &#39;Area&#39; &gt;= 295.0000 (from quantile bound: 0.01).
-<span class=" -Color -Color-Green">15:14:06.77</span> | <span class=" -Color -Color-Bold">INFO</span> | Keeping cells with &#39;Area&#39; &lt;= 2376.4400 (from quantile bound: 0.99).
-<span class=" -Color -Color-Green">15:14:06.77</span> | <span class=" -Color -Color-Bold -Color-Bold-Green">SUCCESS</span> | 16475 of 16808 cells (98.02%) passed the filter.
-<span class=" -Color -Color-Green">15:14:06.78</span> | <span class=" -Color -Color-Bold">INFO</span> | New boolean column &#39;Area_filter&#39; added to adata.obs.
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>CellID</th>
-      <th>Y_centroid</th>
-      <th>X_centroid</th>
-      <th>Area</th>
-      <th>MajorAxisLength</th>
-      <th>MinorAxisLength</th>
-      <th>Eccentricity</th>
-      <th>Orientation</th>
-      <th>Extent</th>
-      <th>Solidity</th>
-      <th>Area_filter</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>17.612598</td>
-      <td>53.337008</td>
-      <td>1270.0</td>
-      <td>48.198269</td>
-      <td>36.841132</td>
-      <td>0.644782</td>
-      <td>0.359469</td>
-      <td>146.669048</td>
-      <td>0.949178</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>6.598958</td>
-      <td>126.006944</td>
-      <td>576.0</td>
-      <td>45.835698</td>
-      <td>18.372329</td>
-      <td>0.916152</td>
-      <td>1.513685</td>
-      <td>113.112698</td>
-      <td>0.886154</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>3</td>
-      <td>17.416667</td>
-      <td>156.656504</td>
-      <td>984.0</td>
-      <td>40.751104</td>
-      <td>31.700565</td>
-      <td>0.628380</td>
-      <td>-1.528462</td>
-      <td>121.396970</td>
-      <td>0.955340</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4</td>
-      <td>4.982558</td>
-      <td>179.337209</td>
-      <td>344.0</td>
-      <td>34.620290</td>
-      <td>13.577757</td>
-      <td>0.919884</td>
-      <td>1.474818</td>
-      <td>82.627417</td>
-      <td>0.971751</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>5</td>
-      <td>19.159558</td>
-      <td>228.598210</td>
-      <td>1899.0</td>
-      <td>54.446578</td>
-      <td>49.053930</td>
-      <td>0.433912</td>
-      <td>1.287374</td>
-      <td>196.610173</td>
-      <td>0.896601</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>16803</th>
-      <td>16804</td>
-      <td>4993.579685</td>
-      <td>106.373030</td>
-      <td>571.0</td>
-      <td>52.291050</td>
-      <td>14.719719</td>
-      <td>0.959562</td>
-      <td>-1.563557</td>
-      <td>116.870058</td>
-      <td>0.976068</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>16804</th>
-      <td>16805</td>
-      <td>4993.413242</td>
-      <td>810.385845</td>
-      <td>438.0</td>
-      <td>40.105247</td>
-      <td>14.334812</td>
-      <td>0.933940</td>
-      <td>1.531591</td>
-      <td>90.970563</td>
-      <td>0.962637</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>16805</th>
-      <td>16806</td>
-      <td>4994.153535</td>
-      <td>645.010101</td>
-      <td>495.0</td>
-      <td>50.864135</td>
-      <td>13.112118</td>
-      <td>0.966202</td>
-      <td>1.538209</td>
-      <td>111.248737</td>
-      <td>0.951923</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>16806</th>
-      <td>16807</td>
-      <td>4993.835570</td>
-      <td>1244.718121</td>
-      <td>298.0</td>
-      <td>28.947821</td>
-      <td>13.495126</td>
-      <td>0.884686</td>
-      <td>-1.561806</td>
-      <td>69.213203</td>
-      <td>0.973856</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>16807</th>
-      <td>16808</td>
-      <td>4994.250774</td>
-      <td>4186.876161</td>
-      <td>323.0</td>
-      <td>33.325316</td>
-      <td>13.027177</td>
-      <td>0.920429</td>
-      <td>-1.564638</td>
-      <td>77.213203</td>
-      <td>0.984756</td>
-      <td>True</td>
-    </tr>
-  </tbody>
-</table>
-<p>16808 rows × 11 columns</p>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># explain why adding a column instead of just outright filtering is important</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">var</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># variable metadata, now empty</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1282,77 +848,36 @@ Number of segmented objects 16808
     <tr>
       <th>mean_DAPI_bg</th>
     </tr>
-    <tr>
-      <th>mean_Vimentin</th>
-    </tr>
-    <tr>
-      <th>mean_CD3e</th>
-    </tr>
-    <tr>
-      <th>mean_panCK</th>
-    </tr>
-    <tr>
-      <th>mean_CD8</th>
-    </tr>
-    <tr>
-      <th>mean_DAPI_1</th>
-    </tr>
-    <tr>
-      <th>mean_COL1A1</th>
-    </tr>
-    <tr>
-      <th>mean_CD20</th>
-    </tr>
-    <tr>
-      <th>mean_CD68</th>
-    </tr>
-    <tr>
-      <th>mean_Ki67</th>
-    </tr>
-    <tr>
-      <th>mean_DAPI_2</th>
-    </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
-</section>
-<section id="filter-by-initial-nuclear-stain-signal">
-<h3>Filter by initial nuclear stain signal<a class="headerlink" href="#filter-by-initial-nuclear-stain-signal" title="Link to this heading">#</a></h3>
+<section id="filter-cells-by-area">
+<h3>Filter cells by Area<a class="headerlink" href="#filter-cells-by-area" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">adata</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">adata</span><span class="o">.</span><span class="n">var_names</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;mean_DAPI_bg&quot;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># filter cells that are too big or too small</span>
+<span class="n">adata</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">filter_by_abs_value</span><span class="p">(</span>
+    <span class="n">adata</span><span class="o">=</span><span class="n">adata</span><span class="p">,</span> <span class="n">feature_name</span><span class="o">=</span><span class="s2">&quot;Area&quot;</span><span class="p">,</span> 
+    <span class="n">lower_bound</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">upper_bound</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;quantile&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;mean_DAPI_bg&#39;, ylabel=&#39;Count&#39;&gt;
-</pre></div>
-</div>
-<img alt="../_images/b86fd43755b6f009fcb2c8140ff9c2aae8e1c3c4ab1ba7d8a5805016dde74499.png" src="../_images/b86fd43755b6f009fcb2c8140ff9c2aae8e1c3c4ab1ba7d8a5805016dde74499.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">filter_by_abs_value</span><span class="p">(</span><span class="n">adata</span><span class="o">=</span><span class="n">adata</span><span class="p">,</span><span class="n">feature_name</span><span class="o">=</span><span class="s2">&quot;mean_DAPI_bg&quot;</span><span class="p">,</span> <span class="n">lower_bound</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">upper_bound</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;quantile&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">15:14:07.13</span> | <span class=" -Color -Color-Bold">INFO</span> | Starting filter_by_abs_value for feature &#39;mean_DAPI_bg&#39;...
-<span class=" -Color -Color-Green">15:14:07.13</span> | <span class=" -Color -Color-Bold">INFO</span> | Feature &#39;mean_DAPI_bg&#39; identified from adata.X.
-<span class=" -Color -Color-Green">15:14:07.13</span> | <span class=" -Color -Color-Bold">INFO</span> | Keeping cells with &#39;mean_DAPI_bg&#39; &gt;= 8.0822 (from quantile bound: 0.01).
-<span class=" -Color -Color-Green">15:14:07.13</span> | <span class=" -Color -Color-Bold">INFO</span> | Keeping cells with &#39;mean_DAPI_bg&#39; &lt;= 47.2041 (from quantile bound: 0.99).
-<span class=" -Color -Color-Green">15:14:07.13</span> | <span class=" -Color -Color-Bold -Color-Bold-Green">SUCCESS</span> | 16470 of 16808 cells (97.99%) passed the filter.
-<span class=" -Color -Color-Green">15:14:07.13</span> | <span class=" -Color -Color-Bold">INFO</span> | New boolean column &#39;mean_DAPI_bg_filter&#39; added to adata.obs.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:13:11.84</span> | <span class=" -Color -Color-Bold">INFO</span> | Starting filter_by_abs_value for feature &#39;Area&#39;...
+<span class=" -Color -Color-Green">16:13:11.84</span> | <span class=" -Color -Color-Bold">INFO</span> | Feature &#39;Area&#39; identified from adata.obs.
+<span class=" -Color -Color-Green">16:13:11.84</span> | <span class=" -Color -Color-Bold">INFO</span> | Keeping cells with &#39;Area&#39; &gt;= 295.0000 (from quantile bound: 0.01).
+<span class=" -Color -Color-Green">16:13:11.84</span> | <span class=" -Color -Color-Bold">INFO</span> | Keeping cells with &#39;Area&#39; &lt;= 2376.4400 (from quantile bound: 0.99).
+<span class=" -Color -Color-Green">16:13:11.84</span> | <span class=" -Color -Color-Bold -Color-Bold-Green">SUCCESS</span> | 16475 of 16808 cells (98.02%) passed the filter.
+<span class=" -Color -Color-Green">16:13:11.84</span> | <span class=" -Color -Color-Bold">INFO</span> | New boolean column &#39;Area_filter&#39; added to adata.obs.
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># this column has now been added to adata.obs</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[[</span><span class="s2">&quot;CellID&quot;</span><span class="p">,</span><span class="s2">&quot;Area_filter&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1376,196 +901,98 @@ Number of segmented objects 16808
     <tr style="text-align: right;">
       <th></th>
       <th>CellID</th>
-      <th>Y_centroid</th>
-      <th>X_centroid</th>
-      <th>Area</th>
-      <th>MajorAxisLength</th>
-      <th>MinorAxisLength</th>
-      <th>Eccentricity</th>
-      <th>Orientation</th>
-      <th>Extent</th>
-      <th>Solidity</th>
       <th>Area_filter</th>
-      <th>mean_DAPI_bg_filter</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
       <td>1</td>
-      <td>17.612598</td>
-      <td>53.337008</td>
-      <td>1270.0</td>
-      <td>48.198269</td>
-      <td>36.841132</td>
-      <td>0.644782</td>
-      <td>0.359469</td>
-      <td>146.669048</td>
-      <td>0.949178</td>
-      <td>True</td>
       <td>True</td>
     </tr>
     <tr>
       <th>1</th>
       <td>2</td>
-      <td>6.598958</td>
-      <td>126.006944</td>
-      <td>576.0</td>
-      <td>45.835698</td>
-      <td>18.372329</td>
-      <td>0.916152</td>
-      <td>1.513685</td>
-      <td>113.112698</td>
-      <td>0.886154</td>
-      <td>True</td>
       <td>True</td>
     </tr>
     <tr>
       <th>2</th>
       <td>3</td>
-      <td>17.416667</td>
-      <td>156.656504</td>
-      <td>984.0</td>
-      <td>40.751104</td>
-      <td>31.700565</td>
-      <td>0.628380</td>
-      <td>-1.528462</td>
-      <td>121.396970</td>
-      <td>0.955340</td>
-      <td>True</td>
       <td>True</td>
     </tr>
     <tr>
       <th>3</th>
       <td>4</td>
-      <td>4.982558</td>
-      <td>179.337209</td>
-      <td>344.0</td>
-      <td>34.620290</td>
-      <td>13.577757</td>
-      <td>0.919884</td>
-      <td>1.474818</td>
-      <td>82.627417</td>
-      <td>0.971751</td>
-      <td>True</td>
       <td>True</td>
     </tr>
     <tr>
       <th>4</th>
       <td>5</td>
-      <td>19.159558</td>
-      <td>228.598210</td>
-      <td>1899.0</td>
-      <td>54.446578</td>
-      <td>49.053930</td>
-      <td>0.433912</td>
-      <td>1.287374</td>
-      <td>196.610173</td>
-      <td>0.896601</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>16803</th>
-      <td>16804</td>
-      <td>4993.579685</td>
-      <td>106.373030</td>
-      <td>571.0</td>
-      <td>52.291050</td>
-      <td>14.719719</td>
-      <td>0.959562</td>
-      <td>-1.563557</td>
-      <td>116.870058</td>
-      <td>0.976068</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>16804</th>
-      <td>16805</td>
-      <td>4993.413242</td>
-      <td>810.385845</td>
-      <td>438.0</td>
-      <td>40.105247</td>
-      <td>14.334812</td>
-      <td>0.933940</td>
-      <td>1.531591</td>
-      <td>90.970563</td>
-      <td>0.962637</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>16805</th>
-      <td>16806</td>
-      <td>4994.153535</td>
-      <td>645.010101</td>
-      <td>495.0</td>
-      <td>50.864135</td>
-      <td>13.112118</td>
-      <td>0.966202</td>
-      <td>1.538209</td>
-      <td>111.248737</td>
-      <td>0.951923</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>16806</th>
-      <td>16807</td>
-      <td>4993.835570</td>
-      <td>1244.718121</td>
-      <td>298.0</td>
-      <td>28.947821</td>
-      <td>13.495126</td>
-      <td>0.884686</td>
-      <td>-1.561806</td>
-      <td>69.213203</td>
-      <td>0.973856</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>16807</th>
-      <td>16808</td>
-      <td>4994.250774</td>
-      <td>4186.876161</td>
-      <td>323.0</td>
-      <td>33.325316</td>
-      <td>13.027177</td>
-      <td>0.920429</td>
-      <td>-1.564638</td>
-      <td>77.213203</td>
-      <td>0.984756</td>
-      <td>True</td>
       <td>True</td>
     </tr>
   </tbody>
 </table>
-<p>16808 rows × 12 columns</p>
 </div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we see that 333 cells have been labelled as not passing the filter</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">Area_filter</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Area_filter
+True     16475
+False      333
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Filtering here does not actually filter the dataset. We just added a column to the adata.obs that describes the status of cells relative to that filter. This is important because then we should check what cells are going to be filtered out, and we can add all the filters we prefer and then filter the dataset based on the desired filters.</p>
+</section>
+<section id="filter-by-initial-nuclear-stain-signal">
+<h3>Filter by initial nuclear stain signal<a class="headerlink" href="#filter-by-initial-nuclear-stain-signal" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># let&#39;s check the nuclear stain distribution</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">adata</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">adata</span><span class="o">.</span><span class="n">var_names</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;mean_DAPI_bg&quot;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b86fd43755b6f009fcb2c8140ff9c2aae8e1c3c4ab1ba7d8a5805016dde74499.png" src="../_images/b86fd43755b6f009fcb2c8140ff9c2aae8e1c3c4ab1ba7d8a5805016dde74499.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#based on that we can filter out dataset by absolute values</span>
+<span class="n">adata</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">filter_by_abs_value</span><span class="p">(</span>
+    <span class="n">adata</span><span class="o">=</span><span class="n">adata</span><span class="p">,</span><span class="n">feature_name</span><span class="o">=</span><span class="s2">&quot;mean_DAPI_bg&quot;</span><span class="p">,</span> <span class="n">lower_bound</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">upper_bound</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;absolute&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:13:12.15</span> | <span class=" -Color -Color-Bold">INFO</span> | Starting filter_by_abs_value for feature &#39;mean_DAPI_bg&#39;...
+<span class=" -Color -Color-Green">16:13:12.16</span> | <span class=" -Color -Color-Bold">INFO</span> | Feature &#39;mean_DAPI_bg&#39; identified from adata.X.
+<span class=" -Color -Color-Green">16:13:12.16</span> | <span class=" -Color -Color-Bold">INFO</span> | Keeping cells with &#39;mean_DAPI_bg&#39; &gt;= 5.0000 (from absolute bound: 5).
+<span class=" -Color -Color-Green">16:13:12.16</span> | <span class=" -Color -Color-Bold">INFO</span> | Keeping cells with &#39;mean_DAPI_bg&#39; &lt;= 60.0000 (from absolute bound: 60).
+<span class=" -Color -Color-Green">16:13:12.16</span> | <span class=" -Color -Color-Bold -Color-Bold-Green">SUCCESS</span> | 16777 of 16808 cells (99.82%) passed the filter.
+<span class=" -Color -Color-Green">16:13:12.16</span> | <span class=" -Color -Color-Bold">INFO</span> | New boolean column &#39;mean_DAPI_bg_filter&#39; added to adata.obs.
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="filter-by-ratio-of-nuclear-stain-between-last-and-first-dapi-images">
 <h3>Filter by ratio of nuclear stain between last and first DAPI images<a class="headerlink" href="#filter-by-ratio-of-nuclear-stain-between-last-and-first-dapi-images" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">adata</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">adata</span><span class="o">.</span><span class="n">var_names</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#let&#39;s check the ratio between first and last cycle</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">adata</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">adata</span><span class="o">.</span><span class="n">var_names</span><span class="p">)</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;ratio&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;mean_DAPI_2&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;mean_DAPI_bg&#39;</span><span class="p">]</span>
 
 <span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
@@ -1581,17 +1008,22 @@ Number of segmented objects 16808
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">filter_by_ratio</span><span class="p">(</span><span class="n">adata</span><span class="o">=</span><span class="n">adata</span><span class="p">,</span> <span class="n">end_cycle</span><span class="o">=</span><span class="s2">&quot;mean_DAPI_2&quot;</span><span class="p">,</span> <span class="n">start_cycle</span><span class="o">=</span><span class="s2">&quot;mean_DAPI_bg&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;DAPI&quot;</span><span class="p">,</span> <span class="n">min_ratio</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">max_ratio</span><span class="o">=</span><span class="mf">1.05</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># based on that histogram we see</span>
+<span class="c1"># many cells lost almost all their nuclear stain signal</span>
+<span class="n">adata</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">filter_by_ratio</span><span class="p">(</span>
+    <span class="n">adata</span><span class="o">=</span><span class="n">adata</span><span class="p">,</span> <span class="n">end_cycle</span><span class="o">=</span><span class="s2">&quot;mean_DAPI_2&quot;</span><span class="p">,</span> <span class="n">start_cycle</span><span class="o">=</span><span class="s2">&quot;mean_DAPI_bg&quot;</span><span class="p">,</span> 
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;DAPI&quot;</span><span class="p">,</span> <span class="n">min_ratio</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">max_ratio</span><span class="o">=</span><span class="mf">1.05</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">15:14:07.44</span> | <span class=" -Color -Color-Bold">INFO</span> | Starting filter_by_ratio...
-<span class=" -Color -Color-Green">15:14:07.44</span> | <span class=" -Color -Color-Bold">INFO</span> | Number of cells with DAPI ratio &lt; 0.25: 1035
-<span class=" -Color -Color-Green">15:14:07.44</span> | <span class=" -Color -Color-Bold">INFO</span> | Number of cells with DAPI ratio &gt; 1.05: 28
-<span class=" -Color -Color-Green">15:14:07.44</span> | <span class=" -Color -Color-Bold">INFO</span> | Cells with DAPI ratio between 0.25 and 1.05: 15745
-<span class=" -Color -Color-Green">15:14:07.44</span> | <span class=" -Color -Color-Bold">INFO</span> | Cells filtered: 6.32%
-<span class=" -Color -Color-Green">15:14:07.44</span> | <span class=" -Color -Color-Bold -Color-Bold-Green">SUCCESS</span> | filter_by_ratio complete.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:13:12.40</span> | <span class=" -Color -Color-Bold">INFO</span> | Starting filter_by_ratio...
+<span class=" -Color -Color-Green">16:13:12.40</span> | <span class=" -Color -Color-Bold">INFO</span> | Number of cells with DAPI ratio &lt; 0.25: 1035
+<span class=" -Color -Color-Green">16:13:12.40</span> | <span class=" -Color -Color-Bold">INFO</span> | Number of cells with DAPI ratio &gt; 1.05: 28
+<span class=" -Color -Color-Green">16:13:12.40</span> | <span class=" -Color -Color-Bold">INFO</span> | Cells with DAPI ratio between 0.25 and 1.05: 15745
+<span class=" -Color -Color-Green">16:13:12.40</span> | <span class=" -Color -Color-Bold">INFO</span> | Cells filtered: 6.32%
+<span class=" -Color -Color-Green">16:13:12.40</span> | <span class=" -Color -Color-Bold -Color-Bold-Green">SUCCESS</span> | filter_by_ratio complete.
+<span class=" -Color -Color-Green">16:13:12.40</span> | <span class=" -Color -Color-Bold">INFO</span> | New boolean column &#39;DAPI_ratio_pass&#39; added to adata.obs.
 </pre></div>
 </div>
 </div>
@@ -1599,6 +1031,8 @@ Number of segmented objects 16808
 </section>
 <section id="filter-by-manual-annotations">
 <h3>Filter by manual annotations<a class="headerlink" href="#filter-by-manual-annotations" title="Link to this heading">#</a></h3>
+<p>Annotations should be made in QuPath, and classified by functionality.<br />
+This means that you should create a QuPath Annotation Class for each different kind of ROI.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#check annotations</span>
@@ -1609,7 +1043,8 @@ Number of segmented objects 16808
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># here we see how the shapes look like</span>
+<span class="n">gdf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1674,48 +1109,14 @@ Number of segmented objects 16808
       <td>{ "name": "Antibody_clumps", "color": [ 32, 19...</td>
       <td>POLYGON ((3987 4058, 3984 4059, 3979 4059, 397...</td>
     </tr>
-    <tr>
-      <th>5</th>
-      <td>ad114d98-3048-4e3c-9a94-982e72a95515</td>
-      <td>annotation</td>
-      <td>{ "name": "Antibody_clumps", "color": [ 32, 19...</td>
-      <td>POLYGON ((4791 1546, 4788.47 1546.95, 4788 154...</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>99a65f87-acf2-434d-9ab5-7692e39af63b</td>
-      <td>annotation</td>
-      <td>{ "name": "Antibody_clumps", "color": [ 32, 19...</td>
-      <td>POLYGON ((4636 1840, 4628 1843, 4620 1847, 461...</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>7908eec6-399d-4e17-90ba-26446b5dcacd</td>
-      <td>annotation</td>
-      <td>{ "name": "Antibody_clumps", "color": [ 32, 19...</td>
-      <td>POLYGON ((4693 2599, 4690 2600, 4685 2600, 468...</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>f1021867-a0ec-4323-8cf9-d9d70063566a</td>
-      <td>annotation</td>
-      <td>{ "name": "CD8_noise", "color": [ 51, 236, 220...</td>
-      <td>POLYGON ((3 1994, 0 1994.23, 0 2047.23, 0 2052...</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>46b88b7d-3f7f-4a7d-812d-5ae37a6090cb</td>
-      <td>annotation</td>
-      <td>{ "name": "folded_tissue", "color": [ 176, 102...</td>
-      <td>POLYGON ((1745 18, 1743.71 18.43, 1738 19, 172...</td>
-    </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># lets plot those shapes and color them by class</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">gdf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s2">&quot;classification&quot;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1728,7 +1129,28 @@ Number of segmented objects 16808
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">filter_by_annotation</span><span class="p">(</span>
+    <span class="n">adata</span><span class="o">=</span><span class="n">adata</span><span class="p">,</span> 
+    <span class="n">path_to_geojson</span><span class="o">=</span><span class="s2">&quot;data/manual_artefact_annotations/artefacts.geojson&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:13:12.50</span> | <span class=" -Color -Color-Bold">INFO</span> |  Each class of annotation will be a different column in adata.obs
+<span class=" -Color -Color-Green">16:13:12.50</span> | <span class=" -Color -Color-Bold">INFO</span> |  TRUE means cell was inside annotation, FALSE means cell not in annotation
+<span class=" -Color -Color-Green">16:13:12.51</span> | <span class=" -Color -Color-Bold">INFO</span> | GeoJSON loaded, detected: 10 annotations
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># show the new columns</span>
+<span class="c1"># for each annotation class there is a True/False column</span>
+<span class="c1"># True means cell is inside shape, False means cell is outside shape</span>
+<span class="c1"># ANY means the cell is at least in one shape</span>
+<span class="c1"># annotation column shows name of annotation class</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">5</span><span class="p">:]</span>
 </pre></div>
 </div>
 </div>
@@ -1751,268 +1173,6 @@ Number of segmented objects 16808
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>CellID</th>
-      <th>Y_centroid</th>
-      <th>X_centroid</th>
-      <th>Area</th>
-      <th>MajorAxisLength</th>
-      <th>MinorAxisLength</th>
-      <th>Eccentricity</th>
-      <th>Orientation</th>
-      <th>Extent</th>
-      <th>Solidity</th>
-      <th>Area_filter</th>
-      <th>mean_DAPI_bg_filter</th>
-      <th>DAPI_ratio</th>
-      <th>DAPI_ratio_pass</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>17.612598</td>
-      <td>53.337008</td>
-      <td>1270.0</td>
-      <td>48.198269</td>
-      <td>36.841132</td>
-      <td>0.644782</td>
-      <td>0.359469</td>
-      <td>146.669048</td>
-      <td>0.949178</td>
-      <td>True</td>
-      <td>True</td>
-      <td>0.065991</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>6.598958</td>
-      <td>126.006944</td>
-      <td>576.0</td>
-      <td>45.835698</td>
-      <td>18.372329</td>
-      <td>0.916152</td>
-      <td>1.513685</td>
-      <td>113.112698</td>
-      <td>0.886154</td>
-      <td>True</td>
-      <td>True</td>
-      <td>0.107462</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>3</td>
-      <td>17.416667</td>
-      <td>156.656504</td>
-      <td>984.0</td>
-      <td>40.751104</td>
-      <td>31.700565</td>
-      <td>0.628380</td>
-      <td>-1.528462</td>
-      <td>121.396970</td>
-      <td>0.955340</td>
-      <td>True</td>
-      <td>True</td>
-      <td>0.098039</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4</td>
-      <td>4.982558</td>
-      <td>179.337209</td>
-      <td>344.0</td>
-      <td>34.620290</td>
-      <td>13.577757</td>
-      <td>0.919884</td>
-      <td>1.474818</td>
-      <td>82.627417</td>
-      <td>0.971751</td>
-      <td>True</td>
-      <td>True</td>
-      <td>0.136228</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>5</td>
-      <td>19.159558</td>
-      <td>228.598210</td>
-      <td>1899.0</td>
-      <td>54.446578</td>
-      <td>49.053930</td>
-      <td>0.433912</td>
-      <td>1.287374</td>
-      <td>196.610173</td>
-      <td>0.896601</td>
-      <td>True</td>
-      <td>True</td>
-      <td>0.104794</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>16803</th>
-      <td>16804</td>
-      <td>4993.579685</td>
-      <td>106.373030</td>
-      <td>571.0</td>
-      <td>52.291050</td>
-      <td>14.719719</td>
-      <td>0.959562</td>
-      <td>-1.563557</td>
-      <td>116.870058</td>
-      <td>0.976068</td>
-      <td>True</td>
-      <td>True</td>
-      <td>0.209647</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>16804</th>
-      <td>16805</td>
-      <td>4993.413242</td>
-      <td>810.385845</td>
-      <td>438.0</td>
-      <td>40.105247</td>
-      <td>14.334812</td>
-      <td>0.933940</td>
-      <td>1.531591</td>
-      <td>90.970563</td>
-      <td>0.962637</td>
-      <td>True</td>
-      <td>True</td>
-      <td>0.477926</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>16805</th>
-      <td>16806</td>
-      <td>4994.153535</td>
-      <td>645.010101</td>
-      <td>495.0</td>
-      <td>50.864135</td>
-      <td>13.112118</td>
-      <td>0.966202</td>
-      <td>1.538209</td>
-      <td>111.248737</td>
-      <td>0.951923</td>
-      <td>True</td>
-      <td>True</td>
-      <td>0.268536</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>16806</th>
-      <td>16807</td>
-      <td>4993.835570</td>
-      <td>1244.718121</td>
-      <td>298.0</td>
-      <td>28.947821</td>
-      <td>13.495126</td>
-      <td>0.884686</td>
-      <td>-1.561806</td>
-      <td>69.213203</td>
-      <td>0.973856</td>
-      <td>True</td>
-      <td>True</td>
-      <td>0.523596</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>16807</th>
-      <td>16808</td>
-      <td>4994.250774</td>
-      <td>4186.876161</td>
-      <td>323.0</td>
-      <td>33.325316</td>
-      <td>13.027177</td>
-      <td>0.920429</td>
-      <td>-1.564638</td>
-      <td>77.213203</td>
-      <td>0.984756</td>
-      <td>True</td>
-      <td>True</td>
-      <td>0.401436</td>
-      <td>True</td>
-    </tr>
-  </tbody>
-</table>
-<p>16808 rows × 14 columns</p>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">filter_by_annotation</span><span class="p">(</span><span class="n">adata</span><span class="o">=</span><span class="n">adata</span><span class="p">,</span> <span class="n">path_to_geojson</span><span class="o">=</span><span class="s2">&quot;data/manual_artefact_annotations/artefacts.geojson&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">15:14:08.83</span> | <span class=" -Color -Color-Bold">INFO</span> |  Each class of annotation will be a different column in adata.obs
-<span class=" -Color -Color-Green">15:14:08.83</span> | <span class=" -Color -Color-Bold">INFO</span> |  TRUE means cell was inside annotation, FALSE means cell not in annotation
-<span class=" -Color -Color-Green">15:14:08.84</span> | <span class=" -Color -Color-Bold">INFO</span> | GeoJSON loaded, detected: 10 annotations
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>CellID</th>
-      <th>Y_centroid</th>
-      <th>X_centroid</th>
-      <th>Area</th>
-      <th>MajorAxisLength</th>
-      <th>MinorAxisLength</th>
-      <th>Eccentricity</th>
-      <th>Orientation</th>
-      <th>Extent</th>
-      <th>Solidity</th>
-      <th>Area_filter</th>
-      <th>mean_DAPI_bg_filter</th>
-      <th>DAPI_ratio</th>
-      <th>DAPI_ratio_pass</th>
       <th>Antibody_clumps</th>
       <th>CD8_noise</th>
       <th>folded_tissue</th>
@@ -2023,20 +1183,6 @@ Number of segmented objects 16808
   <tbody>
     <tr>
       <th>0</th>
-      <td>1</td>
-      <td>17.612598</td>
-      <td>53.337008</td>
-      <td>1270.0</td>
-      <td>48.198269</td>
-      <td>36.841132</td>
-      <td>0.644782</td>
-      <td>0.359469</td>
-      <td>146.669048</td>
-      <td>0.949178</td>
-      <td>True</td>
-      <td>True</td>
-      <td>0.065991</td>
-      <td>False</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
@@ -2045,20 +1191,6 @@ Number of segmented objects 16808
     </tr>
     <tr>
       <th>1</th>
-      <td>2</td>
-      <td>6.598958</td>
-      <td>126.006944</td>
-      <td>576.0</td>
-      <td>45.835698</td>
-      <td>18.372329</td>
-      <td>0.916152</td>
-      <td>1.513685</td>
-      <td>113.112698</td>
-      <td>0.886154</td>
-      <td>True</td>
-      <td>True</td>
-      <td>0.107462</td>
-      <td>False</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
@@ -2067,20 +1199,6 @@ Number of segmented objects 16808
     </tr>
     <tr>
       <th>2</th>
-      <td>3</td>
-      <td>17.416667</td>
-      <td>156.656504</td>
-      <td>984.0</td>
-      <td>40.751104</td>
-      <td>31.700565</td>
-      <td>0.628380</td>
-      <td>-1.528462</td>
-      <td>121.396970</td>
-      <td>0.955340</td>
-      <td>True</td>
-      <td>True</td>
-      <td>0.098039</td>
-      <td>False</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
@@ -2089,20 +1207,6 @@ Number of segmented objects 16808
     </tr>
     <tr>
       <th>3</th>
-      <td>4</td>
-      <td>4.982558</td>
-      <td>179.337209</td>
-      <td>344.0</td>
-      <td>34.620290</td>
-      <td>13.577757</td>
-      <td>0.919884</td>
-      <td>1.474818</td>
-      <td>82.627417</td>
-      <td>0.971751</td>
-      <td>True</td>
-      <td>True</td>
-      <td>0.136228</td>
-      <td>False</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
@@ -2111,20 +1215,6 @@ Number of segmented objects 16808
     </tr>
     <tr>
       <th>4</th>
-      <td>5</td>
-      <td>19.159558</td>
-      <td>228.598210</td>
-      <td>1899.0</td>
-      <td>54.446578</td>
-      <td>49.053930</td>
-      <td>0.433912</td>
-      <td>1.287374</td>
-      <td>196.610173</td>
-      <td>0.896601</td>
-      <td>True</td>
-      <td>True</td>
-      <td>0.104794</td>
-      <td>False</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
@@ -2138,37 +1228,9 @@ Number of segmented objects 16808
       <td>...</td>
       <td>...</td>
       <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
     </tr>
     <tr>
       <th>16803</th>
-      <td>16804</td>
-      <td>4993.579685</td>
-      <td>106.373030</td>
-      <td>571.0</td>
-      <td>52.291050</td>
-      <td>14.719719</td>
-      <td>0.959562</td>
-      <td>-1.563557</td>
-      <td>116.870058</td>
-      <td>0.976068</td>
-      <td>True</td>
-      <td>True</td>
-      <td>0.209647</td>
-      <td>False</td>
       <td>False</td>
       <td>True</td>
       <td>False</td>
@@ -2177,20 +1239,6 @@ Number of segmented objects 16808
     </tr>
     <tr>
       <th>16804</th>
-      <td>16805</td>
-      <td>4993.413242</td>
-      <td>810.385845</td>
-      <td>438.0</td>
-      <td>40.105247</td>
-      <td>14.334812</td>
-      <td>0.933940</td>
-      <td>1.531591</td>
-      <td>90.970563</td>
-      <td>0.962637</td>
-      <td>True</td>
-      <td>True</td>
-      <td>0.477926</td>
-      <td>True</td>
       <td>False</td>
       <td>True</td>
       <td>False</td>
@@ -2199,20 +1247,6 @@ Number of segmented objects 16808
     </tr>
     <tr>
       <th>16805</th>
-      <td>16806</td>
-      <td>4994.153535</td>
-      <td>645.010101</td>
-      <td>495.0</td>
-      <td>50.864135</td>
-      <td>13.112118</td>
-      <td>0.966202</td>
-      <td>1.538209</td>
-      <td>111.248737</td>
-      <td>0.951923</td>
-      <td>True</td>
-      <td>True</td>
-      <td>0.268536</td>
-      <td>True</td>
       <td>False</td>
       <td>True</td>
       <td>False</td>
@@ -2221,20 +1255,6 @@ Number of segmented objects 16808
     </tr>
     <tr>
       <th>16806</th>
-      <td>16807</td>
-      <td>4993.835570</td>
-      <td>1244.718121</td>
-      <td>298.0</td>
-      <td>28.947821</td>
-      <td>13.495126</td>
-      <td>0.884686</td>
-      <td>-1.561806</td>
-      <td>69.213203</td>
-      <td>0.973856</td>
-      <td>True</td>
-      <td>True</td>
-      <td>0.523596</td>
-      <td>True</td>
       <td>False</td>
       <td>True</td>
       <td>False</td>
@@ -2243,20 +1263,6 @@ Number of segmented objects 16808
     </tr>
     <tr>
       <th>16807</th>
-      <td>16808</td>
-      <td>4994.250774</td>
-      <td>4186.876161</td>
-      <td>323.0</td>
-      <td>33.325316</td>
-      <td>13.027177</td>
-      <td>0.920429</td>
-      <td>-1.564638</td>
-      <td>77.213203</td>
-      <td>0.984756</td>
-      <td>True</td>
-      <td>True</td>
-      <td>0.401436</td>
-      <td>True</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
@@ -2265,9 +1271,12 @@ Number of segmented objects 16808
     </tr>
   </tbody>
 </table>
-<p>16808 rows × 19 columns</p>
+<p>16808 rows × 5 columns</p>
 </div></div></div>
 </div>
+<p>Now that we have a well labelled dataset we can filter out cells we consider not good enough.<br />
+We will remove cells found inside “Antibody_clumps” and “folded_tissue”.<br />
+(These have squigly lines up front because of the flipped True/False status).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># new processed adata</span>
@@ -2283,28 +1292,23 @@ Number of segmented objects 16808
 <div class="cell_output docutils container">
 </div>
 </div>
+<p>As you might have seen from plotting the labels, we can see that a large area of the imaged tissue has been labelled as CD8 noise.<br />
+This kind of artefacts can happen.<br />
+The simplest solution is to reduce the marker specific signal for cells present in those annotations, so-called marker imputation.<br />
+(any better solutions are welcome!)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_processed</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">impute_marker_with_annotation</span><span class="p">(</span>
+    <span class="n">adata</span><span class="o">=</span><span class="n">adata_processed</span><span class="p">,</span>
+    <span class="n">target_variable</span><span class="o">=</span><span class="s2">&quot;mean_CD8&quot;</span><span class="p">,</span> 
+    <span class="n">target_annotation_column</span><span class="o">=</span><span class="s2">&quot;CD8_noise&quot;</span><span class="p">,</span>
+    <span class="n">quantile_for_imputation</span><span class="o">=</span><span class="mf">0.15</span>
+    <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 16808 × 15
-    obs: &#39;CellID&#39;, &#39;Y_centroid&#39;, &#39;X_centroid&#39;, &#39;Area&#39;, &#39;MajorAxisLength&#39;, &#39;MinorAxisLength&#39;, &#39;Eccentricity&#39;, &#39;Orientation&#39;, &#39;Extent&#39;, &#39;Solidity&#39;, &#39;Area_filter&#39;, &#39;mean_DAPI_bg_filter&#39;, &#39;DAPI_ratio&#39;, &#39;DAPI_ratio_pass&#39;, &#39;Antibody_clumps&#39;, &#39;CD8_noise&#39;, &#39;folded_tissue&#39;, &#39;ANY&#39;, &#39;annotation&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_processed</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 15244 × 15
-    obs: &#39;CellID&#39;, &#39;Y_centroid&#39;, &#39;X_centroid&#39;, &#39;Area&#39;, &#39;MajorAxisLength&#39;, &#39;MinorAxisLength&#39;, &#39;Eccentricity&#39;, &#39;Orientation&#39;, &#39;Extent&#39;, &#39;Solidity&#39;, &#39;Area_filter&#39;, &#39;mean_DAPI_bg_filter&#39;, &#39;DAPI_ratio&#39;, &#39;DAPI_ratio_pass&#39;, &#39;Antibody_clumps&#39;, &#39;CD8_noise&#39;, &#39;folded_tissue&#39;, &#39;ANY&#39;, &#39;annotation&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:13:12.58</span> | <span class=" -Color -Color-Bold">INFO</span> | Imputing with 0.15% percentile value = 7.545454545454546
 </pre></div>
 </div>
 </div>
@@ -2380,168 +1384,8 @@ Number of segmented objects 16808
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>CellID</th>
-      <th>Y_centroid</th>
-      <th>X_centroid</th>
-      <th>Area</th>
-      <th>MajorAxisLength</th>
-      <th>MinorAxisLength</th>
-      <th>Eccentricity</th>
-      <th>Orientation</th>
-      <th>Extent</th>
-      <th>Solidity</th>
-      <th>Area_filter</th>
-      <th>mean_DAPI_bg_filter</th>
-      <th>DAPI_ratio</th>
-      <th>DAPI_ratio_pass</th>
-      <th>Antibody_clumps</th>
-      <th>CD8_noise</th>
-      <th>folded_tissue</th>
-      <th>ANY</th>
-      <th>annotation</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>17.612598</td>
-      <td>53.337008</td>
-      <td>1270.0</td>
-      <td>48.198269</td>
-      <td>36.841132</td>
-      <td>0.644782</td>
-      <td>0.359469</td>
-      <td>146.669048</td>
-      <td>0.949178</td>
-      <td>True</td>
-      <td>True</td>
-      <td>0.065991</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>Unannotated</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>6.598958</td>
-      <td>126.006944</td>
-      <td>576.0</td>
-      <td>45.835698</td>
-      <td>18.372329</td>
-      <td>0.916152</td>
-      <td>1.513685</td>
-      <td>113.112698</td>
-      <td>0.886154</td>
-      <td>True</td>
-      <td>True</td>
-      <td>0.107462</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>Unannotated</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>3</td>
-      <td>17.416667</td>
-      <td>156.656504</td>
-      <td>984.0</td>
-      <td>40.751104</td>
-      <td>31.700565</td>
-      <td>0.628380</td>
-      <td>-1.528462</td>
-      <td>121.396970</td>
-      <td>0.955340</td>
-      <td>True</td>
-      <td>True</td>
-      <td>0.098039</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>Unannotated</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4</td>
-      <td>4.982558</td>
-      <td>179.337209</td>
-      <td>344.0</td>
-      <td>34.620290</td>
-      <td>13.577757</td>
-      <td>0.919884</td>
-      <td>1.474818</td>
-      <td>82.627417</td>
-      <td>0.971751</td>
-      <td>True</td>
-      <td>True</td>
-      <td>0.136228</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>Unannotated</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>5</td>
-      <td>19.159558</td>
-      <td>228.598210</td>
-      <td>1899.0</td>
-      <td>54.446578</td>
-      <td>49.053930</td>
-      <td>0.433912</td>
-      <td>1.287374</td>
-      <td>196.610173</td>
-      <td>0.896601</td>
-      <td>True</td>
-      <td>True</td>
-      <td>0.104794</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>Unannotated</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># check processed cells in qupath</span>
+<span class="c1"># this will create a geodataframe from the processed adata, with only the good cells</span>
 <span class="n">cells</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">adata_to_qupath</span><span class="p">(</span>
     <span class="n">adata</span><span class="o">=</span><span class="n">adata_processed</span><span class="p">,</span> 
     <span class="n">geodataframe</span><span class="o">=</span><span class="n">gdf</span><span class="p">,</span>
@@ -2554,384 +1398,54 @@ Number of segmented objects 16808
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">15:14:09.23</span> | <span class=" -Color -Color-Bold">INFO</span> | Found 15244 matching IDs between adata.obs[&#39;CellID&#39;] and geodataframe[&#39;label&#39;].
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:13:12.90</span> | <span class=" -Color -Color-Bold">INFO</span> | Found 15244 matching IDs between adata.obs[&#39;CellID&#39;] and geodataframe[&#39;label&#39;].
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cells</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s2">&quot;outputs/filtered_cells.geojson&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># let&#39;s save the file to drag it into qupath</span>
+<span class="n">cells</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s2">&quot;outputs/filtered_cells.geojson&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>Napari QC not quite possible without spatialdata object, check tutorial #3 for more details</p>
 </section>
-<section id="napari-qc-not-quite-possible-without-spatialdata-object-check-tutorial-3">
-<h3>Napari QC not quite possible without spatialdata object, check tutorial #3<a class="headerlink" href="#napari-qc-not-quite-possible-without-spatialdata-object-check-tutorial-3" title="Link to this heading">#</a></h3>
 </section>
-</section>
-<section id="phenotype-my-cells">
-<h2>Phenotype my cells<a class="headerlink" href="#phenotype-my-cells" title="Link to this heading">#</a></h2>
+<section id="phenotype-the-cells">
+<h2>Phenotype the cells<a class="headerlink" href="#phenotype-the-cells" title="Link to this heading">#</a></h2>
+<p>Clustering of cells from imaging data can be challenging. The simplest approach is to perform unsupervised clustering algorithms like k-means, louvain, or leiden. Despite their effectiveness in scRNAseq data, the data from multiplex imaging is noisier and struggles to cluster properly.<br />
+Therefore, we use a supervised approach.
+There are many elaborate approaches to phenotype your cells, machine learning algorithms, train your own XGBoost model, etc. We instead suggest we start with a simple approach with clear tradeoffs.
+We will use SCIMAP phenotyping.</p>
+<p>Phenotying cells with scimap requires 3 steps:</p>
+<ol class="arabic simple">
+<li><p>Import manually assigned thresholds (1 per marker)</p></li>
+<li><p>Rescale dataset with thresholds to help algorithm assign phenotypes</p></li>
+<li><p>Phenotype cells</p></li>
+</ol>
+<p>Unfortunately, as of 08.07.2025, installing scimap and opendvp together is not possible.<br />
+Therefore for steps 2,3 opendvp provides a wrapper of scimap functions.</p>
+<section id="import-manually-assigned-thresholds">
+<h3>Import manually assigned thresholds<a class="headerlink" href="#import-manually-assigned-thresholds" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">dvp</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">impute_marker_with_annotation</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># this function loads and processes the values ready for the phenotyping</span>
+<span class="n">thresholds</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">import_thresholds</span><span class="p">(</span><span class="n">gates_csv_path</span><span class="o">=</span><span class="s2">&quot;data/phenotyping/gates.csv&quot;</span><span class="p">)</span>
+<span class="n">thresholds</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on function impute_marker_with_annotation in module opendvp.pp.impute_marker_with_annotation:
-
-impute_marker_with_annotation(adata: anndata._core.anndata.AnnData, target_variable: str, target_annotation_column: str, quantile_for_imputation: float = 0.05) -&gt; anndata._core.anndata.AnnData
-    Change value of a feature in an AnnData object for rows matching a specific annotation.
-    
-    Using a specified quantile value from the variable&#39;s distribution.
-    
-    Parameters:
-    ----------
-    adata : ad.AnnData
-        The annotated data matrix.
-    target_variable : str
-        The variable (gene/feature) to impute.
-    target_annotation_column : str
-        The column in adata.obs to use for selecting rows to impute.
-    quantile_for_imputation : float, optional
-        The quantile to use for imputation (default is 0.05).
-    
-    Returns:
-    -------
-    ad.AnnData
-        A copy of the AnnData object with imputed values.
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>CellID</th>
-      <th>Y_centroid</th>
-      <th>X_centroid</th>
-      <th>Area</th>
-      <th>MajorAxisLength</th>
-      <th>MinorAxisLength</th>
-      <th>Eccentricity</th>
-      <th>Orientation</th>
-      <th>Extent</th>
-      <th>Solidity</th>
-      <th>Area_filter</th>
-      <th>mean_DAPI_bg_filter</th>
-      <th>DAPI_ratio</th>
-      <th>DAPI_ratio_pass</th>
-      <th>Antibody_clumps</th>
-      <th>CD8_noise</th>
-      <th>folded_tissue</th>
-      <th>ANY</th>
-      <th>annotation</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>17.612598</td>
-      <td>53.337008</td>
-      <td>1270.0</td>
-      <td>48.198269</td>
-      <td>36.841132</td>
-      <td>0.644782</td>
-      <td>0.359469</td>
-      <td>146.669048</td>
-      <td>0.949178</td>
-      <td>True</td>
-      <td>True</td>
-      <td>0.065991</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>Unannotated</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>6.598958</td>
-      <td>126.006944</td>
-      <td>576.0</td>
-      <td>45.835698</td>
-      <td>18.372329</td>
-      <td>0.916152</td>
-      <td>1.513685</td>
-      <td>113.112698</td>
-      <td>0.886154</td>
-      <td>True</td>
-      <td>True</td>
-      <td>0.107462</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>Unannotated</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>3</td>
-      <td>17.416667</td>
-      <td>156.656504</td>
-      <td>984.0</td>
-      <td>40.751104</td>
-      <td>31.700565</td>
-      <td>0.628380</td>
-      <td>-1.528462</td>
-      <td>121.396970</td>
-      <td>0.955340</td>
-      <td>True</td>
-      <td>True</td>
-      <td>0.098039</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>Unannotated</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4</td>
-      <td>4.982558</td>
-      <td>179.337209</td>
-      <td>344.0</td>
-      <td>34.620290</td>
-      <td>13.577757</td>
-      <td>0.919884</td>
-      <td>1.474818</td>
-      <td>82.627417</td>
-      <td>0.971751</td>
-      <td>True</td>
-      <td>True</td>
-      <td>0.136228</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>Unannotated</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>5</td>
-      <td>19.159558</td>
-      <td>228.598210</td>
-      <td>1899.0</td>
-      <td>54.446578</td>
-      <td>49.053930</td>
-      <td>0.433912</td>
-      <td>1.287374</td>
-      <td>196.610173</td>
-      <td>0.896601</td>
-      <td>True</td>
-      <td>True</td>
-      <td>0.104794</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>Unannotated</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>16803</th>
-      <td>16804</td>
-      <td>4993.579685</td>
-      <td>106.373030</td>
-      <td>571.0</td>
-      <td>52.291050</td>
-      <td>14.719719</td>
-      <td>0.959562</td>
-      <td>-1.563557</td>
-      <td>116.870058</td>
-      <td>0.976068</td>
-      <td>True</td>
-      <td>True</td>
-      <td>0.209647</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>True</td>
-      <td>CD8_noise</td>
-    </tr>
-    <tr>
-      <th>16804</th>
-      <td>16805</td>
-      <td>4993.413242</td>
-      <td>810.385845</td>
-      <td>438.0</td>
-      <td>40.105247</td>
-      <td>14.334812</td>
-      <td>0.933940</td>
-      <td>1.531591</td>
-      <td>90.970563</td>
-      <td>0.962637</td>
-      <td>True</td>
-      <td>True</td>
-      <td>0.477926</td>
-      <td>True</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>True</td>
-      <td>CD8_noise</td>
-    </tr>
-    <tr>
-      <th>16805</th>
-      <td>16806</td>
-      <td>4994.153535</td>
-      <td>645.010101</td>
-      <td>495.0</td>
-      <td>50.864135</td>
-      <td>13.112118</td>
-      <td>0.966202</td>
-      <td>1.538209</td>
-      <td>111.248737</td>
-      <td>0.951923</td>
-      <td>True</td>
-      <td>True</td>
-      <td>0.268536</td>
-      <td>True</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>True</td>
-      <td>CD8_noise</td>
-    </tr>
-    <tr>
-      <th>16806</th>
-      <td>16807</td>
-      <td>4993.835570</td>
-      <td>1244.718121</td>
-      <td>298.0</td>
-      <td>28.947821</td>
-      <td>13.495126</td>
-      <td>0.884686</td>
-      <td>-1.561806</td>
-      <td>69.213203</td>
-      <td>0.973856</td>
-      <td>True</td>
-      <td>True</td>
-      <td>0.523596</td>
-      <td>True</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>True</td>
-      <td>CD8_noise</td>
-    </tr>
-    <tr>
-      <th>16807</th>
-      <td>16808</td>
-      <td>4994.250774</td>
-      <td>4186.876161</td>
-      <td>323.0</td>
-      <td>33.325316</td>
-      <td>13.027177</td>
-      <td>0.920429</td>
-      <td>-1.564638</td>
-      <td>77.213203</td>
-      <td>0.984756</td>
-      <td>True</td>
-      <td>True</td>
-      <td>0.401436</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>Unannotated</td>
-    </tr>
-  </tbody>
-</table>
-<p>16808 rows × 19 columns</p>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_CD8</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">impute_marker_with_annotation</span><span class="p">(</span>
-    <span class="n">adata</span><span class="o">=</span><span class="n">adata_processed</span><span class="p">,</span>
-    <span class="n">target_variable</span><span class="o">=</span><span class="s2">&quot;mean_CD8&quot;</span><span class="p">,</span> 
-    <span class="n">target_annotation_column</span><span class="o">=</span><span class="s2">&quot;CD8_noise&quot;</span><span class="p">,</span>
-    <span class="n">quantile_for_imputation</span><span class="o">=</span><span class="mf">0.15</span>
-    <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">15:14:09.64</span> | <span class=" -Color -Color-Bold">INFO</span> | Imputing with 0.15% percentile value = 7.545454545454546
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gates</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">import_thresholds</span><span class="p">(</span><span class="n">gates_csv_path</span><span class="o">=</span><span class="s2">&quot;data/phenotyping/gates.csv&quot;</span><span class="p">)</span>
-<span class="n">gates</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">15:14:09.66</span> | <span class=" -Color -Color-Bold">INFO</span> | Filtering out all rows with value 0.0 (assuming not gated)
-<span class=" -Color -Color-Green">15:14:09.66</span> | <span class=" -Color -Color-Bold">INFO</span> | Found 8 valid gates
-<span class=" -Color -Color-Green">15:14:09.66</span> | <span class=" -Color -Color-Bold">INFO</span> | Markers found: [&#39;mean_Vimentin&#39; &#39;mean_CD3e&#39; &#39;mean_panCK&#39; &#39;mean_CD8&#39; &#39;mean_COL1A1&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:13:13.29</span> | <span class=" -Color -Color-Bold">INFO</span> | Filtering out all rows with value 0.0 (assuming not gated)
+<span class=" -Color -Color-Green">16:13:13.29</span> | <span class=" -Color -Color-Bold">INFO</span> | Found 8 valid gates
+<span class=" -Color -Color-Green">16:13:13.29</span> | <span class=" -Color -Color-Bold">INFO</span> | Markers found: [&#39;mean_Vimentin&#39; &#39;mean_CD3e&#39; &#39;mean_panCK&#39; &#39;mean_CD8&#39; &#39;mean_COL1A1&#39;
  &#39;mean_CD20&#39; &#39;mean_CD68&#39; &#39;mean_Ki67&#39;]
-<span class=" -Color -Color-Green">15:14:09.66</span> | <span class=" -Color -Color-Bold">INFO</span> | Samples found: [&#39;TD_15_TNBC_subset&#39;]
-<span class=" -Color -Color-Green">15:14:09.66</span> | <span class=" -Color -Color-Bold">INFO</span> | Applying log1p transformation to gate values and formatting for scimap.
-<span class=" -Color -Color-Green">15:14:09.66</span> | <span class=" -Color -Color-Bold">INFO</span> |    Output DataFrame columns: [&#39;markers&#39;, &#39;TD_15_TNBC_subset&#39;]
+<span class=" -Color -Color-Green">16:13:13.29</span> | <span class=" -Color -Color-Bold">INFO</span> | Samples found: [&#39;TD_15_TNBC_subset&#39;]
+<span class=" -Color -Color-Green">16:13:13.30</span> | <span class=" -Color -Color-Bold">INFO</span> | Applying log1p transformation to gate values and formatting for scimap.
+<span class=" -Color -Color-Green">16:13:13.30</span> | <span class=" -Color -Color-Bold">INFO</span> |    Output DataFrame columns: [&#39;markers&#39;, &#39;TD_15_TNBC_subset&#39;]
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -3001,21 +1515,30 @@ impute_marker_with_annotation(adata: anndata._core.anndata.AnnData, target_varia
 </table>
 </div></div></div>
 </div>
+</section>
+<section id="get-adata-ready-for-phenotyping">
+<h3>Get adata ready for phenotyping<a class="headerlink" href="#get-adata-ready-for-phenotyping" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_phenotyping</span> <span class="o">=</span> <span class="n">adata_CD8</span><span class="p">[:,</span><span class="n">adata_CD8</span><span class="o">.</span><span class="n">var_names</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">gates</span><span class="p">[</span><span class="s1">&#39;markers&#39;</span><span class="p">])]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># here we subset the adata object</span>
+<span class="c1"># so that it only has the the markers mentioned in the imported threholds</span>
+<span class="c1"># we also label all observations in that adata, with the sample_id</span>
+<span class="n">adata_phenotyping</span> <span class="o">=</span> <span class="n">adata_processed</span><span class="p">[:,</span><span class="n">adata_processed</span><span class="o">.</span><span class="n">var_names</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">thresholds</span><span class="p">[</span><span class="s1">&#39;markers&#39;</span><span class="p">])]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">adata_phenotyping</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;sample_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;TD_15_TNBC_subset&quot;</span>
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="rescale-data-based-on-thresholds">
+<h3>Rescale data based on thresholds<a class="headerlink" href="#rescale-data-based-on-thresholds" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># seems that I will have to:</span>
 <span class="c1"># create adata for gating by filtering unused columns</span>
 <span class="n">adata_rescaled</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">rescale</span><span class="p">(</span>
                         <span class="n">adata</span><span class="o">=</span><span class="n">adata_phenotyping</span><span class="p">,</span>
-                        <span class="n">gate</span><span class="o">=</span><span class="n">gates</span><span class="p">,</span>
+                        <span class="n">gate</span><span class="o">=</span><span class="n">thresholds</span><span class="p">,</span>
                         <span class="n">method</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span>
                         <span class="n">imageid</span><span class="o">=</span><span class="s2">&quot;sample_id&quot;</span>
                         <span class="p">)</span>
@@ -3036,10 +1559,16 @@ Scaling mean_Ki67 (gate: 1.093)
 </div>
 </div>
 </div>
+</section>
+<section id="phenotype-cells">
+<h3>Phenotype cells<a class="headerlink" href="#phenotype-cells" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load the phenotyping workflow</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we must load the phenotyping workflow</span>
+<span class="c1"># this is the set of biological knowledge we have about the markers</span>
+<span class="c1"># and what they mean to classify the cells</span>
 <span class="n">phenotype</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/phenotyping/celltype_matrix.csv&#39;</span><span class="p">)</span>
+<span class="c1"># this just shows you the table </span>
 <span class="n">phenotype</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">na_rep</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -3047,126 +1576,126 @@ Scaling mean_Ki67 (gate: 1.093)
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
 </style>
-<table id="T_eb222">
+<table id="T_c11dd">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_eb222_level0_col0" class="col_heading level0 col0" >Unnamed: 0</th>
-      <th id="T_eb222_level0_col1" class="col_heading level0 col1" >Unnamed: 1</th>
-      <th id="T_eb222_level0_col2" class="col_heading level0 col2" >Vimentin</th>
-      <th id="T_eb222_level0_col3" class="col_heading level0 col3" >CD3e</th>
-      <th id="T_eb222_level0_col4" class="col_heading level0 col4" >panCK</th>
-      <th id="T_eb222_level0_col5" class="col_heading level0 col5" >CD8</th>
-      <th id="T_eb222_level0_col6" class="col_heading level0 col6" >COL1A1</th>
-      <th id="T_eb222_level0_col7" class="col_heading level0 col7" >CD20</th>
-      <th id="T_eb222_level0_col8" class="col_heading level0 col8" >CD68</th>
-      <th id="T_eb222_level0_col9" class="col_heading level0 col9" >Ki67</th>
+      <th id="T_c11dd_level0_col0" class="col_heading level0 col0" >Unnamed: 0</th>
+      <th id="T_c11dd_level0_col1" class="col_heading level0 col1" >Unnamed: 1</th>
+      <th id="T_c11dd_level0_col2" class="col_heading level0 col2" >Vimentin</th>
+      <th id="T_c11dd_level0_col3" class="col_heading level0 col3" >CD3e</th>
+      <th id="T_c11dd_level0_col4" class="col_heading level0 col4" >panCK</th>
+      <th id="T_c11dd_level0_col5" class="col_heading level0 col5" >CD8</th>
+      <th id="T_c11dd_level0_col6" class="col_heading level0 col6" >COL1A1</th>
+      <th id="T_c11dd_level0_col7" class="col_heading level0 col7" >CD20</th>
+      <th id="T_c11dd_level0_col8" class="col_heading level0 col8" >CD68</th>
+      <th id="T_c11dd_level0_col9" class="col_heading level0 col9" >Ki67</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_eb222_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_eb222_row0_col0" class="data row0 col0" >all</td>
-      <td id="T_eb222_row0_col1" class="data row0 col1" >Epithelial</td>
-      <td id="T_eb222_row0_col2" class="data row0 col2" ></td>
-      <td id="T_eb222_row0_col3" class="data row0 col3" ></td>
-      <td id="T_eb222_row0_col4" class="data row0 col4" >pos</td>
-      <td id="T_eb222_row0_col5" class="data row0 col5" ></td>
-      <td id="T_eb222_row0_col6" class="data row0 col6" ></td>
-      <td id="T_eb222_row0_col7" class="data row0 col7" ></td>
-      <td id="T_eb222_row0_col8" class="data row0 col8" ></td>
-      <td id="T_eb222_row0_col9" class="data row0 col9" ></td>
+      <th id="T_c11dd_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_c11dd_row0_col0" class="data row0 col0" >all</td>
+      <td id="T_c11dd_row0_col1" class="data row0 col1" >Epithelial</td>
+      <td id="T_c11dd_row0_col2" class="data row0 col2" ></td>
+      <td id="T_c11dd_row0_col3" class="data row0 col3" ></td>
+      <td id="T_c11dd_row0_col4" class="data row0 col4" >pos</td>
+      <td id="T_c11dd_row0_col5" class="data row0 col5" ></td>
+      <td id="T_c11dd_row0_col6" class="data row0 col6" ></td>
+      <td id="T_c11dd_row0_col7" class="data row0 col7" ></td>
+      <td id="T_c11dd_row0_col8" class="data row0 col8" ></td>
+      <td id="T_c11dd_row0_col9" class="data row0 col9" ></td>
     </tr>
     <tr>
-      <th id="T_eb222_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_eb222_row1_col0" class="data row1 col0" >all</td>
-      <td id="T_eb222_row1_col1" class="data row1 col1" >Mesenchymal</td>
-      <td id="T_eb222_row1_col2" class="data row1 col2" >pos</td>
-      <td id="T_eb222_row1_col3" class="data row1 col3" ></td>
-      <td id="T_eb222_row1_col4" class="data row1 col4" ></td>
-      <td id="T_eb222_row1_col5" class="data row1 col5" ></td>
-      <td id="T_eb222_row1_col6" class="data row1 col6" ></td>
-      <td id="T_eb222_row1_col7" class="data row1 col7" ></td>
-      <td id="T_eb222_row1_col8" class="data row1 col8" ></td>
-      <td id="T_eb222_row1_col9" class="data row1 col9" ></td>
+      <th id="T_c11dd_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_c11dd_row1_col0" class="data row1 col0" >all</td>
+      <td id="T_c11dd_row1_col1" class="data row1 col1" >Mesenchymal</td>
+      <td id="T_c11dd_row1_col2" class="data row1 col2" >pos</td>
+      <td id="T_c11dd_row1_col3" class="data row1 col3" ></td>
+      <td id="T_c11dd_row1_col4" class="data row1 col4" ></td>
+      <td id="T_c11dd_row1_col5" class="data row1 col5" ></td>
+      <td id="T_c11dd_row1_col6" class="data row1 col6" ></td>
+      <td id="T_c11dd_row1_col7" class="data row1 col7" ></td>
+      <td id="T_c11dd_row1_col8" class="data row1 col8" ></td>
+      <td id="T_c11dd_row1_col9" class="data row1 col9" ></td>
     </tr>
     <tr>
-      <th id="T_eb222_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_eb222_row2_col0" class="data row2 col0" >all</td>
-      <td id="T_eb222_row2_col1" class="data row2 col1" >Immune</td>
-      <td id="T_eb222_row2_col2" class="data row2 col2" ></td>
-      <td id="T_eb222_row2_col3" class="data row2 col3" >anypos</td>
-      <td id="T_eb222_row2_col4" class="data row2 col4" ></td>
-      <td id="T_eb222_row2_col5" class="data row2 col5" >anypos</td>
-      <td id="T_eb222_row2_col6" class="data row2 col6" ></td>
-      <td id="T_eb222_row2_col7" class="data row2 col7" >anypos</td>
-      <td id="T_eb222_row2_col8" class="data row2 col8" >anypos</td>
-      <td id="T_eb222_row2_col9" class="data row2 col9" ></td>
+      <th id="T_c11dd_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_c11dd_row2_col0" class="data row2 col0" >all</td>
+      <td id="T_c11dd_row2_col1" class="data row2 col1" >Immune</td>
+      <td id="T_c11dd_row2_col2" class="data row2 col2" ></td>
+      <td id="T_c11dd_row2_col3" class="data row2 col3" >anypos</td>
+      <td id="T_c11dd_row2_col4" class="data row2 col4" ></td>
+      <td id="T_c11dd_row2_col5" class="data row2 col5" >anypos</td>
+      <td id="T_c11dd_row2_col6" class="data row2 col6" ></td>
+      <td id="T_c11dd_row2_col7" class="data row2 col7" >anypos</td>
+      <td id="T_c11dd_row2_col8" class="data row2 col8" >anypos</td>
+      <td id="T_c11dd_row2_col9" class="data row2 col9" ></td>
     </tr>
     <tr>
-      <th id="T_eb222_level0_row3" class="row_heading level0 row3" >3</th>
-      <td id="T_eb222_row3_col0" class="data row3 col0" >all</td>
-      <td id="T_eb222_row3_col1" class="data row3 col1" >Fibroblasts</td>
-      <td id="T_eb222_row3_col2" class="data row3 col2" ></td>
-      <td id="T_eb222_row3_col3" class="data row3 col3" ></td>
-      <td id="T_eb222_row3_col4" class="data row3 col4" ></td>
-      <td id="T_eb222_row3_col5" class="data row3 col5" ></td>
-      <td id="T_eb222_row3_col6" class="data row3 col6" >pos</td>
-      <td id="T_eb222_row3_col7" class="data row3 col7" ></td>
-      <td id="T_eb222_row3_col8" class="data row3 col8" ></td>
-      <td id="T_eb222_row3_col9" class="data row3 col9" ></td>
+      <th id="T_c11dd_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_c11dd_row3_col0" class="data row3 col0" >all</td>
+      <td id="T_c11dd_row3_col1" class="data row3 col1" >Fibroblasts</td>
+      <td id="T_c11dd_row3_col2" class="data row3 col2" ></td>
+      <td id="T_c11dd_row3_col3" class="data row3 col3" ></td>
+      <td id="T_c11dd_row3_col4" class="data row3 col4" ></td>
+      <td id="T_c11dd_row3_col5" class="data row3 col5" ></td>
+      <td id="T_c11dd_row3_col6" class="data row3 col6" >pos</td>
+      <td id="T_c11dd_row3_col7" class="data row3 col7" ></td>
+      <td id="T_c11dd_row3_col8" class="data row3 col8" ></td>
+      <td id="T_c11dd_row3_col9" class="data row3 col9" ></td>
     </tr>
     <tr>
-      <th id="T_eb222_level0_row4" class="row_heading level0 row4" >4</th>
-      <td id="T_eb222_row4_col0" class="data row4 col0" >Immune</td>
-      <td id="T_eb222_row4_col1" class="data row4 col1" >CD4_T_cell</td>
-      <td id="T_eb222_row4_col2" class="data row4 col2" ></td>
-      <td id="T_eb222_row4_col3" class="data row4 col3" >pos</td>
-      <td id="T_eb222_row4_col4" class="data row4 col4" ></td>
-      <td id="T_eb222_row4_col5" class="data row4 col5" >neg</td>
-      <td id="T_eb222_row4_col6" class="data row4 col6" ></td>
-      <td id="T_eb222_row4_col7" class="data row4 col7" ></td>
-      <td id="T_eb222_row4_col8" class="data row4 col8" ></td>
-      <td id="T_eb222_row4_col9" class="data row4 col9" ></td>
+      <th id="T_c11dd_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_c11dd_row4_col0" class="data row4 col0" >Immune</td>
+      <td id="T_c11dd_row4_col1" class="data row4 col1" >CD4_T_cell</td>
+      <td id="T_c11dd_row4_col2" class="data row4 col2" ></td>
+      <td id="T_c11dd_row4_col3" class="data row4 col3" >pos</td>
+      <td id="T_c11dd_row4_col4" class="data row4 col4" ></td>
+      <td id="T_c11dd_row4_col5" class="data row4 col5" >neg</td>
+      <td id="T_c11dd_row4_col6" class="data row4 col6" ></td>
+      <td id="T_c11dd_row4_col7" class="data row4 col7" ></td>
+      <td id="T_c11dd_row4_col8" class="data row4 col8" ></td>
+      <td id="T_c11dd_row4_col9" class="data row4 col9" ></td>
     </tr>
     <tr>
-      <th id="T_eb222_level0_row5" class="row_heading level0 row5" >5</th>
-      <td id="T_eb222_row5_col0" class="data row5 col0" >Immune</td>
-      <td id="T_eb222_row5_col1" class="data row5 col1" >CD8_T_cell</td>
-      <td id="T_eb222_row5_col2" class="data row5 col2" ></td>
-      <td id="T_eb222_row5_col3" class="data row5 col3" ></td>
-      <td id="T_eb222_row5_col4" class="data row5 col4" ></td>
-      <td id="T_eb222_row5_col5" class="data row5 col5" >pos</td>
-      <td id="T_eb222_row5_col6" class="data row5 col6" ></td>
-      <td id="T_eb222_row5_col7" class="data row5 col7" ></td>
-      <td id="T_eb222_row5_col8" class="data row5 col8" ></td>
-      <td id="T_eb222_row5_col9" class="data row5 col9" ></td>
+      <th id="T_c11dd_level0_row5" class="row_heading level0 row5" >5</th>
+      <td id="T_c11dd_row5_col0" class="data row5 col0" >Immune</td>
+      <td id="T_c11dd_row5_col1" class="data row5 col1" >CD8_T_cell</td>
+      <td id="T_c11dd_row5_col2" class="data row5 col2" ></td>
+      <td id="T_c11dd_row5_col3" class="data row5 col3" ></td>
+      <td id="T_c11dd_row5_col4" class="data row5 col4" ></td>
+      <td id="T_c11dd_row5_col5" class="data row5 col5" >pos</td>
+      <td id="T_c11dd_row5_col6" class="data row5 col6" ></td>
+      <td id="T_c11dd_row5_col7" class="data row5 col7" ></td>
+      <td id="T_c11dd_row5_col8" class="data row5 col8" ></td>
+      <td id="T_c11dd_row5_col9" class="data row5 col9" ></td>
     </tr>
     <tr>
-      <th id="T_eb222_level0_row6" class="row_heading level0 row6" >6</th>
-      <td id="T_eb222_row6_col0" class="data row6 col0" >Immune</td>
-      <td id="T_eb222_row6_col1" class="data row6 col1" >B_cell</td>
-      <td id="T_eb222_row6_col2" class="data row6 col2" ></td>
-      <td id="T_eb222_row6_col3" class="data row6 col3" ></td>
-      <td id="T_eb222_row6_col4" class="data row6 col4" ></td>
-      <td id="T_eb222_row6_col5" class="data row6 col5" ></td>
-      <td id="T_eb222_row6_col6" class="data row6 col6" ></td>
-      <td id="T_eb222_row6_col7" class="data row6 col7" >pos</td>
-      <td id="T_eb222_row6_col8" class="data row6 col8" ></td>
-      <td id="T_eb222_row6_col9" class="data row6 col9" ></td>
+      <th id="T_c11dd_level0_row6" class="row_heading level0 row6" >6</th>
+      <td id="T_c11dd_row6_col0" class="data row6 col0" >Immune</td>
+      <td id="T_c11dd_row6_col1" class="data row6 col1" >B_cell</td>
+      <td id="T_c11dd_row6_col2" class="data row6 col2" ></td>
+      <td id="T_c11dd_row6_col3" class="data row6 col3" ></td>
+      <td id="T_c11dd_row6_col4" class="data row6 col4" ></td>
+      <td id="T_c11dd_row6_col5" class="data row6 col5" ></td>
+      <td id="T_c11dd_row6_col6" class="data row6 col6" ></td>
+      <td id="T_c11dd_row6_col7" class="data row6 col7" >pos</td>
+      <td id="T_c11dd_row6_col8" class="data row6 col8" ></td>
+      <td id="T_c11dd_row6_col9" class="data row6 col9" ></td>
     </tr>
     <tr>
-      <th id="T_eb222_level0_row7" class="row_heading level0 row7" >7</th>
-      <td id="T_eb222_row7_col0" class="data row7 col0" >Immune</td>
-      <td id="T_eb222_row7_col1" class="data row7 col1" >Macrophage</td>
-      <td id="T_eb222_row7_col2" class="data row7 col2" ></td>
-      <td id="T_eb222_row7_col3" class="data row7 col3" ></td>
-      <td id="T_eb222_row7_col4" class="data row7 col4" ></td>
-      <td id="T_eb222_row7_col5" class="data row7 col5" ></td>
-      <td id="T_eb222_row7_col6" class="data row7 col6" ></td>
-      <td id="T_eb222_row7_col7" class="data row7 col7" ></td>
-      <td id="T_eb222_row7_col8" class="data row7 col8" >pos</td>
-      <td id="T_eb222_row7_col9" class="data row7 col9" ></td>
+      <th id="T_c11dd_level0_row7" class="row_heading level0 row7" >7</th>
+      <td id="T_c11dd_row7_col0" class="data row7 col0" >Immune</td>
+      <td id="T_c11dd_row7_col1" class="data row7 col1" >Macrophage</td>
+      <td id="T_c11dd_row7_col2" class="data row7 col2" ></td>
+      <td id="T_c11dd_row7_col3" class="data row7 col3" ></td>
+      <td id="T_c11dd_row7_col4" class="data row7 col4" ></td>
+      <td id="T_c11dd_row7_col5" class="data row7 col5" ></td>
+      <td id="T_c11dd_row7_col6" class="data row7 col6" ></td>
+      <td id="T_c11dd_row7_col7" class="data row7 col7" ></td>
+      <td id="T_c11dd_row7_col8" class="data row7 col8" >pos</td>
+      <td id="T_c11dd_row7_col9" class="data row7 col9" ></td>
     </tr>
   </tbody>
 </table>
@@ -3174,15 +1703,20 @@ Scaling mean_Ki67 (gate: 1.093)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_phenotyping</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="s1">&#39;feature_name&#39;</span><span class="p">]</span>  <span class="o">=</span> <span class="p">[</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">adata_phenotyping</span><span class="o">.</span><span class="n">var_names</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># here we rename the variables to match the celltype_matrix.csv column names</span>
+<span class="c1"># we remove the &quot;mean_&quot; part from &quot;mean_CD8&quot;, resulting in &quot;CD8&quot;, for each marker.</span>
+<span class="n">adata_phenotyping</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="s1">&#39;feature_name&#39;</span><span class="p">]</span>  <span class="o">=</span> <span class="p">[</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">adata_phenotyping</span><span class="o">.</span><span class="n">var_names</span><span class="p">]</span>
+<span class="c1"># here we make it the index</span>
 <span class="n">adata_phenotyping</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">adata_phenotyping</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="s1">&#39;feature_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c1"># we did not do this before, because the thresholds dataframe had the previous names</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_phenotyped</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">phenotype_cells</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_phenotyped</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">scimap_phenotype</span><span class="p">(</span>
     <span class="n">adata_phenotyping</span><span class="p">,</span> 
     <span class="n">phenotype</span><span class="o">=</span><span class="n">phenotype</span><span class="p">,</span> 
     <span class="n">label</span><span class="o">=</span><span class="s2">&quot;phenotype&quot;</span><span class="p">,</span>
@@ -3207,7 +1741,41 @@ Consolidating the phenotypes across all groups
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_phenotyped</span><span class="o">.</span><span class="n">obs</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># lets check the results</span>
+<span class="n">adata_phenotyped</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">phenotype</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>phenotype
+Epithelial     7141
+Unknown        3598
+CD4_T_cell     2874
+Fibroblasts     752
+Mesenchymal     589
+CD8_T_cell      165
+B_cell          109
+Macrophage       16
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># lets transfer those phenotype labels and image label to our original adata_processed</span>
+<span class="n">adata_processed</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;phenotype&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata_phenotyped</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;phenotype&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">adata_processed</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;sample_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;TD_15_TNBC_subset&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="quality-control-of-phenotypes-using-qupath">
+<h3>Quality control of phenotypes using QuPath<a class="headerlink" href="#quality-control-of-phenotypes-using-qupath" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -3230,339 +1798,279 @@ Consolidating the phenotypes across all groups
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>CellID</th>
-      <th>Y_centroid</th>
-      <th>X_centroid</th>
-      <th>Area</th>
-      <th>MajorAxisLength</th>
-      <th>MinorAxisLength</th>
-      <th>Eccentricity</th>
-      <th>Orientation</th>
-      <th>Extent</th>
-      <th>Solidity</th>
-      <th>...</th>
-      <th>mean_DAPI_bg_filter</th>
-      <th>DAPI_ratio</th>
-      <th>DAPI_ratio_pass</th>
-      <th>Antibody_clumps</th>
-      <th>CD8_noise</th>
-      <th>folded_tissue</th>
-      <th>ANY</th>
-      <th>annotation</th>
-      <th>sample_id</th>
-      <th>phenotype</th>
+      <th>label</th>
+      <th>objectType</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>detection</td>
+      <td>POLYGON ((60 43.5, 54 43.5, 46.5 39, 42.5 30, ...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>detection</td>
+      <td>POLYGON ((134 19.5, 129 19.5, 126 15.5, 119 11...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>detection</td>
+      <td>POLYGON ((167 31.5, 148 33.5, 142 30.5, 137.5 ...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>detection</td>
+      <td>POLYGON ((188 13.5, 178 13.5, 167 7.5, 160.5 1...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>detection</td>
+      <td>POLYGON ((235 48.5, 231 47.5, 220 39.5, 202.5 ...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s create a geodataframe with cell segmentation, classified and coloured by phenotype</span>
+<span class="n">phenotypes</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">adata_to_qupath</span><span class="p">(</span>
+    <span class="n">adata</span><span class="o">=</span><span class="n">adata_processed</span><span class="p">,</span> 
+    <span class="n">geodataframe</span><span class="o">=</span><span class="n">gdf</span><span class="p">,</span>
+    <span class="n">adataobs_on</span><span class="o">=</span><span class="s2">&quot;CellID&quot;</span><span class="p">,</span>
+    <span class="n">gdf_on</span><span class="o">=</span><span class="s2">&quot;label&quot;</span><span class="p">,</span>
+    <span class="n">classify_by</span><span class="o">=</span><span class="s2">&quot;phenotype&quot;</span><span class="p">,</span>
+    <span class="n">simplify_value</span><span class="o">=</span><span class="kc">None</span><span class="p">,)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:13:13.71</span> | <span class=" -Color -Color-Bold -Color-Bold-Yellow">WARNING</span> | phenotype is not a categorical, converting to categorical
+<span class=" -Color -Color-Green">16:13:13.72</span> | <span class=" -Color -Color-Bold">INFO</span> | Found 15244 matching IDs between adata.obs[&#39;CellID&#39;] and geodataframe[&#39;label&#39;].
+<span class=" -Color -Color-Green">16:13:13.72</span> | <span class=" -Color -Color-Bold">INFO</span> | Classes now in shapes: [&#39;Epithelial&#39; &#39;Unknown&#39; &#39;CD4_T_cell&#39; &#39;Mesenchymal&#39; &#39;Fibroblasts&#39;
+ &#39;CD8_T_cell&#39; &#39;Macrophage&#39; &#39;B_cell&#39;]
+<span class=" -Color -Color-Green">16:13:13.72</span> | <span class=" -Color -Color-Bold">INFO</span> | Parsing colors compatible with QuPath
+<span class=" -Color -Color-Green">16:13:13.72</span> | <span class=" -Color -Color-Bold">INFO</span> | No color_dict found, using defaults
+<span class=" -Color -Color-Green">16:13:13.73</span> | <span class=" -Color -Color-Bold">INFO</span> | color_dict created: {&#39;B_cell&#39;: [31, 119, 180], &#39;CD4_T_cell&#39;: [255, 127, 14], &#39;CD8_T_cell&#39;: [44, 160, 44], &#39;Epithelial&#39;: [214, 39, 40], &#39;Fibroblasts&#39;: [148, 103, 189], &#39;Macrophage&#39;: [31, 119, 180], &#39;Mesenchymal&#39;: [255, 127, 14], &#39;Unknown&#39;: [44, 160, 44]}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># it looks like this</span>
+<span class="n">phenotypes</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>label</th>
+      <th>objectType</th>
+      <th>geometry</th>
+      <th>classification</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>6</th>
       <td>7</td>
-      <td>28.019009</td>
-      <td>321.572980</td>
-      <td>1473.0</td>
-      <td>57.990373</td>
-      <td>34.056846</td>
-      <td>0.809381</td>
-      <td>0.702143</td>
-      <td>160.367532</td>
-      <td>0.943022</td>
-      <td>...</td>
-      <td>True</td>
-      <td>0.503327</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>Unannotated</td>
-      <td>TD_15_TNBC_subset</td>
-      <td>Epithelial</td>
+      <td>detection</td>
+      <td>POLYGON ((338 51.5, 326 50.5, 303.5 39, 301.5 ...</td>
+      <td>{'name': 'Epithelial', 'color': [214, 39, 40]}</td>
     </tr>
     <tr>
       <th>7</th>
       <td>8</td>
-      <td>13.004021</td>
-      <td>351.318365</td>
-      <td>1492.0</td>
-      <td>60.422292</td>
-      <td>35.485098</td>
-      <td>0.809380</td>
-      <td>1.459721</td>
-      <td>167.917785</td>
-      <td>0.965071</td>
-      <td>...</td>
-      <td>True</td>
-      <td>0.563896</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>Unannotated</td>
-      <td>TD_15_TNBC_subset</td>
-      <td>Epithelial</td>
+      <td>detection</td>
+      <td>POLYGON ((354 35.5, 347 35.5, 337.5 23, 321 8....</td>
+      <td>{'name': 'Epithelial', 'color': [214, 39, 40]}</td>
     </tr>
     <tr>
       <th>8</th>
       <td>9</td>
-      <td>8.195719</td>
-      <td>415.693170</td>
-      <td>981.0</td>
-      <td>62.489467</td>
-      <td>20.854657</td>
-      <td>0.942668</td>
-      <td>-1.541497</td>
-      <td>144.769553</td>
-      <td>0.974181</td>
-      <td>...</td>
-      <td>True</td>
-      <td>0.473116</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>Unannotated</td>
-      <td>TD_15_TNBC_subset</td>
-      <td>Unknown</td>
+      <td>detection</td>
+      <td>POLYGON ((428 20.5, 403 18.5, 390 15.5, 386.5 ...</td>
+      <td>{'name': 'Unknown', 'color': [44, 160, 44]}</td>
     </tr>
     <tr>
       <th>9</th>
       <td>10</td>
-      <td>9.020833</td>
-      <td>482.729167</td>
-      <td>576.0</td>
-      <td>34.660038</td>
-      <td>21.747314</td>
-      <td>0.778660</td>
-      <td>-1.556045</td>
-      <td>93.698485</td>
-      <td>0.963211</td>
-      <td>...</td>
-      <td>True</td>
-      <td>0.526049</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>Unannotated</td>
-      <td>TD_15_TNBC_subset</td>
-      <td>CD4_T_cell</td>
+      <td>detection</td>
+      <td>POLYGON ((495 18.5, 472.5 21, 468.5 13, 467.5 ...</td>
+      <td>{'name': 'CD4_T_cell', 'color': [255, 127, 14]}</td>
     </tr>
     <tr>
       <th>10</th>
       <td>11</td>
-      <td>11.670357</td>
-      <td>554.346863</td>
-      <td>813.0</td>
-      <td>36.506883</td>
-      <td>29.531264</td>
-      <td>0.587914</td>
-      <td>-1.567206</td>
-      <td>109.355339</td>
-      <td>0.975990</td>
-      <td>...</td>
-      <td>True</td>
-      <td>0.649908</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>Unannotated</td>
-      <td>TD_15_TNBC_subset</td>
-      <td>Unknown</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>16801</th>
-      <td>16802</td>
-      <td>4992.956322</td>
-      <td>561.156322</td>
-      <td>435.0</td>
-      <td>36.423914</td>
-      <td>15.810187</td>
-      <td>0.900884</td>
-      <td>-1.561879</td>
-      <td>87.798990</td>
-      <td>0.966667</td>
-      <td>...</td>
-      <td>True</td>
-      <td>0.461031</td>
-      <td>True</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>True</td>
-      <td>CD8_noise</td>
-      <td>TD_15_TNBC_subset</td>
-      <td>Fibroblasts</td>
-    </tr>
-    <tr>
-      <th>16804</th>
-      <td>16805</td>
-      <td>4993.413242</td>
-      <td>810.385845</td>
-      <td>438.0</td>
-      <td>40.105247</td>
-      <td>14.334812</td>
-      <td>0.933940</td>
-      <td>1.531591</td>
-      <td>90.970563</td>
-      <td>0.962637</td>
-      <td>...</td>
-      <td>True</td>
-      <td>0.477926</td>
-      <td>True</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>True</td>
-      <td>CD8_noise</td>
-      <td>TD_15_TNBC_subset</td>
-      <td>Unknown</td>
-    </tr>
-    <tr>
-      <th>16805</th>
-      <td>16806</td>
-      <td>4994.153535</td>
-      <td>645.010101</td>
-      <td>495.0</td>
-      <td>50.864135</td>
-      <td>13.112118</td>
-      <td>0.966202</td>
-      <td>1.538209</td>
-      <td>111.248737</td>
-      <td>0.951923</td>
-      <td>...</td>
-      <td>True</td>
-      <td>0.268536</td>
-      <td>True</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>True</td>
-      <td>CD8_noise</td>
-      <td>TD_15_TNBC_subset</td>
-      <td>Fibroblasts</td>
-    </tr>
-    <tr>
-      <th>16806</th>
-      <td>16807</td>
-      <td>4993.835570</td>
-      <td>1244.718121</td>
-      <td>298.0</td>
-      <td>28.947821</td>
-      <td>13.495126</td>
-      <td>0.884686</td>
-      <td>-1.561806</td>
-      <td>69.213203</td>
-      <td>0.973856</td>
-      <td>...</td>
-      <td>True</td>
-      <td>0.523596</td>
-      <td>True</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>True</td>
-      <td>CD8_noise</td>
-      <td>TD_15_TNBC_subset</td>
-      <td>Unknown</td>
-    </tr>
-    <tr>
-      <th>16807</th>
-      <td>16808</td>
-      <td>4994.250774</td>
-      <td>4186.876161</td>
-      <td>323.0</td>
-      <td>33.325316</td>
-      <td>13.027177</td>
-      <td>0.920429</td>
-      <td>-1.564638</td>
-      <td>77.213203</td>
-      <td>0.984756</td>
-      <td>...</td>
-      <td>True</td>
-      <td>0.401436</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>Unannotated</td>
-      <td>TD_15_TNBC_subset</td>
-      <td>Unknown</td>
+      <td>detection</td>
+      <td>POLYGON ((559 28.5, 550 27.5, 541.5 21, 538.5 ...</td>
+      <td>{'name': 'Unknown', 'color': [44, 160, 44]}</td>
     </tr>
   </tbody>
 </table>
-<p>15244 rows × 21 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span> <span class="o">=</span> <span class="n">adata_CD8</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">phenotypes</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s2">&quot;outputs/phenotypes.geojson&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span> <span class="o">=</span> <span class="n">adata_phenotyped</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 15244 × 15
-    obs: &#39;CellID&#39;, &#39;Y_centroid&#39;, &#39;X_centroid&#39;, &#39;Area&#39;, &#39;MajorAxisLength&#39;, &#39;MinorAxisLength&#39;, &#39;Eccentricity&#39;, &#39;Orientation&#39;, &#39;Extent&#39;, &#39;Solidity&#39;, &#39;Area_filter&#39;, &#39;mean_DAPI_bg_filter&#39;, &#39;DAPI_ratio&#39;, &#39;DAPI_ratio_pass&#39;, &#39;Antibody_clumps&#39;, &#39;CD8_noise&#39;, &#39;folded_tissue&#39;, &#39;ANY&#39;, &#39;annotation&#39;, &#39;sample_id&#39;, &#39;phenotype&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<section id="qc-phenotypes">
-<h3>QC phenotypes<a class="headerlink" href="#qc-phenotypes" title="Link to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Qupath shapes</span>
-</pre></div>
-</div>
-</div>
-</div>
+<a class="reference internal image-reference" href="../_images/phenotypes.png"><img alt="Phenotypes overlayed figure" src="../_images/phenotypes.png" style="width: 600px;" />
+</a>
 </section>
 </section>
 <section id="cellular-neighborhoods">
 <h2>Cellular neighborhoods<a class="headerlink" href="#cellular-neighborhoods" title="Link to this heading">#</a></h2>
+<p>Now we want to perform a simple cellular neighborhood analysis.<br />
+Similarly to the phenotyping step, there are many ways to do this, and we suggest one of the simplest SpatialLDA.</p>
+<p>Two decisions you must make is:</p>
+<p>(A) What is your criteria for a neighbor?<br />
+There are two common options:</p>
+<ol class="arabic simple">
+<li><p>radius, anything close enough to center of cell, less than x pixels away.</p></li>
+<li><p>KNN, k-number of nearest neighbors, the closest x number of cells.</p></li>
+</ol>
+<p>In our example we will measure the 50 nearest neighbor of each cell.</p>
+<p>(B) How many groups do you want to cluster your cells/tissue into?<br />
+This depends on your biology/tissue and how granular you want your analysis to be.<br />
+In our example we picked k=4.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_neighborhoods</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">scimap_spatial_lda</span><span class="p">(</span>
+                                <span class="n">adata</span><span class="o">=</span><span class="n">adata_processed</span><span class="p">,</span> 
+                                <span class="n">phenotype</span><span class="o">=</span><span class="s1">&#39;phenotype&#39;</span><span class="p">,</span> 
+                                <span class="n">method</span><span class="o">=</span><span class="s1">&#39;knn&#39;</span><span class="p">,</span> <span class="n">knn</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+                                <span class="n">imageid</span><span class="o">=</span><span class="s1">&#39;sample_id&#39;</span><span class="p">,</span>
+                                <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Processing: [&#39;TD_15_TNBC_subset&#39;]
+Identifying the 50 nearest neighbours for every cell
+Pre-Processing Spatial LDA
+Training Spatial LDA
+Calculating the Coherence Score
+
+Coherence Score:  0.43997410449257224
+Gathering the latent weights
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_neighborhoods</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">scimap_spatial_cluster</span><span class="p">(</span>
+    <span class="n">adata</span><span class="o">=</span><span class="n">adata_neighborhoods</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;kmeans&quot;</span><span class="p">,</span>
+    <span class="n">k</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;spatial_lda&quot;</span><span class="p">,</span>
+    <span class="n">use_raw</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Kmeans clustering
+</pre></div>
+</div>
+</div>
+</div>
+<section id="quality-control-with-merged-shapes">
+<h3>Quality control with merged shapes<a class="headerlink" href="#quality-control-with-merged-shapes" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">color_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;0&quot;</span><span class="p">:</span> <span class="s2">&quot;#F93A3A&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;1&quot;</span><span class="p">:</span> <span class="s2">&quot;#71F976&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;2&quot;</span><span class="p">:</span> <span class="s2">&quot;#3E9BFF&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;3&quot;</span><span class="p">:</span> <span class="s2">&quot;#FFDD00&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">voronoi</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">adata_to_voronoi</span><span class="p">(</span>
+    <span class="n">adata</span><span class="o">=</span><span class="n">adata_neighborhoods</span><span class="p">,</span>
+    <span class="n">classify_by</span><span class="o">=</span><span class="s2">&quot;spatial_lda&quot;</span><span class="p">,</span>
+    <span class="n">color_dict</span><span class="o">=</span><span class="n">color_dict</span><span class="p">,</span>
+    <span class="n">merge_adjacent_shapes</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:38:13.46</span> | <span class=" -Color -Color-Bold -Color-Bold-Yellow">WARNING</span> | spatial_lda is not a categorical, converting to categorical
+<span class=" -Color -Color-Green">16:38:13.46</span> | <span class=" -Color -Color-Bold">INFO</span> | Running Voronoi
+<span class=" -Color -Color-Green">16:38:13.53</span> | <span class=" -Color -Color-Bold">INFO</span> | Voronoi done
+<span class=" -Color -Color-Green">16:38:14.00</span> | <span class=" -Color -Color-Bold">INFO</span> | Transformed to geodataframe
+<span class=" -Color -Color-Green">16:38:14.03</span> | <span class=" -Color -Color-Bold">INFO</span> | Retaining 14871 valid polygons after filtering infinite ones.
+<span class=" -Color -Color-Green">16:38:14.04</span> | <span class=" -Color -Color-Bold">INFO</span> | Filtered out large polygons larger than 0.98 quantile
+<span class=" -Color -Color-Green">16:38:14.04</span> | <span class=" -Color -Color-Bold">INFO</span> | Merging polygons adjacent of the same category
+<span class=" -Color -Color-Green">16:38:14.58</span> | <span class=" -Color -Color-Bold">INFO</span> | Parsing colors compatible with QuPath
+<span class=" -Color -Color-Green">16:38:14.58</span> | <span class=" -Color -Color-Bold">INFO</span> | Custom color dictionary passed, adapting to QuPath color format
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># quick edits to visualize in notebook</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ast</span>
+<span class="n">voronoi</span><span class="p">[</span><span class="s1">&#39;class_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">voronoi</span><span class="p">[</span><span class="s1">&#39;classification&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+        <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">x</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">))</span>
+<span class="n">voronoi</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">voronoi</span><span class="p">[</span><span class="s1">&#39;class_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">color_dict</span><span class="p">)</span>
+<span class="n">voronoi</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">voronoi</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="../_images/e53870b0184aba0cad7bd4db08a3c7e736433b95a8be052b4d3451558c11b911.png" src="../_images/e53870b0184aba0cad7bd4db08a3c7e736433b95a8be052b4d3451558c11b911.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#save to file</span>
+<span class="n">voronoi</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s2">&quot;outputs/voronoi_neighborhoods.geojson&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+</div>
+</div>
+</section>
 </section>
 </section>
 
@@ -3591,7 +2099,7 @@ Consolidating the phenotypes across all groups
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Integrating proteomics and imaging data</p>
+        <p class="prev-next-title">Import necessary packages</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -3611,27 +2119,35 @@ Consolidating the phenotypes across all groups
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-visualize-segmentation-in-qupath">Part 1: Visualize segmentation in QuPath</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-visualize-interactively-in-napari-or-qupath">Let’s visualize interactively in Napari or Qupath</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-napari">For Napari</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-qupath">For QuPath</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-necesary-packages-and-data">Import necesary packages and data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-download-the-demo-data">Let’s download the demo data</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quant-to-adata">Quant to adata</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-cells">Filter cells</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-cells-too-big">Filter cells too big</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-visualize-segmentation">Part 1: Visualize segmentation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-interactively-in-qupath">Visualize interactively in QuPath</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-interactively-in-napari">Visualize interactively in Napari</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-analyze-the-single-cell-data">Part 2: Analyze the single cell data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-cells-by-area">Filter cells by Area</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-by-initial-nuclear-stain-signal">Filter by initial nuclear stain signal</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-by-ratio-of-nuclear-stain-between-last-and-first-dapi-images">Filter by ratio of nuclear stain between last and first DAPI images</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-by-manual-annotations">Filter by manual annotations</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qupath-qc">QuPath QC</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#napari-qc-not-quite-possible-without-spatialdata-object-check-tutorial-3">Napari QC not quite possible without spatialdata object, check tutorial #3</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phenotype-my-cells">Phenotype my cells</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qc-phenotypes">QC phenotypes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phenotype-the-cells">Phenotype the cells</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-manually-assigned-thresholds">Import manually assigned thresholds</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-adata-ready-for-phenotyping">Get adata ready for phenotyping</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rescale-data-based-on-thresholds">Rescale data based on thresholds</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#phenotype-cells">Phenotype cells</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quality-control-of-phenotypes-using-qupath">Quality control of phenotypes using QuPath</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cellular-neighborhoods">Cellular neighborhoods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cellular-neighborhoods">Cellular neighborhoods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quality-control-with-merged-shapes">Quality control with merged shapes</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

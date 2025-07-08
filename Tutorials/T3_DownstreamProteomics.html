@@ -11,12 +11,12 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="Tutorials/T3_DownstreamProteomics.html" />
 <meta property="og:site_name" content="openDVP" />
-<meta property="og:description" content="Package import: Load adata object: First step, describe the dataset: Let’s plot some data: Filter dataset by NaNs: We expect a lot of proteins to be removed because this is a subsampled dataset. Ma..." />
+<meta property="og:description" content="Package import: Load adata object: First step, describe the dataset: SMALL DESCRIPTION OF WHAT Let’s plot some data: Filter dataset by NaNs: We expect a lot of proteins to be removed because this i..." />
 <meta property="og:image:width" content="1146" />
 <meta property="og:image:height" content="600" />
-<meta property="og:image" content="_images/social_previews/summary_Tutorials_T3_DownstreamProteomics_8116453a.png" />
-<meta property="og:image:alt" content="Package import: Load adata object: First step, describe the dataset: Let’s plot some data: Filter dataset by NaNs: We expect a lot of proteins to be removed because this is a subsampled dataset. Ma..." />
-<meta name="description" content="Package import: Load adata object: First step, describe the dataset: Let’s plot some data: Filter dataset by NaNs: We expect a lot of proteins to be removed because this is a subsampled dataset. Ma..." />
+<meta property="og:image" content="_images/social_previews/summary_Tutorials_T3_DownstreamProteomics_d4a8fbaf.png" />
+<meta property="og:image:alt" content="Package import: Load adata object: First step, describe the dataset: SMALL DESCRIPTION OF WHAT Let’s plot some data: Filter dataset by NaNs: We expect a lot of proteins to be removed because this i..." />
+<meta name="description" content="Package import: Load adata object: First step, describe the dataset: SMALL DESCRIPTION OF WHAT Let’s plot some data: Filter dataset by NaNs: We expect a lot of proteins to be removed because this i..." />
 <meta name="twitter:card" content="summary_large_image" />
 
     <title>Proccessing of proteomic data &#8212; openDVP</title>
@@ -59,7 +59,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Workflows" href="../Workflows/index.html" />
-    <link rel="prev" title="Integrating proteomics and imaging data" href="T2_ProteomicsIntegration.html" />
+    <link rel="prev" title="Import necessary packages" href="T2_ProteomicsIntegration.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -230,8 +230,17 @@
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Tutorials</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="T1_ImageAnalysis.html">Image Analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="T2_ProteomicsIntegration.html">Integrating proteomics and imaging data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="T1_ImageAnalysis.html">Image single-cell analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="T2_ProteomicsIntegration.html">Import necessary packages</a></li>
+
+
+
+
+
+
+
+
+
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Proccessing of proteomic data</a></li>
 </ul>
 </details></li>
@@ -389,13 +398,14 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-step-describe-the-dataset">First step, describe the dataset</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-plot-some-data">Let’s plot some data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-dataset-by-nans">Filter dataset by NaNs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imputation">Imputation</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imputation">Imputation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-dig-into-the-biology">Let’s dig into the biology</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scanpy-s-pca">Scanpy’s PCA</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heatmap">heatmap</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#differential-analysis">Differential analysis</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-with-volcano-plot">plotting with volcano plot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#volcano-plot">Volcano plot</a></li>
 </ul>
 </li>
 </ul>
@@ -457,6 +467,14 @@ document.write(`
 </section>
 <section id="first-step-describe-the-dataset">
 <h2>First step, describe the dataset<a class="headerlink" href="#first-step-describe-the-dataset" title="Link to this heading">#</a></h2>
+<p>SMALL DESCRIPTION OF WHAT</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># EXPLAIN RCNS OR SIMPLY GROUP NAMES</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dvp</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">dual_axis_boxplots</span><span class="p">(</span><span class="n">adata_obs</span><span class="o">=</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">,</span> <span class="n">feature_key</span><span class="o">=</span><span class="s2">&quot;RCN&quot;</span><span class="p">)</span>
@@ -480,7 +498,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dvp</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">density</span><span class="p">(</span><span class="n">adata</span><span class="o">=</span><span class="n">adata</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="s2">&quot;RCN&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dvp</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">density</span><span class="p">(</span><span class="n">adata</span><span class="o">=</span><span class="n">adata</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="s2">&quot;RCN&quot;</span><span class="p">)</span> <span class="c1">#AGREGATION ? </span>
 <span class="n">dvp</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">density</span><span class="p">(</span><span class="n">adata</span><span class="o">=</span><span class="n">adata</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="s2">&quot;QuPath_class&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -488,6 +506,208 @@ document.write(`
 <div class="cell_output docutils container">
 <img alt="../_images/555da664bf2db55b10a74255a30fcc65f02046abcf2f3fafe670d95d264edd7e.png" src="../_images/555da664bf2db55b10a74255a30fcc65f02046abcf2f3fafe670d95d264edd7e.png" />
 <img alt="../_images/8a0a8bed359401d2887767f49a3a8b8863d0e6d36dfdbf5848c11c02c3dad4f3.png" src="../_images/8a0a8bed359401d2887767f49a3a8b8863d0e6d36dfdbf5848c11c02c3dad4f3.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># rankplot</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dvp</span><span class="o">.</span><span class="n">__version__</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;0.5.0&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">adjustText</span><span class="w"> </span><span class="kn">import</span> <span class="n">adjust_text</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">anndata</span><span class="w"> </span><span class="kn">import</span> <span class="n">AnnData</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.figure</span><span class="w"> </span><span class="kn">import</span> <span class="n">Figure</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">opendvp.tl</span><span class="w"> </span><span class="kn">import</span> <span class="n">filter_features_byNaNs</span><span class="p">,</span> <span class="n">impute_gaussian</span>
+
+<span class="c1">#TODO Assume adata has non-filtered non-imputed data</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">rankplot</span><span class="p">(</span>
+    <span class="n">adata</span><span class="p">:</span> <span class="n">AnnData</span><span class="p">,</span>
+    <span class="n">adata_obs_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">groups</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">proteins_to_label</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">group_colors</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">group_offset</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">return_fig</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">ax</span><span class="p">:</span> <span class="n">Any</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Figure</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot a rank plot of average protein abundance in an AnnData object.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    adata : AnnData</span>
+<span class="sd">        Annotated data matrix.</span>
+<span class="sd">    adata_obs_key : str</span>
+<span class="sd">        Key in adata.obs indicating group labels.</span>
+<span class="sd">    groups : list of str</span>
+<span class="sd">        Groups from adata.obs[adata_obs_key] to include.</span>
+<span class="sd">    proteins_to_label : list of str, optional</span>
+<span class="sd">        List of feature names (in adata.var_names) to label on the plot.</span>
+<span class="sd">    group_colors : dict, optional</span>
+<span class="sd">        Dictionary mapping group names to colors.</span>
+<span class="sd">    group_offset : dict, optional</span>
+<span class="sd">        Dictionary mapping group names to x-axis offset (for shifting lines).</span>
+<span class="sd">    return_fig : bool, optional</span>
+<span class="sd">        If True, returns the matplotlib figure object for further customization.</span>
+<span class="sd">    ax : matplotlib.axes.Axes, optional</span>
+<span class="sd">        Axes object to plot on. If None, a new figure and axes are created.</span>
+<span class="sd">    **kwargs</span>
+<span class="sd">        Additional keyword arguments passed to matplotlib plot.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    -------</span>
+<span class="sd">    fig : matplotlib.figure.Figure or None</span>
+<span class="sd">        The figure object if return_fig is True, otherwise None.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">figure</span>
+    <span class="n">texts</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">adata_copy</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">groups</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">groups</span> <span class="o">=</span> <span class="n">adata_copy</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="n">adata_obs_key</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+    <span class="n">df_sns</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;group&quot;</span><span class="p">,</span> <span class="s2">&quot;rank&quot;</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;protein&quot;</span><span class="p">])</span>
+
+    <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">:</span>
+        <span class="c1">#split adata</span>
+        <span class="n">adata_group</span> <span class="o">=</span> <span class="n">adata_copy</span><span class="p">[</span><span class="n">adata_copy</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="n">adata_obs_key</span><span class="p">]</span> <span class="o">==</span> <span class="n">group</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="c1">#filter</span>
+        <span class="n">adata_group</span> <span class="o">=</span> <span class="n">filter_features_byNaNs</span><span class="p">(</span><span class="n">adata_group</span><span class="p">)</span>
+        <span class="c1">#impute</span>
+        <span class="n">adata_group</span> <span class="o">=</span> <span class="n">impute_gaussian</span><span class="p">(</span><span class="n">adata_group</span><span class="p">)</span>
+
+        <span class="n">X_group</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">adata_group</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">mean_vals</span> <span class="o">=</span> <span class="n">X_group</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">ranks</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">mean_vals</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">adata_group</span><span class="o">.</span><span class="n">var_names</span><span class="p">)</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;min&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+        <span class="n">rank_col_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;ranking_</span><span class="si">{</span><span class="n">group</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">groups</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="s2">&quot;ranking&quot;</span>
+        <span class="n">adata_group</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="n">rank_col_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">ranks</span>
+
+        <span class="n">df_plot</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+            <span class="s2">&quot;group&quot;</span><span class="p">:</span> <span class="n">group</span><span class="p">,</span>
+            <span class="s1">&#39;rank&#39;</span><span class="p">:</span> <span class="n">ranks</span><span class="p">,</span>
+            <span class="s1">&#39;mean&#39;</span><span class="p">:</span> <span class="n">mean_vals</span><span class="p">,</span>
+            <span class="s1">&#39;protein&#39;</span><span class="p">:</span> <span class="n">adata_group</span><span class="o">.</span><span class="n">var_names</span>
+        <span class="p">})</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;rank&#39;</span><span class="p">)</span>
+
+        <span class="n">df_sns</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_sns</span><span class="p">,</span><span class="n">df_plot</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">group_colors</span><span class="p">:</span>
+        <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_sns</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;rank&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;group&quot;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">group_colors</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_sns</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;rank&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;group&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">proteins_to_label</span><span class="p">:</span>
+        <span class="n">labeled_df</span> <span class="o">=</span> <span class="n">df_sns</span><span class="p">[</span><span class="n">df_sns</span><span class="p">[</span><span class="s1">&#39;protein&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">proteins_to_label</span><span class="p">)]</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">labeled_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+            <span class="n">group</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span>
+            <span class="n">label_color</span> <span class="o">=</span> <span class="n">group_colors</span><span class="p">[</span><span class="n">group</span><span class="p">]</span> <span class="k">if</span> <span class="n">group_colors</span> <span class="ow">and</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">group_colors</span> <span class="k">else</span> <span class="s1">&#39;black&#39;</span>
+
+            <span class="n">texts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+                    <span class="n">row</span><span class="p">[</span><span class="s1">&#39;rank&#39;</span><span class="p">],</span>
+                    <span class="n">row</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">],</span>
+                    <span class="n">row</span><span class="p">[</span><span class="s1">&#39;protein&#39;</span><span class="p">],</span>
+                    <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+                    <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+                    <span class="n">color</span><span class="o">=</span><span class="n">label_color</span><span class="p">,</span>
+                    <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+                        <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
+                        <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span>
+                        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span>
+                        <span class="n">boxstyle</span><span class="o">=</span><span class="s1">&#39;round,pad=0.3&#39;</span><span class="p">,</span>
+                    <span class="p">),</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+
+
+    <span class="k">if</span> <span class="n">proteins_to_label</span> <span class="ow">and</span> <span class="n">texts</span><span class="p">:</span>
+        <span class="n">adjust_text</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span> <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;-&gt;&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">))</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Rank (1 = most abundant)&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Average abundance&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Protein abundance ranking&quot;</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">groups</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">adata_obs_key</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">return_fig</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">fig</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rankplot</span><span class="p">(</span><span class="n">adata</span><span class="o">=</span><span class="n">adata</span><span class="p">,</span> <span class="n">adata_obs_key</span><span class="o">=</span><span class="s2">&quot;RCN&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">09:34:10.16</span> | <span class=" -Color -Color-Bold">INFO</span> | Filtering protein with at least 70.0% valid values in ANY group
+<span class=" -Color -Color-Green">09:34:10.16</span> | <span class=" -Color -Color-Bold">INFO</span> | Calculating overall QC metrics for all features.
+<span class=" -Color -Color-Green">09:34:10.17</span> | <span class=" -Color -Color-Bold">INFO</span> | No grouping variable was provided, filtering across all samples using overall validity.
+<span class=" -Color -Color-Green">09:34:10.17</span> | <span class=" -Color -Color-Bold">INFO</span> | Complete QC metrics for all initial features stored in `adata.uns[&#39;filter_features_byNaNs_qc_metrics&#39;]`.
+<span class=" -Color -Color-Green">09:34:10.17</span> | <span class=" -Color -Color-Bold">INFO</span> | 4301 proteins were kept.
+<span class=" -Color -Color-Green">09:34:10.17</span> | <span class=" -Color -Color-Bold">INFO</span> | 2462 proteins were removed.
+<span class=" -Color -Color-Green">09:34:10.17</span> | <span class=" -Color -Color-Bold -Color-Bold-Green">SUCCESS</span> | filter_features_byNaNs complete.
+<span class=" -Color -Color-Green">09:34:10.17</span> | <span class=" -Color -Color-Bold">INFO</span> | Storing original data in `adata.layers[&#39;unimputed&#39;]`.
+<span class=" -Color -Color-Green">09:34:10.17</span> | <span class=" -Color -Color-Bold">INFO</span> | Imputation with Gaussian distribution PER PROTEIN
+<span class=" -Color -Color-Green">09:34:10.17</span> | <span class=" -Color -Color-Bold">INFO</span> | Mean number of missing values per sample: 102.6 out of 4301 proteins
+<span class=" -Color -Color-Green">09:34:10.17</span> | <span class=" -Color -Color-Bold">INFO</span> | Mean number of missing values per protein: 0.12 out of 5 samples
+<span class=" -Color -Color-Green">09:34:12.03</span> | <span class=" -Color -Color-Bold">INFO</span> | Imputation complete. QC metrics stored in `adata.uns[&#39;impute_gaussian_qc_metrics&#39;]`.
+<span class=" -Color -Color-Green">09:34:12.04</span> | <span class=" -Color -Color-Bold">INFO</span> | Filtering protein with at least 70.0% valid values in ANY group
+<span class=" -Color -Color-Green">09:34:12.04</span> | <span class=" -Color -Color-Bold">INFO</span> | Calculating overall QC metrics for all features.
+<span class=" -Color -Color-Green">09:34:12.04</span> | <span class=" -Color -Color-Bold">INFO</span> | No grouping variable was provided, filtering across all samples using overall validity.
+<span class=" -Color -Color-Green">09:34:12.04</span> | <span class=" -Color -Color-Bold">INFO</span> | Complete QC metrics for all initial features stored in `adata.uns[&#39;filter_features_byNaNs_qc_metrics&#39;]`.
+<span class=" -Color -Color-Green">09:34:12.04</span> | <span class=" -Color -Color-Bold">INFO</span> | 3627 proteins were kept.
+<span class=" -Color -Color-Green">09:34:12.05</span> | <span class=" -Color -Color-Bold">INFO</span> | 3136 proteins were removed.
+<span class=" -Color -Color-Green">09:34:12.05</span> | <span class=" -Color -Color-Bold -Color-Bold-Green">SUCCESS</span> | filter_features_byNaNs complete.
+<span class=" -Color -Color-Green">09:34:12.05</span> | <span class=" -Color -Color-Bold">INFO</span> | Storing original data in `adata.layers[&#39;unimputed&#39;]`.
+<span class=" -Color -Color-Green">09:34:12.05</span> | <span class=" -Color -Color-Bold">INFO</span> | Imputation with Gaussian distribution PER PROTEIN
+<span class=" -Color -Color-Green">09:34:12.05</span> | <span class=" -Color -Color-Bold">INFO</span> | Mean number of missing values per sample: 103.4 out of 3627 proteins
+<span class=" -Color -Color-Green">09:34:12.05</span> | <span class=" -Color -Color-Bold">INFO</span> | Mean number of missing values per protein: 0.14 out of 5 samples
+<span class=" -Color -Color-Green">09:34:13.55</span> | <span class=" -Color -Color-Bold">INFO</span> | Imputation complete. QC metrics stored in `adata.uns[&#39;impute_gaussian_qc_metrics&#39;]`.
+</pre></div>
+</div>
+<img alt="../_images/8d5b054981436d18fba838d33485f64ebc1e5dbe6d6e3949966437fd6fa26a49.png" src="../_images/8d5b054981436d18fba838d33485f64ebc1e5dbe6d6e3949966437fd6fa26a49.png" />
 </div>
 </div>
 </section>
@@ -928,6 +1148,9 @@ You can always call those values by <code class="docutils literal notranslate"><
 </div>
 </div>
 </div>
+</section>
+<section id="let-s-dig-into-the-biology">
+<h2>Let’s dig into the biology<a class="headerlink" href="#let-s-dig-into-the-biology" title="Link to this heading">#</a></h2>
 <section id="scanpy-s-pca">
 <h3>Scanpy’s PCA<a class="headerlink" href="#scanpy-s-pca" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
@@ -971,7 +1194,7 @@ Beware of using Scanpy for proteomics datasets, assumptions will vary.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># let&#39;s plot the direction of each feature</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># let&#39;s plot the contribution of each protein to the PC1 and PC2</span>
 <span class="n">dvp</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">pca_loadings</span><span class="p">(</span><span class="n">adata_imputed</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1000,6 +1223,13 @@ Beware of using Scanpy for proteomics datasets, assumptions will vary.</p>
 </section>
 <section id="heatmap">
 <h3>heatmap<a class="headerlink" href="#heatmap" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># hierarchical clustering of proteins and samples to show how the features group from a high level</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">adata_imputed</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">adata_imputed</span><span class="o">.</span><span class="n">var_names</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">adata_imputed</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">RCN</span><span class="p">)</span>
@@ -1064,8 +1294,8 @@ Beware of using Scanpy for proteomics datasets, assumptions will vary.</p>
 </div>
 </div>
 </div>
-<section id="plotting-with-volcano-plot">
-<h3>plotting with volcano plot<a class="headerlink" href="#plotting-with-volcano-plot" title="Link to this heading">#</a></h3>
+<section id="volcano-plot">
+<h3>Volcano plot<a class="headerlink" href="#volcano-plot" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dvp</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">volcano</span><span class="p">(</span><span class="n">adata_DAP</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;mean_diff&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;-log10_p_corr&quot;</span><span class="p">,</span> <span class="n">FDR</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">significant</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tag_top</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">group1</span><span class="o">=</span><span class="s2">&quot;Tumor samples&quot;</span><span class="p">,</span> <span class="n">group2</span><span class="o">=</span><span class="s2">&quot;Immune samples&quot;</span><span class="p">)</span>
@@ -1097,7 +1327,7 @@ Beware of using Scanpy for proteomics datasets, assumptions will vary.</p>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Integrating proteomics and imaging data</p>
+        <p class="prev-next-title">Import necessary packages</p>
       </div>
     </a>
     <a class="right-next"
@@ -1130,13 +1360,14 @@ Beware of using Scanpy for proteomics datasets, assumptions will vary.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-step-describe-the-dataset">First step, describe the dataset</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-plot-some-data">Let’s plot some data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-dataset-by-nans">Filter dataset by NaNs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imputation">Imputation</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imputation">Imputation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-dig-into-the-biology">Let’s dig into the biology</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scanpy-s-pca">Scanpy’s PCA</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heatmap">heatmap</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#differential-analysis">Differential analysis</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-with-volcano-plot">plotting with volcano plot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#volcano-plot">Volcano plot</a></li>
 </ul>
 </li>
 </ul>

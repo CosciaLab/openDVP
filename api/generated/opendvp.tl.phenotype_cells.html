@@ -56,8 +56,6 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/generated/opendvp.tl.phenotype_cells';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Utils" href="../utils.html" />
-    <link rel="prev" title="opendvp.tl.stats_ttest" href="opendvp.tl.stats_ttest.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -120,6 +118,8 @@
       
       
       
+        
+      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -161,8 +161,8 @@
  </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">API Reference</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../index.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../io.html">Input / Output</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.adata_to_qupath.html">opendvp.io.adata_to_qupath</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.io.adata_to_voronoi.html">opendvp.io.adata_to_voronoi</a></li>
@@ -201,7 +201,7 @@
 <li class="toctree-l3"><a class="reference internal" href="opendvp.pp.rescale.html">opendvp.pp.rescale</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 current active has-children"><a class="reference internal" href="../tl.html">Tools</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tl.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.filter_adata_by_gates.html">opendvp.tl.filter_adata_by_gates</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.filter_by_abs_value.html">opendvp.tl.filter_by_abs_value</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.filter_by_annotation.html">opendvp.tl.filter_by_annotation</a></li>
@@ -214,7 +214,6 @@
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.stats_average_samples.html">opendvp.tl.stats_average_samples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.stats_bootstrap.html">opendvp.tl.stats_bootstrap</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.stats_ttest.html">opendvp.tl.stats_ttest</a></li>
-<li class="toctree-l3 current active"><a class="current reference internal" href="#">opendvp.tl.phenotype_cells</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../utils.html">Utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -368,9 +367,7 @@ document.write(`
   </button>
 `);
 </script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -386,14 +383,6 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#opendvp.tl.phenotype_cells"><code class="docutils literal notranslate"><span class="pre">phenotype_cells()</span></code></a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -405,38 +394,6 @@ document.write(`
                   
   <section id="opendvp-tl-phenotype-cells">
 <h1>opendvp.tl.phenotype_cells<a class="headerlink" href="#opendvp-tl-phenotype-cells" title="Link to this heading">#</a></h1>
-<dl class="py function">
-<dt class="sig sig-object py" id="opendvp.tl.phenotype_cells">
-<span class="sig-name descname"><span class="pre">phenotype_cells</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phenotype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'phenotype'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">imageid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'imageid'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pheno_threshold_percent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pheno_threshold_abs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.tl.phenotype_cells" title="Link to this definition">#</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>adata</strong> (<a class="reference external" href="https://anndata.readthedocs.io/en/stable/generated/anndata.AnnData.html#anndata.AnnData" title="(in anndata v0.11.4)"><em>anndata.AnnData</em></a>) – The input AnnData object containing single-cell data for phenotyping.</p></li>
-<li><p><strong>phenotype</strong> (<em>pd.DataFrame</em>) – A DataFrame specifying the gating strategy for cell phenotyping. It should outline the workflow for phenotype classification based on marker expression levels. An example workflow is available at [this GitHub link](<a class="github reference external" href="https://github.com/ajitjohnson/scimap/blob/master/scimap/tests/_data/phenotype_workflow.csv">ajitjohnson/scimap</a>).</p></li>
-<li><p><strong>gate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em>, </em><em>optional</em>) – The threshold value for determining positive cell classification based on scaled data. By convention, values above this threshold are considered to indicate positive cells.</p></li>
-<li><p><strong>label</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The name of the column in <code class="docutils literal notranslate"><span class="pre">adata.obs</span></code> where the final phenotype classifications will be stored. This label will be used to access the phenotyping results within the <code class="docutils literal notranslate"><span class="pre">AnnData</span></code> object.</p></li>
-<li><p><strong>imageid</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em>) – The name of the column in <code class="docutils literal notranslate"><span class="pre">adata.obs</span></code> that contains unique image identifiers. This is crucial for analyses that require differentiation of data based on the source image, especially when using phenotype threshold parameters (<code class="docutils literal notranslate"><span class="pre">pheno_threshold_percent</span></code> or <code class="docutils literal notranslate"><span class="pre">pheno_threshold_abs</span></code>).</p></li>
-<li><p><strong>pheno_threshold_percent</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em>, </em><em>optional</em>) – A threshold value (between 0 and 100) specifying the minimum percentage of cells that must exhibit a particular phenotype for it to be considered valid. Phenotypes not meeting this threshold are reclassified as ‘unknown’. This parameter is useful for minimizing the impact of low-frequency false positives.</p></li>
-<li><p><strong>pheno_threshold_abs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>optional</em>) – Similar to <code class="docutils literal notranslate"><span class="pre">pheno_threshold_percent</span></code>, but uses an absolute cell count instead of a percentage. Phenotypes with cell counts below this threshold are reclassified as ‘unknown’. This can help in addressing rare phenotype classifications that may not be meaningful.</p></li>
-<li><p><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, the function will print detailed messages about its progress and the steps being executed.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The input AnnData object, updated to include the phenotype classifications for each cell. The phenotyping results can be found in <code class="docutils literal notranslate"><span class="pre">adata.obs[label]</span></code>, where <code class="docutils literal notranslate"><span class="pre">label</span></code> is the name specified by the user for the phenotype column.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>adata (<a class="reference external" href="https://anndata.readthedocs.io/en/stable/generated/anndata.AnnData.html#anndata.AnnData" title="(in anndata v0.11.4)">anndata.AnnData</a>)</p>
-</dd>
-</dl>
-<p class="rubric">Example</p>
-<p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>python</p>
-<p># Load the phenotype workflow CSV file
-phenotype = pd.read_csv(‘path/to/csv/file/’)</p>
-<p># Apply phenotyping to cells based on the specified workflow
-adata = sm.tl.phenotype_cells(adata, phenotype=phenotype, gate=0.5, label=”phenotype”)</p>
-<p><a href="#id5"><span class="problematic" id="id6">``</span></a><a href="#id7"><span class="problematic" id="id8">`</span></a></p>
-</dd></dl>
-
 </section>
 
 
@@ -450,45 +407,12 @@ adata = sm.tl.phenotype_cells(adata, phenotype=phenotype, gate=0.5, label=”phe
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="opendvp.tl.stats_ttest.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">opendvp.tl.stats_ttest</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="../utils.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Utils</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#opendvp.tl.phenotype_cells"><code class="docutils literal notranslate"><span class="pre">phenotype_cells()</span></code></a></li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>

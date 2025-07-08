@@ -191,7 +191,6 @@
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.dual_axis_boxplots.html">opendvp.plotting.dual_axis_boxplots</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.histogram_w_imputation.html">opendvp.plotting.histogram_w_imputation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.pca_loadings.html">opendvp.plotting.pca_loadings</a></li>
-<li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.pca.html">opendvp.plotting.pca</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.rankplot.html">opendvp.plotting.rankplot</a></li>
 <li class="toctree-l3 current active"><a class="current reference internal" href="#">opendvp.plotting.upset</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.volcano.html">opendvp.plotting.volcano</a></li>
@@ -399,46 +398,46 @@ document.write(`
 <h1>opendvp.plotting.upset<a class="headerlink" href="#opendvp-plotting-upset" title="Link to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="opendvp.plotting.upset">
-<span class="sig-name descname"><span class="pre">upset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">groupby</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_presence_fraction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort_by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cardinality'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.plotting.upset" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">upset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">groupby</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_presence_fraction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort_by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cardinality'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_fig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.plotting.upset" title="Link to this definition">#</a></dt>
 <dd><p>Generate an UpSet plot from an AnnData object based on variable presence across groups.</p>
-<p>Presence is defined as non-NaN and above a specified threshold. Variables that are
-completely NaN across all samples are excluded. The final UpSet plot shows
-presence/absence of variables across the specified groups.</p>
+<p>Expected input is a non-imputed adata object.</p>
+<p>Variables that are completely NaN across all samples are excluded.
+Variables that do not pass min_presence_fraction of the selected group are removed.
+e.g if 0.5, if only 40% of samples have a valid value that variable is not counted for that group.
+The final UpSet plot shows presence/absence of variables across the specified groups.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure" title="(in Matplotlib v3.10.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></a></span></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure" title="(in Matplotlib v3.10.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
 </dd>
 </dl>
 <section id="parameters">
-<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h2>
+<h2>Parameters:<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h2>
 <dl class="simple">
 <dt>adata<span class="classifier">AnnData</span></dt><dd><p>Annotated data matrix with observations (samples) as rows and variables as columns.</p>
 </dd>
 <dt>groupby<span class="classifier">str</span></dt><dd><p>Column name in <code class="docutils literal notranslate"><span class="pre">adata.obs</span></code> used to group samples before computing presence.</p>
 </dd>
-<dt>threshold<span class="classifier">float, optional</span></dt><dd><p>Minimum value to consider a variable “present” in a sample. Default is 0.0.</p>
-</dd>
 <dt>min_presence_fraction<span class="classifier">float, optional</span></dt><dd><p>Minimum fraction of samples (within a group) where a variable must be present
-for that group to consider the variable as “present”. Value between 0.0 and 1.0. Default is 0.0.</p>
+for that group to consider the variable as “present”. Value between 0.0 and 1.0. Default is 0.7.</p>
 </dd>
-<dt>sort_by<span class="classifier">str, optional</span></dt><dd><p>Sorter for UpSet plot: cardinality, degree, -cardinality, -degree</p>
+<dt>sort_by<span class="classifier">str, optional</span></dt><dd><p>Sorter for UpSet plot: cardinality, degree, -cardinality, -degree. Default is “cardinality”.</p>
 </dd>
-<dt>figsize<span class="classifier">tuple, optional</span></dt><dd><p>Size of the UpSet plot figure. Default is (10, 6).</p>
+<dt>return_fig<span class="classifier">bool, optional</span></dt><dd><p>Whether to return the matplotlib Figure object. Default is False.</p>
 </dd>
-<dt>show<span class="classifier">bool, optional</span></dt><dd><p>Whether to call plt.show(). Default is True.</p>
+<dt><a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs</dt><dd><p>Additional keyword arguments passed to UpSet.</p>
 </dd>
 </dl>
 </section>
 <section id="returns">
 <h2>Returns:<a class="headerlink" href="#returns" title="Link to this heading">#</a></h2>
 <dl class="simple">
-<dt>matplotlib.figure.Figure</dt><dd><p>The matplotlib Figure object containing the UpSet plot.</p>
+<dt>matplotlib.figure.Figure or None</dt><dd><p>The matplotlib Figure object containing the UpSet plot, or None if not requested.</p>
 </dd>
 </dl>
 </section>
 <section id="example">
 <h2>Example:<a class="headerlink" href="#example" title="Link to this heading">#</a></h2>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plot_upset_from_adata</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">groupby</span><span class="o">=</span><span class="s2">&quot;condition&quot;</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">min_presence_fraction</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">upset</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">groupby</span><span class="o">=</span><span class="s2">&quot;condition&quot;</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">min_presence_fraction</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>

@@ -397,7 +397,7 @@ document.write(`
 <h1>opendvp.plotting.rankplot<a class="headerlink" href="#opendvp-plotting-rankplot" title="Link to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="opendvp.plotting.rankplot">
-<span class="sig-name descname"><span class="pre">rankplot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adata_obs_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">groups</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proteins_to_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_fig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.plotting.rankplot" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">rankplot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adata_obs_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_presence_fraction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">groups</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proteins_to_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_fig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.plotting.rankplot" title="Link to this definition">#</a></dt>
 <dd><p>Plot a rank plot of average protein abundance in an AnnData object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -415,13 +415,13 @@ document.write(`
 </dd>
 <dt>proteins_to_label<span class="classifier">list of str, optional</span></dt><dd><p>List of feature names (in adata.var_names) to label on the plot.</p>
 </dd>
-<dt>group_colors<span class="classifier">dict, optional</span></dt><dd><p>Dictionary mapping group names to colors.</p>
-</dd>
-<dt>group_offset<span class="classifier">dict, optional</span></dt><dd><p>Dictionary mapping group names to x-axis offset (for shifting lines).</p>
+<dt>group_colors<span class="classifier">dict, optional</span></dt><dd><p>Dictionary mapping group names to colors. Both keys and values should be strings.</p>
 </dd>
 <dt>return_fig<span class="classifier">bool, optional</span></dt><dd><p>If True, returns the matplotlib figure object for further customization.</p>
 </dd>
 <dt>ax<span class="classifier">matplotlib.axes.Axes, optional</span></dt><dd><p>Axes object to plot on. If None, a new figure and axes are created.</p>
+</dd>
+<dt>min_presence_fraction<span class="classifier">float, optional</span></dt><dd><p>Minimum fraction of non-NaN values required for a feature to be included in ranking (default: 0.7).</p>
 </dd>
 <dt><a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs</dt><dd><p>Additional keyword arguments passed to matplotlib plot.</p>
 </dd>

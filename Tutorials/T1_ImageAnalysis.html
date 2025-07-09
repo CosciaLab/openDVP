@@ -7,19 +7,19 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta property="og:title" content="Image single-cell analysis" />
+<meta property="og:title" content="T1: Image single-cell analysis" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="Tutorials/T1_ImageAnalysis.html" />
 <meta property="og:site_name" content="openDVP" />
 <meta property="og:description" content="In this tutorial I will show you how to perform quality control on your image processing and segmentation results. This tutorial assumes that you have already processed and quantified your images, ..." />
 <meta property="og:image:width" content="1146" />
 <meta property="og:image:height" content="600" />
-<meta property="og:image" content="_images/social_previews/summary_Tutorials_T1_ImageAnalysis_ab6e64a4.png" />
+<meta property="og:image" content="_images/social_previews/summary_Tutorials_T1_ImageAnalysis_046baa66.png" />
 <meta property="og:image:alt" content="In this tutorial I will show you how to perform quality control on your image processing and segmentation results. This tutorial assumes that you have already processed and quantified your images, ..." />
 <meta name="description" content="In this tutorial I will show you how to perform quality control on your image processing and segmentation results. This tutorial assumes that you have already processed and quantified your images, ..." />
 <meta name="twitter:card" content="summary_large_image" />
 
-    <title>Image single-cell analysis &#8212; openDVP</title>
+    <title>T1: Image single-cell analysis &#8212; openDVP</title>
   
   
   
@@ -58,7 +58,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Tutorials/T1_ImageAnalysis';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Import necessary packages" href="T2_ProteomicsIntegration.html" />
+    <link rel="next" title="T2: Downstream Proteomics" href="T2_DownstreamProteomics.html" />
     <link rel="prev" title="Tutorials" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -229,18 +229,9 @@
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Tutorials</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Image single-cell analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="T2_ProteomicsIntegration.html">Import necessary packages</a></li>
-
-
-
-
-
-
-
-
-
-<li class="toctree-l2"><a class="reference internal" href="T3_DownstreamProteomics.html">Proccessing of proteomic data</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">T1: Image single-cell analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="T2_DownstreamProteomics.html">T2: Downstream Proteomics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="T3_ProteomicsIntegration.html">T3: Proteomics Integration</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../Workflows/index.html">Workflows</a></li>
@@ -382,7 +373,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Image single-cell analysis</h1>
+    <h1>T1: Image single-cell analysis</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -432,8 +423,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="image-single-cell-analysis">
-<h1>Image single-cell analysis<a class="headerlink" href="#image-single-cell-analysis" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="t1-image-single-cell-analysis">
+<h1>T1: Image single-cell analysis<a class="headerlink" href="#t1-image-single-cell-analysis" title="Link to this heading">#</a></h1>
 <p>In this tutorial I will show you how to perform quality control on your image processing and segmentation results.<br />
 This tutorial assumes that you have already processed and quantified your images, and thus you have a quantification matrix.<br />
 For information to how to get here from raw images go to the image processing section.</p>
@@ -441,8 +432,7 @@ For information to how to get here from raw images go to the image processing se
 <h2>Import necesary packages and data<a class="headerlink" href="#import-necesary-packages-and-data" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#lets take a quick look</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">skimage.io</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">io</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">skimage.io</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">io</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">opendvp</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dvp</span>
 
@@ -462,7 +452,7 @@ For information to how to get here from raw images go to the image processing se
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://zenodo.org/records/15830141/files/data.tar.gz?download=1&quot;</span>
-<span class="n">output_path</span> <span class="o">=</span> <span class="s2">&quot;demodata.gz&quot;</span>  
+<span class="n">output_path</span> <span class="o">=</span> <span class="s2">&quot;../data/demodata.gz&quot;</span>  
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -489,7 +479,7 @@ However QuPath is usually not happy with us dropping a .tif mask into it.. There
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># let&#39;s perform some quick QC</span>
-<span class="n">path_to_segmentation</span> <span class="o">=</span> <span class="s2">&quot;data/segmentation/segmentation_mask.tif&quot;</span>
+<span class="n">path_to_segmentation</span> <span class="o">=</span> <span class="s2">&quot;../data/segmentation/segmentation_mask.tif&quot;</span>
 <span class="n">seg</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">path_to_segmentation</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -614,7 +604,7 @@ Number of segmented objects 16808
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># now lets write that geodataframe into a file</span>
-<span class="n">gdf</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s2">&quot;outputs/segmentation_for_qupath.geojson&quot;</span><span class="p">)</span>
+<span class="n">gdf</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s2">&quot;../outputs/segmentation_for_qupath.geojson&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -630,7 +620,7 @@ Number of segmented objects 16808
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#load image</span>
-<span class="n">image</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">&quot;data/image/mIF.ome.tif&quot;</span><span class="p">)</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">&quot;../data/image/mIF.ome.tif&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -661,7 +651,7 @@ For life scientists it also means you could use functions already created by ver
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#transform the .csv matrix to an AnnData object</span>
-<span class="n">adata</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">quant_to_adata</span><span class="p">(</span><span class="s2">&quot;data/quantification/quant.csv&quot;</span><span class="p">)</span>
+<span class="n">adata</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">quant_to_adata</span><span class="p">(</span><span class="s2">&quot;../data/quantification/quant.csv&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1035,7 +1025,7 @@ This means that you should create a QuPath Annotation Class for each different k
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#check annotations</span>
-<span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;data/manual_artefact_annotations/artefacts.geojson&quot;</span><span class="p">)</span>
+<span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;../data/manual_artefact_annotations/artefacts.geojson&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1130,7 +1120,7 @@ This means that you should create a QuPath Annotation Class for each different k
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">filter_by_annotation</span><span class="p">(</span>
     <span class="n">adata</span><span class="o">=</span><span class="n">adata</span><span class="p">,</span> 
-    <span class="n">path_to_geojson</span><span class="o">=</span><span class="s2">&quot;data/manual_artefact_annotations/artefacts.geojson&quot;</span><span class="p">)</span>
+    <span class="n">path_to_geojson</span><span class="o">=</span><span class="s2">&quot;../data/manual_artefact_annotations/artefacts.geojson&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1317,7 +1307,7 @@ The simplest solution is to reduce the marker specific signal for cells present 
 <h3>QuPath QC<a class="headerlink" href="#qupath-qc" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;outputs/segmentation_for_qupath.geojson&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;../outputs/segmentation_for_qupath.geojson&quot;</span><span class="p">)</span>
 <span class="n">gdf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1405,7 +1395,7 @@ The simplest solution is to reduce the marker specific signal for cells present 
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># let&#39;s save the file to drag it into qupath</span>
-<span class="n">cells</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s2">&quot;outputs/filtered_cells.geojson&quot;</span><span class="p">)</span>
+<span class="n">cells</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s2">&quot;../outputs/filtered_cells.geojson&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1432,7 +1422,7 @@ Therefore for steps 2,3 opendvp provides a wrapper of scimap functions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># this function loads and processes the values ready for the phenotyping</span>
-<span class="n">thresholds</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">import_thresholds</span><span class="p">(</span><span class="n">gates_csv_path</span><span class="o">=</span><span class="s2">&quot;data/phenotyping/gates.csv&quot;</span><span class="p">)</span>
+<span class="n">thresholds</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">import_thresholds</span><span class="p">(</span><span class="n">gates_csv_path</span><span class="o">=</span><span class="s2">&quot;../data/phenotyping/gates.csv&quot;</span><span class="p">)</span>
 <span class="n">thresholds</span>
 </pre></div>
 </div>
@@ -1566,7 +1556,7 @@ Scaling mean_Ki67 (gate: 1.093)
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we must load the phenotyping workflow</span>
 <span class="c1"># this is the set of biological knowledge we have about the markers</span>
 <span class="c1"># and what they mean to classify the cells</span>
-<span class="n">phenotype</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/phenotyping/celltype_matrix.csv&#39;</span><span class="p">)</span>
+<span class="n">phenotype</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/phenotyping/celltype_matrix.csv&#39;</span><span class="p">)</span>
 <span class="c1"># this just shows you the table </span>
 <span class="n">phenotype</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">na_rep</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 </pre></div>
@@ -1936,7 +1926,7 @@ Name: count, dtype: int64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">phenotypes</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s2">&quot;outputs/phenotypes.geojson&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">phenotypes</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s2">&quot;../outputs/phenotypes.geojson&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2062,7 +2052,7 @@ Gathering the latent weights
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#save to file</span>
-<span class="n">voronoi</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s2">&quot;outputs/voronoi_neighborhoods.geojson&quot;</span><span class="p">)</span>
+<span class="n">voronoi</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s2">&quot;../outputs/voronoi_neighborhoods.geojson&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2094,11 +2084,11 @@ Gathering the latent weights
       </div>
     </a>
     <a class="right-next"
-       href="T2_ProteomicsIntegration.html"
+       href="T2_DownstreamProteomics.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Import necessary packages</p>
+        <p class="prev-next-title">T2: Downstream Proteomics</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

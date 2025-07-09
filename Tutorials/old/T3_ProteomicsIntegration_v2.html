@@ -2,24 +2,24 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="../" >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta property="og:title" content="Import necessary packages" />
+<meta property="og:title" content="Integration of proteomics and imaging data" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="Tutorials/T2_ProteomicsIntegration.html" />
+<meta property="og:url" content="Tutorials/old/T3_ProteomicsIntegration_v2.html" />
 <meta property="og:site_name" content="openDVP" />
-<meta property="og:description" content="Load DIANN data into an adata object: Let’s see the loaded metadata Export adata for transparency: Load shapes of cut samples: Create spatialdata object: Load multiplex immunofluorescence into spat..." />
+<meta property="og:description" content="Import necessary packages: Load DIANN data into an adata object: Let’s see the loaded metadata Export adata for transparency: Load shapes of cut samples: Create spatialdata object: Load multiplex i..." />
 <meta property="og:image:width" content="1146" />
 <meta property="og:image:height" content="600" />
-<meta property="og:image" content="_images/social_previews/summary_Tutorials_T2_ProteomicsIntegration_57287881.png" />
-<meta property="og:image:alt" content="Load DIANN data into an adata object: Let’s see the loaded metadata Export adata for transparency: Load shapes of cut samples: Create spatialdata object: Load multiplex immunofluorescence into spat..." />
-<meta name="description" content="Load DIANN data into an adata object: Let’s see the loaded metadata Export adata for transparency: Load shapes of cut samples: Create spatialdata object: Load multiplex immunofluorescence into spat..." />
+<meta property="og:image" content="_images/social_previews/summary_Tutorials_old_T3_ProteomicsIntegration_v2_5be4ed22.png" />
+<meta property="og:image:alt" content="Import necessary packages: Load DIANN data into an adata object: Let’s see the loaded metadata Export adata for transparency: Load shapes of cut samples: Create spatialdata object: Load multiplex i..." />
+<meta name="description" content="Import necessary packages: Load DIANN data into an adata object: Let’s see the loaded metadata Export adata for transparency: Load shapes of cut samples: Create spatialdata object: Load multiplex i..." />
 <meta name="twitter:card" content="summary_large_image" />
 
-    <title>Import necessary packages &#8212; openDVP</title>
+    <title>Integration of proteomics and imaging data &#8212; openDVP</title>
   
   
   
@@ -29,37 +29,35 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=ca00a4f5"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'Tutorials/T2_ProteomicsIntegration';</script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Proccessing of proteomic data" href="T3_DownstreamProteomics.html" />
-    <link rel="prev" title="Image single-cell analysis" href="T1_ImageAnalysis.html" />
+    <script src="../../_static/documentation_options.js?v=ca00a4f5"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Tutorials/old/T3_ProteomicsIntegration_v2';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -91,7 +89,7 @@
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
-      action="../search.html"
+      action="../../search.html"
       method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
   <input type="search"
@@ -122,6 +120,8 @@
       
       
       
+        
+      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -140,7 +140,7 @@
     
   
 
-<a class="navbar-brand logo" href="../index.html">
+<a class="navbar-brand logo" href="../../index.html">
   
   
   
@@ -163,87 +163,78 @@
  </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../api/index.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../api/io.html">Input / Output</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.io.adata_to_qupath.html">opendvp.io.adata_to_qupath</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.io.adata_to_voronoi.html">opendvp.io.adata_to_voronoi</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.io.import_thresholds.html">opendvp.io.import_thresholds</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.io.quant_to_adata.html">opendvp.io.quant_to_adata</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.io.segmask_to_qupath.html">opendvp.io.segmask_to_qupath</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.io.DIANN_to_adata.html">opendvp.io.DIANN_to_adata</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.io.import_perseus.html">opendvp.io.import_perseus</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.io.export_adata.html">opendvp.io.export_adata</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.io.export_figure.html">opendvp.io.export_figure</a></li>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../api/index.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../api/io.html">Input / Output</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.adata_to_qupath.html">opendvp.io.adata_to_qupath</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.adata_to_voronoi.html">opendvp.io.adata_to_voronoi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.import_thresholds.html">opendvp.io.import_thresholds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.quant_to_adata.html">opendvp.io.quant_to_adata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.segmask_to_qupath.html">opendvp.io.segmask_to_qupath</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.DIANN_to_adata.html">opendvp.io.DIANN_to_adata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.import_perseus.html">opendvp.io.import_perseus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.export_adata.html">opendvp.io.export_adata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.export_figure.html">opendvp.io.export_figure</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../api/metrics.html">Metrics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.metrics.coefficient_of_variation.html">opendvp.metrics.coefficient_of_variation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.metrics.nan_difference.html">opendvp.metrics.nan_difference</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../api/metrics.html">Metrics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.metrics.coefficient_of_variation.html">opendvp.metrics.coefficient_of_variation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.metrics.nan_difference.html">opendvp.metrics.nan_difference</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../api/plotting.html">Plotting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.dynamic_histogram.html">opendvp.plotting.dynamic_histogram</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.plot_graph_network.html">opendvp.plotting.plot_graph_network</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.stacked_barplot.html">opendvp.plotting.stacked_barplot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.abundance_histograms.html">opendvp.plotting.abundance_histograms</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.correlation_heatmap.html">opendvp.plotting.correlation_heatmap</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.coefficient_of_variation.html">opendvp.plotting.coefficient_of_variation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.density.html">opendvp.plotting.density</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.dual_axis_boxplots.html">opendvp.plotting.dual_axis_boxplots</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.histogram_w_imputation.html">opendvp.plotting.histogram_w_imputation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.pca_loadings.html">opendvp.plotting.pca_loadings</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.rankplot.html">opendvp.plotting.rankplot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.upset.html">opendvp.plotting.upset</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.volcano.html">opendvp.plotting.volcano</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../api/plotting.html">Plotting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.dynamic_histogram.html">opendvp.plotting.dynamic_histogram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.plot_graph_network.html">opendvp.plotting.plot_graph_network</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.stacked_barplot.html">opendvp.plotting.stacked_barplot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.abundance_histograms.html">opendvp.plotting.abundance_histograms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.correlation_heatmap.html">opendvp.plotting.correlation_heatmap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.coefficient_of_variation.html">opendvp.plotting.coefficient_of_variation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.density.html">opendvp.plotting.density</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.dual_axis_boxplots.html">opendvp.plotting.dual_axis_boxplots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.histogram_w_imputation.html">opendvp.plotting.histogram_w_imputation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.pca_loadings.html">opendvp.plotting.pca_loadings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.rankplot.html">opendvp.plotting.rankplot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.upset.html">opendvp.plotting.upset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.volcano.html">opendvp.plotting.volcano</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../api/pp.html">Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.pp.impute_marker_with_annotation.html">opendvp.pp.impute_marker_with_annotation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.pp.rescale.html">opendvp.pp.rescale</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../api/pp.html">Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.pp.impute_marker_with_annotation.html">opendvp.pp.impute_marker_with_annotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.pp.rescale.html">opendvp.pp.rescale</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../api/tl.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.tl.filter_adata_by_gates.html">opendvp.tl.filter_adata_by_gates</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.tl.filter_by_abs_value.html">opendvp.tl.filter_by_abs_value</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.tl.filter_by_annotation.html">opendvp.tl.filter_by_annotation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.tl.filter_by_ratio.html">opendvp.tl.filter_by_ratio</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.tl.filter_features_byNaNs.html">opendvp.tl.filter_features_byNaNs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.tl.impute_gaussian.html">opendvp.tl.impute_gaussian</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.tl.spatial_autocorrelation.html">opendvp.tl.spatial_autocorrelation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.tl.spatial_hyperparameter_search.html">opendvp.tl.spatial_hyperparameter_search</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.tl.stats_anova.html">opendvp.tl.stats_anova</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.tl.stats_average_samples.html">opendvp.tl.stats_average_samples</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.tl.stats_bootstrap.html">opendvp.tl.stats_bootstrap</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.tl.stats_ttest.html">opendvp.tl.stats_ttest</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../api/tl.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.filter_adata_by_gates.html">opendvp.tl.filter_adata_by_gates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.filter_by_abs_value.html">opendvp.tl.filter_by_abs_value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.filter_by_annotation.html">opendvp.tl.filter_by_annotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.filter_by_ratio.html">opendvp.tl.filter_by_ratio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.filter_features_byNaNs.html">opendvp.tl.filter_features_byNaNs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.impute_gaussian.html">opendvp.tl.impute_gaussian</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.spatial_autocorrelation.html">opendvp.tl.spatial_autocorrelation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.spatial_hyperparameter_search.html">opendvp.tl.spatial_hyperparameter_search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.stats_anova.html">opendvp.tl.stats_anova</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.stats_average_samples.html">opendvp.tl.stats_average_samples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.stats_bootstrap.html">opendvp.tl.stats_bootstrap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.stats_ttest.html">opendvp.tl.stats_ttest</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../api/utils.html">Utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.utils.parse_color_for_qupath.html">opendvp.utils.parse_color_for_qupath</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../api/utils.html">Utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.utils.parse_color_for_qupath.html">opendvp.utils.parse_color_for_qupath</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../api/imaging.html">Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.imaging.mask_to_polygons.html">opendvp.imaging.mask_to_polygons</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../api/imaging.html">Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.imaging.mask_to_polygons.html">opendvp.imaging.mask_to_polygons</a></li>
 </ul>
 </details></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Tutorials</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="T1_ImageAnalysis.html">Image single-cell analysis</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Import necessary packages</a></li>
-
-
-
-
-
-
-
-
-
-<li class="toctree-l2"><a class="reference internal" href="T3_DownstreamProteomics.html">Proccessing of proteomic data</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../T1_ImageAnalysis.html">T1: Image single-cell analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../T2_DownstreamProteomics.html">T2: Downstream Proteomics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../T3_ProteomicsIntegration.html">T3: Proteomics Integration</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="../Workflows/index.html">Workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Workflows/index.html">Workflows</a></li>
 </ul>
 
     </div>
@@ -298,7 +289,7 @@
       
       
       
-      <li><a href="../_sources/Tutorials/T2_ProteomicsIntegration.ipynb" target="_blank"
+      <li><a href="../../_sources/Tutorials/old/T3_ProteomicsIntegration_v2.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -382,7 +373,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Import necessary packages</h1>
+    <h1>Integration of proteomics and imaging data</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -392,18 +383,17 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Import necessary packages</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-diann-data-into-an-adata-object">Load DIANN data into an adata object</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#export-adata-for-transparency">Export adata for transparency</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-shapes-of-cut-samples">Load shapes of cut samples</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#create-spatialdata-object">Create spatialdata object</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-multiplex-immunofluorescence-into-spatialdata-object">Load multiplex immunofluorescence into spatialdata object</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-proteomics-matrix-adata-object-to-spatialdata-object">Load proteomics matrix (adata object) to spatialdata object</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-geodataframe-with-shapes-that-match-proteomic-samples">Load the geodataframe with shapes that match proteomic samples</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-data-interactively">Visualize data interactively</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#write-spatialdata-object-for-future-use">Write spatialdata object for future use</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-necessary-packages">Import necessary packages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-diann-data-into-an-adata-object">Load DIANN data into an adata object</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#export-adata-for-transparency">Export adata for transparency</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-shapes-of-cut-samples">Load shapes of cut samples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-spatialdata-object">Create spatialdata object</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-multiplex-immunofluorescence-into-spatialdata-object">Load multiplex immunofluorescence into spatialdata object</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-proteomics-matrix-adata-object-to-spatialdata-object">Load proteomics matrix (adata object) to spatialdata object</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-geodataframe-with-shapes-that-match-proteomic-samples">Load the geodataframe with shapes that match proteomic samples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-data-interactively">Visualize data interactively</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-spatialdata-object-for-future-use">Write spatialdata object for future use</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -414,8 +404,10 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="import-necessary-packages">
-<h1>Import necessary packages<a class="headerlink" href="#import-necessary-packages" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="integration-of-proteomics-and-imaging-data">
+<h1>Integration of proteomics and imaging data<a class="headerlink" href="#integration-of-proteomics-and-imaging-data" title="Link to this heading">#</a></h1>
+<section id="import-necessary-packages">
+<h2>Import necessary packages<a class="headerlink" href="#import-necessary-packages" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">opendvp</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dvp</span>
@@ -430,7 +422,7 @@ document.write(`
 </div>
 </section>
 <section id="load-diann-data-into-an-adata-object">
-<h1>Load DIANN data into an adata object<a class="headerlink" href="#load-diann-data-into-an-adata-object" title="Link to this heading">#</a></h1>
+<h2>Load DIANN data into an adata object<a class="headerlink" href="#load-diann-data-into-an-adata-object" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">DIANN_to_adata</span><span class="p">(</span>
@@ -613,7 +605,7 @@ document.write(`
 </div>
 </section>
 <section id="export-adata-for-transparency">
-<h1>Export adata for transparency<a class="headerlink" href="#export-adata-for-transparency" title="Link to this heading">#</a></h1>
+<h2>Export adata for transparency<a class="headerlink" href="#export-adata-for-transparency" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dvp</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">export_adata</span><span class="p">(</span><span class="n">adata</span><span class="o">=</span><span class="n">adata</span><span class="p">,</span> <span class="n">path_to_dir</span><span class="o">=</span><span class="s2">&quot;data/checkpoints&quot;</span><span class="p">,</span> <span class="n">checkpoint_name</span><span class="o">=</span><span class="s2">&quot;1_loaded&quot;</span><span class="p">)</span>
@@ -629,7 +621,7 @@ document.write(`
 </div>
 </section>
 <section id="load-shapes-of-cut-samples">
-<h1>Load shapes of cut samples<a class="headerlink" href="#load-shapes-of-cut-samples" title="Link to this heading">#</a></h1>
+<h2>Load shapes of cut samples<a class="headerlink" href="#load-shapes-of-cut-samples" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;data/proteomics/collection_shapes.geojson&quot;</span><span class="p">)</span>
@@ -704,7 +696,7 @@ document.write(`
 </div>
 </section>
 <section id="create-spatialdata-object">
-<h1>Create spatialdata object<a class="headerlink" href="#create-spatialdata-object" title="Link to this heading">#</a></h1>
+<h2>Create spatialdata object<a class="headerlink" href="#create-spatialdata-object" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sdata</span> <span class="o">=</span> <span class="n">spatialdata</span><span class="o">.</span><span class="n">SpatialData</span><span class="p">()</span>
@@ -714,7 +706,7 @@ document.write(`
 </div>
 </section>
 <section id="load-multiplex-immunofluorescence-into-spatialdata-object">
-<h1>Load multiplex immunofluorescence into spatialdata object<a class="headerlink" href="#load-multiplex-immunofluorescence-into-spatialdata-object" title="Link to this heading">#</a></h1>
+<h2>Load multiplex immunofluorescence into spatialdata object<a class="headerlink" href="#load-multiplex-immunofluorescence-into-spatialdata-object" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># first load as array using dask-image</span>
@@ -864,7 +856,7 @@ with coordinate systems:
 </div>
 </section>
 <section id="load-proteomics-matrix-adata-object-to-spatialdata-object">
-<h1>Load proteomics matrix (adata object) to spatialdata object<a class="headerlink" href="#load-proteomics-matrix-adata-object-to-spatialdata-object" title="Link to this heading">#</a></h1>
+<h2>Load proteomics matrix (adata object) to spatialdata object<a class="headerlink" href="#load-proteomics-matrix-adata-object-to-spatialdata-object" title="Link to this heading">#</a></h2>
 <p>First we must label the matrix, to let spatialdata know which coordinate system to use.<br />
 In this case, this means labelling which slide it was.</p>
 <div class="cell docutils container">
@@ -929,7 +921,7 @@ with coordinate systems:
 </div>
 </section>
 <section id="load-the-geodataframe-with-shapes-that-match-proteomic-samples">
-<h1>Load the geodataframe with shapes that match proteomic samples<a class="headerlink" href="#load-the-geodataframe-with-shapes-that-match-proteomic-samples" title="Link to this heading">#</a></h1>
+<h2>Load the geodataframe with shapes that match proteomic samples<a class="headerlink" href="#load-the-geodataframe-with-shapes-that-match-proteomic-samples" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -1206,7 +1198,7 @@ with coordinate systems:
 </div>
 </section>
 <section id="visualize-data-interactively">
-<h1>Visualize data interactively<a class="headerlink" href="#visualize-data-interactively" title="Link to this heading">#</a></h1>
+<h2>Visualize data interactively<a class="headerlink" href="#visualize-data-interactively" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">napari_spatialdata</span><span class="o">.</span><span class="n">Interactive</span><span class="p">(</span><span class="n">sdata</span><span class="p">)</span>
@@ -1221,7 +1213,7 @@ with coordinate systems:
 </div>
 </section>
 <section id="write-spatialdata-object-for-future-use">
-<h1>Write spatialdata object for future use<a class="headerlink" href="#write-spatialdata-object-for-future-use" title="Link to this heading">#</a></h1>
+<h2>Write spatialdata object for future use<a class="headerlink" href="#write-spatialdata-object-for-future-use" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sdata</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;outputs/spatialdata.zarr&quot;</span><span class="p">)</span>
@@ -1235,6 +1227,7 @@ with coordinate systems:
 </div>
 </div>
 </section>
+</section>
 
 
                 </article>
@@ -1247,24 +1240,6 @@ with coordinate systems:
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="T1_ImageAnalysis.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Image single-cell analysis</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="T3_DownstreamProteomics.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Proccessing of proteomic data</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
@@ -1281,18 +1256,17 @@ with coordinate systems:
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Import necessary packages</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-diann-data-into-an-adata-object">Load DIANN data into an adata object</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#export-adata-for-transparency">Export adata for transparency</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-shapes-of-cut-samples">Load shapes of cut samples</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#create-spatialdata-object">Create spatialdata object</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-multiplex-immunofluorescence-into-spatialdata-object">Load multiplex immunofluorescence into spatialdata object</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-proteomics-matrix-adata-object-to-spatialdata-object">Load proteomics matrix (adata object) to spatialdata object</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-geodataframe-with-shapes-that-match-proteomic-samples">Load the geodataframe with shapes that match proteomic samples</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-data-interactively">Visualize data interactively</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#write-spatialdata-object-for-future-use">Write spatialdata object for future use</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-necessary-packages">Import necessary packages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-diann-data-into-an-adata-object">Load DIANN data into an adata object</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#export-adata-for-transparency">Export adata for transparency</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-shapes-of-cut-samples">Load shapes of cut samples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-spatialdata-object">Create spatialdata object</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-multiplex-immunofluorescence-into-spatialdata-object">Load multiplex immunofluorescence into spatialdata object</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-proteomics-matrix-adata-object-to-spatialdata-object">Load proteomics matrix (adata object) to spatialdata object</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-geodataframe-with-shapes-that-match-proteomic-samples">Load the geodataframe with shapes that match proteomic samples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-data-interactively">Visualize data interactively</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-spatialdata-object-for-future-use">Write spatialdata object for future use</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>
@@ -1333,8 +1307,8 @@ By Jose Nimo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

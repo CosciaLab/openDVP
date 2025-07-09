@@ -45,27 +45,31 @@ uv add 'opendvp[spatialdata]'
 
 </details>
 
-
 ### There are three alternatives to install openDVP:
 
 1. Install the latest stable release from [PyPI](https://pypi.org/project/openDVP/) with minimal dependencies:
+
 ```bash
 pip install openDVP
 ```
+
 2. Install the latest stable release from [PyPI](https://pypi.org/project/openDVP/) with spatialdata capabilities:
+
 ```bash
 pip install 'openDVP[spatialdata]'
 ```
+
 3. Install the latest development version from github:
-```
+
+```bash
 pip install git+https://github.com/CosciaLab/openDVP.git@main
 ```
 
 ## Tutorials
 
 - [Tutorial 1: Image analysis](Tutorials/T1_ImageAnalysis)
-- [Tutorial 2: Integration of imaging with proteomics](Tutorials/T2_ProteomicsIntegration)
-- [Tutorial 3: Downstream proteomics analysis](Tutorials/T3_DownstreamProteomics)
+- [Tutorial 2: Downstream proteomics analysis](Tutorials/T2_DownstreamProteomics)
+- [Tutorial 3: Integration of imaging with proteomics](Tutorials/T3_ProteomicsIntegration)
 
 
 ## Contact

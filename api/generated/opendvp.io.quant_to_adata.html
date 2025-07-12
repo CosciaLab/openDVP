@@ -47,7 +47,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../_static/documentation_options.js?v=ca00a4f5"></script>
+    <script src="../../_static/documentation_options.js?v=3b5aa716"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -181,7 +181,6 @@
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../plotting.html">Plotting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.dynamic_histogram.html">opendvp.plotting.dynamic_histogram</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.plot_graph_network.html">opendvp.plotting.plot_graph_network</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.stacked_barplot.html">opendvp.plotting.stacked_barplot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.abundance_histograms.html">opendvp.plotting.abundance_histograms</a></li>
@@ -189,7 +188,7 @@
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.coefficient_of_variation.html">opendvp.plotting.coefficient_of_variation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.density.html">opendvp.plotting.density</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.dual_axis_boxplots.html">opendvp.plotting.dual_axis_boxplots</a></li>
-<li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.histogram_w_imputation.html">opendvp.plotting.histogram_w_imputation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.imputation_qc.html">opendvp.plotting.imputation_qc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.pca_loadings.html">opendvp.plotting.pca_loadings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.rankplot.html">opendvp.plotting.rankplot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.upset.html">opendvp.plotting.upset</a></li>
@@ -198,11 +197,9 @@
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../pp.html">Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.pp.impute_marker_with_annotation.html">opendvp.pp.impute_marker_with_annotation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="opendvp.pp.rescale.html">opendvp.pp.rescale</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../tl.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.filter_adata_by_gates.html">opendvp.tl.filter_adata_by_gates</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.filter_by_abs_value.html">opendvp.tl.filter_by_abs_value</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.filter_by_annotation.html">opendvp.tl.filter_by_annotation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.filter_by_ratio.html">opendvp.tl.filter_by_ratio</a></li>
@@ -399,14 +396,16 @@ document.write(`
 <dt class="sig sig-object py" id="opendvp.io.quant_to_adata">
 <span class="sig-name descname"><span class="pre">quant_to_adata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_into_1_based</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'CellID'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">meta_columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.io.quant_to_adata" title="Link to this definition">#</a></dt>
 <dd><p>Convert cell quantification CSV data to an AnnData object for downstream analysis.</p>
-<p>This module provides a function to read a CSV file containing single-cell quantification data, extract metadata and marker intensities, and return an AnnData object suitable for spatial omics workflows. The function expects specific metadata columns and parses marker columns by splitting their names into mathematical operation and marker name.</p>
+<p>This module provides a function to read a CSV file containing single-cell quantification data.
+Extract metadata and marker intensities, and return an AnnData object suitable for spatial omics workflows.
+The function expects specific metadata columns and parses marker columns by splitting their names into mathematical operation and marker name.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://anndata.readthedocs.io/en/stable/generated/anndata.AnnData.html#anndata.AnnData" title="(in anndata v0.11.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnnData</span></code></a></span></p>
 </dd>
 </dl>
 <section id="parameters">
-<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h2>
+<h2>Parameters:<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h2>
 <dl class="simple">
 <dt>path<span class="classifier">str</span></dt><dd><p>Path to the CSV file containing cell quantification data.</p>
 </dd>
@@ -426,7 +425,7 @@ If None, no modifications will be performed</p>
 <section id="examples">
 <h2>Examples:<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">opendvp.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">quant_to_adata</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">adata</span> <span class="o">=</span> <span class="n">quant_to_adata</span><span class="p">(</span><span class="s1">&#39;my_quantification.csv&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">adata</span> <span class="o">=</span> <span class="n">quant_to_adata</span><span class="p">(</span><span class="s2">&quot;my_quantification.csv&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">adata</span><span class="p">)</span>
 <span class="go">AnnData object with n_obs * n_vars = ...</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>

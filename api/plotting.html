@@ -49,7 +49,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=ca00a4f5"></script>
+    <script src="../_static/documentation_options.js?v=3b5aa716"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -58,7 +58,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/plotting';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="opendvp.plotting.dynamic_histogram" href="generated/opendvp.plotting.dynamic_histogram.html" />
+    <link rel="next" title="opendvp.plotting.plot_graph_network" href="generated/opendvp.plotting.plot_graph_network.html" />
     <link rel="prev" title="opendvp.metrics.nan_difference" href="generated/opendvp.metrics.nan_difference.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -183,7 +183,6 @@
 </ul>
 </details></li>
 <li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">Plotting</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.dynamic_histogram.html">opendvp.plotting.dynamic_histogram</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.plot_graph_network.html">opendvp.plotting.plot_graph_network</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.stacked_barplot.html">opendvp.plotting.stacked_barplot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.abundance_histograms.html">opendvp.plotting.abundance_histograms</a></li>
@@ -191,7 +190,7 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.coefficient_of_variation.html">opendvp.plotting.coefficient_of_variation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.density.html">opendvp.plotting.density</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.dual_axis_boxplots.html">opendvp.plotting.dual_axis_boxplots</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.histogram_w_imputation.html">opendvp.plotting.histogram_w_imputation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.imputation_qc.html">opendvp.plotting.imputation_qc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.pca_loadings.html">opendvp.plotting.pca_loadings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.rankplot.html">opendvp.plotting.rankplot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.upset.html">opendvp.plotting.upset</a></li>
@@ -200,11 +199,9 @@
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="pp.html">Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.pp.impute_marker_with_annotation.html">opendvp.pp.impute_marker_with_annotation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/opendvp.pp.rescale.html">opendvp.pp.rescale</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="tl.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="generated/opendvp.tl.filter_adata_by_gates.html">opendvp.tl.filter_adata_by_gates</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.tl.filter_by_abs_value.html">opendvp.tl.filter_by_abs_value</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.tl.filter_by_annotation.html">opendvp.tl.filter_by_annotation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.tl.filter_by_ratio.html">opendvp.tl.filter_by_ratio</a></li>
@@ -402,13 +399,10 @@ document.write(`
 <span id="imaging"></span><h2>Imaging<a class="headerlink" href="#module-opendvp.plotting" title="Link to this heading">#</a></h2>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.plotting.dynamic_histogram.html#opendvp.plotting.dynamic_histogram" title="opendvp.plotting.dynamic_histogram"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plotting.dynamic_histogram</span></code></a>(df, column[, bins])</p></td>
-<td><p>Plot a dynamic histogram with a threshold slider and count annotations.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/opendvp.plotting.plot_graph_network.html#opendvp.plotting.plot_graph_network" title="opendvp.plotting.plot_graph_network"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plotting.plot_graph_network</span></code></a>(w, coords, threshold)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.plotting.plot_graph_network.html#opendvp.plotting.plot_graph_network" title="opendvp.plotting.plot_graph_network"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plotting.plot_graph_network</span></code></a>(w, coords, threshold)</p></td>
 <td><p>Plot the graph of connected nodes for a given threshold.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.plotting.stacked_barplot.html#opendvp.plotting.stacked_barplot" title="opendvp.plotting.stacked_barplot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plotting.stacked_barplot</span></code></a>(df, phenotype_col, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/opendvp.plotting.stacked_barplot.html#opendvp.plotting.stacked_barplot" title="opendvp.plotting.stacked_barplot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plotting.stacked_barplot</span></code></a>(df, phenotype_col, ...)</p></td>
 <td><p>Plot a stacked barplot showing phenotype composition per RCN motif.</p></td>
 </tr>
 </tbody>
@@ -423,7 +417,7 @@ document.write(`
 <td><p>Plot histograms of protein abundance for each sample in adata.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/opendvp.plotting.correlation_heatmap.html#opendvp.plotting.correlation_heatmap" title="opendvp.plotting.correlation_heatmap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plotting.correlation_heatmap</span></code></a>(adata[, ...])</p></td>
-<td><p>Plot a correlation heatmap of the protein abundance for all samples in adata.</p></td>
+<td><p>Plot a clustered correlation heatmap of protein abundance for all samples in an AnnData object.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.plotting.coefficient_of_variation.html#opendvp.plotting.coefficient_of_variation" title="opendvp.plotting.coefficient_of_variation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plotting.coefficient_of_variation</span></code></a>(adata, ...)</p></td>
 <td><p>Plot coefficient of variation (CV) for each group in AnnData.obs[group_by].</p></td>
@@ -434,8 +428,8 @@ document.write(`
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.plotting.dual_axis_boxplots.html#opendvp.plotting.dual_axis_boxplots" title="opendvp.plotting.dual_axis_boxplots"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plotting.dual_axis_boxplots</span></code></a>(adata_obs[, ...])</p></td>
 <td><p>Generates a dual-axis plot with boxplots and stripplots for two features grouped by a specified feature key.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/opendvp.plotting.histogram_w_imputation.html#opendvp.plotting.histogram_w_imputation" title="opendvp.plotting.histogram_w_imputation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plotting.histogram_w_imputation</span></code></a>(...[, ...])</p></td>
-<td><p>Plot histograms for each sample showing raw and imputed values before and after imputation.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/opendvp.plotting.imputation_qc.html#opendvp.plotting.imputation_qc" title="opendvp.plotting.imputation_qc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plotting.imputation_qc</span></code></a>(adata[, ...])</p></td>
+<td><p>Generate a quality control plot to visualize the effect of imputation.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.plotting.pca_loadings.html#opendvp.plotting.pca_loadings" title="opendvp.plotting.pca_loadings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plotting.pca_loadings</span></code></a>(adata[, top, n_pcs, ...])</p></td>
 <td><p>Plot PCA protein loadings for the top features in the first two principal components.</p></td>
@@ -476,11 +470,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="generated/opendvp.plotting.dynamic_histogram.html"
+       href="generated/opendvp.plotting.plot_graph_network.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">opendvp.plotting.dynamic_histogram</p>
+        <p class="prev-next-title">opendvp.plotting.plot_graph_network</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

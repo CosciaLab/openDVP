@@ -49,7 +49,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=ca00a4f5"></script>
+    <script src="../_static/documentation_options.js?v=3b5aa716"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -58,8 +58,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/tl';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="opendvp.tl.filter_adata_by_gates" href="generated/opendvp.tl.filter_adata_by_gates.html" />
-    <link rel="prev" title="opendvp.pp.rescale" href="generated/opendvp.pp.rescale.html" />
+    <link rel="next" title="opendvp.tl.filter_by_abs_value" href="generated/opendvp.tl.filter_by_abs_value.html" />
+    <link rel="prev" title="opendvp.pp.impute_marker_with_annotation" href="generated/opendvp.pp.impute_marker_with_annotation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -183,7 +183,6 @@
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="plotting.html">Plotting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.dynamic_histogram.html">opendvp.plotting.dynamic_histogram</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.plot_graph_network.html">opendvp.plotting.plot_graph_network</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.stacked_barplot.html">opendvp.plotting.stacked_barplot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.abundance_histograms.html">opendvp.plotting.abundance_histograms</a></li>
@@ -191,7 +190,7 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.coefficient_of_variation.html">opendvp.plotting.coefficient_of_variation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.density.html">opendvp.plotting.density</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.dual_axis_boxplots.html">opendvp.plotting.dual_axis_boxplots</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.histogram_w_imputation.html">opendvp.plotting.histogram_w_imputation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.imputation_qc.html">opendvp.plotting.imputation_qc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.pca_loadings.html">opendvp.plotting.pca_loadings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.rankplot.html">opendvp.plotting.rankplot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.upset.html">opendvp.plotting.upset</a></li>
@@ -200,11 +199,9 @@
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="pp.html">Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.pp.impute_marker_with_annotation.html">opendvp.pp.impute_marker_with_annotation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/opendvp.pp.rescale.html">opendvp.pp.rescale</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">Tools</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="generated/opendvp.tl.filter_adata_by_gates.html">opendvp.tl.filter_adata_by_gates</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.tl.filter_by_abs_value.html">opendvp.tl.filter_by_abs_value</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.tl.filter_by_annotation.html">opendvp.tl.filter_by_annotation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.tl.filter_by_ratio.html">opendvp.tl.filter_by_ratio</a></li>
@@ -405,19 +402,16 @@ document.write(`
 <span id="filtering"></span><h2>Filtering<a class="headerlink" href="#module-opendvp.tl" title="Link to this heading">#</a></h2>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.tl.filter_adata_by_gates.html#opendvp.tl.filter_adata_by_gates" title="opendvp.tl.filter_adata_by_gates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tl.filter_adata_by_gates</span></code></a>(adata, gates[, ...])</p></td>
-<td><p>Filter an AnnData object to retain only markers specified in the <code class="docutils literal notranslate"><span class="pre">gates</span></code> DataFrame.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/opendvp.tl.filter_by_abs_value.html#opendvp.tl.filter_by_abs_value" title="opendvp.tl.filter_by_abs_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tl.filter_by_abs_value</span></code></a>(adata, feature_name)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.tl.filter_by_abs_value.html#opendvp.tl.filter_by_abs_value" title="opendvp.tl.filter_by_abs_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tl.filter_by_abs_value</span></code></a>(adata, feature_name)</p></td>
 <td><p>Filter cells in an AnnData object by a range of values for a specified feature.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.tl.filter_by_annotation.html#opendvp.tl.filter_by_annotation" title="opendvp.tl.filter_by_annotation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tl.filter_by_annotation</span></code></a>(adata, path_to_geojson)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/opendvp.tl.filter_by_annotation.html#opendvp.tl.filter_by_annotation" title="opendvp.tl.filter_by_annotation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tl.filter_by_annotation</span></code></a>(adata, path_to_geojson)</p></td>
 <td><p>Filter cells by annotation in a geojson file using spatial indexing.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/opendvp.tl.filter_by_ratio.html#opendvp.tl.filter_by_ratio" title="opendvp.tl.filter_by_ratio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tl.filter_by_ratio</span></code></a>(adata, end_cycle, start_cycle)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.tl.filter_by_ratio.html#opendvp.tl.filter_by_ratio" title="opendvp.tl.filter_by_ratio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tl.filter_by_ratio</span></code></a>(adata, end_cycle, start_cycle)</p></td>
 <td><p>Filter cells by the ratio of two markers in an AnnData object.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.tl.filter_features_byNaNs.html#opendvp.tl.filter_features_byNaNs" title="opendvp.tl.filter_features_byNaNs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tl.filter_features_byNaNs</span></code></a>(adata[, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/opendvp.tl.filter_features_byNaNs.html#opendvp.tl.filter_features_byNaNs" title="opendvp.tl.filter_features_byNaNs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tl.filter_features_byNaNs</span></code></a>(adata[, ...])</p></td>
 <td><p>Filter out proteins that have a NaN proportion above the threshold, for each group in the grouping variable.</p></td>
 </tr>
 </tbody>
@@ -491,20 +485,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="generated/opendvp.pp.rescale.html"
+       href="generated/opendvp.pp.impute_marker_with_annotation.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">opendvp.pp.rescale</p>
+        <p class="prev-next-title">opendvp.pp.impute_marker_with_annotation</p>
       </div>
     </a>
     <a class="right-next"
-       href="generated/opendvp.tl.filter_adata_by_gates.html"
+       href="generated/opendvp.tl.filter_by_abs_value.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">opendvp.tl.filter_adata_by_gates</p>
+        <p class="prev-next-title">opendvp.tl.filter_by_abs_value</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

@@ -37,7 +37,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="_static/documentation_options.js?v=ca00a4f5"></script>
+    <script src="_static/documentation_options.js?v=3b5aa716"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -171,7 +171,6 @@
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="api/plotting.html">Plotting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.dynamic_histogram.html">opendvp.plotting.dynamic_histogram</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.plot_graph_network.html">opendvp.plotting.plot_graph_network</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.stacked_barplot.html">opendvp.plotting.stacked_barplot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.abundance_histograms.html">opendvp.plotting.abundance_histograms</a></li>
@@ -179,7 +178,7 @@
 <li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.coefficient_of_variation.html">opendvp.plotting.coefficient_of_variation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.density.html">opendvp.plotting.density</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.dual_axis_boxplots.html">opendvp.plotting.dual_axis_boxplots</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.histogram_w_imputation.html">opendvp.plotting.histogram_w_imputation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.imputation_qc.html">opendvp.plotting.imputation_qc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.pca_loadings.html">opendvp.plotting.pca_loadings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.rankplot.html">opendvp.plotting.rankplot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.upset.html">opendvp.plotting.upset</a></li>
@@ -188,11 +187,9 @@
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="api/pp.html">Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.pp.impute_marker_with_annotation.html">opendvp.pp.impute_marker_with_annotation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.pp.rescale.html">opendvp.pp.rescale</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="api/tl.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.tl.filter_adata_by_gates.html">opendvp.tl.filter_adata_by_gates</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.tl.filter_by_abs_value.html">opendvp.tl.filter_by_abs_value</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.tl.filter_by_annotation.html">opendvp.tl.filter_by_annotation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.tl.filter_by_ratio.html">opendvp.tl.filter_by_ratio</a></li>
@@ -334,7 +331,6 @@ document.write(`
  | <a href="#D"><strong>D</strong></a>
  | <a href="#E"><strong>E</strong></a>
  | <a href="#F"><strong>F</strong></a>
- | <a href="#H"><strong>H</strong></a>
  | <a href="#I"><strong>I</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#N"><strong>N</strong></a>
@@ -382,13 +378,11 @@ document.write(`
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/generated/opendvp.plotting.density.html#opendvp.plotting.density">density() (in module opendvp.plotting)</a>
 </li>
-      <li><a href="api/generated/opendvp.io.DIANN_to_adata.html#opendvp.io.DIANN_to_adata">DIANN_to_adata() (in module opendvp.io)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/generated/opendvp.plotting.dual_axis_boxplots.html#opendvp.plotting.dual_axis_boxplots">dual_axis_boxplots() (in module opendvp.plotting)</a>
+      <li><a href="api/generated/opendvp.io.DIANN_to_adata.html#opendvp.io.DIANN_to_adata">DIANN_to_adata() (in module opendvp.io)</a>
 </li>
-      <li><a href="api/generated/opendvp.plotting.dynamic_histogram.html#opendvp.plotting.dynamic_histogram">dynamic_histogram() (in module opendvp.plotting)</a>
+      <li><a href="api/generated/opendvp.plotting.dual_axis_boxplots.html#opendvp.plotting.dual_axis_boxplots">dual_axis_boxplots() (in module opendvp.plotting)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -408,25 +402,15 @@ document.write(`
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/generated/opendvp.tl.filter_adata_by_gates.html#opendvp.tl.filter_adata_by_gates">filter_adata_by_gates() (in module opendvp.tl)</a>
-</li>
       <li><a href="api/generated/opendvp.tl.filter_by_abs_value.html#opendvp.tl.filter_by_abs_value">filter_by_abs_value() (in module opendvp.tl)</a>
+</li>
+      <li><a href="api/generated/opendvp.tl.filter_by_annotation.html#opendvp.tl.filter_by_annotation">filter_by_annotation() (in module opendvp.tl)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/generated/opendvp.tl.filter_by_annotation.html#opendvp.tl.filter_by_annotation">filter_by_annotation() (in module opendvp.tl)</a>
-</li>
       <li><a href="api/generated/opendvp.tl.filter_by_ratio.html#opendvp.tl.filter_by_ratio">filter_by_ratio() (in module opendvp.tl)</a>
 </li>
       <li><a href="api/generated/opendvp.tl.filter_features_byNaNs.html#opendvp.tl.filter_features_byNaNs">filter_features_byNaNs() (in module opendvp.tl)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="H">H</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/generated/opendvp.plotting.histogram_w_imputation.html#opendvp.plotting.histogram_w_imputation">histogram_w_imputation() (in module opendvp.plotting)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -440,6 +424,8 @@ document.write(`
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/generated/opendvp.plotting.imputation_qc.html#opendvp.plotting.imputation_qc">imputation_qc() (in module opendvp.plotting)</a>
+</li>
       <li><a href="api/generated/opendvp.tl.impute_gaussian.html#opendvp.tl.impute_gaussian">impute_gaussian() (in module opendvp.tl)</a>
 </li>
       <li><a href="api/generated/opendvp.pp.impute_marker_with_annotation.html#opendvp.pp.impute_marker_with_annotation">impute_marker_with_annotation() (in module opendvp.pp)</a>
@@ -565,10 +551,6 @@ document.write(`
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/generated/opendvp.plotting.rankplot.html#opendvp.plotting.rankplot">rankplot() (in module opendvp.plotting)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/generated/opendvp.pp.rescale.html#opendvp.pp.rescale">rescale() (in module opendvp.pp)</a>
 </li>
   </ul></td>
 </tr></table>

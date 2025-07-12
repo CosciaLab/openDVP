@@ -47,7 +47,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../_static/documentation_options.js?v=ca00a4f5"></script>
+    <script src="../../_static/documentation_options.js?v=3b5aa716"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -181,7 +181,6 @@
 </ul>
 </details></li>
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="../plotting.html">Plotting</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.dynamic_histogram.html">opendvp.plotting.dynamic_histogram</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.plot_graph_network.html">opendvp.plotting.plot_graph_network</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.stacked_barplot.html">opendvp.plotting.stacked_barplot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.abundance_histograms.html">opendvp.plotting.abundance_histograms</a></li>
@@ -189,7 +188,7 @@
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.coefficient_of_variation.html">opendvp.plotting.coefficient_of_variation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.density.html">opendvp.plotting.density</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.dual_axis_boxplots.html">opendvp.plotting.dual_axis_boxplots</a></li>
-<li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.histogram_w_imputation.html">opendvp.plotting.histogram_w_imputation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.imputation_qc.html">opendvp.plotting.imputation_qc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.pca_loadings.html">opendvp.plotting.pca_loadings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.rankplot.html">opendvp.plotting.rankplot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.upset.html">opendvp.plotting.upset</a></li>
@@ -198,11 +197,9 @@
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../pp.html">Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.pp.impute_marker_with_annotation.html">opendvp.pp.impute_marker_with_annotation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="opendvp.pp.rescale.html">opendvp.pp.rescale</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../tl.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.filter_adata_by_gates.html">opendvp.tl.filter_adata_by_gates</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.filter_by_abs_value.html">opendvp.tl.filter_by_abs_value</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.filter_by_annotation.html">opendvp.tl.filter_by_annotation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.filter_by_ratio.html">opendvp.tl.filter_by_ratio</a></li>
@@ -397,29 +394,35 @@ document.write(`
 <h1>opendvp.plotting.correlation_heatmap<a class="headerlink" href="#opendvp-plotting-correlation-heatmap" title="Link to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="opendvp.plotting.correlation_heatmap">
-<span class="sig-name descname"><span class="pre">correlation_heatmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">correlation_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'spearman'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Spearman</span> <span class="pre">Correlation</span> <span class="pre">Heatmap'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raw_file_id'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_fig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.plotting.correlation_heatmap" title="Link to this definition">#</a></dt>
-<dd><p>Plot a correlation heatmap of the protein abundance for all samples in adata.</p>
+<span class="sig-name descname"><span class="pre">correlation_heatmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">correlation_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'spearman'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_map</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'magma'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_fig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.plotting.correlation_heatmap" title="Link to this definition">#</a></dt>
+<dd><p>Plot a clustered correlation heatmap of protein abundance for all samples in an AnnData object.</p>
+<p>This function computes the pairwise correlation matrix between features (columns) in the AnnData object,
+then clusters and reorders the matrix using hierarchical clustering (scipy), so that similar samples/features
+are grouped together. The heatmap is plotted with annotated values in the top-right triangle and colors only
+in the bottom-left triangle for clarity.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure" title="(in Matplotlib v3.10.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
 </dd>
 </dl>
 <section id="parameters">
-<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h2>
+<h2>Parameters:<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h2>
 <dl class="simple">
 <dt>adata<span class="classifier">AnnData</span></dt><dd><p>Annotated data matrix.</p>
 </dd>
-<dt>correlation_method<span class="classifier">str, optional</span></dt><dd><p>Method to calculate the correlation (default = “spearman”).</p>
+<dt>correlation_method<span class="classifier">{“pearson”, “kendall”, “spearman”}, optional</span></dt><dd><p>Method to calculate the correlation (default = “spearman”).</p>
 </dd>
-<dt>title<span class="classifier">str, optional</span></dt><dd><p>Title of the plot.</p>
+<dt>sample_label<span class="classifier">str, optional</span></dt><dd><p>Column name in adata.obs to label samples with. If None, uses adata.obs_names.</p>
 </dd>
-<dt>sample_label<span class="classifier">str, optional</span></dt><dd><p>Column name in adata.obs to label samples with.</p>
+<dt>color_map<span class="classifier">str, optional</span></dt><dd><p>Colormap for the heatmap (default = “magma”).</p>
 </dd>
-<dt>return_fig<span class="classifier">bool, optional</span></dt><dd><p>If True, returns the matplotlib Figure object for further customization. If False, shows the plot.</p>
+<dt>vmin<span class="classifier">float, optional</span></dt><dd><p>Minimum value for colormap scaling (default = 0.7).</p>
+</dd>
+<dt>vmax<span class="classifier">float, optional</span></dt><dd><p>Maximum value for colormap scaling (default = 1.0).</p>
+</dd>
+<dt>return_fig<span class="classifier">bool, optional</span></dt><dd><p>If True, returns the matplotlib Figure object for further customization. If False, shows the plot and returns None.</p>
 </dd>
 <dt>ax<span class="classifier">matplotlib.axes.Axes, optional</span></dt><dd><p>Axes object to plot on. If None, a new figure and axes are created.</p>
-</dd>
-<dt><a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs</dt><dd><p>Additional keyword arguments passed to seaborn.heatmap.</p>
 </dd>
 </dl>
 </section>
@@ -429,6 +432,13 @@ document.write(`
 <dt>fig<span class="classifier">matplotlib.figure.Figure or None</span></dt><dd><p>The figure object if return_fig is True, otherwise None.</p>
 </dd>
 </dl>
+</section>
+<section id="notes">
+<h2>Notes:<a class="headerlink" href="#notes" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The correlation matrix is clustered and reordered using hierarchical clustering (average linkage) on 1 - correlation distance.</p></li>
+<li><p>Both rows and columns are reordered to group similar features/samples together.</p></li>
+</ul>
 </section>
 </dd></dl>
 

@@ -8,7 +8,6 @@
 .. autosummary::
     :toctree: generated
     
-    tl.filter_adata_by_gates
     tl.filter_by_abs_value
     tl.filter_by_annotation
     tl.filter_by_ratio

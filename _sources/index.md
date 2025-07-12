@@ -34,13 +34,11 @@ You need at least Python 3.10 installed.
 ```python
 uv init
 ```
+
 your project folder will be created, then run:
+
 ```python
 uv add opendvp
-```
-**OR** to install spatialdata capabilities:
-```python
-uv add 'opendvp[spatialdata]'
 ```
 
 </details>
@@ -53,13 +51,7 @@ uv add 'opendvp[spatialdata]'
 pip install openDVP
 ```
 
-2. Install the latest stable release from [PyPI](https://pypi.org/project/openDVP/) with spatialdata capabilities:
-
-```bash
-pip install 'openDVP[spatialdata]'
-```
-
-3. Install the latest development version from github:
+2. Install the latest development version from github:
 
 ```bash
 pip install git+https://github.com/CosciaLab/openDVP.git@main

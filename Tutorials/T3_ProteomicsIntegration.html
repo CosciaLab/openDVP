@@ -49,7 +49,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=ca00a4f5"></script>
+    <script src="../_static/documentation_options.js?v=3b5aa716"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -183,7 +183,6 @@
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../api/plotting.html">Plotting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.dynamic_histogram.html">opendvp.plotting.dynamic_histogram</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.plot_graph_network.html">opendvp.plotting.plot_graph_network</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.stacked_barplot.html">opendvp.plotting.stacked_barplot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.abundance_histograms.html">opendvp.plotting.abundance_histograms</a></li>
@@ -191,7 +190,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.coefficient_of_variation.html">opendvp.plotting.coefficient_of_variation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.density.html">opendvp.plotting.density</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.dual_axis_boxplots.html">opendvp.plotting.dual_axis_boxplots</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.histogram_w_imputation.html">opendvp.plotting.histogram_w_imputation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.imputation_qc.html">opendvp.plotting.imputation_qc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.pca_loadings.html">opendvp.plotting.pca_loadings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.rankplot.html">opendvp.plotting.rankplot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.upset.html">opendvp.plotting.upset</a></li>
@@ -200,11 +199,9 @@
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../api/pp.html">Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.pp.impute_marker_with_annotation.html">opendvp.pp.impute_marker_with_annotation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.pp.rescale.html">opendvp.pp.rescale</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../api/tl.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.tl.filter_adata_by_gates.html">opendvp.tl.filter_adata_by_gates</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.tl.filter_by_abs_value.html">opendvp.tl.filter_by_abs_value</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.tl.filter_by_annotation.html">opendvp.tl.filter_by_annotation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.tl.filter_by_ratio.html">opendvp.tl.filter_by_ratio</a></li>
@@ -417,7 +414,6 @@ document.write(`
 <span class="kn">import</span><span class="w"> </span><span class="nn">ast</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">spatialdata</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">napari_spatialdata</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">spatialdata_plot</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.colors</span><span class="w"> </span><span class="kn">import</span> <span class="n">Normalize</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">dask_image</span><span class="w"> </span><span class="kn">import</span> <span class="n">imread</span>
 </pre></div>
@@ -435,7 +431,7 @@ document.write(`
     <span class="n">DIANN_sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="n">metadata_path</span><span class="o">=</span><span class="s2">&quot;../data/proteomics/DIANN_metadata.csv&quot;</span><span class="p">,</span>
     <span class="n">metadata_sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">,</span>
-    <span class="n">n_of_protein_metadata_cols</span><span class="o">=</span><span class="mi">4</span>
+    <span class="n">n_of_protein_metadata_cols</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -607,7 +603,7 @@ We use <code class="docutils literal notranslate"><span class="pre">spatialdata.
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load image to spatialdata object</span>
-<span class="n">sdata</span><span class="p">[</span><span class="s1">&#39;mIF&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">spatialdata</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Image2DModel</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">image_array</span><span class="p">)</span>
+<span class="n">sdata</span><span class="p">[</span><span class="s2">&quot;mIF&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">spatialdata</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Image2DModel</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">image_array</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -675,12 +671,9 @@ We need to tell spatialdata what parts of the adata object to use for visualizat
 <p>We use <code class="docutils literal notranslate"><span class="pre">QuPath_class</span></code> because that is the column that matches between the adata and the geodataframe.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sdata</span><span class="p">[</span><span class="s1">&#39;proteomics&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">spatialdata</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">TableModel</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span>
-                            <span class="n">adata</span><span class="o">=</span><span class="n">adata</span><span class="p">,</span> 
-                            <span class="n">region</span><span class="o">=</span><span class="s2">&quot;Slide_P12&quot;</span><span class="p">,</span>
-                            <span class="n">region_key</span><span class="o">=</span><span class="s2">&quot;Slide_id&quot;</span><span class="p">,</span>
-                            <span class="n">instance_key</span><span class="o">=</span><span class="s2">&quot;QuPath_class&quot;</span>
-                            <span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sdata</span><span class="p">[</span><span class="s2">&quot;proteomics&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">spatialdata</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">TableModel</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span>
+    <span class="n">adata</span><span class="o">=</span><span class="n">adata</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="s2">&quot;Slide_P12&quot;</span><span class="p">,</span> <span class="n">region_key</span><span class="o">=</span><span class="s2">&quot;Slide_id&quot;</span><span class="p">,</span> <span class="n">instance_key</span><span class="o">=</span><span class="s2">&quot;QuPath_class&quot;</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -786,11 +779,12 @@ with coordinate systems:
 Let’s get it out</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf</span><span class="p">[</span><span class="s1">&#39;QuPath_class&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gdf</span><span class="p">[</span><span class="s1">&#39;classification&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
-    <span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">row</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">row</span><span class="p">,</span><span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf</span><span class="p">[</span><span class="s2">&quot;QuPath_class&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gdf</span><span class="p">[</span><span class="s2">&quot;classification&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+    <span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">row</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span>
+<span class="p">)</span>
 
-<span class="c1"># this line of code says, if classification cells are strings, </span>
-<span class="c1"># convert to a dictionary and get name attribute, </span>
+<span class="c1"># this line of code says, if classification cells are strings,</span>
+<span class="c1"># convert to a dictionary and get name attribute,</span>
 <span class="c1"># otherwise we assume it is already a dictionary and we get the name attribute.</span>
 </pre></div>
 </div>
@@ -959,7 +953,7 @@ Spatialdata needs this to match the proteomics adata object to these shapes.<br 
 Let’s add these prepared shapes to the spatialdata object.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sdata</span><span class="p">[</span><span class="s1">&#39;Slide_P12&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">spatialdata</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">ShapesModel</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">gdf</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sdata</span><span class="p">[</span><span class="s2">&quot;Slide_P12&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">spatialdata</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">ShapesModel</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">gdf</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1035,7 +1029,7 @@ We can also overlay any value dounf in adata.obs!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we need this because of a spatialdata bug, see https://github.com/scverse/spatialdata-plot/issues/475</span>
-<span class="n">sdata</span><span class="p">[</span><span class="s1">&#39;Slide_P12&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sdata</span><span class="p">[</span><span class="s1">&#39;Slide_P12&#39;</span><span class="p">][</span><span class="o">~</span><span class="n">sdata</span><span class="p">[</span><span class="s1">&#39;Slide_P12&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">keep</span><span class="o">=</span><span class="s2">&quot;first&quot;</span><span class="p">)]</span>
+<span class="n">sdata</span><span class="p">[</span><span class="s2">&quot;Slide_P12&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sdata</span><span class="p">[</span><span class="s2">&quot;Slide_P12&quot;</span><span class="p">][</span><span class="o">~</span><span class="n">sdata</span><span class="p">[</span><span class="s2">&quot;Slide_P12&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">keep</span><span class="o">=</span><span class="s2">&quot;first&quot;</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div>
@@ -1045,15 +1039,17 @@ We can also overlay any value dounf in adata.obs!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sdata</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">render_images</span><span class="p">(</span>
-        <span class="n">element</span><span class="o">=</span><span class="s2">&quot;mIF&quot;</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">11</span><span class="p">],</span>
-        <span class="n">norm</span><span class="o">=</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">75</span><span class="p">,</span> <span class="n">clip</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> 
-        <span class="n">palette</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">,</span><span class="s2">&quot;red&quot;</span><span class="p">,</span><span class="s2">&quot;magenta&quot;</span><span class="p">]</span>
-    <span class="p">)</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">render_shapes</span><span class="p">(</span>
-        <span class="n">element</span><span class="o">=</span><span class="s2">&quot;Slide_P12&quot;</span><span class="p">,</span> 
-        <span class="n">table_name</span><span class="o">=</span><span class="s2">&quot;proteomics&quot;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;IMPA2&quot;</span><span class="p">,</span>
-        <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span><span class="p">,</span>
-        <span class="n">norm</span><span class="o">=</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">clip</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="p">)</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">element</span><span class="o">=</span><span class="s2">&quot;mIF&quot;</span><span class="p">,</span>
+    <span class="n">channel</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span>
+    <span class="n">norm</span><span class="o">=</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">75</span><span class="p">,</span> <span class="n">clip</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+    <span class="n">palette</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;magenta&quot;</span><span class="p">],</span>
+<span class="p">)</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">render_shapes</span><span class="p">(</span>
+    <span class="n">element</span><span class="o">=</span><span class="s2">&quot;Slide_P12&quot;</span><span class="p">,</span>
+    <span class="n">table_name</span><span class="o">=</span><span class="s2">&quot;proteomics&quot;</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;IMPA2&quot;</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span><span class="p">,</span>
+    <span class="n">norm</span><span class="o">=</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">clip</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+<span class="p">)</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>

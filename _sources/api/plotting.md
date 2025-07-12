@@ -8,7 +8,6 @@
 .. autosummary::
     :toctree: generated
     
-    plotting.dynamic_histogram
     plotting.plot_graph_network
     plotting.stacked_barplot
 ```
@@ -23,7 +22,7 @@
     plotting.coefficient_of_variation
     plotting.density
     plotting.dual_axis_boxplots
-    plotting.histogram_w_imputation
+    plotting.imputation_qc
     plotting.pca_loadings
     plotting.rankplot
     plotting.upset

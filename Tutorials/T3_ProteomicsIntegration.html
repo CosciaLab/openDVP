@@ -49,7 +49,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=967efe37"></script>
+    <script src="../_static/documentation_options.js?v=036b7ce6"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -416,6 +416,13 @@ document.write(`
 <span class="kn">import</span><span class="w"> </span><span class="nn">napari_spatialdata</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.colors</span><span class="w"> </span><span class="kn">import</span> <span class="n">Normalize</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">dask_image</span><span class="w"> </span><span class="kn">import</span> <span class="n">imread</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;openDVP version </span><span class="si">{</span><span class="n">dvp</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>openDVP version 0.6.4
 </pre></div>
 </div>
 </div>
@@ -437,13 +444,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">14:16:12.37</span> | <span class=" -Color -Color-Bold">INFO</span> | Starting DIANN matrix shape (7030, 14)
-<span class=" -Color -Color-Green">14:16:12.38</span> | <span class=" -Color -Color-Bold">INFO</span> | Removing 264 contaminants
-<span class=" -Color -Color-Green">14:16:12.38</span> | <span class=" -Color -Color-Bold">INFO</span> | Filtering 3 genes that are NaN
-<span class=" -Color -Color-Green">14:16:12.38</span> | <span class=" -Color -Color-Bold">INFO</span> | [&#39;A0A0G2JRQ6_HUMAN&#39;, &#39;A0A0J9YY99_HUMAN&#39;, &#39;YJ005_HUMAN&#39;]
-<span class=" -Color -Color-Green">14:16:12.38</span> | <span class=" -Color -Color-Bold">INFO</span> | 10 samples, and 6763 proteins
-<span class=" -Color -Color-Green">14:16:12.39</span> | <span class=" -Color -Color-Bold">INFO</span> | 52 gene lists (eg &#39;TMA7;TMA7B&#39;) were simplified to (&#39;TMA7&#39;).
-<span class=" -Color -Color-Green">14:16:12.39</span> | <span class=" -Color -Color-Bold -Color-Bold-Green">SUCCESS</span> | Anndata object has been created :)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:52:30.85</span> | <span class=" -Color -Color-Bold">INFO</span> | Starting DIANN matrix shape (7030, 14)
+<span class=" -Color -Color-Green">16:52:30.85</span> | <span class=" -Color -Color-Bold">INFO</span> | Removing 264 contaminants
+<span class=" -Color -Color-Green">16:52:30.86</span> | <span class=" -Color -Color-Bold">INFO</span> | Filtering 3 genes that are NaN
+<span class=" -Color -Color-Green">16:52:30.86</span> | <span class=" -Color -Color-Bold">INFO</span> | [&#39;A0A0G2JRQ6_HUMAN&#39;, &#39;A0A0J9YY99_HUMAN&#39;, &#39;YJ005_HUMAN&#39;]
+<span class=" -Color -Color-Green">16:52:30.88</span> | <span class=" -Color -Color-Bold">INFO</span> | 10 samples, and 6763 proteins
+<span class=" -Color -Color-Green">16:52:30.88</span> | <span class=" -Color -Color-Bold">INFO</span> | 52 gene lists (eg &#39;TMA7;TMA7B&#39;) were simplified to (&#39;TMA7&#39;).
+<span class=" -Color -Color-Green">16:52:30.89</span> | <span class=" -Color -Color-Bold -Color-Bold-Green">SUCCESS</span> | Anndata object has been created :)
 </pre></div>
 </div>
 </div>
@@ -1016,7 +1023,7 @@ with coordinate systems:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;napari_spatialdata._interactive.Interactive at 0x2cfac49b0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;napari_spatialdata._interactive.Interactive at 0x2d7fe19d0&gt;
 </pre></div>
 </div>
 </div>
@@ -1057,7 +1064,7 @@ We can also overlay any value dounf in adata.obs!</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Blue">INFO    </span> Rasterizing image for faster rendering.
 </pre></div>
 </div>
-<img alt="../_images/11f484d4ed1edc5d3dd5756b3ac79c9a7bb6c1265db4dab4cb78b6d8650ec3e5.png" src="../_images/11f484d4ed1edc5d3dd5756b3ac79c9a7bb6c1265db4dab4cb78b6d8650ec3e5.png" />
+<img alt="../_images/d906f19fb2caffc75561ad9b4907ee1e809eabbcb65084250dc99408740eee40.png" src="../_images/d906f19fb2caffc75561ad9b4907ee1e809eabbcb65084250dc99408740eee40.png" />
 </div>
 </div>
 </section>

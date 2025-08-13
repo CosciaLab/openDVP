@@ -49,7 +49,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=967efe37"></script>
+    <script src="../_static/documentation_options.js?v=036b7ce6"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -440,7 +440,7 @@ Then we perform some simple statistical test and plot it with the famous volcano
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>openDVP version 0.5.6
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>openDVP version 0.6.4
 </pre></div>
 </div>
 </div>
@@ -466,13 +466,13 @@ We now use one of the <code class="docutils literal notranslate"><span class="pr
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">12:07:28.97</span> | <span class=" -Color -Color-Bold">INFO</span> | Starting DIANN matrix shape (7030, 14)
-<span class=" -Color -Color-Green">12:07:28.98</span> | <span class=" -Color -Color-Bold">INFO</span> | Removing 264 contaminants
-<span class=" -Color -Color-Green">12:07:28.98</span> | <span class=" -Color -Color-Bold">INFO</span> | Filtering 3 genes that are NaN
-<span class=" -Color -Color-Green">12:07:28.98</span> | <span class=" -Color -Color-Bold">INFO</span> | [&#39;A0A0G2JRQ6_HUMAN&#39;, &#39;A0A0J9YY99_HUMAN&#39;, &#39;YJ005_HUMAN&#39;]
-<span class=" -Color -Color-Green">12:07:28.99</span> | <span class=" -Color -Color-Bold">INFO</span> | 10 samples, and 6763 proteins
-<span class=" -Color -Color-Green">12:07:29.00</span> | <span class=" -Color -Color-Bold">INFO</span> | 52 gene lists (eg &#39;TMA7;TMA7B&#39;) were simplified to (&#39;TMA7&#39;).
-<span class=" -Color -Color-Green">12:07:29.01</span> | <span class=" -Color -Color-Bold -Color-Bold-Green">SUCCESS</span> | Anndata object has been created :)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:49:01.64</span> | <span class=" -Color -Color-Bold">INFO</span> | Starting DIANN matrix shape (7030, 14)
+<span class=" -Color -Color-Green">16:49:01.64</span> | <span class=" -Color -Color-Bold">INFO</span> | Removing 264 contaminants
+<span class=" -Color -Color-Green">16:49:01.65</span> | <span class=" -Color -Color-Bold">INFO</span> | Filtering 3 genes that are NaN
+<span class=" -Color -Color-Green">16:49:01.65</span> | <span class=" -Color -Color-Bold">INFO</span> | [&#39;A0A0G2JRQ6_HUMAN&#39;, &#39;A0A0J9YY99_HUMAN&#39;, &#39;YJ005_HUMAN&#39;]
+<span class=" -Color -Color-Green">16:49:01.66</span> | <span class=" -Color -Color-Bold">INFO</span> | 10 samples, and 6763 proteins
+<span class=" -Color -Color-Green">16:49:01.67</span> | <span class=" -Color -Color-Bold">INFO</span> | 52 gene lists (eg &#39;TMA7;TMA7B&#39;) were simplified to (&#39;TMA7&#39;).
+<span class=" -Color -Color-Green">16:49:01.67</span> | <span class=" -Color -Color-Bold -Color-Bold-Green">SUCCESS</span> | Anndata object has been created :)
 </pre></div>
 </div>
 </div>
@@ -706,13 +706,30 @@ We collected samples from tumor enriched areas and immune enriched areas.<br />
 Here we explore how their proteomes differ.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s see how many proteins and precursors were measured per sample</span>
-<span class="n">dvp</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">dual_axis_boxplots</span><span class="p">(</span><span class="n">adata_obs</span><span class="o">=</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">,</span> <span class="n">feature_key</span><span class="o">=</span><span class="s2">&quot;RCN_long&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">columns</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2176d936f7a3698778ef02ed3a26c7c2ec3c497575c44771006a41d036ed3816.png" src="../_images/2176d936f7a3698778ef02ed3a26c7c2ec3c497575c44771006a41d036ed3816.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;Precursors.Identified&#39;, &#39;Proteins.Identified&#39;,
+       &#39;Average.Missed.Tryptic.Cleavages&#39;, &#39;LCMS_run_id&#39;, &#39;RCN&#39;, &#39;RCN_long&#39;,
+       &#39;QuPath_class&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s see how many proteins and precursors were measured per sample</span>
+<span class="n">dvp</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">dual_axis_boxplots</span><span class="p">(</span>
+    <span class="n">adata</span><span class="o">=</span><span class="n">adata</span><span class="p">,</span> <span class="n">feature_1</span><span class="o">=</span><span class="s2">&quot;Proteins.Identified&quot;</span><span class="p">,</span> <span class="n">feature_2</span><span class="o">=</span><span class="s2">&quot;Precursors.Identified&quot;</span><span class="p">,</span> <span class="n">group_by</span><span class="o">=</span><span class="s2">&quot;RCN_long&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/a9a876963fb2f734b5d4606d9c05844c732db91b14b800fd41a7ca089a091c25.png" src="../_images/a9a876963fb2f734b5d4606d9c05844c732db91b14b800fd41a7ca089a091c25.png" />
 </div>
 </div>
 <section id="exploring-the-protein-quantification">
@@ -765,7 +782,7 @@ Minimum value: 7.976105824909396
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/576e890ac0103bb64a0faaf00a937f1709329e6d2a0a221a69cd3edbd37a944c.png" src="../_images/576e890ac0103bb64a0faaf00a937f1709329e6d2a0a221a69cd3edbd37a944c.png" />
+<img alt="../_images/edb390ec15c72970ad4138b6f998f42cb5f02032109f41eaf64f091bea3562d5.png" src="../_images/edb390ec15c72970ad4138b6f998f42cb5f02032109f41eaf64f091bea3562d5.png" />
 </div>
 </div>
 <p>These density graphs already show us little difference between samples, in terms of overall quantifications.</p>
@@ -778,10 +795,10 @@ Minimum value: 7.976105824909396
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">12:07:30.01</span> | <span class=" -Color -Color-Bold">INFO</span> | no groups passed, using [&#39;Tumor enriched&#39;, &#39;Immune enriched&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:50:41.85</span> | <span class=" -Color -Color-Bold">INFO</span> | no groups passed, using [&#39;Tumor enriched&#39;, &#39;Immune enriched&#39;]
 </pre></div>
 </div>
-<img alt="../_images/022e7d1dac9f4563e65020cbf5e45f60354aeebea9817a246a8080658497ff8c.png" src="../_images/022e7d1dac9f4563e65020cbf5e45f60354aeebea9817a246a8080658497ff8c.png" />
+<img alt="../_images/a5c35e0cc7c28aa574b2aaac8ab8a32eca75299c69b0cc39e0842df75297ad40.png" src="../_images/a5c35e0cc7c28aa574b2aaac8ab8a32eca75299c69b0cc39e0842df75297ad40.png" />
 </div>
 </div>
 </section>
@@ -799,16 +816,16 @@ Many protein hits were present in other groups not present here.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">12:09:36.10</span> | <span class=" -Color -Color-Bold">INFO</span> | Filtering protein with at least 70.0% valid values in ANY group
-<span class=" -Color -Color-Green">12:09:36.10</span> | <span class=" -Color -Color-Bold">INFO</span> | Calculating overall QC metrics for all features.
-<span class=" -Color -Color-Green">12:09:36.10</span> | <span class=" -Color -Color-Bold">INFO</span> | Filtering by groups, RCN: [&#39;RCN1&#39;, &#39;RCN3&#39;]
-<span class=" -Color -Color-Green">12:09:36.10</span> | <span class=" -Color -Color-Bold">INFO</span> |  RCN1 has 5 samples
-<span class=" -Color -Color-Green">12:09:36.10</span> | <span class=" -Color -Color-Bold">INFO</span> |  RCN3 has 5 samples
-<span class=" -Color -Color-Green">12:09:36.11</span> | <span class=" -Color -Color-Bold">INFO</span> | Keeping proteins that pass &#39;ANY&#39; group criteria.
-<span class=" -Color -Color-Green">12:09:36.11</span> | <span class=" -Color -Color-Bold">INFO</span> | Complete QC metrics for all initial features stored in `adata.uns[&#39;filter_features_byNaNs_qc_metrics&#39;]`.
-<span class=" -Color -Color-Green">12:09:36.11</span> | <span class=" -Color -Color-Bold">INFO</span> | 4637 proteins were kept.
-<span class=" -Color -Color-Green">12:09:36.11</span> | <span class=" -Color -Color-Bold">INFO</span> | 2126 proteins were removed.
-<span class=" -Color -Color-Green">12:09:36.11</span> | <span class=" -Color -Color-Bold -Color-Bold-Green">SUCCESS</span> | filter_features_byNaNs complete.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:50:52.54</span> | <span class=" -Color -Color-Bold">INFO</span> | Filtering protein with at least 70.0% valid values in ANY group
+<span class=" -Color -Color-Green">16:50:52.54</span> | <span class=" -Color -Color-Bold">INFO</span> | Calculating overall QC metrics for all features.
+<span class=" -Color -Color-Green">16:50:52.54</span> | <span class=" -Color -Color-Bold">INFO</span> | Filtering by groups, RCN: [&#39;RCN1&#39;, &#39;RCN3&#39;]
+<span class=" -Color -Color-Green">16:50:52.54</span> | <span class=" -Color -Color-Bold">INFO</span> |  RCN1 has 5 samples
+<span class=" -Color -Color-Green">16:50:52.55</span> | <span class=" -Color -Color-Bold">INFO</span> |  RCN3 has 5 samples
+<span class=" -Color -Color-Green">16:50:52.55</span> | <span class=" -Color -Color-Bold">INFO</span> | Keeping proteins that pass &#39;ANY&#39; group criteria.
+<span class=" -Color -Color-Green">16:50:52.55</span> | <span class=" -Color -Color-Bold">INFO</span> | Complete QC metrics for all initial features stored in `adata.uns[&#39;filter_features_byNaNs_qc_metrics&#39;]`.
+<span class=" -Color -Color-Green">16:50:52.56</span> | <span class=" -Color -Color-Bold">INFO</span> | 4637 proteins were kept.
+<span class=" -Color -Color-Green">16:50:52.56</span> | <span class=" -Color -Color-Bold">INFO</span> | 2126 proteins were removed.
+<span class=" -Color -Color-Green">16:50:52.57</span> | <span class=" -Color -Color-Bold -Color-Bold-Green">SUCCESS</span> | filter_features_byNaNs complete.
 </pre></div>
 </div>
 </div>
@@ -1039,8 +1056,8 @@ Many protein hits were present in other groups not present here.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">12:09:49.20</span> | <span class=" -Color -Color-Bold">INFO</span> | Writing h5ad
-<span class=" -Color -Color-Green">12:09:49.25</span> | <span class=" -Color -Color-Bold -Color-Bold-Green">SUCCESS</span> | Wrote h5ad file
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:50:58.34</span> | <span class=" -Color -Color-Bold">INFO</span> | Writing h5ad
+<span class=" -Color -Color-Green">16:50:58.40</span> | <span class=" -Color -Color-Bold -Color-Bold-Green">SUCCESS</span> | Wrote h5ad file
 </pre></div>
 </div>
 </div>
@@ -1055,11 +1072,11 @@ Many protein hits were present in other groups not present here.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">12:09:51.71</span> | <span class=" -Color -Color-Bold">INFO</span> | Storing original data in `adata.layers[&#39;unimputed&#39;]`.
-<span class=" -Color -Color-Green">12:09:51.71</span> | <span class=" -Color -Color-Bold">INFO</span> | Imputation with Gaussian distribution PER PROTEIN
-<span class=" -Color -Color-Green">12:09:51.71</span> | <span class=" -Color -Color-Bold">INFO</span> | Mean number of missing values per sample: 572.6 out of 4637 proteins
-<span class=" -Color -Color-Green">12:09:51.72</span> | <span class=" -Color -Color-Bold">INFO</span> | Mean number of missing values per protein: 1.23 out of 10 samples
-<span class=" -Color -Color-Green">12:09:53.53</span> | <span class=" -Color -Color-Bold">INFO</span> | Imputation complete. QC metrics stored in `adata.uns[&#39;impute_gaussian_qc_metrics&#39;]`.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:51:00.54</span> | <span class=" -Color -Color-Bold">INFO</span> | Storing original data in `adata.layers[&#39;unimputed&#39;]`.
+<span class=" -Color -Color-Green">16:51:00.54</span> | <span class=" -Color -Color-Bold">INFO</span> | Imputation with Gaussian distribution PER PROTEIN
+<span class=" -Color -Color-Green">16:51:00.55</span> | <span class=" -Color -Color-Bold">INFO</span> | Mean number of missing values per sample: 572.6 out of 4637 proteins
+<span class=" -Color -Color-Green">16:51:00.55</span> | <span class=" -Color -Color-Bold">INFO</span> | Mean number of missing values per protein: 1.23 out of 10 samples
+<span class=" -Color -Color-Green">16:51:02.21</span> | <span class=" -Color -Color-Bold">INFO</span> | Imputation complete. QC metrics stored in `adata.uns[&#39;impute_gaussian_qc_metrics&#39;]`.
 </pre></div>
 </div>
 </div>
@@ -1139,14 +1156,14 @@ Showing you per protein:</p>
       <td>1</td>
       <td>15.343103</td>
       <td>1.346909</td>
-      <td>[13.0924]</td>
+      <td>[13.0819]</td>
     </tr>
     <tr>
       <th>IGHV3-64</th>
       <td>6</td>
       <td>13.710045</td>
       <td>1.247562</td>
-      <td>[11.3612, 11.9557, 11.1175, 12.1468, 11.1352, ...</td>
+      <td>[11.7351, 11.3062, 11.8148, 11.6849, 12.0622, ...</td>
     </tr>
     <tr>
       <th>IGKV2D-29</th>
@@ -1181,7 +1198,7 @@ Showing you per protein:</p>
       <td>1</td>
       <td>12.475482</td>
       <td>0.455856</td>
-      <td>[11.5562]</td>
+      <td>[11.6512]</td>
     </tr>
     <tr>
       <th>ENPP4</th>
@@ -1195,7 +1212,7 @@ Showing you per protein:</p>
       <td>1</td>
       <td>12.330734</td>
       <td>0.783775</td>
-      <td>[10.9446]</td>
+      <td>[10.7016]</td>
     </tr>
     <tr>
       <th>SEC23IP</th>
@@ -1219,8 +1236,8 @@ You can always call those values by <code class="docutils literal notranslate"><
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">12:10:01.32</span> | <span class=" -Color -Color-Bold">INFO</span> | Writing h5ad
-<span class=" -Color -Color-Green">12:10:01.38</span> | <span class=" -Color -Color-Bold -Color-Bold-Green">SUCCESS</span> | Wrote h5ad file
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:51:10.48</span> | <span class=" -Color -Color-Bold">INFO</span> | Writing h5ad
+<span class=" -Color -Color-Green">16:51:10.54</span> | <span class=" -Color -Color-Bold -Color-Bold-Green">SUCCESS</span> | Wrote h5ad file
 </pre></div>
 </div>
 </div>
@@ -1267,7 +1284,7 @@ Beware of using Scanpy for proteomics datasets, assumptions will vary.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/77089d7947ac903c9549fb99a8d801efd36317114f908241433252a5803924df.png" src="../_images/77089d7947ac903c9549fb99a8d801efd36317114f908241433252a5803924df.png" />
+<img alt="../_images/d5a10f6eaf16ce1e60745d11b0a66eca2d21cf5f4c6d90f6d089510a06a0a6f5.png" src="../_images/d5a10f6eaf16ce1e60745d11b0a66eca2d21cf5f4c6d90f6d089510a06a0a6f5.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1278,11 +1295,11 @@ Beware of using Scanpy for proteomics datasets, assumptions will vary.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4 [-0.38130396 -0.40484619]
-52 [-0.39167196  0.581337  ]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>19 [ 0.54586545 -0.69229984]
+58 [0.65783205 0.95656296]
 </pre></div>
 </div>
-<img alt="../_images/bc3f8ca6d91d58768a6a55d8f1565ebc8183131fb7859763db989ad91e6762ad.png" src="../_images/bc3f8ca6d91d58768a6a55d8f1565ebc8183131fb7859763db989ad91e6762ad.png" />
+<img alt="../_images/f82a66d950b58098173a88801743c6f25a9962ab889fd96e5219caea4fdf860c.png" src="../_images/f82a66d950b58098173a88801743c6f25a9962ab889fd96e5219caea4fdf860c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1292,8 +1309,8 @@ Beware of using Scanpy for proteomics datasets, assumptions will vary.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">15:19:19.65</span> | <span class=" -Color -Color-Bold">INFO</span> | Writing h5ad
-<span class=" -Color -Color-Green">15:19:19.71</span> | <span class=" -Color -Color-Bold -Color-Bold-Green">SUCCESS</span> | Wrote h5ad file
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:51:23.73</span> | <span class=" -Color -Color-Bold">INFO</span> | Writing h5ad
+<span class=" -Color -Color-Green">16:51:23.78</span> | <span class=" -Color -Color-Bold -Color-Bold-Green">SUCCESS</span> | Wrote h5ad file
 </pre></div>
 </div>
 </div>
@@ -1313,7 +1330,7 @@ Beware of using Scanpy for proteomics datasets, assumptions will vary.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/adf0f2b1fca64303cc3492796f8c6710a5f1fec217dbe416bd94be54b7f99837.png" src="../_images/adf0f2b1fca64303cc3492796f8c6710a5f1fec217dbe416bd94be54b7f99837.png" />
+<img alt="../_images/15a5138d01f44c8657715872c798e4f08c21a1dfc6a33f37f5c56afa05774a1f.png" src="../_images/15a5138d01f44c8657715872c798e4f08c21a1dfc6a33f37f5c56afa05774a1f.png" />
 </div>
 </div>
 </section>
@@ -1330,9 +1347,9 @@ Beware of using Scanpy for proteomics datasets, assumptions will vary.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">13:22:11.97</span> | <span class=" -Color -Color-Bold">INFO</span> | Using pingouin.ttest to perform unpaired two-sided t-test between Tumor enriched and Immune enriched
-<span class=" -Color -Color-Green">13:22:11.97</span> | <span class=" -Color -Color-Bold">INFO</span> | Using Benjamini-Hochberg for FDR correction, with a threshold of 0.05
-<span class=" -Color -Color-Green">13:22:11.97</span> | <span class=" -Color -Color-Bold">INFO</span> | The test found 2004 proteins to be significantly
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:51:35.87</span> | <span class=" -Color -Color-Bold">INFO</span> | Using pingouin.ttest to perform unpaired two-sided t-test between Tumor enriched and Immune enriched
+<span class=" -Color -Color-Green">16:51:35.87</span> | <span class=" -Color -Color-Bold">INFO</span> | Using Benjamini-Hochberg for FDR correction, with a threshold of 0.05
+<span class=" -Color -Color-Green">16:51:35.87</span> | <span class=" -Color -Color-Bold">INFO</span> | The test found 2003 proteins to be significantly
 </pre></div>
 </div>
 </div>
@@ -1362,8 +1379,8 @@ Beware of using Scanpy for proteomics datasets, assumptions will vary.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">13:22:26.68</span> | <span class=" -Color -Color-Bold">INFO</span> | Writing h5ad
-<span class=" -Color -Color-Green">13:22:26.78</span> | <span class=" -Color -Color-Bold -Color-Bold-Green">SUCCESS</span> | Wrote h5ad file
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:51:39.99</span> | <span class=" -Color -Color-Bold">INFO</span> | Writing h5ad
+<span class=" -Color -Color-Green">16:51:40.04</span> | <span class=" -Color -Color-Bold -Color-Bold-Green">SUCCESS</span> | Wrote h5ad file
 </pre></div>
 </div>
 </div>
@@ -1388,7 +1405,7 @@ Beware of using Scanpy for proteomics datasets, assumptions will vary.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1ae29cc197c8bdcb6b45218afe6103d26fc15db4776584e033fa24f333db5474.png" src="../_images/1ae29cc197c8bdcb6b45218afe6103d26fc15db4776584e033fa24f333db5474.png" />
+<img alt="../_images/845cbf23d6cf8a2f1596a7489b82f7ef31ead1f832d6cf5dc8bd5eddd84f98d5.png" src="../_images/845cbf23d6cf8a2f1596a7489b82f7ef31ead1f832d6cf5dc8bd5eddd84f98d5.png" />
 </div>
 </div>
 </section>

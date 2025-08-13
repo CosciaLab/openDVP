@@ -49,7 +49,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=967efe37"></script>
+    <script src="../_static/documentation_options.js?v=036b7ce6"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -444,6 +444,19 @@ For information to how to get here from raw images go to the image processing se
 <div class="cell_output docutils container">
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># lets check the opendvp version</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;openDVP version </span><span class="si">{</span><span class="n">dvp</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>openDVP version 0.6.4
+</pre></div>
+</div>
+</div>
+</div>
 <section id="let-s-download-the-demo-data">
 <h3>Let’s download the demo data<a class="headerlink" href="#let-s-download-the-demo-data" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
@@ -503,10 +516,10 @@ Number of segmented objects 16808
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x2c24b8200&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x2c3e086d0&gt;
 </pre></div>
 </div>
-<img alt="../_images/061c0ce75161e05b63b7cf763eab21076c2510147b257647ba5c295ff60d46dc.png" src="../_images/061c0ce75161e05b63b7cf763eab21076c2510147b257647ba5c295ff60d46dc.png" />
+<img alt="../_images/0b8b644ff51c7773b91f75d80c8cbc09e2a8de62241d5f689d2843a5b2fcdb23.png" src="../_images/0b8b644ff51c7773b91f75d80c8cbc09e2a8de62241d5f689d2843a5b2fcdb23.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -517,10 +530,10 @@ Number of segmented objects 16808
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x2c240f9e0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x2c3e72890&gt;
 </pre></div>
 </div>
-<img alt="../_images/9da365e66c945f04d682469b2a437f1fb048ad78f241fca0308858d7daba9c8f.png" src="../_images/9da365e66c945f04d682469b2a437f1fb048ad78f241fca0308858d7daba9c8f.png" />
+<img alt="../_images/f18384d81c54f3f1044b8fd5043d7a7983a944354ac81bcbe9f91c6794526c85.png" src="../_images/f18384d81c54f3f1044b8fd5043d7a7983a944354ac81bcbe9f91c6794526c85.png" />
 </div>
 </div>
 <p>You could plot and check various regions of the tissue, and overlay with the image, but this starts to get bulky and slow. We recommend an interactive session where one can zoom in and out, and check different channels.</p>
@@ -537,7 +550,7 @@ Number of segmented objects 16808
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Blue">INFO    </span> no axes information specified in the object, setting `dims` to: <span class=" -Color -Color-Bold">(</span><span class=" -Color -Color-Green">&#39;y&#39;</span>, <span class=" -Color -Color-Green">&#39;x&#39;</span><span class=" -Color -Color-Bold">)</span>
-<span class=" -Color -Color-Green">16:13:05.55</span> | <span class=" -Color -Color-Bold">INFO</span> | Simplifying the geometry with tolerance 1
+<span class=" -Color -Color-Green">16:42:27.24</span> | <span class=" -Color -Color-Bold">INFO</span> | Simplifying the geometry with tolerance 1
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -631,7 +644,7 @@ Number of segmented objects 16808
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Labels layer &#39;Segmentation&#39; at 0x315445e50&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Labels layer &#39;Segmentation&#39; at 0x31c79a7d0&gt;
 </pre></div>
 </div>
 </div>
@@ -652,8 +665,8 @@ For life scientists it also means you could use functions already created by ver
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:13:11.75</span> | <span class=" -Color -Color-Bold">INFO</span> | Detected 0 in &#39;CellID&#39; — shifting all values by +1 for 1-based indexing.
-<span class=" -Color -Color-Green">16:13:11.75</span> | <span class=" -Color -Color-Bold">INFO</span> |  16808 cells and 15 variables
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:42:49.18</span> | <span class=" -Color -Color-Bold">INFO</span> | Detected 0 in &#39;CellID&#39; — shifting all values by +1 for 1-based indexing.
+<span class=" -Color -Color-Green">16:42:49.18</span> | <span class=" -Color -Color-Bold">INFO</span> |  16808 cells and 15 variables
 </pre></div>
 </div>
 </div>
@@ -849,12 +862,12 @@ For life scientists it also means you could use functions already created by ver
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:13:11.84</span> | <span class=" -Color -Color-Bold">INFO</span> | Starting filter_by_abs_value for feature &#39;Area&#39;...
-<span class=" -Color -Color-Green">16:13:11.84</span> | <span class=" -Color -Color-Bold">INFO</span> | Feature &#39;Area&#39; identified from adata.obs.
-<span class=" -Color -Color-Green">16:13:11.84</span> | <span class=" -Color -Color-Bold">INFO</span> | Keeping cells with &#39;Area&#39; &gt;= 295.0000 (from quantile bound: 0.01).
-<span class=" -Color -Color-Green">16:13:11.84</span> | <span class=" -Color -Color-Bold">INFO</span> | Keeping cells with &#39;Area&#39; &lt;= 2376.4400 (from quantile bound: 0.99).
-<span class=" -Color -Color-Green">16:13:11.84</span> | <span class=" -Color -Color-Bold -Color-Bold-Green">SUCCESS</span> | 16475 of 16808 cells (98.02%) passed the filter.
-<span class=" -Color -Color-Green">16:13:11.84</span> | <span class=" -Color -Color-Bold">INFO</span> | New boolean column &#39;Area_filter&#39; added to adata.obs.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:42:54.66</span> | <span class=" -Color -Color-Bold">INFO</span> | Starting filter_by_abs_value for feature &#39;Area&#39;...
+<span class=" -Color -Color-Green">16:42:54.67</span> | <span class=" -Color -Color-Bold">INFO</span> | Feature &#39;Area&#39; identified from adata.obs.
+<span class=" -Color -Color-Green">16:42:54.67</span> | <span class=" -Color -Color-Bold">INFO</span> | Keeping cells with &#39;Area&#39; &gt;= 295.0000 (from quantile bound: 0.01).
+<span class=" -Color -Color-Green">16:42:54.67</span> | <span class=" -Color -Color-Bold">INFO</span> | Keeping cells with &#39;Area&#39; &lt;= 2376.4400 (from quantile bound: 0.99).
+<span class=" -Color -Color-Green">16:42:54.67</span> | <span class=" -Color -Color-Bold -Color-Bold-Green">SUCCESS</span> | 16475 of 16808 cells (98.02%) passed the filter.
+<span class=" -Color -Color-Green">16:42:54.67</span> | <span class=" -Color -Color-Bold">INFO</span> | New boolean column &#39;Area_filter&#39; added to adata.obs.
 </pre></div>
 </div>
 </div>
@@ -949,7 +962,7 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b86fd43755b6f009fcb2c8140ff9c2aae8e1c3c4ab1ba7d8a5805016dde74499.png" src="../_images/b86fd43755b6f009fcb2c8140ff9c2aae8e1c3c4ab1ba7d8a5805016dde74499.png" />
+<img alt="../_images/e267fbd49ac9571398f45cc9ec1c63c55e1025bd3013048e4dec7bbf3a3d0068.png" src="../_images/e267fbd49ac9571398f45cc9ec1c63c55e1025bd3013048e4dec7bbf3a3d0068.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -962,12 +975,12 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:13:12.15</span> | <span class=" -Color -Color-Bold">INFO</span> | Starting filter_by_abs_value for feature &#39;mean_DAPI_bg&#39;...
-<span class=" -Color -Color-Green">16:13:12.16</span> | <span class=" -Color -Color-Bold">INFO</span> | Feature &#39;mean_DAPI_bg&#39; identified from adata.X.
-<span class=" -Color -Color-Green">16:13:12.16</span> | <span class=" -Color -Color-Bold">INFO</span> | Keeping cells with &#39;mean_DAPI_bg&#39; &gt;= 5.0000 (from absolute bound: 5).
-<span class=" -Color -Color-Green">16:13:12.16</span> | <span class=" -Color -Color-Bold">INFO</span> | Keeping cells with &#39;mean_DAPI_bg&#39; &lt;= 60.0000 (from absolute bound: 60).
-<span class=" -Color -Color-Green">16:13:12.16</span> | <span class=" -Color -Color-Bold -Color-Bold-Green">SUCCESS</span> | 16777 of 16808 cells (99.82%) passed the filter.
-<span class=" -Color -Color-Green">16:13:12.16</span> | <span class=" -Color -Color-Bold">INFO</span> | New boolean column &#39;mean_DAPI_bg_filter&#39; added to adata.obs.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:43:01.71</span> | <span class=" -Color -Color-Bold">INFO</span> | Starting filter_by_abs_value for feature &#39;mean_DAPI_bg&#39;...
+<span class=" -Color -Color-Green">16:43:01.72</span> | <span class=" -Color -Color-Bold">INFO</span> | Feature &#39;mean_DAPI_bg&#39; identified from adata.X.
+<span class=" -Color -Color-Green">16:43:01.72</span> | <span class=" -Color -Color-Bold">INFO</span> | Keeping cells with &#39;mean_DAPI_bg&#39; &gt;= 5.0000 (from absolute bound: 5).
+<span class=" -Color -Color-Green">16:43:01.72</span> | <span class=" -Color -Color-Bold">INFO</span> | Keeping cells with &#39;mean_DAPI_bg&#39; &lt;= 60.0000 (from absolute bound: 60).
+<span class=" -Color -Color-Green">16:43:01.72</span> | <span class=" -Color -Color-Bold -Color-Bold-Green">SUCCESS</span> | 16777 of 16808 cells (99.82%) passed the filter.
+<span class=" -Color -Color-Green">16:43:01.72</span> | <span class=" -Color -Color-Bold">INFO</span> | New boolean column &#39;mean_DAPI_bg_filter&#39; added to adata.obs.
 </pre></div>
 </div>
 </div>
@@ -989,7 +1002,7 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5abfa0abdb32f507bd9c2a95b51db0efa0043d1b1654686176a3ac97d01504c4.png" src="../_images/5abfa0abdb32f507bd9c2a95b51db0efa0043d1b1654686176a3ac97d01504c4.png" />
+<img alt="../_images/030729a6395b9bbd2d735c6db8a96d5018344a257316dabedb78585c68d0539a.png" src="../_images/030729a6395b9bbd2d735c6db8a96d5018344a257316dabedb78585c68d0539a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1003,13 +1016,13 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:13:12.40</span> | <span class=" -Color -Color-Bold">INFO</span> | Starting filter_by_ratio...
-<span class=" -Color -Color-Green">16:13:12.40</span> | <span class=" -Color -Color-Bold">INFO</span> | Number of cells with DAPI ratio &lt; 0.25: 1035
-<span class=" -Color -Color-Green">16:13:12.40</span> | <span class=" -Color -Color-Bold">INFO</span> | Number of cells with DAPI ratio &gt; 1.05: 28
-<span class=" -Color -Color-Green">16:13:12.40</span> | <span class=" -Color -Color-Bold">INFO</span> | Cells with DAPI ratio between 0.25 and 1.05: 15745
-<span class=" -Color -Color-Green">16:13:12.40</span> | <span class=" -Color -Color-Bold">INFO</span> | Cells filtered: 6.32%
-<span class=" -Color -Color-Green">16:13:12.40</span> | <span class=" -Color -Color-Bold -Color-Bold-Green">SUCCESS</span> | filter_by_ratio complete.
-<span class=" -Color -Color-Green">16:13:12.40</span> | <span class=" -Color -Color-Bold">INFO</span> | New boolean column &#39;DAPI_ratio_pass&#39; added to adata.obs.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:43:05.21</span> | <span class=" -Color -Color-Bold">INFO</span> | Starting filter_by_ratio...
+<span class=" -Color -Color-Green">16:43:05.22</span> | <span class=" -Color -Color-Bold">INFO</span> | Number of cells with DAPI ratio &lt; 0.25: 1035
+<span class=" -Color -Color-Green">16:43:05.22</span> | <span class=" -Color -Color-Bold">INFO</span> | Number of cells with DAPI ratio &gt; 1.05: 28
+<span class=" -Color -Color-Green">16:43:05.22</span> | <span class=" -Color -Color-Bold">INFO</span> | Cells with DAPI ratio between 0.25 and 1.05: 15745
+<span class=" -Color -Color-Green">16:43:05.22</span> | <span class=" -Color -Color-Bold">INFO</span> | Cells filtered: 6.32%
+<span class=" -Color -Color-Green">16:43:05.22</span> | <span class=" -Color -Color-Bold -Color-Bold-Green">SUCCESS</span> | filter_by_ratio complete.
+<span class=" -Color -Color-Green">16:43:05.22</span> | <span class=" -Color -Color-Bold">INFO</span> | New boolean column &#39;DAPI_ratio_pass&#39; added to adata.obs.
 </pre></div>
 </div>
 </div>
@@ -1110,7 +1123,7 @@ This means that you should create a QuPath Annotation Class for each different k
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/dca14ce34c8c50095aadbd0b5df4279b2192d2d054d946eae9406af5cdd428b3.png" src="../_images/dca14ce34c8c50095aadbd0b5df4279b2192d2d054d946eae9406af5cdd428b3.png" />
+<img alt="../_images/2e23277bc162675dcac8f61f880524b9061371aeedf505eca6800903fb99491d.png" src="../_images/2e23277bc162675dcac8f61f880524b9061371aeedf505eca6800903fb99491d.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1122,9 +1135,9 @@ This means that you should create a QuPath Annotation Class for each different k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:13:12.50</span> | <span class=" -Color -Color-Bold">INFO</span> |  Each class of annotation will be a different column in adata.obs
-<span class=" -Color -Color-Green">16:13:12.50</span> | <span class=" -Color -Color-Bold">INFO</span> |  TRUE means cell was inside annotation, FALSE means cell not in annotation
-<span class=" -Color -Color-Green">16:13:12.51</span> | <span class=" -Color -Color-Bold">INFO</span> | GeoJSON loaded, detected: 10 annotations
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:43:12.51</span> | <span class=" -Color -Color-Bold">INFO</span> |  Each class of annotation will be a different column in adata.obs
+<span class=" -Color -Color-Green">16:43:12.51</span> | <span class=" -Color -Color-Bold">INFO</span> |  TRUE means cell was inside annotation, FALSE means cell not in annotation
+<span class=" -Color -Color-Green">16:43:12.52</span> | <span class=" -Color -Color-Bold">INFO</span> | GeoJSON loaded, detected: 10 annotations
 </pre></div>
 </div>
 </div>
@@ -1294,7 +1307,7 @@ The simplest solution is to reduce the marker specific signal for cells present 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:13:12.58</span> | <span class=" -Color -Color-Bold">INFO</span> | Imputing with 0.15% percentile value = 7.545454545454546
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:43:18.47</span> | <span class=" -Color -Color-Bold">INFO</span> | Imputing with 0.15% percentile value = 7.545454545454546
 </pre></div>
 </div>
 </div>
@@ -1385,7 +1398,7 @@ The simplest solution is to reduce the marker specific signal for cells present 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:13:12.90</span> | <span class=" -Color -Color-Bold">INFO</span> | Found 15244 matching IDs between adata.obs[&#39;CellID&#39;] and geodataframe[&#39;label&#39;].
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:43:22.60</span> | <span class=" -Color -Color-Bold">INFO</span> | Found 15244 matching IDs between adata.obs[&#39;CellID&#39;] and geodataframe[&#39;label&#39;].
 </pre></div>
 </div>
 </div>
@@ -1426,13 +1439,13 @@ Therefore for steps 2,3 opendvp provides a wrapper of scimap functions.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:13:13.29</span> | <span class=" -Color -Color-Bold">INFO</span> | Filtering out all rows with value 0.0 (assuming not gated)
-<span class=" -Color -Color-Green">16:13:13.29</span> | <span class=" -Color -Color-Bold">INFO</span> | Found 8 valid gates
-<span class=" -Color -Color-Green">16:13:13.29</span> | <span class=" -Color -Color-Bold">INFO</span> | Markers found: [&#39;mean_Vimentin&#39; &#39;mean_CD3e&#39; &#39;mean_panCK&#39; &#39;mean_CD8&#39; &#39;mean_COL1A1&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:43:33.23</span> | <span class=" -Color -Color-Bold">INFO</span> | Filtering out all rows with value 0.0 (assuming not gated)
+<span class=" -Color -Color-Green">16:43:33.24</span> | <span class=" -Color -Color-Bold">INFO</span> | Found 8 valid gates
+<span class=" -Color -Color-Green">16:43:33.24</span> | <span class=" -Color -Color-Bold">INFO</span> | Markers found: [&#39;mean_Vimentin&#39; &#39;mean_CD3e&#39; &#39;mean_panCK&#39; &#39;mean_CD8&#39; &#39;mean_COL1A1&#39;
  &#39;mean_CD20&#39; &#39;mean_CD68&#39; &#39;mean_Ki67&#39;]
-<span class=" -Color -Color-Green">16:13:13.29</span> | <span class=" -Color -Color-Bold">INFO</span> | Samples found: [&#39;TD_15_TNBC_subset&#39;]
-<span class=" -Color -Color-Green">16:13:13.30</span> | <span class=" -Color -Color-Bold">INFO</span> | Applying log1p transformation to gate values and formatting for scimap.
-<span class=" -Color -Color-Green">16:13:13.30</span> | <span class=" -Color -Color-Bold">INFO</span> |    Output DataFrame columns: [&#39;markers&#39;, &#39;TD_15_TNBC_subset&#39;]
+<span class=" -Color -Color-Green">16:43:33.24</span> | <span class=" -Color -Color-Bold">INFO</span> | Samples found: [&#39;TD_15_TNBC_subset&#39;]
+<span class=" -Color -Color-Green">16:43:33.24</span> | <span class=" -Color -Color-Bold">INFO</span> | Applying log1p transformation to gate values and formatting for scimap.
+<span class=" -Color -Color-Green">16:43:33.24</span> | <span class=" -Color -Color-Bold">INFO</span> |    Output DataFrame columns: [&#39;markers&#39;, &#39;TD_15_TNBC_subset&#39;]
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -1523,7 +1536,7 @@ Therefore for steps 2,3 opendvp provides a wrapper of scimap functions.</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># seems that I will have to:</span>
 <span class="c1"># create adata for gating by filtering unused columns</span>
-<span class="n">adata_rescaled</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">rescale</span><span class="p">(</span><span class="n">adata</span><span class="o">=</span><span class="n">adata_phenotyping</span><span class="p">,</span> <span class="n">gate</span><span class="o">=</span><span class="n">thresholds</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="n">imageid</span><span class="o">=</span><span class="s2">&quot;sample_id&quot;</span><span class="p">)</span>
+<span class="n">adata_rescaled</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">scimap_rescale</span><span class="p">(</span><span class="n">adata</span><span class="o">=</span><span class="n">adata_phenotyping</span><span class="p">,</span> <span class="n">gate</span><span class="o">=</span><span class="n">thresholds</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="n">imageid</span><span class="o">=</span><span class="s2">&quot;sample_id&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1558,126 +1571,126 @@ Scaling mean_Ki67 (gate: 1.093)
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
 </style>
-<table id="T_c11dd">
+<table id="T_85fc5">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_c11dd_level0_col0" class="col_heading level0 col0" >Unnamed: 0</th>
-      <th id="T_c11dd_level0_col1" class="col_heading level0 col1" >Unnamed: 1</th>
-      <th id="T_c11dd_level0_col2" class="col_heading level0 col2" >Vimentin</th>
-      <th id="T_c11dd_level0_col3" class="col_heading level0 col3" >CD3e</th>
-      <th id="T_c11dd_level0_col4" class="col_heading level0 col4" >panCK</th>
-      <th id="T_c11dd_level0_col5" class="col_heading level0 col5" >CD8</th>
-      <th id="T_c11dd_level0_col6" class="col_heading level0 col6" >COL1A1</th>
-      <th id="T_c11dd_level0_col7" class="col_heading level0 col7" >CD20</th>
-      <th id="T_c11dd_level0_col8" class="col_heading level0 col8" >CD68</th>
-      <th id="T_c11dd_level0_col9" class="col_heading level0 col9" >Ki67</th>
+      <th id="T_85fc5_level0_col0" class="col_heading level0 col0" >Unnamed: 0</th>
+      <th id="T_85fc5_level0_col1" class="col_heading level0 col1" >Unnamed: 1</th>
+      <th id="T_85fc5_level0_col2" class="col_heading level0 col2" >Vimentin</th>
+      <th id="T_85fc5_level0_col3" class="col_heading level0 col3" >CD3e</th>
+      <th id="T_85fc5_level0_col4" class="col_heading level0 col4" >panCK</th>
+      <th id="T_85fc5_level0_col5" class="col_heading level0 col5" >CD8</th>
+      <th id="T_85fc5_level0_col6" class="col_heading level0 col6" >COL1A1</th>
+      <th id="T_85fc5_level0_col7" class="col_heading level0 col7" >CD20</th>
+      <th id="T_85fc5_level0_col8" class="col_heading level0 col8" >CD68</th>
+      <th id="T_85fc5_level0_col9" class="col_heading level0 col9" >Ki67</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_c11dd_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_c11dd_row0_col0" class="data row0 col0" >all</td>
-      <td id="T_c11dd_row0_col1" class="data row0 col1" >Epithelial</td>
-      <td id="T_c11dd_row0_col2" class="data row0 col2" ></td>
-      <td id="T_c11dd_row0_col3" class="data row0 col3" ></td>
-      <td id="T_c11dd_row0_col4" class="data row0 col4" >pos</td>
-      <td id="T_c11dd_row0_col5" class="data row0 col5" ></td>
-      <td id="T_c11dd_row0_col6" class="data row0 col6" ></td>
-      <td id="T_c11dd_row0_col7" class="data row0 col7" ></td>
-      <td id="T_c11dd_row0_col8" class="data row0 col8" ></td>
-      <td id="T_c11dd_row0_col9" class="data row0 col9" ></td>
+      <th id="T_85fc5_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_85fc5_row0_col0" class="data row0 col0" >all</td>
+      <td id="T_85fc5_row0_col1" class="data row0 col1" >Epithelial</td>
+      <td id="T_85fc5_row0_col2" class="data row0 col2" ></td>
+      <td id="T_85fc5_row0_col3" class="data row0 col3" ></td>
+      <td id="T_85fc5_row0_col4" class="data row0 col4" >pos</td>
+      <td id="T_85fc5_row0_col5" class="data row0 col5" ></td>
+      <td id="T_85fc5_row0_col6" class="data row0 col6" ></td>
+      <td id="T_85fc5_row0_col7" class="data row0 col7" ></td>
+      <td id="T_85fc5_row0_col8" class="data row0 col8" ></td>
+      <td id="T_85fc5_row0_col9" class="data row0 col9" ></td>
     </tr>
     <tr>
-      <th id="T_c11dd_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_c11dd_row1_col0" class="data row1 col0" >all</td>
-      <td id="T_c11dd_row1_col1" class="data row1 col1" >Mesenchymal</td>
-      <td id="T_c11dd_row1_col2" class="data row1 col2" >pos</td>
-      <td id="T_c11dd_row1_col3" class="data row1 col3" ></td>
-      <td id="T_c11dd_row1_col4" class="data row1 col4" ></td>
-      <td id="T_c11dd_row1_col5" class="data row1 col5" ></td>
-      <td id="T_c11dd_row1_col6" class="data row1 col6" ></td>
-      <td id="T_c11dd_row1_col7" class="data row1 col7" ></td>
-      <td id="T_c11dd_row1_col8" class="data row1 col8" ></td>
-      <td id="T_c11dd_row1_col9" class="data row1 col9" ></td>
+      <th id="T_85fc5_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_85fc5_row1_col0" class="data row1 col0" >all</td>
+      <td id="T_85fc5_row1_col1" class="data row1 col1" >Mesenchymal</td>
+      <td id="T_85fc5_row1_col2" class="data row1 col2" >pos</td>
+      <td id="T_85fc5_row1_col3" class="data row1 col3" ></td>
+      <td id="T_85fc5_row1_col4" class="data row1 col4" ></td>
+      <td id="T_85fc5_row1_col5" class="data row1 col5" ></td>
+      <td id="T_85fc5_row1_col6" class="data row1 col6" ></td>
+      <td id="T_85fc5_row1_col7" class="data row1 col7" ></td>
+      <td id="T_85fc5_row1_col8" class="data row1 col8" ></td>
+      <td id="T_85fc5_row1_col9" class="data row1 col9" ></td>
     </tr>
     <tr>
-      <th id="T_c11dd_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_c11dd_row2_col0" class="data row2 col0" >all</td>
-      <td id="T_c11dd_row2_col1" class="data row2 col1" >Immune</td>
-      <td id="T_c11dd_row2_col2" class="data row2 col2" ></td>
-      <td id="T_c11dd_row2_col3" class="data row2 col3" >anypos</td>
-      <td id="T_c11dd_row2_col4" class="data row2 col4" ></td>
-      <td id="T_c11dd_row2_col5" class="data row2 col5" >anypos</td>
-      <td id="T_c11dd_row2_col6" class="data row2 col6" ></td>
-      <td id="T_c11dd_row2_col7" class="data row2 col7" >anypos</td>
-      <td id="T_c11dd_row2_col8" class="data row2 col8" >anypos</td>
-      <td id="T_c11dd_row2_col9" class="data row2 col9" ></td>
+      <th id="T_85fc5_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_85fc5_row2_col0" class="data row2 col0" >all</td>
+      <td id="T_85fc5_row2_col1" class="data row2 col1" >Immune</td>
+      <td id="T_85fc5_row2_col2" class="data row2 col2" ></td>
+      <td id="T_85fc5_row2_col3" class="data row2 col3" >anypos</td>
+      <td id="T_85fc5_row2_col4" class="data row2 col4" ></td>
+      <td id="T_85fc5_row2_col5" class="data row2 col5" >anypos</td>
+      <td id="T_85fc5_row2_col6" class="data row2 col6" ></td>
+      <td id="T_85fc5_row2_col7" class="data row2 col7" >anypos</td>
+      <td id="T_85fc5_row2_col8" class="data row2 col8" >anypos</td>
+      <td id="T_85fc5_row2_col9" class="data row2 col9" ></td>
     </tr>
     <tr>
-      <th id="T_c11dd_level0_row3" class="row_heading level0 row3" >3</th>
-      <td id="T_c11dd_row3_col0" class="data row3 col0" >all</td>
-      <td id="T_c11dd_row3_col1" class="data row3 col1" >Fibroblasts</td>
-      <td id="T_c11dd_row3_col2" class="data row3 col2" ></td>
-      <td id="T_c11dd_row3_col3" class="data row3 col3" ></td>
-      <td id="T_c11dd_row3_col4" class="data row3 col4" ></td>
-      <td id="T_c11dd_row3_col5" class="data row3 col5" ></td>
-      <td id="T_c11dd_row3_col6" class="data row3 col6" >pos</td>
-      <td id="T_c11dd_row3_col7" class="data row3 col7" ></td>
-      <td id="T_c11dd_row3_col8" class="data row3 col8" ></td>
-      <td id="T_c11dd_row3_col9" class="data row3 col9" ></td>
+      <th id="T_85fc5_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_85fc5_row3_col0" class="data row3 col0" >all</td>
+      <td id="T_85fc5_row3_col1" class="data row3 col1" >Fibroblasts</td>
+      <td id="T_85fc5_row3_col2" class="data row3 col2" ></td>
+      <td id="T_85fc5_row3_col3" class="data row3 col3" ></td>
+      <td id="T_85fc5_row3_col4" class="data row3 col4" ></td>
+      <td id="T_85fc5_row3_col5" class="data row3 col5" ></td>
+      <td id="T_85fc5_row3_col6" class="data row3 col6" >pos</td>
+      <td id="T_85fc5_row3_col7" class="data row3 col7" ></td>
+      <td id="T_85fc5_row3_col8" class="data row3 col8" ></td>
+      <td id="T_85fc5_row3_col9" class="data row3 col9" ></td>
     </tr>
     <tr>
-      <th id="T_c11dd_level0_row4" class="row_heading level0 row4" >4</th>
-      <td id="T_c11dd_row4_col0" class="data row4 col0" >Immune</td>
-      <td id="T_c11dd_row4_col1" class="data row4 col1" >CD4_T_cell</td>
-      <td id="T_c11dd_row4_col2" class="data row4 col2" ></td>
-      <td id="T_c11dd_row4_col3" class="data row4 col3" >pos</td>
-      <td id="T_c11dd_row4_col4" class="data row4 col4" ></td>
-      <td id="T_c11dd_row4_col5" class="data row4 col5" >neg</td>
-      <td id="T_c11dd_row4_col6" class="data row4 col6" ></td>
-      <td id="T_c11dd_row4_col7" class="data row4 col7" ></td>
-      <td id="T_c11dd_row4_col8" class="data row4 col8" ></td>
-      <td id="T_c11dd_row4_col9" class="data row4 col9" ></td>
+      <th id="T_85fc5_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_85fc5_row4_col0" class="data row4 col0" >Immune</td>
+      <td id="T_85fc5_row4_col1" class="data row4 col1" >CD4_T_cell</td>
+      <td id="T_85fc5_row4_col2" class="data row4 col2" ></td>
+      <td id="T_85fc5_row4_col3" class="data row4 col3" >pos</td>
+      <td id="T_85fc5_row4_col4" class="data row4 col4" ></td>
+      <td id="T_85fc5_row4_col5" class="data row4 col5" >neg</td>
+      <td id="T_85fc5_row4_col6" class="data row4 col6" ></td>
+      <td id="T_85fc5_row4_col7" class="data row4 col7" ></td>
+      <td id="T_85fc5_row4_col8" class="data row4 col8" ></td>
+      <td id="T_85fc5_row4_col9" class="data row4 col9" ></td>
     </tr>
     <tr>
-      <th id="T_c11dd_level0_row5" class="row_heading level0 row5" >5</th>
-      <td id="T_c11dd_row5_col0" class="data row5 col0" >Immune</td>
-      <td id="T_c11dd_row5_col1" class="data row5 col1" >CD8_T_cell</td>
-      <td id="T_c11dd_row5_col2" class="data row5 col2" ></td>
-      <td id="T_c11dd_row5_col3" class="data row5 col3" ></td>
-      <td id="T_c11dd_row5_col4" class="data row5 col4" ></td>
-      <td id="T_c11dd_row5_col5" class="data row5 col5" >pos</td>
-      <td id="T_c11dd_row5_col6" class="data row5 col6" ></td>
-      <td id="T_c11dd_row5_col7" class="data row5 col7" ></td>
-      <td id="T_c11dd_row5_col8" class="data row5 col8" ></td>
-      <td id="T_c11dd_row5_col9" class="data row5 col9" ></td>
+      <th id="T_85fc5_level0_row5" class="row_heading level0 row5" >5</th>
+      <td id="T_85fc5_row5_col0" class="data row5 col0" >Immune</td>
+      <td id="T_85fc5_row5_col1" class="data row5 col1" >CD8_T_cell</td>
+      <td id="T_85fc5_row5_col2" class="data row5 col2" ></td>
+      <td id="T_85fc5_row5_col3" class="data row5 col3" ></td>
+      <td id="T_85fc5_row5_col4" class="data row5 col4" ></td>
+      <td id="T_85fc5_row5_col5" class="data row5 col5" >pos</td>
+      <td id="T_85fc5_row5_col6" class="data row5 col6" ></td>
+      <td id="T_85fc5_row5_col7" class="data row5 col7" ></td>
+      <td id="T_85fc5_row5_col8" class="data row5 col8" ></td>
+      <td id="T_85fc5_row5_col9" class="data row5 col9" ></td>
     </tr>
     <tr>
-      <th id="T_c11dd_level0_row6" class="row_heading level0 row6" >6</th>
-      <td id="T_c11dd_row6_col0" class="data row6 col0" >Immune</td>
-      <td id="T_c11dd_row6_col1" class="data row6 col1" >B_cell</td>
-      <td id="T_c11dd_row6_col2" class="data row6 col2" ></td>
-      <td id="T_c11dd_row6_col3" class="data row6 col3" ></td>
-      <td id="T_c11dd_row6_col4" class="data row6 col4" ></td>
-      <td id="T_c11dd_row6_col5" class="data row6 col5" ></td>
-      <td id="T_c11dd_row6_col6" class="data row6 col6" ></td>
-      <td id="T_c11dd_row6_col7" class="data row6 col7" >pos</td>
-      <td id="T_c11dd_row6_col8" class="data row6 col8" ></td>
-      <td id="T_c11dd_row6_col9" class="data row6 col9" ></td>
+      <th id="T_85fc5_level0_row6" class="row_heading level0 row6" >6</th>
+      <td id="T_85fc5_row6_col0" class="data row6 col0" >Immune</td>
+      <td id="T_85fc5_row6_col1" class="data row6 col1" >B_cell</td>
+      <td id="T_85fc5_row6_col2" class="data row6 col2" ></td>
+      <td id="T_85fc5_row6_col3" class="data row6 col3" ></td>
+      <td id="T_85fc5_row6_col4" class="data row6 col4" ></td>
+      <td id="T_85fc5_row6_col5" class="data row6 col5" ></td>
+      <td id="T_85fc5_row6_col6" class="data row6 col6" ></td>
+      <td id="T_85fc5_row6_col7" class="data row6 col7" >pos</td>
+      <td id="T_85fc5_row6_col8" class="data row6 col8" ></td>
+      <td id="T_85fc5_row6_col9" class="data row6 col9" ></td>
     </tr>
     <tr>
-      <th id="T_c11dd_level0_row7" class="row_heading level0 row7" >7</th>
-      <td id="T_c11dd_row7_col0" class="data row7 col0" >Immune</td>
-      <td id="T_c11dd_row7_col1" class="data row7 col1" >Macrophage</td>
-      <td id="T_c11dd_row7_col2" class="data row7 col2" ></td>
-      <td id="T_c11dd_row7_col3" class="data row7 col3" ></td>
-      <td id="T_c11dd_row7_col4" class="data row7 col4" ></td>
-      <td id="T_c11dd_row7_col5" class="data row7 col5" ></td>
-      <td id="T_c11dd_row7_col6" class="data row7 col6" ></td>
-      <td id="T_c11dd_row7_col7" class="data row7 col7" ></td>
-      <td id="T_c11dd_row7_col8" class="data row7 col8" >pos</td>
-      <td id="T_c11dd_row7_col9" class="data row7 col9" ></td>
+      <th id="T_85fc5_level0_row7" class="row_heading level0 row7" >7</th>
+      <td id="T_85fc5_row7_col0" class="data row7 col0" >Immune</td>
+      <td id="T_85fc5_row7_col1" class="data row7 col1" >Macrophage</td>
+      <td id="T_85fc5_row7_col2" class="data row7 col2" ></td>
+      <td id="T_85fc5_row7_col3" class="data row7 col3" ></td>
+      <td id="T_85fc5_row7_col4" class="data row7 col4" ></td>
+      <td id="T_85fc5_row7_col5" class="data row7 col5" ></td>
+      <td id="T_85fc5_row7_col6" class="data row7 col6" ></td>
+      <td id="T_85fc5_row7_col7" class="data row7 col7" ></td>
+      <td id="T_85fc5_row7_col8" class="data row7 col8" >pos</td>
+      <td id="T_85fc5_row7_col9" class="data row7 col9" ></td>
     </tr>
   </tbody>
 </table>
@@ -1831,13 +1844,13 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:13:13.71</span> | <span class=" -Color -Color-Bold -Color-Bold-Yellow">WARNING</span> | phenotype is not a categorical, converting to categorical
-<span class=" -Color -Color-Green">16:13:13.72</span> | <span class=" -Color -Color-Bold">INFO</span> | Found 15244 matching IDs between adata.obs[&#39;CellID&#39;] and geodataframe[&#39;label&#39;].
-<span class=" -Color -Color-Green">16:13:13.72</span> | <span class=" -Color -Color-Bold">INFO</span> | Classes now in shapes: [&#39;Epithelial&#39; &#39;Unknown&#39; &#39;CD4_T_cell&#39; &#39;Mesenchymal&#39; &#39;Fibroblasts&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:48:04.82</span> | <span class=" -Color -Color-Bold -Color-Bold-Yellow">WARNING</span> | phenotype is not a categorical, converting to categorical
+<span class=" -Color -Color-Green">16:48:04.83</span> | <span class=" -Color -Color-Bold">INFO</span> | Found 15244 matching IDs between adata.obs[&#39;CellID&#39;] and geodataframe[&#39;label&#39;].
+<span class=" -Color -Color-Green">16:48:04.83</span> | <span class=" -Color -Color-Bold">INFO</span> | Classes now in shapes: [&#39;Epithelial&#39; &#39;Unknown&#39; &#39;CD4_T_cell&#39; &#39;Mesenchymal&#39; &#39;Fibroblasts&#39;
  &#39;CD8_T_cell&#39; &#39;Macrophage&#39; &#39;B_cell&#39;]
-<span class=" -Color -Color-Green">16:13:13.72</span> | <span class=" -Color -Color-Bold">INFO</span> | Parsing colors compatible with QuPath
-<span class=" -Color -Color-Green">16:13:13.72</span> | <span class=" -Color -Color-Bold">INFO</span> | No color_dict found, using defaults
-<span class=" -Color -Color-Green">16:13:13.73</span> | <span class=" -Color -Color-Bold">INFO</span> | color_dict created: {&#39;B_cell&#39;: [31, 119, 180], &#39;CD4_T_cell&#39;: [255, 127, 14], &#39;CD8_T_cell&#39;: [44, 160, 44], &#39;Epithelial&#39;: [214, 39, 40], &#39;Fibroblasts&#39;: [148, 103, 189], &#39;Macrophage&#39;: [31, 119, 180], &#39;Mesenchymal&#39;: [255, 127, 14], &#39;Unknown&#39;: [44, 160, 44]}
+<span class=" -Color -Color-Green">16:48:04.83</span> | <span class=" -Color -Color-Bold">INFO</span> | Parsing colors compatible with QuPath
+<span class=" -Color -Color-Green">16:48:04.83</span> | <span class=" -Color -Color-Bold">INFO</span> | No color_dict found, using defaults
+<span class=" -Color -Color-Green">16:48:04.83</span> | <span class=" -Color -Color-Bold">INFO</span> | color_dict created: {&#39;B_cell&#39;: [31, 119, 180], &#39;CD4_T_cell&#39;: [255, 127, 14], &#39;CD8_T_cell&#39;: [44, 160, 44], &#39;Epithelial&#39;: [214, 39, 40], &#39;Fibroblasts&#39;: [148, 103, 189], &#39;Macrophage&#39;: [31, 119, 180], &#39;Mesenchymal&#39;: [255, 127, 14], &#39;Unknown&#39;: [44, 160, 44]}
 </pre></div>
 </div>
 </div>
@@ -2005,15 +2018,15 @@ Gathering the latent weights
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:38:13.46</span> | <span class=" -Color -Color-Bold -Color-Bold-Yellow">WARNING</span> | spatial_lda is not a categorical, converting to categorical
-<span class=" -Color -Color-Green">16:38:13.46</span> | <span class=" -Color -Color-Bold">INFO</span> | Running Voronoi
-<span class=" -Color -Color-Green">16:38:13.53</span> | <span class=" -Color -Color-Bold">INFO</span> | Voronoi done
-<span class=" -Color -Color-Green">16:38:14.00</span> | <span class=" -Color -Color-Bold">INFO</span> | Transformed to geodataframe
-<span class=" -Color -Color-Green">16:38:14.03</span> | <span class=" -Color -Color-Bold">INFO</span> | Retaining 14871 valid polygons after filtering infinite ones.
-<span class=" -Color -Color-Green">16:38:14.04</span> | <span class=" -Color -Color-Bold">INFO</span> | Filtered out large polygons larger than 0.98 quantile
-<span class=" -Color -Color-Green">16:38:14.04</span> | <span class=" -Color -Color-Bold">INFO</span> | Merging polygons adjacent of the same category
-<span class=" -Color -Color-Green">16:38:14.58</span> | <span class=" -Color -Color-Bold">INFO</span> | Parsing colors compatible with QuPath
-<span class=" -Color -Color-Green">16:38:14.58</span> | <span class=" -Color -Color-Bold">INFO</span> | Custom color dictionary passed, adapting to QuPath color format
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">16:48:36.62</span> | <span class=" -Color -Color-Bold -Color-Bold-Yellow">WARNING</span> | spatial_lda is not a categorical, converting to categorical
+<span class=" -Color -Color-Green">16:48:36.63</span> | <span class=" -Color -Color-Bold">INFO</span> | Running Voronoi
+<span class=" -Color -Color-Green">16:48:36.70</span> | <span class=" -Color -Color-Bold">INFO</span> | Voronoi done
+<span class=" -Color -Color-Green">16:48:37.12</span> | <span class=" -Color -Color-Bold">INFO</span> | Transformed to geodataframe
+<span class=" -Color -Color-Green">16:48:37.15</span> | <span class=" -Color -Color-Bold">INFO</span> | Retaining 14871 valid polygons after filtering infinite ones.
+<span class=" -Color -Color-Green">16:48:37.16</span> | <span class=" -Color -Color-Bold">INFO</span> | Filtered out large polygons larger than 0.98 quantile
+<span class=" -Color -Color-Green">16:48:37.16</span> | <span class=" -Color -Color-Bold">INFO</span> | Merging polygons adjacent of the same category
+<span class=" -Color -Color-Green">16:48:37.79</span> | <span class=" -Color -Color-Bold">INFO</span> | Parsing colors compatible with QuPath
+<span class=" -Color -Color-Green">16:48:37.79</span> | <span class=" -Color -Color-Bold">INFO</span> | Custom color dictionary passed, adapting to QuPath color format
 </pre></div>
 </div>
 </div>
@@ -2035,7 +2048,7 @@ Gathering the latent weights
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
 </pre></div>
 </div>
-<img alt="../_images/e53870b0184aba0cad7bd4db08a3c7e736433b95a8be052b4d3451558c11b911.png" src="../_images/e53870b0184aba0cad7bd4db08a3c7e736433b95a8be052b4d3451558c11b911.png" />
+<img alt="../_images/04d6b149c0527ee47ba9f96fb2413b64b4dd670496260bc7d972b205167de88b.png" src="../_images/04d6b149c0527ee47ba9f96fb2413b64b4dd670496260bc7d972b205167de88b.png" />
 </div>
 </div>
 <div class="cell docutils container">

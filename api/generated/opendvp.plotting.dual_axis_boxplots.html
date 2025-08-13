@@ -47,7 +47,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../_static/documentation_options.js?v=3b5aa716"></script>
+    <script src="../../_static/documentation_options.js?v=3af6fc4c"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -394,53 +394,31 @@ document.write(`
 <h1>opendvp.plotting.dual_axis_boxplots<a class="headerlink" href="#opendvp-plotting-dual-axis-boxplots" title="Link to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="opendvp.plotting.dual_axis_boxplots">
-<span class="sig-name descname"><span class="pre">dual_axis_boxplots</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata_obs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'RCN'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Proteins.Identified'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Precursors.Identified'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Proteins</span> <span class="pre">Identified'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Precursors</span> <span class="pre">Identified'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point_alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">box1_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'skyblue'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">box2_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'lightcoral'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">median_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'black'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scatter_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'black'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tick1_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'blue'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tick2_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'red'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(6,</span> <span class="pre">6)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_fig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.plotting.dual_axis_boxplots" title="Link to this definition">#</a></dt>
-<dd><p>Generates a dual-axis plot with boxplots and stripplots for two features grouped by a specified feature key.</p>
+<span class="sig-name descname"><span class="pre">dual_axis_boxplots</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_fig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.plotting.dual_axis_boxplots" title="Link to this definition">#</a></dt>
+<dd><p>Generates a dual-axis plot with boxplots and stripplots for two features.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure" title="(in Matplotlib v3.10.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure" title="(in Matplotlib v3.10.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
 </dd>
 </dl>
 <section id="parameters">
 <h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h2>
 <dl class="simple">
-<dt>adata_obs<span class="classifier">pd.DataFrame</span></dt><dd><p>DataFrame typically derived from an AnnData object’s observation metadata (adata.obs).</p>
+<dt>adata<span class="classifier">AnnData</span></dt><dd><p>AnnData object’s observation metadata (adata.obs) is used.</p>
 </dd>
-<dt>feature_key<span class="classifier">str</span></dt><dd><p>Column name to group by (e.g., “RCN”).</p>
+<dt>feature_1<span class="classifier">str</span></dt><dd><p>Column name in <code class="docutils literal notranslate"><span class="pre">adata.obs</span></code> for the first feature to plot on the left y-axis.</p>
 </dd>
-<dt>feature_1<span class="classifier">str</span></dt><dd><p>Column name for the first feature to plot on the left y-axis.</p>
+<dt>feature_2<span class="classifier">str</span></dt><dd><p>Column name in <code class="docutils literal notranslate"><span class="pre">adata.obs</span></code> for the second feature to plot on the right y-axis.</p>
 </dd>
-<dt>feature_2<span class="classifier">str</span></dt><dd><p>Column name for the second feature to plot on the right y-axis.</p>
+<dt>group_by<span class="classifier">str, optional</span></dt><dd><p>Column name in <code class="docutils literal notranslate"><span class="pre">adata.obs</span></code> to group by. If None, plots features for all samples.</p>
 </dd>
-<dt>ylabel1<span class="classifier">str</span></dt><dd><p>Label for the left y-axis.</p>
+<dt>ylabel1<span class="classifier">str, optional</span></dt><dd><p>Label for the left y-axis. If None, <code class="docutils literal notranslate"><span class="pre">feature_1</span></code> is used.</p>
 </dd>
-<dt>ylabel2<span class="classifier">str</span></dt><dd><p>Label for the right y-axis.</p>
+<dt>ylabel2<span class="classifier">str, optional</span></dt><dd><p>Label for the right y-axis. If None, <code class="docutils literal notranslate"><span class="pre">feature_2</span></code> is used.</p>
 </dd>
-<dt>offset<span class="classifier">float</span></dt><dd><p>Offset for positioning the boxplots side-by-side.</p>
+<dt>return_fig<span class="classifier">bool</span></dt><dd><p>If True, returns the matplotlib Figure object for further customization.</p>
 </dd>
-<dt>width<span class="classifier">float</span></dt><dd><p>Width of the boxplots.</p>
-</dd>
-<dt>point_alpha<span class="classifier">float</span></dt><dd><p>Alpha transparency for the scatter plot points.</p>
-</dd>
-<dt>box1_color<span class="classifier">str</span></dt><dd><p>Face color for the boxplots of feature_1.</p>
-</dd>
-<dt>box2_color<span class="classifier">str</span></dt><dd><p>Face color for the boxplots of feature_2.</p>
-</dd>
-<dt>median_color<span class="classifier">str</span></dt><dd><p>Color of the median line in boxplots.</p>
-</dd>
-<dt>scatter_color<span class="classifier">str</span></dt><dd><p>Color of the points in stripplots.</p>
-</dd>
-<dt>tick1_color<span class="classifier">str</span></dt><dd><p>Color of the left y-axis tick labels and axis label.</p>
-</dd>
-<dt>tick2_color<span class="classifier">str</span></dt><dd><p>Color of the right y-axis tick labels and axis label.</p>
-</dd>
-<dt>figsize<span class="classifier">tuple</span></dt><dd><p>Figure size (width, height).</p>
-</dd>
-<dt>return_fig<span class="classifier">bool</span></dt><dd><p>If True, returns the matplotlib Figure object for further customization. If False, shows the plot.</p>
-</dd>
-<dt>show_plot<span class="classifier">bool</span></dt><dd><p>If True, displays the plot. Otherwise, only returns the figure/axes.</p>
-</dd>
-<dt>ax1, ax2<span class="classifier">matplotlib.axes.Axes, optional</span></dt><dd><p>Axes objects to plot on. If None, new axes are created.</p>
+<dt>ax<span class="classifier">matplotlib.axes.Axes, optional</span></dt><dd><p>Axes object to plot on. If None, new axes are created.</p>
 </dd>
 <dt><a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs</dt><dd><p>Additional keyword arguments passed to matplotlib boxplot/scatter.</p>
 </dd>

@@ -1,6 +1,6 @@
-# Workflows
+# openDVP the framework 
 
-## Overview
+## Introduction
 
 openDVP is a framework to empower users to perform spatial proteomics as easily as possible.  
 

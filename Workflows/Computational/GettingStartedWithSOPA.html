@@ -2,24 +2,24 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="../" >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta property="og:title" content="Setup imaging processing pipelines for the MDC" />
+<meta property="og:title" content="Getting started with SOPA" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="Workflows/openDVP_guide_backup_b4_MDC.html" />
+<meta property="og:url" content="Workflows/Computational/GettingStartedWithSOPA.html" />
 <meta property="og:site_name" content="opendvp" />
-<meta property="og:description" content="Setting Expectations: If you want to run an image processing and analyis pipeline, it will take some time to setup. Depending on your familiarity to things like HPC, Nextflow, Snakemake, Python; th..." />
+<meta property="og:description" content="SOPA: SOPA is a wonderful pipeline, similar to MCMICRO but has some fundamental differences. Similarly, for a overview of SOPA read the paper, for a more technical overview visit the website. Gener..." />
 <meta property="og:image:width" content="1146" />
 <meta property="og:image:height" content="600" />
-<meta property="og:image" content="_images/social_previews/summary_Workflows_openDVP_guide_backup_b4_MDC_f67c7274.png" />
-<meta property="og:image:alt" content="Setting Expectations: If you want to run an image processing and analyis pipeline, it will take some time to setup. Depending on your familiarity to things like HPC, Nextflow, Snakemake, Python; th..." />
-<meta name="description" content="Setting Expectations: If you want to run an image processing and analyis pipeline, it will take some time to setup. Depending on your familiarity to things like HPC, Nextflow, Snakemake, Python; th..." />
+<meta property="og:image" content="_images/social_previews/summary_Workflows_Computational_GettingStartedWithSOPA_f96fbfa3.png" />
+<meta property="og:image:alt" content="SOPA: SOPA is a wonderful pipeline, similar to MCMICRO but has some fundamental differences. Similarly, for a overview of SOPA read the paper, for a more technical overview visit the website. Gener..." />
+<meta name="description" content="SOPA: SOPA is a wonderful pipeline, similar to MCMICRO but has some fundamental differences. Similarly, for a overview of SOPA read the paper, for a more technical overview visit the website. Gener..." />
 <meta name="twitter:card" content="summary_large_image" />
 
-    <title>Setup imaging processing pipelines for the MDC &#8212; opendvp</title>
+    <title>Getting started with SOPA &#8212; opendvp</title>
   
   
   
@@ -29,35 +29,37 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=7dd04bbd"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'Workflows/openDVP_guide_backup_b4_MDC';</script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <script src="../../_static/documentation_options.js?v=6aa4cbdb"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Workflows/Computational/GettingStartedWithSOPA';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Contribution Guide" href="../../ContributionGuide.html" />
+    <link rel="prev" title="Getting started with MCMICRO" href="GettingStartedWithMCMICRO.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -89,7 +91,7 @@
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
-      action="../search.html"
+      action="../../search.html"
       method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
   <input type="search"
@@ -120,8 +122,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -140,7 +140,7 @@
     
   
 
-<a class="navbar-brand logo" href="../index.html">
+<a class="navbar-brand logo" href="../../index.html">
   
   
   
@@ -163,75 +163,89 @@
  </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../api/index.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../api/io.html">Input / Output</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.io.adata_to_qupath.html">opendvp.io.adata_to_qupath</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.io.adata_to_voronoi.html">opendvp.io.adata_to_voronoi</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.io.import_thresholds.html">opendvp.io.import_thresholds</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.io.quant_to_adata.html">opendvp.io.quant_to_adata</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.io.segmask_to_qupath.html">opendvp.io.segmask_to_qupath</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.io.DIANN_to_adata.html">opendvp.io.DIANN_to_adata</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.io.import_perseus.html">opendvp.io.import_perseus</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.io.export_adata.html">opendvp.io.export_adata</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.io.export_figure.html">opendvp.io.export_figure</a></li>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../api/index.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../api/io.html">Input / Output</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.adata_to_qupath.html">opendvp.io.adata_to_qupath</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.adata_to_voronoi.html">opendvp.io.adata_to_voronoi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.import_thresholds.html">opendvp.io.import_thresholds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.quant_to_adata.html">opendvp.io.quant_to_adata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.segmask_to_qupath.html">opendvp.io.segmask_to_qupath</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.DIANN_to_adata.html">opendvp.io.DIANN_to_adata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.import_perseus.html">opendvp.io.import_perseus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.export_adata.html">opendvp.io.export_adata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.export_figure.html">opendvp.io.export_figure</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../api/metrics.html">Metrics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.metrics.coefficient_of_variation.html">opendvp.metrics.coefficient_of_variation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.metrics.nan_difference.html">opendvp.metrics.nan_difference</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../api/metrics.html">Metrics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.metrics.coefficient_of_variation.html">opendvp.metrics.coefficient_of_variation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.metrics.nan_difference.html">opendvp.metrics.nan_difference</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../api/plotting.html">Plotting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.plot_graph_network.html">opendvp.plotting.plot_graph_network</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.stacked_barplot.html">opendvp.plotting.stacked_barplot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.abundance_histograms.html">opendvp.plotting.abundance_histograms</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.correlation_heatmap.html">opendvp.plotting.correlation_heatmap</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.coefficient_of_variation.html">opendvp.plotting.coefficient_of_variation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.density.html">opendvp.plotting.density</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.dual_axis_boxplots.html">opendvp.plotting.dual_axis_boxplots</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.imputation_qc.html">opendvp.plotting.imputation_qc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.pca_loadings.html">opendvp.plotting.pca_loadings</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.rankplot.html">opendvp.plotting.rankplot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.upset.html">opendvp.plotting.upset</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.volcano.html">opendvp.plotting.volcano</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../api/plotting.html">Plotting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.plot_graph_network.html">opendvp.plotting.plot_graph_network</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.stacked_barplot.html">opendvp.plotting.stacked_barplot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.abundance_histograms.html">opendvp.plotting.abundance_histograms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.correlation_heatmap.html">opendvp.plotting.correlation_heatmap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.coefficient_of_variation.html">opendvp.plotting.coefficient_of_variation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.density.html">opendvp.plotting.density</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.dual_axis_boxplots.html">opendvp.plotting.dual_axis_boxplots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.imputation_qc.html">opendvp.plotting.imputation_qc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.pca_loadings.html">opendvp.plotting.pca_loadings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.rankplot.html">opendvp.plotting.rankplot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.upset.html">opendvp.plotting.upset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.volcano.html">opendvp.plotting.volcano</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../api/pp.html">Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.pp.impute_marker_with_annotation.html">opendvp.pp.impute_marker_with_annotation</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../api/pp.html">Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.pp.impute_marker_with_annotation.html">opendvp.pp.impute_marker_with_annotation</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../api/tl.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.tl.filter_by_abs_value.html">opendvp.tl.filter_by_abs_value</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.tl.filter_by_annotation.html">opendvp.tl.filter_by_annotation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.tl.filter_by_ratio.html">opendvp.tl.filter_by_ratio</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.tl.filter_features_byNaNs.html">opendvp.tl.filter_features_byNaNs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.tl.impute_gaussian.html">opendvp.tl.impute_gaussian</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.tl.spatial_autocorrelation.html">opendvp.tl.spatial_autocorrelation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.tl.spatial_hyperparameter_search.html">opendvp.tl.spatial_hyperparameter_search</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.tl.stats_anova.html">opendvp.tl.stats_anova</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.tl.stats_average_samples.html">opendvp.tl.stats_average_samples</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.tl.stats_bootstrap.html">opendvp.tl.stats_bootstrap</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.tl.stats_ttest.html">opendvp.tl.stats_ttest</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../api/tl.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.filter_by_abs_value.html">opendvp.tl.filter_by_abs_value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.filter_by_annotation.html">opendvp.tl.filter_by_annotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.filter_by_ratio.html">opendvp.tl.filter_by_ratio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.filter_features_byNaNs.html">opendvp.tl.filter_features_byNaNs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.impute_gaussian.html">opendvp.tl.impute_gaussian</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.spatial_autocorrelation.html">opendvp.tl.spatial_autocorrelation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.spatial_hyperparameter_search.html">opendvp.tl.spatial_hyperparameter_search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.stats_anova.html">opendvp.tl.stats_anova</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.stats_average_samples.html">opendvp.tl.stats_average_samples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.stats_bootstrap.html">opendvp.tl.stats_bootstrap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.stats_ttest.html">opendvp.tl.stats_ttest</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../api/utils.html">Utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.utils.parse_color_for_qupath.html">opendvp.utils.parse_color_for_qupath</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../api/utils.html">Utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.utils.parse_color_for_qupath.html">opendvp.utils.parse_color_for_qupath</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../api/imaging.html">Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.imaging.mask_to_polygons.html">opendvp.imaging.mask_to_polygons</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../api/imaging.html">Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.imaging.mask_to_polygons.html">opendvp.imaging.mask_to_polygons</a></li>
 </ul>
 </details></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Tutorials/T1_ImageAnalysis.html">T1: Image single-cell analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Tutorials/T2_DownstreamProteomics.html">T2: Downstream Proteomics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Tutorials/T3_ProteomicsIntegration.html">T3: Proteomics Integration</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../Tutorials/T1_ImageAnalysis.html">T1: Image single-cell analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Tutorials/T2_DownstreamProteomics.html">T2: Downstream Proteomics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Tutorials/T3_ProteomicsIntegration.html">T3: Proteomics Integration</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="index.html">openDVP the framework</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">openDVP the framework</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../Experimental/index.html">Experimental</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Experimental/Experimental_Imaging.html">Imaging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Experimental/Experimental_Tissue_and_Slides.html">Tissue and Slides</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Computational</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="InstallOpenDVP.html">Install opendvp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GettingStartedWithMCMICRO.html">Getting started with MCMICRO</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Getting started with SOPA</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ContributionGuide.html">Contribution Guide</a></li>
 </ul>
 
     </div>
@@ -286,7 +300,7 @@
       
       
       
-      <li><a href="../_sources/Workflows/openDVP_guide_backup_b4_MDC.md" target="_blank"
+      <li><a href="../../_sources/Workflows/Computational/GettingStartedWithSOPA.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -370,7 +384,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Setup imaging processing pipelines for the MDC</h1>
+    <h1>Getting started with SOPA</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -380,25 +394,22 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-expectations">Setting Expectations</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-tips">General tips</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mcmicro">MCMICRO</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-setup-simplified">How to setup: simplified</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#windows-users">Windows users</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#macos-and-linux">MacOS and Linux</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#high-performance-cluster-hpc">High Performance Cluster (HPC)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checklist">Checklist</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimize-mcmicro-for-your-images">Optimize MCMICRO for your images</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#considerations-ideas-and-tips">Considerations, ideas, and tips</a></li>
-</ul>
-</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sopa">SOPA</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-sopa-locally">Run SOPA locally</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-sopa-on-hpc">Run SOPA on HPC</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general">General:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages">Advantages:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#disadvantages">Disadvantages:</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-sopa-locally-in-your-computer-for-testing-subsets">Setup SOPA locally in your computer (for testing subsets)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-ensure-you-have-conda-mamba-installed">Step 1: Ensure you have conda/mamba installed</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-create-sopa-environment">Step 2: Create sopa environment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-download-sopa-defaults">Step 3: Download sopa defaults</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-edit-default-parameters">Step 4: Edit default parameters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-run-sopa-with-defaults">Step 5: Run sopa with defaults</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-check-post-run">Step 6: Check post-run</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-sopa-on-hpc">Run SOPA on HPC</a></li>
 </ul>
             </nav>
         </div>
@@ -410,142 +421,178 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="setup-imaging-processing-pipelines-for-the-mdc">
-<h1>Setup imaging processing pipelines for the MDC<a class="headerlink" href="#setup-imaging-processing-pipelines-for-the-mdc" title="Link to this heading">#</a></h1>
-<section id="setting-expectations">
-<h2>Setting Expectations<a class="headerlink" href="#setting-expectations" title="Link to this heading">#</a></h2>
-<p>If you want to run an image processing and analyis pipeline, it will take some time to setup. Depending on your familiarity to things like HPC, Nextflow, Snakemake, Python; the amount of effort will vary.</p>
-<section id="general-tips">
-<h3>General tips<a class="headerlink" href="#general-tips" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Before running your full data, try things out with very small data(&lt;100MB). Where the feedback loop is less than 2 minutes. This will allow you to play with settings, parameters, and lower the cost of failure. You will fail, and you will learn.</p></li>
-<li><p>Asking LLMs for help is great, just be careful, some of these pipelines and packages are not very popular and the tendency to hallucinate is greater.</p></li>
-<li><p>Ask humans for help, but help with log files, tracebacks, and context. Just like LLMs the more context the better we understand your problem.</p></li>
-</ul>
-</section>
-</section>
-<section id="mcmicro">
-<h2>MCMICRO<a class="headerlink" href="#mcmicro" title="Link to this heading">#</a></h2>
-<p>MCMICRO is a wonderful pipeline developed by a group of image analysts. It runs on <a class="reference external" href="https://www.nextflow.io/">Nextflow</a> which allows it to be run on any computational environment. It is powerful, modular, and scalable. Once setup it can be ran in parallel with as many files as your compute allows.</p>
-<p>For a conceptual overview read the paper <a class="reference external" href="https://www.nature.com/articles/s41592-021-01308-y">MCMICRO paper</a>, for a more technical overview I suggest you first read the documentation of the <a class="reference external" href="https://mcmicro.org/overview/">MCMICRO website </a> and define what steps are important for your workflow.</p>
-</section>
-<section id="how-to-setup-simplified">
-<h2>How to setup: simplified<a class="headerlink" href="#how-to-setup-simplified" title="Link to this heading">#</a></h2>
-<section id="windows-users">
-<h3>Windows users<a class="headerlink" href="#windows-users" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>This will be a challenge because you will need <a class="reference external" href="https://learn.microsoft.com/en-us/windows/wsl/install">WSL subsystem</a>. This is not simple, consider running in your cluster, or friendly bioinformatician with MacOS or Linux.</p></li>
-</ul>
-</section>
-<section id="macos-and-linux">
-<h3>MacOS and Linux<a class="headerlink" href="#macos-and-linux" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Follow instructions in <a class="reference external" href="https://mcmicro.org/tutorial/installation.html">MCMICRO Installation</a>.</p></li>
-<li><p>You will need to install <strong>Java</strong> and <strong>Docker</strong> on your machine.</p></li>
-</ul>
-</section>
-<section id="high-performance-cluster-hpc">
-<h3>High Performance Cluster (HPC)<a class="headerlink" href="#high-performance-cluster-hpc" title="Link to this heading">#</a></h3>
-<ul>
-<li><p>You need an environment with <strong>Java</strong>, follow HPC admin suggestions (conda works for me).</p></li>
-<li><p>Install <a class="reference external" href="https://docs.sylabs.io/guides/3.0/user-guide/quick_start.html">Singularity/Apptainer</a>, a Docker analogue for the HPC.</p></li>
-<li><p>Install <a class="reference external" href="https://www.nextflow.io/">Nextflow</a>, the pipeline manager.</p></li>
-<li><p>Familiarize yourself how to run scripts in the HPC.</p></li>
-<li><p>For example, in SLURM I would use <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">sbatch</span> <span class="pre">myscript.sh</span></code>
-<details>
-<summary> Bash Script Example</summary></p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  ```bash
-  #!/bin/bash
-  #SBATCH --job-name=P30E01_Tonsil    # Job name
-  #SBATCH --output=P30E01.%j.out      # Output file
-  #SBATCH --error=P30E01.%j.err       # Error file
-  #SBATCH --time=24:00:00             # Time limit hrs:min:sec
-  #SBATCH --mem=10G                   # Memory per node
-  #SBATCH --cpus-per-task=2           # Number of CPU cores per task
-  #SBATCH --partition=medium          # Partition/queue name (check with your HPC)
-
-  eval &quot;$(conda shell.bash hook)&quot;     # This exposes conda hook to node
-  conda activate mcmicro              # This activates environment in node
-
-  PATH_TO_DATA=&quot;/data/cephfs-1/home/users/jnimoca_m/work/P30_SF_HNSCC/P30E01_Tonsil&quot;
-
-  nextflow run labsyspharm/mcmicro --in $PATH_TO_DATA -profile singularity --params $PATH_TO_DATA/P30E01_params.yml
-
-  echo &quot;--end--&quot;
-
-  ```
-
-  &lt;/details&gt;
-</pre></div>
-</div>
-</li>
-</ul>
-</section>
-<section id="checklist">
-<h3>Checklist<a class="headerlink" href="#checklist" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Ensure access to HPC</p></li>
-<li><p>Ensure you can move files into HPC environment (consider image sizes)</p></li>
-<li><p>Ensure enough storage space is available for your images and processing steps</p></li>
-<li><p>Ensure HPC can run <strong>java</strong></p></li>
-<li><p>Ensure HPC can run <strong>apptainer/singularity</strong> images</p></li>
-<li><p>Ensure HPC can run <strong>nextflow</strong></p></li>
-<li><p>Run <strong>MCMICRO</strong> <a class="reference external" href="https://mcmicro.org/datasets/">demo data</a>, I suggest Exemplar001. You can download it with nextflow command.</p></li>
-</ul>
-</section>
-<section id="optimize-mcmicro-for-your-images">
-<h3>Optimize MCMICRO for your images<a class="headerlink" href="#optimize-mcmicro-for-your-images" title="Link to this heading">#</a></h3>
-<p>MCMICRO has many steps, each step has many parameters that can be optimized to your images.<br />
-All of these parameters should be passed to MCMICRO by means of a <code class="docutils literal notranslate"><span class="pre">params.yml</span></code> file. This is the file that you pass on to your <code class="docutils literal notranslate"><span class="pre">nextflow</span> <span class="pre">run</span></code> command.</p>
-<details>
-<summary> Example params.yml file </summary>
-<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>workflow:
-start-at: illumination
-stop-at: registration
-
-options:
-    ashlar: --flip-y --align-channel 1 -m 50 --filter-sigma 1
-</pre></div>
-</div>
-</details>
-<p>Please check the <a class="reference external" href="https://mcmicro.org/parameters/">MCMICRO website</a> for all potential parameters.<br />
-I suggest for modules such as segmentation to run your segmentation locally with a subset of your images.</p>
-</section>
-<section id="considerations-ideas-and-tips">
-<h3>Considerations, ideas, and tips<a class="headerlink" href="#considerations-ideas-and-tips" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>You do not have to run everything all the time, sometimes I like to run MCMICRO just for (1) Illumination correction and (2) Stitching and registration and the move on to another software. Make use of the workflow options like <code class="docutils literal notranslate"><span class="pre">stop-at</span></code>.</p></li>
-<li><p>Inside the <a class="reference external" href="https://github.com/labsyspharm/mcmicro/blob/master/nextflow.config">nextflow.config</a> file, MCMICRO developers link the default computational requirements for each module. They have set <code class="docutils literal notranslate"><span class="pre">profiles</span></code>. For example here you can find the <a class="reference external" href="https://github.com/labsyspharm/mcmicro/blob/master/config/nf/wsi.config">WSI defaults</a> profile optimized for Whole slide imaging, and here the <code class="docutils literal notranslate"><span class="pre">profile</span></code> for  <a class="reference external" href="https://github.com/labsyspharm/mcmicro/blob/master/config/nf/tma.config">TMA defaults</a>. If you feel you need your own computational requirements, I suggest you fork the MCMICRO github repository, modify it, and then run mcmicro like this <code class="docutils literal notranslate"><span class="pre">nextflow</span> <span class="pre">run</span> <span class="pre">josenimo/mcmicro</span></code>. Nextflow is smart and will use that github repository instead.</p></li>
-<li><p>For MDC peeps, feel free to use <a class="reference external" href="https://github.com/josenimo/mcmicro/">josenimo/mcmicro</a> with <code class="docutils literal notranslate"><span class="pre">-profile</span> <span class="pre">singularity</span></code> in your <code class="docutils literal notranslate"><span class="pre">nextflow</span> <span class="pre">run</span></code> command.</p></li>
-<li><p>Nextflow has a nice <code class="docutils literal notranslate"><span class="pre">-resume</span></code> parameter to automatically check what already ran, and go on from there.</p></li>
-</ul>
-</section>
-</section>
+  <section class="tex2jax_ignore mathjax_ignore" id="getting-started-with-sopa">
+<h1>Getting started with SOPA<a class="headerlink" href="#getting-started-with-sopa" title="Link to this heading">#</a></h1>
 <section id="sopa">
 <h2>SOPA<a class="headerlink" href="#sopa" title="Link to this heading">#</a></h2>
 <p>SOPA is a wonderful pipeline, similar to MCMICRO but has some fundamental differences.</p>
 <p>Similarly, for a overview of SOPA read the <a class="reference external" href="https://www.nature.com/articles/s41467-024-48981-z">paper</a>, for a more technical overview visit the <a class="reference external" href="https://gustaveroussy.github.io/sopa/">website</a>.</p>
+<section id="general">
+<h3>General:<a class="headerlink" href="#general" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>SOPA runs on <a class="reference external" href="https://snakemake.github.io/">Snakemake</a>, nextflow version is in <a class="reference external" href="https://nf-co.re/sopa/usage">development</a>.</p></li>
-<li><p>SOPA is easier to customize than MCMICRO. For adding a function quickly to your pipeline use this (Python required).</p></li>
-<li><p>SOPA can be used in four flavours: jupyter notebooks with python API, snakemake, nextflow, and CLI.</p></li>
-<li><p>SOPA uses the Spatialdata object natively, experience with SpatialData is recommended.</p></li>
-<li><p>SOPA is compatible with various modalities:  Xenium, Visium HD, MERSCOPE, CosMx, PhenoCycler, MACSima, Molecular Cartography.</p></li>
-</ul>
-<section id="run-sopa-locally">
-<h3>Run SOPA locally<a class="headerlink" href="#run-sopa-locally" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Familiarize yourself with the <a class="reference external" href="https://snakemake.github.io/">Snakemake framework</a>.</p></li>
-<li><p>Follow SOPA <a class="reference external" href="https://gustaveroussy.github.io/sopa/getting_started/">Getting Started</a> to install necessary packages.</p></li>
-<li><p>Follow SOPA’s <a class="reference external" href="https://gustaveroussy.github.io/sopa/tutorials/snakemake/">snakemake tutorial</a></p></li>
+<li><p>SOPA uses the Spatialdata object natively, some experience with SpatialData is preferred.</p></li>
 </ul>
 </section>
-<section id="run-sopa-on-hpc">
-<h3>Run SOPA on HPC<a class="headerlink" href="#run-sopa-on-hpc" title="Link to this heading">#</a></h3>
+<section id="advantages">
+<h3>Advantages:<a class="headerlink" href="#advantages" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Create environment with <code class="docutils literal notranslate"><span class="pre">snakemake</span></code>, <code class="docutils literal notranslate"><span class="pre">snakemake-slurm</span></code>, and <code class="docutils literal notranslate"><span class="pre">snakemake-executor-plugin-slurm</span></code>.</p></li>
-<li><p>Use profile that will use the executor plugin</p></li>
-<li><p>For MDC peeps check <a class="reference external" href="https://hpc-docs.cubi.bihealth.org/slurm/snakemake/">Snakemake with Slurm</a></p></li>
+<li><p>SOPA can run on Windows.</p></li>
+<li><p>SOPA is easier to customize than MCMICRO. For adding a function quickly to your pipeline use this (Python required).</p></li>
+<li><p>SOPA can be used in four flavours: jupyter notebooks with python API, snakemake, nextflow, and CLI.</p></li>
+<li><p>SOPA is compatible with various modalities:  Xenium, Visium HD, MERSCOPE, CosMx, PhenoCycler, MACSima, Molecular Cartography.</p></li>
+</ul>
+</section>
+<section id="disadvantages">
+<h3>Disadvantages:<a class="headerlink" href="#disadvantages" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>More modality compatibility leads to complexity of setup.</p></li>
+<li><p>SOPA cannot perform <strong>Illumination correction</strong>, <strong>Stitching and Registration</strong>, or <strong>Background Subtraction</strong>.(Jose is considering helping out SOPA devs with these).</p></li>
+<li><p>Output is spatialdata object, not super friendly to get data out of.</p></li>
+<li><p>Segmentation output is <code class="docutils literal notranslate"><span class="pre">.geojson</span></code> not <code class="docutils literal notranslate"><span class="pre">.tif</span></code> (you can convert easily with spatialdata function).</p></li>
+</ul>
+</section>
+</section>
+<section id="setup-sopa-locally-in-your-computer-for-testing-subsets">
+<h2>Setup SOPA locally in your computer (for testing subsets)<a class="headerlink" href="#setup-sopa-locally-in-your-computer-for-testing-subsets" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Familiarize yourself with the <a class="reference external" href="https://snakemake.github.io/">Snakemake framework</a>.</p></li>
+<li><p>Follow SOPA <a class="reference external" href="https://gustaveroussy.github.io/sopa/getting_started/">Getting Started</a>.</p></li>
+<li><p>Follow SOPA’s <a class="reference external" href="https://gustaveroussy.github.io/sopa/tutorials/snakemake/">snakemake tutorial</a>.</p></li>
+</ul>
+<section id="step-1-ensure-you-have-conda-mamba-installed">
+<h3>Step 1: Ensure you have conda/mamba installed<a class="headerlink" href="#step-1-ensure-you-have-conda-mamba-installed" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Download micromamba from <a class="reference external" href="https://github.com/mamba-org/micromamba-releases/releases">Micromamba Releases</a>. You might have to click <code class="docutils literal notranslate"><span class="pre">show</span> <span class="pre">all</span> <span class="pre">27</span> <span class="pre">assets</span></code> to see the version you need.</p></li>
+<li><p>Check that you can create environments and download packages</p></li>
+</ul>
+</section>
+<section id="step-2-create-sopa-environment">
+<h3>Step 2: Create sopa environment<a class="headerlink" href="#step-2-create-sopa-environment" title="Link to this heading">#</a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">conda create --name sopa python=3.12</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">conda activate sopa</span>
+</pre></div>
+</div>
+<p>Install sopa (with cellpose extension) and snakemake</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install &#39;sopa[cellpose]&#39; snakemake</span>
+</pre></div>
+</div>
+<p>for some reason cellpose 4 breaks sopa, we have to install cellpose 3</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install &#39;cellpose &lt;4&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="step-3-download-sopa-defaults">
+<h3>Step 3: Download sopa defaults<a class="headerlink" href="#step-3-download-sopa-defaults" title="Link to this heading">#</a></h3>
+<p>SOPA have many processes, and many processes are modality specific. You can concatenate them as you want (not simple, not super complex either). To simplify things for now, We will use SOPA-provided defaults for dealing with ome.tif</p>
+<p>In the terminal, go to directory you know and this will download the entire github repository.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/gustaveroussy/sopa.git
+</pre></div>
+</div>
+</section>
+<section id="step-4-edit-default-parameters">
+<h3>Step 4: Edit default parameters<a class="headerlink" href="#step-4-edit-default-parameters" title="Link to this heading">#</a></h3>
+<p>Open the following file inside the downloaded <code class="docutils literal notranslate"><span class="pre">sopa</span></code> directory:
+<code class="docutils literal notranslate"><span class="pre">sopa/workflow/configs/misc/ome_tif.yaml</span></code></p>
+<p>This is the parameter file that sets the parameters for all the processes.<br />
+For a deeper look into what each of these does check <a class="reference external" href="https://github.com/gustaveroussy/sopa/blob/main/workflow/config/example_commented.yaml">parameter_guide</a></p>
+<p>We will change the cellpose parameters to the following to make it work with our demo image.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># these are the settings you should have (ensure you save the file after you are done).</span>
+<span class="nt">read</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">technology</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ome_tif</span>
+
+<span class="nt">patchify</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">patch_width_pixel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">400</span>
+<span class="w">  </span><span class="nt">patch_overlap_pixel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">40</span>
+
+<span class="nt">segmentation</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">cellpose</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">model_type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;nuclei&quot;</span>
+<span class="w">    </span><span class="nt">diameter</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">25</span>
+<span class="w">    </span><span class="nt">channels</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&quot;DAPI_bg&quot;</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">flow_threshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">cellprob_threshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-6</span>
+<span class="w">    </span><span class="nt">min_area</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">25</span>
+<span class="w">    </span><span class="nt">gaussian_sigma</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+
+<span class="nt">aggregate</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">aggregate_channels</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">min_intensity_ratio</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1</span>
+<span class="w">  </span><span class="nt">expand_radius_ratio</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1</span>
+
+<span class="nt">explorer</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">ram_threshold_gb</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span>
+<span class="w">  </span><span class="nt">pixel_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</pre></div>
+</div>
+</section>
+<section id="step-5-run-sopa-with-defaults">
+<h3>Step 5: Run sopa with defaults<a class="headerlink" href="#step-5-run-sopa-with-defaults" title="Link to this heading">#</a></h3>
+<p>There are three paths you need to pass to the snakemake command:</p>
+<ol class="arabic simple">
+<li><p>path to your image</p></li>
+<li><p>path to the edited config file</p></li>
+<li><p>path to the workflow profile (provided by sopa download)</p></li>
+</ol>
+<p>For the demo image copy:<br />
+<code class="docutils literal notranslate"><span class="pre">RD_Coscia/Jose/__TestDatasets/TD_01_verysmall_mIF.ome.tif</span></code><br />
+and place it in here:<br />
+<code class="docutils literal notranslate"><span class="pre">sopa/data/TD_01_verysmall_mIF.ome.tif</span></code></p>
+<p>SOPA command template</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>snakemake<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--config<span class="w"> </span><span class="nv">data_path</span><span class="o">=</span><span class="nv">$PATH_TO_IMAGE</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--configfile<span class="o">=</span><span class="nv">$PATH_TO_YAML</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--workflow-profile<span class="w"> </span>./workflow/profile/local<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--cores<span class="w"> </span><span class="m">4</span>
+</pre></div>
+</div>
+<p>I suggest you run the command from the sopa directory, and it will look something like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>snakemake<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--config<span class="w"> </span><span class="nv">data_path</span><span class="o">=</span>./data/TD_01_verysmall_mIF.ome.tif<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--configfile<span class="o">=</span>./config/misc/ome_tif.yaml<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--workflow-profile<span class="w"> </span>./workflow/profile/local<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--cores<span class="w"> </span><span class="m">6</span>
+</pre></div>
+</div>
+<p>Note, for Windows you must replace:</p>
+<ul class="simple">
+<li><p>&lt; \ &gt; with a caret &lt; ^ &gt; for the traditional Command Prompt (cmd.exe) and a backtick &lt;`&gt; for PowerShell.</p></li>
+<li><p>you can also remove them and create a single line command in an editor, and then copy paste.</p></li>
+</ul>
+</section>
+<section id="step-6-check-post-run">
+<h3>Step 6: Check post-run<a class="headerlink" href="#step-6-check-post-run" title="Link to this heading">#</a></h3>
+<p>Before:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">.</span>
+<span class="go">├── command.txt</span>
+<span class="go">├── config</span>
+<span class="go">│   └── ome_tif.yaml</span>
+<span class="go">└── data</span>
+<span class="go">    └── TD_01_verysmall_mIF.ome.tif</span>
+</pre></div>
+</div>
+<p>After:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">.</span>
+<span class="go">├── command.txt</span>
+<span class="go">├── config</span>
+<span class="go">│   └── ome_tif.yaml</span>
+<span class="go">└── data</span>
+<span class="go">    ├── TD_01_verysmall_mIF.ome.explorer</span>
+<span class="go">    ├── TD_01_verysmall_mIF.ome.tif</span>
+<span class="go">    └── TD_01_verysmall_mIF.ome.zarr</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">.explorer</span></code> file can be opened with the Xenium explorer software (free).
+The <code class="docutils literal notranslate"><span class="pre">.zarr</span></code> file can be opened with <code class="docutils literal notranslate"><span class="pre">spatialdata</span></code>.</p>
+</section>
+</section>
+<section id="run-sopa-on-hpc">
+<h2>Run SOPA on HPC<a class="headerlink" href="#run-sopa-on-hpc" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Create a conda environment with <code class="docutils literal notranslate"><span class="pre">snakemake</span></code>, <code class="docutils literal notranslate"><span class="pre">snakemake-slurm</span></code>, and <code class="docutils literal notranslate"><span class="pre">snakemake-executor-plugin-slurm</span></code>.</p></li>
+<li><p>Use profile that will use the executor plugin check <a class="reference external" href="https://hpc-docs.cubi.bihealth.org/slurm/snakemake/">Snakemake with Slurm</a></p></li>
 </ul>
 <details>
 <summary> Example bash script for single snakemake run </summary>
@@ -598,7 +645,7 @@ date
 </div>
 </details>
 <details>
-<summary> Example Snakemake file; pipeline with every step and parameters </summary>
+<summary> Example custom snakemake file; pipeline with every step and parameters </summary>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">configfile</span><span class="p">:</span> <span class="s2">&quot;ome_tif.yaml&quot;</span>
 
 <span class="c1"># version 2.1.0</span>
@@ -824,7 +871,8 @@ date
 
 </pre></div>
 </div>
-</details></section>
+</details>
+<p>Thank you for your interest!</p>
 </section>
 </section>
 
@@ -839,6 +887,24 @@ date
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="GettingStartedWithMCMICRO.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Getting started with MCMICRO</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../ContributionGuide.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Contribution Guide</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -855,25 +921,22 @@ date
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-expectations">Setting Expectations</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-tips">General tips</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mcmicro">MCMICRO</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-setup-simplified">How to setup: simplified</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#windows-users">Windows users</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#macos-and-linux">MacOS and Linux</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#high-performance-cluster-hpc">High Performance Cluster (HPC)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checklist">Checklist</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimize-mcmicro-for-your-images">Optimize MCMICRO for your images</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#considerations-ideas-and-tips">Considerations, ideas, and tips</a></li>
-</ul>
-</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sopa">SOPA</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-sopa-locally">Run SOPA locally</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-sopa-on-hpc">Run SOPA on HPC</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general">General:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages">Advantages:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#disadvantages">Disadvantages:</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-sopa-locally-in-your-computer-for-testing-subsets">Setup SOPA locally in your computer (for testing subsets)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-ensure-you-have-conda-mamba-installed">Step 1: Ensure you have conda/mamba installed</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-create-sopa-environment">Step 2: Create sopa environment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-download-sopa-defaults">Step 3: Download sopa defaults</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-edit-default-parameters">Step 4: Edit default parameters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-run-sopa-with-defaults">Step 5: Run sopa with defaults</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-check-post-run">Step 6: Check post-run</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-sopa-on-hpc">Run SOPA on HPC</a></li>
 </ul>
   </nav></div>
 
@@ -915,8 +978,8 @@ By Jose Nimo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

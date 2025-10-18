@@ -47,7 +47,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../_static/documentation_options.js?v=7dd04bbd"></script>
+    <script src="../../_static/documentation_options.js?v=6aa4cbdb"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -229,7 +229,21 @@
 <li class="toctree-l2"><a class="reference internal" href="../../Tutorials/T3_ProteomicsIntegration.html">T3: Proteomics Integration</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Workflows/index.html">openDVP the framework</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Workflows/index.html">openDVP the framework</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../Workflows/Experimental/index.html">Experimental</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../Workflows/Experimental/Experimental_Imaging.html">Imaging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../Workflows/Experimental/Experimental_Tissue_and_Slides.html">Tissue and Slides</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../Workflows/Computational/index.html">Computational</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../Workflows/Computational/InstallOpenDVP.html">Install opendvp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../Workflows/Computational/GettingStartedWithMCMICRO.html">Getting started with MCMICRO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../Workflows/Computational/GettingStartedWithSOPA.html">Getting started with SOPA</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ContributionGuide.html">Contribution Guide</a></li>
 </ul>
 
     </div>
@@ -402,9 +416,9 @@ log1p-transform gate values for downstream analysis (e.g., scimap). Logs progres
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>gates_csv_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Path to the CSV file containing gate thresholds. Must end with ‘.csv’.</p></li>
-<li><p><strong>sample_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>optional</em>) – If provided, only gates for this sample will be returned and the output column will be named accordingly.</p></li>
-<li><p><strong>scimap</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>default True</em>) – If True, applies log1p transformation and column rename, returning formats output for scimap.</p></li>
+<li><p><strong>gates_csv_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Path to the CSV file containing gate thresholds. Must end with ‘.csv’.</p></li>
+<li><p><strong>sample_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>, </em><em>optional</em>) – If provided, only gates for this sample will be returned and the output column will be named accordingly.</p></li>
+<li><p><strong>scimap</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>default True</em>) – If True, applies log1p transformation and column rename, returning formats output for scimap.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -415,7 +429,7 @@ log1p-transform gate values for downstream analysis (e.g., scimap). Logs progres
 <dd class="field-odd"><p>pd.DataFrame</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.13)"><strong>ValueError</strong></a> – If the file extension is not ‘.csv’, or required columns are missing.</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If the file extension is not ‘.csv’, or required columns are missing.</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>

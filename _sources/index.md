@@ -63,7 +63,6 @@ pip install git+https://github.com/CosciaLab/openDVP.git@main
 - [Tutorial 2: Downstream proteomics analysis](Tutorials/T2_DownstreamProteomics)
 - [Tutorial 3: Integration of imaging with proteomics](Tutorials/T3_ProteomicsIntegration)
 
-
 ## Contact
 
 For questions about openDVP and the DVP workflow you are very welcome to post a message in the [discussion board](https://github.com/CosciaLab/openDVP/discussions). For issues with the software, please post issues on [Github Issues](https://github.com/CosciaLab/openDVP/issues).
@@ -73,10 +72,11 @@ For questions about openDVP and the DVP workflow you are very welcome to post a 
 Not yet available.
 
 ```{toctree}
-:maxdepth: 2
+:maxdepth: 3
 :hidden:
 
 api/index
 Tutorials/index
 Workflows/index
+ContributionGuide
 ```

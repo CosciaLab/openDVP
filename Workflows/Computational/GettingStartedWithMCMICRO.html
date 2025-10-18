@@ -1,0 +1,1250 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Getting started with MCMICRO" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="Workflows/Computational/GettingStartedWithMCMICRO.html" />
+<meta property="og:site_name" content="opendvp" />
+<meta property="og:description" content="MCMICRO: MCMICRO is a wonderful pipeline developed by a group of image analysts. It runs on Nextflow which allows it to be run on any computational environment. It is powerful, modular, and scalabl..." />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="_images/social_previews/summary_Workflows_Computational_GettingStartedWithMCMICRO_e6991fa2.png" />
+<meta property="og:image:alt" content="MCMICRO: MCMICRO is a wonderful pipeline developed by a group of image analysts. It runs on Nextflow which allows it to be run on any computational environment. It is powerful, modular, and scalabl..." />
+<meta name="description" content="MCMICRO: MCMICRO is a wonderful pipeline developed by a group of image analysts. It runs on Nextflow which allows it to be run on any computational environment. It is powerful, modular, and scalabl..." />
+<meta name="twitter:card" content="summary_large_image" />
+
+    <title>Getting started with MCMICRO &#8212; opendvp</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=6aa4cbdb"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Workflows/Computational/GettingStartedWithMCMICRO';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Getting started with SOPA" href="GettingStartedWithSOPA.html" />
+    <link rel="prev" title="Install opendvp" href="InstallOpenDVP.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">opendvp</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../api/index.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../api/io.html">Input / Output</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.adata_to_qupath.html">opendvp.io.adata_to_qupath</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.adata_to_voronoi.html">opendvp.io.adata_to_voronoi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.import_thresholds.html">opendvp.io.import_thresholds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.quant_to_adata.html">opendvp.io.quant_to_adata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.segmask_to_qupath.html">opendvp.io.segmask_to_qupath</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.DIANN_to_adata.html">opendvp.io.DIANN_to_adata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.import_perseus.html">opendvp.io.import_perseus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.export_adata.html">opendvp.io.export_adata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.io.export_figure.html">opendvp.io.export_figure</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../api/metrics.html">Metrics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.metrics.coefficient_of_variation.html">opendvp.metrics.coefficient_of_variation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.metrics.nan_difference.html">opendvp.metrics.nan_difference</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../api/plotting.html">Plotting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.plot_graph_network.html">opendvp.plotting.plot_graph_network</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.stacked_barplot.html">opendvp.plotting.stacked_barplot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.abundance_histograms.html">opendvp.plotting.abundance_histograms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.correlation_heatmap.html">opendvp.plotting.correlation_heatmap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.coefficient_of_variation.html">opendvp.plotting.coefficient_of_variation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.density.html">opendvp.plotting.density</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.dual_axis_boxplots.html">opendvp.plotting.dual_axis_boxplots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.imputation_qc.html">opendvp.plotting.imputation_qc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.pca_loadings.html">opendvp.plotting.pca_loadings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.rankplot.html">opendvp.plotting.rankplot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.upset.html">opendvp.plotting.upset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.volcano.html">opendvp.plotting.volcano</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../api/pp.html">Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.pp.impute_marker_with_annotation.html">opendvp.pp.impute_marker_with_annotation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../api/tl.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.filter_by_abs_value.html">opendvp.tl.filter_by_abs_value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.filter_by_annotation.html">opendvp.tl.filter_by_annotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.filter_by_ratio.html">opendvp.tl.filter_by_ratio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.filter_features_byNaNs.html">opendvp.tl.filter_features_byNaNs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.impute_gaussian.html">opendvp.tl.impute_gaussian</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.spatial_autocorrelation.html">opendvp.tl.spatial_autocorrelation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.spatial_hyperparameter_search.html">opendvp.tl.spatial_hyperparameter_search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.stats_anova.html">opendvp.tl.stats_anova</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.stats_average_samples.html">opendvp.tl.stats_average_samples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.stats_bootstrap.html">opendvp.tl.stats_bootstrap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.stats_ttest.html">opendvp.tl.stats_ttest</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../api/utils.html">Utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.utils.parse_color_for_qupath.html">opendvp.utils.parse_color_for_qupath</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../api/imaging.html">Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.imaging.mask_to_polygons.html">opendvp.imaging.mask_to_polygons</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../Tutorials/T1_ImageAnalysis.html">T1: Image single-cell analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Tutorials/T2_DownstreamProteomics.html">T2: Downstream Proteomics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Tutorials/T3_ProteomicsIntegration.html">T3: Proteomics Integration</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">openDVP the framework</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../Experimental/index.html">Experimental</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Experimental/Experimental_Imaging.html">Imaging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Experimental/Experimental_Tissue_and_Slides.html">Tissue and Slides</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Computational</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="InstallOpenDVP.html">Install opendvp</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Getting started with MCMICRO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GettingStartedWithSOPA.html">Getting started with SOPA</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ContributionGuide.html">Contribution Guide</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/Workflows/Computational/GettingStartedWithMCMICRO.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Getting started with MCMICRO</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mcmicro">MCMICRO</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-expectations">Setting Expectations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-tips">General tips</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-setup-in-macos-linux-environment">How to setup in MacOS/Linux environment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-setup-in-the-bih-hpc">How to setup in the BIH HPC</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-ensure-you-can-access-the-cluster">Step 1: Ensure you can access the cluster</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-ensure-you-can-move-files-to-cluster">Step 2: Ensure you can move files to cluster</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#important-settings">Important Settings</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mdc-users-login-nodes">MDC Users login nodes</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-ensure-there-is-enough-space-in-your-directory">Step 3: Ensure there is enough space in your directory</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-create-environment-in-the-hpc-to-run-nextflow-pipelines">Step 4: Create environment in the HPC to run nextflow pipelines</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-1-activate-interactive-session">Step 4.1: Activate interactive session</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-2-download-miniforge">Step 4.2: Download miniforge</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-3-install-miniforge">Step 4.3: Install miniforge</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-4-make-conda-command-accesible">Step 4.4: Make conda command accesible</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-5-initialize-conda">Step 4.5: Initialize conda</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-6-change-conda-configuration">Step 4.6: Change conda configuration</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-7-install-the-necessary-packages">Step 4.7: Install the necessary packages</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-8-install-nextflow">Step 4.8: Install <strong>Nextflow</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-9-check-nextflow-is-working">Step 4.9: Check Nextflow is working</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-10-tell-nextflow-where-to-place-files">Step 4.10: Tell Nextflow where to place files</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-run-nextflow">Step 6: Run Nextflow</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-1-demo-pipeline">Step 6.1: Demo pipeline</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-2-download-demo-data-exemplar-001">Step 6.2: Download demo data (Exemplar-001)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-3-run-mcmicro-with-demo-data">Step 6.3: Run MCMICRO with demo data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-mcmicro-with-a-script-for-distributed-computing">Running MCMICRO with a script for distributed computing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-prepare-your-images-for-mcmicro">How to prepare your images for MCMICRO</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-organization">Project organization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#markers-csv">markers.csv</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#params-yml">params.yml</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#script-sh">script.sh</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#considerations-ideas-and-tips">Considerations, ideas, and tips</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checklist">Checklist</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="getting-started-with-mcmicro">
+<h1>Getting started with MCMICRO<a class="headerlink" href="#getting-started-with-mcmicro" title="Link to this heading">#</a></h1>
+<section id="mcmicro">
+<h2>MCMICRO<a class="headerlink" href="#mcmicro" title="Link to this heading">#</a></h2>
+<p>MCMICRO is a wonderful pipeline developed by a group of image analysts. It runs on <a class="reference external" href="https://www.nextflow.io/">Nextflow</a> which allows it to be run on any computational environment. It is powerful, modular, and scalable. Once setup it can be ran in parallel with as many files as your compute allows.</p>
+<p>For a conceptual overview read the paper <a class="reference external" href="https://www.nature.com/articles/s41592-021-01308-y">MCMICRO paper</a>, for a more technical overview I suggest you first read the documentation of the <a class="reference external" href="https://mcmicro.org/overview/">MCMICRO website </a> and define what steps are important for your workflow.</p>
+<section id="setting-expectations">
+<h3>Setting Expectations<a class="headerlink" href="#setting-expectations" title="Link to this heading">#</a></h3>
+<p>If you want to run an image processing and analyis pipeline, it will take some time to setup.<br />
+Depending on your familiarity to things like HPC, Nextflow, Snakemake, Python; the amount of effort will vary.
+This guide is for users that are not experienced with MCMICRO or HPC, so it goes step-by-step. In the end going through the documentation of the various softwares is the only way to explore all the possibilities.</p>
+</section>
+<section id="general-tips">
+<h3>General tips<a class="headerlink" href="#general-tips" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Before running your full data, try things out with very small data(&lt;100MB). Where the feedback loop is less than 2 minutes. This will allow you to play with settings, parameters, and lower the cost of failure. You will fail, and you will learn.</p></li>
+<li><p>Asking LLMs for help is great, just be careful, some of these pipelines and packages are not very popular and there are tendencies to hallucinate.</p></li>
+<li><p>Ask humans for help, but help with log files, tracebacks, and context. Just like LLMs the more context the better we understand your problem.</p></li>
+</ul>
+</section>
+</section>
+<section id="how-to-setup-in-macos-linux-environment">
+<h2>How to setup in MacOS/Linux environment<a class="headerlink" href="#how-to-setup-in-macos-linux-environment" title="Link to this heading">#</a></h2>
+</section>
+<section id="how-to-setup-in-the-bih-hpc">
+<h2>How to setup in the BIH HPC<a class="headerlink" href="#how-to-setup-in-the-bih-hpc" title="Link to this heading">#</a></h2>
+<section id="step-1-ensure-you-can-access-the-cluster">
+<h3>Step 1: Ensure you can access the cluster<a class="headerlink" href="#step-1-ensure-you-can-access-the-cluster" title="Link to this heading">#</a></h3>
+<p>Please take the time to read and go through the documentation at <a class="reference external" href="https://hpc-docs.cubi.bihealth.org/admin/getting-access/">Getting Access</a>.</p>
+<details>
+<summary> Check access is working, you see this message: </summary>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ssh &lt;USERNAME&gt;@hpc-login-1.cubi.bihealth.org</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Welcome<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>BIH<span class="w"> </span>HPC<span class="w"> </span><span class="m">4</span><span class="w"> </span>Research<span class="w"> </span>Cluster!
+
+<span class="w"> </span>You<span class="w"> </span>are<span class="w"> </span>on<span class="w"> </span>a<span class="w"> </span>login<span class="w"> </span>node.
+<span class="w"> </span>You<span class="w"> </span>should<span class="w"> </span>not<span class="w"> </span><span class="k">do</span><span class="w"> </span>much<span class="w"> </span>here<span class="w"> </span>besides<span class="w"> </span>starting<span class="w"> </span><span class="s2">&quot;screen&quot;</span>/<span class="s2">&quot;tmux&quot;</span>
+<span class="w"> </span>and<span class="w"> </span>using<span class="w"> </span>Slurm<span class="w"> </span>commands<span class="w"> </span>such<span class="w"> </span>as<span class="w"> </span><span class="s2">&quot;sbatch&quot;</span>/<span class="s2">&quot;srun&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>connecting<span class="w"> </span>to<span class="w"> </span>nodes.
+
+Helpdesk:<span class="w"> </span>hpc-helpdesk@bih-charite.de
+Mailing<span class="w"> </span>List:<span class="w"> </span>bih-cluster@charite.de
+Documentation:<span class="w"> </span>https://hpc-docs.cubi.bihealth.org
+OnDemand<span class="w"> </span>Portal:<span class="w"> </span>https://hpc-portal.cubi.bihealth.org
+HPC<span class="w"> </span>Access<span class="w"> </span>Portal:<span class="w"> </span>https://hpc-access.cubi.bihealth.org
+Last<span class="w"> </span>login:<span class="w"> </span>Thu<span class="w"> </span>Aug<span class="w">  </span><span class="m">7</span><span class="w"> </span><span class="m">12</span>:54:25<span class="w"> </span><span class="m">2025</span><span class="w"> </span>from<span class="w"> </span><span class="m">141</span>.80.221.57
+-bash:<span class="w"> </span>warning:<span class="w"> </span>setlocale:<span class="w"> </span>LC_ALL:<span class="w"> </span>cannot<span class="w"> </span>change<span class="w"> </span>locale<span class="w"> </span><span class="o">(</span>en_US.UTF-8<span class="o">)</span>
+-bash:<span class="w"> </span>warning:<span class="w"> </span>setlocale:<span class="w"> </span>LC_ALL:<span class="w"> </span>cannot<span class="w"> </span>change<span class="w"> </span>locale<span class="w"> </span><span class="o">(</span>en_US.UTF-8<span class="o">)</span>
+</pre></div>
+</div>
+</details>
+</section>
+<section id="step-2-ensure-you-can-move-files-to-cluster">
+<h3>Step 2: Ensure you can move files to cluster<a class="headerlink" href="#step-2-ensure-you-can-move-files-to-cluster" title="Link to this heading">#</a></h3>
+<p>Follow <a class="reference external" href="https://hpc-docs.cubi.bihealth.org/how-to/service/file-exchange/">BIH HPC instructions</a> for using software to transfer files.
+Technically you should be able to connect from virtual machines. Sometimes there are issues with IP adresses, please contact IT for help.</p>
+<p>Download FileZilla, WinSCP, or CyberDuck for easy file transfer.</p>
+<ul class="simple">
+<li><p>MacOS: https://filezilla-project.org/</p></li>
+<li><p>Windows: https://winscp.net/eng/download.php</p></li>
+<li><p>Both: https://cyberduck.io/</p></li>
+</ul>
+<section id="important-settings">
+<h4>Important Settings<a class="headerlink" href="#important-settings" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Use SFTP</p></li>
+</ul>
+</section>
+<section id="mdc-users-login-nodes">
+<h4>MDC Users login nodes<a class="headerlink" href="#mdc-users-login-nodes" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>username_m&#64;hpc-login-1.cubi.bihealth.org</p></li>
+<li><p>username_m&#64;hpc-login-2.cubi.bihealth.org</p></li>
+</ul>
+<details>
+<summary> Check if it is working </summary>
+You are able to drag and drop files, and you see them in the command line.
+</details>
+</section>
+</section>
+<section id="step-3-ensure-there-is-enough-space-in-your-directory">
+<h3>Step 3: Ensure there is enough space in your directory<a class="headerlink" href="#step-3-ensure-there-is-enough-space-in-your-directory" title="Link to this heading">#</a></h3>
+<p>Familiarize yourself with how <a class="reference external" href="https://hpc-docs.cubi.bihealth.org/storage/storage-locations/">storage works in the BIH HPC</a>.</p>
+<p>In the terminal, connect to the HPC. Go to your home directory and check what is there with <code class="docutils literal notranslate"><span class="pre">ls</span></code></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ls</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your home directory should look something like this:</span>
+bin<span class="w">  </span>ondemand<span class="w">  </span>scratch<span class="w">  </span>work
+</pre></div>
+</div>
+<p>To know how much data there is please check <a class="reference external" href="https://hpc-access.cubi.bihealth.org/">BIH HPC dashboard</a><br />
+Consider that for each 10gb of raw data you will need approx. 100gb of storage space.<br />
+If you need more storage space, bring it up in meeting or Mattermost. We might have to ask for extra storage.</p>
+</section>
+<section id="step-4-create-environment-in-the-hpc-to-run-nextflow-pipelines">
+<h3>Step 4: Create environment in the HPC to run nextflow pipelines<a class="headerlink" href="#step-4-create-environment-in-the-hpc-to-run-nextflow-pipelines" title="Link to this heading">#</a></h3>
+<p>We will use <strong>miniforge</strong>(Conda analogue) to install these, please read the <a class="reference external" href="https://hpc-docs.cubi.bihealth.org/best-practice/software-installation-with-conda/">Software Installation with Conda</a>.</p>
+<section id="step-4-1-activate-interactive-session">
+<h4>Step 4.1: Activate interactive session<a class="headerlink" href="#step-4-1-activate-interactive-session" title="Link to this heading">#</a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">srun --mem=5G --pty bash -i</span>
+</pre></div>
+</div>
+</section>
+<section id="step-4-2-download-miniforge">
+<h4>Step 4.2: Download miniforge<a class="headerlink" href="#step-4-2-download-miniforge" title="Link to this heading">#</a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh</span>
+</pre></div>
+</div>
+</section>
+<section id="step-4-3-install-miniforge">
+<h4>Step 4.3: Install miniforge<a class="headerlink" href="#step-4-3-install-miniforge" title="Link to this heading">#</a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">bash Miniforge3-Linux-x86_64.sh -b -f -p $HOME/work/miniforge</span>
+</pre></div>
+</div>
+</section>
+<section id="step-4-4-make-conda-command-accesible">
+<h4>Step 4.4: Make conda command accesible<a class="headerlink" href="#step-4-4-make-conda-command-accesible" title="Link to this heading">#</a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">eval &quot;$(/$HOME/work/miniforge/bin/conda shell.bash hook)&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="step-4-5-initialize-conda">
+<h4>Step 4.5: Initialize conda<a class="headerlink" href="#step-4-5-initialize-conda" title="Link to this heading">#</a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">conda init</span>
+</pre></div>
+</div>
+</section>
+<section id="step-4-6-change-conda-configuration">
+<h4>Step 4.6: Change conda configuration<a class="headerlink" href="#step-4-6-change-conda-configuration" title="Link to this heading">#</a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">conda config --set auto_activate_base false</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">conda config --add channels bioconda conda-forge</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">conda config --set channel_priority strict</span>
+</pre></div>
+</div>
+<p>Conda hopefully is properly installed.</p>
+<details>
+<summary>Check conda is working:</summary>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">conda</span>
+</pre></div>
+</div>
+<p>Should output the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>usage:<span class="w"> </span>conda<span class="w"> </span><span class="o">[</span>-h<span class="o">]</span><span class="w"> </span><span class="o">[</span>-v<span class="o">]</span><span class="w"> </span><span class="o">[</span>--no-plugins<span class="o">]</span><span class="w"> </span><span class="o">[</span>-V<span class="o">]</span><span class="w"> </span>COMMAND<span class="w"> </span>...
+
+conda<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>tool<span class="w"> </span><span class="k">for</span><span class="w"> </span>managing<span class="w"> </span>and<span class="w"> </span>deploying<span class="w"> </span>applications,<span class="w"> </span>environments<span class="w"> </span>and<span class="w"> </span>packages.
+
+options:
+<span class="w">  </span>-h,<span class="w"> </span>--help<span class="w">          </span>Show<span class="w"> </span>this<span class="w"> </span><span class="nb">help</span><span class="w"> </span>message<span class="w"> </span>and<span class="w"> </span>exit.
+<span class="w">  </span>-v,<span class="w"> </span>--verbose<span class="w">       </span>Can<span class="w"> </span>be<span class="w"> </span>used<span class="w"> </span>multiple<span class="w"> </span>times.<span class="w"> </span>Once<span class="w"> </span><span class="k">for</span><span class="w"> </span>detailed<span class="w"> </span>output,<span class="w"> </span>twice<span class="w"> </span><span class="k">for</span><span class="w"> </span>INFO<span class="w"> </span>logging,<span class="w"> </span>thrice<span class="w"> </span><span class="k">for</span><span class="w"> </span>DEBUG<span class="w"> </span>logging,<span class="w"> </span>four<span class="w"> </span><span class="nb">times</span><span class="w"> </span><span class="k">for</span>
+<span class="w">                      </span>TRACE<span class="w"> </span>logging.
+<span class="w">  </span>--no-plugins<span class="w">        </span>Disable<span class="w"> </span>all<span class="w"> </span>plugins<span class="w"> </span>that<span class="w"> </span>are<span class="w"> </span>not<span class="w"> </span>built<span class="w"> </span>into<span class="w"> </span>conda.
+<span class="w">  </span>-V,<span class="w"> </span>--version<span class="w">       </span>Show<span class="w"> </span>the<span class="w"> </span>conda<span class="w"> </span>version<span class="w"> </span>number<span class="w"> </span>and<span class="w"> </span>exit.
+
+commands:
+<span class="w">  </span>The<span class="w"> </span>following<span class="w"> </span>built-in<span class="w"> </span>and<span class="w"> </span>plugins<span class="w"> </span>subcommands<span class="w"> </span>are<span class="w"> </span>available.
+
+<span class="w">  </span>COMMAND
+<span class="w">    </span>activate<span class="w">          </span>Activate<span class="w"> </span>a<span class="w"> </span>conda<span class="w"> </span>environment.
+<span class="w">    </span>clean<span class="w">             </span>Remove<span class="w"> </span>unused<span class="w"> </span>packages<span class="w"> </span>and<span class="w"> </span>caches.
+<span class="w">    </span>compare<span class="w">           </span>Compare<span class="w"> </span>packages<span class="w"> </span>between<span class="w"> </span>conda<span class="w"> </span>environments.
+<span class="w">    </span>config<span class="w">            </span>Modify<span class="w"> </span>configuration<span class="w"> </span>values<span class="w"> </span><span class="k">in</span><span class="w"> </span>.condarc.
+<span class="w">    </span>content-trust<span class="w">     </span>Signing<span class="w"> </span>and<span class="w"> </span>verification<span class="w"> </span>tools<span class="w"> </span><span class="k">for</span><span class="w"> </span>Conda
+<span class="w">    </span>create<span class="w">            </span>Create<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </span>conda<span class="w"> </span>environment<span class="w"> </span>from<span class="w"> </span>a<span class="w"> </span>list<span class="w"> </span>of<span class="w"> </span>specified<span class="w"> </span>packages.
+<span class="w">    </span>deactivate<span class="w">        </span>Deactivate<span class="w"> </span>the<span class="w"> </span>current<span class="w"> </span>active<span class="w"> </span>conda<span class="w"> </span>environment.
+<span class="w">    </span>doctor<span class="w">            </span>Display<span class="w"> </span>a<span class="w"> </span>health<span class="w"> </span>report<span class="w"> </span><span class="k">for</span><span class="w"> </span>your<span class="w"> </span>environment.
+<span class="w">    </span><span class="nb">export</span><span class="w">            </span>Export<span class="w"> </span>a<span class="w"> </span>given<span class="w"> </span>environment
+<span class="w">    </span>info<span class="w">              </span>Display<span class="w"> </span>information<span class="w"> </span>about<span class="w"> </span>current<span class="w"> </span>conda<span class="w"> </span>install.
+<span class="w">    </span>init<span class="w">              </span>Initialize<span class="w"> </span>conda<span class="w"> </span><span class="k">for</span><span class="w"> </span>shell<span class="w"> </span>interaction.
+<span class="w">    </span>install<span class="w">           </span>Install<span class="w"> </span>a<span class="w"> </span>list<span class="w"> </span>of<span class="w"> </span>packages<span class="w"> </span>into<span class="w"> </span>a<span class="w"> </span>specified<span class="w"> </span>conda<span class="w"> </span>environment.
+<span class="w">    </span>list<span class="w">              </span>List<span class="w"> </span>installed<span class="w"> </span>packages<span class="w"> </span><span class="k">in</span><span class="w"> </span>a<span class="w"> </span>conda<span class="w"> </span>environment.
+<span class="w">    </span>notices<span class="w">           </span>Retrieve<span class="w"> </span>latest<span class="w"> </span>channel<span class="w"> </span>notifications.
+<span class="w">    </span>package<span class="w">           </span>Create<span class="w"> </span>low-level<span class="w"> </span>conda<span class="w"> </span>packages.<span class="w"> </span><span class="o">(</span>EXPERIMENTAL<span class="o">)</span>
+<span class="w">    </span>remove<span class="w"> </span><span class="o">(</span>uninstall<span class="o">)</span>
+<span class="w">                      </span>Remove<span class="w"> </span>a<span class="w"> </span>list<span class="w"> </span>of<span class="w"> </span>packages<span class="w"> </span>from<span class="w"> </span>a<span class="w"> </span>specified<span class="w"> </span>conda<span class="w"> </span>environment.
+<span class="w">    </span>rename<span class="w">            </span>Rename<span class="w"> </span>an<span class="w"> </span>existing<span class="w"> </span>environment.
+<span class="w">    </span>repoquery<span class="w">         </span>Advanced<span class="w"> </span>search<span class="w"> </span><span class="k">for</span><span class="w"> </span>repodata.
+<span class="w">    </span>run<span class="w">               </span>Run<span class="w"> </span>an<span class="w"> </span>executable<span class="w"> </span><span class="k">in</span><span class="w"> </span>a<span class="w"> </span>conda<span class="w"> </span>environment.
+<span class="w">    </span>search<span class="w">            </span>Search<span class="w"> </span><span class="k">for</span><span class="w"> </span>packages<span class="w"> </span>and<span class="w"> </span>display<span class="w"> </span>associated<span class="w"> </span>information<span class="w"> </span>using<span class="w"> </span>the<span class="w"> </span>MatchSpec<span class="w"> </span>format.
+<span class="w">    </span>update<span class="w"> </span><span class="o">(</span>upgrade<span class="o">)</span><span class="w">  </span>Update<span class="w"> </span>conda<span class="w"> </span>packages<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>latest<span class="w"> </span>compatible<span class="w"> </span>version.
+</pre></div>
+</div>
+</details>
+</section>
+</section>
+<section id="step-4-7-install-the-necessary-packages">
+<h3>Step 4.7: Install the necessary packages<a class="headerlink" href="#step-4-7-install-the-necessary-packages" title="Link to this heading">#</a></h3>
+<p>Create a conda environment called ‘mcmicro’</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">conda create -n mcmicro -y</span>
+</pre></div>
+</div>
+<p>This activates the environment</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">conda activate mcmicro</span>
+</pre></div>
+</div>
+<p>This install java and singularity</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">conda install openjdk singularity -y</span>
+</pre></div>
+</div>
+<section id="step-4-8-install-nextflow">
+<h4>Step 4.8: Install <strong>Nextflow</strong><a class="headerlink" href="#step-4-8-install-nextflow" title="Link to this heading">#</a></h4>
+<p>Download and run nextflow executable</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -s https://get.nextflow.io | bash</span>
+</pre></div>
+</div>
+<p>Trust and make the file executable</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">chmod +x nextflow</span>
+</pre></div>
+</div>
+<p>Move the file somewhere your environment can find it</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">mkdir -p ~/.local/bin/</span>
+</pre></div>
+</div>
+<p>Move it to the local bin</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">mv nextflow ~/.local/bin/</span>
+</pre></div>
+</div>
+</section>
+<section id="step-4-9-check-nextflow-is-working">
+<h4>Step 4.9: Check Nextflow is working<a class="headerlink" href="#step-4-9-check-nextflow-is-working" title="Link to this heading">#</a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nextflow info</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Version:<span class="w"> </span><span class="m">25</span>.04.7<span class="w"> </span>build<span class="w"> </span><span class="m">5955</span>
+Created:<span class="w"> </span><span class="m">08</span>-09-2025<span class="w"> </span><span class="m">13</span>:29<span class="w"> </span>UTC<span class="w"> </span><span class="o">(</span><span class="m">15</span>:29<span class="w"> </span>CEST<span class="o">)</span>
+System:<span class="w"> </span>Linux<span class="w"> </span><span class="m">5</span>.14.0-570.21.1.el9_6.x86_64
+Runtime:<span class="w"> </span>Groovy<span class="w"> </span><span class="m">4</span>.0.26<span class="w"> </span>on<span class="w"> </span>OpenJDK<span class="w"> </span><span class="m">64</span>-Bit<span class="w"> </span>Server<span class="w"> </span>VM<span class="w"> </span><span class="m">22</span>.0.1-internal-adhoc.conda.src
+Encoding:<span class="w"> </span>UTF-8<span class="w"> </span><span class="o">(</span>UTF-8<span class="o">)</span>
+<span class="c1"># this means nextflow is found in your PATH and can be run</span>
+</pre></div>
+</div>
+</section>
+<section id="step-4-10-tell-nextflow-where-to-place-files">
+<h4>Step 4.10: Tell Nextflow where to place files<a class="headerlink" href="#step-4-10-tell-nextflow-where-to-place-files" title="Link to this heading">#</a></h4>
+<p>To prevent nextflow from placing files where they do not go, we must add variables (that nextflow will look for) and the paths. For example, we tell nextflow that NXF_SINGULARITY_CACHEDIR (where to store singularity images) is <code class="docutils literal notranslate"><span class="pre">/data/cephfs-1/work/groups/coscia/Singularity_Cache</span></code>, therefore it will place those files there.</p>
+<p>First open your <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> file wiht:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nano ~/.bashrc</span>
+</pre></div>
+</div>
+<p>This will open a terminal text editor, add the following 5 lines of code.
+Windows users you will not be able to copy paste, please be careful with typos.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">export SINGULARITY_CACHEDIR=/data/cephfs-1/work/groups/coscia/Singularity_Cache</span>
+<span class="go">export NXF_SINGULARITY_CACHEDIR=/data/cephfs-1/work/groups/coscia/Singularity_Cache</span>
+<span class="go">export NXF_WORK=/data/cephfs-1/home/users/$USERNAME/scratch/</span>
+<span class="go">export NXF_TEMP=/data/cephfs-1/home/users/$USERNAME/scratch/</span>
+<span class="go">export NXF_HOME=/data/cephfs-1/home/users/$USERNAME/work/.nextflow</span>
+</pre></div>
+</div>
+<p>Restart the <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> file to trigger those changes</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">source ~/.bashrc</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="step-6-run-nextflow">
+<h3>Step 6: Run Nextflow<a class="headerlink" href="#step-6-run-nextflow" title="Link to this heading">#</a></h3>
+<p>In case something went wrong before, remember you must have, and do any of these if needed:</p>
+<ul class="simple">
+<li><p>interactive session activated (no login nodes) : <code class="docutils literal notranslate"><span class="pre">srun</span> <span class="pre">--mem=5G</span> <span class="pre">--pty</span> <span class="pre">bash</span> <span class="pre">-i</span></code></p></li>
+<li><p>mcmicro conda environment activated : <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">mcmicro</span></code></p></li>
+<li><p>have the <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> variables set and activated</p></li>
+</ul>
+<section id="step-6-1-demo-pipeline">
+<h4>Step 6.1: Demo pipeline<a class="headerlink" href="#step-6-1-demo-pipeline" title="Link to this heading">#</a></h4>
+<p>Run nextflow hello (demo) pipeline</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nextflow run nextflow-io/hello</span>
+</pre></div>
+</div>
+<p>This is how it should look like</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go"> N E X T F L O W   ~  version 25.04.7</span>
+
+<span class="go">NOTE: Your local project version looks outdated - a different revision is available in the remote repository [2ce0b0e294]</span>
+<span class="go">Launching `https://github.com/nextflow-io/hello` [naughty_kimura] DSL2 - revision: afff16a9b4 [master]</span>
+
+<span class="go">executor &gt;  local (4)</span>
+<span class="go">[31/222763] sayHello (4) [100%] 4 of 4 ✔</span>
+<span class="go">Bonjour world!</span>
+
+<span class="go">Hello world!</span>
+
+<span class="go">Ciao world!</span>
+
+<span class="go">Hola world!</span>
+</pre></div>
+</div>
+</details>
+</section>
+<section id="step-6-2-download-demo-data-exemplar-001">
+<h4>Step 6.2: Download demo data (Exemplar-001)<a class="headerlink" href="#step-6-2-download-demo-data-exemplar-001" title="Link to this heading">#</a></h4>
+<p>Create a folder for demo data:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">mkdir -p ~/work/test1/</span>
+</pre></div>
+</div>
+<p>Download data using nextflow pipeline:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nextflow<span class="w"> </span>run<span class="w"> </span>labsyspharm/mcmicro/exemplar.nf<span class="w"> </span>--name<span class="w"> </span>exemplar-001<span class="w"> </span>--path<span class="w"> </span>~/work/test1/
+</pre></div>
+</div>
+<p>Output should look like this:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go"> N E X T F L O W   ~  version 25.04.7</span>
+
+<span class="go">NOTE: Your local project version looks outdated - a different revision is available in the remote repository [b0175102db]</span>
+<span class="go">Launching `https://github.com/labsyspharm/mcmicro` [awesome_cori] DSL2 - revision: 9122980d88 [master]</span>
+
+<span class="go">executor &gt;  local (7)</span>
+<span class="go">[db/88249f] getImages (2)       [100%] 3 of 3 ✔</span>
+<span class="go">[6a/e497fd] getIllumination (2) [100%] 3 of 3 ✔</span>
+<span class="go">[41/ef43e7] getMarkers          [100%] 1 of 1 ✔</span>
+<span class="go">[-        ] getParams           -</span>
+<span class="go">Completed at: 12-Sep-2025 15:20:05</span>
+<span class="go">Duration    : 6m 33s</span>
+<span class="go">CPU hours   : 0.2</span>
+<span class="go">Succeeded   : 7</span>
+</pre></div>
+</div>
+</section>
+<section id="step-6-3-run-mcmicro-with-demo-data">
+<h4>Step 6.3: Run MCMICRO with demo data<a class="headerlink" href="#step-6-3-run-mcmicro-with-demo-data" title="Link to this heading">#</a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nextflow run labsyspharm/mcmicro --in ~/work/test1/exemplar-001 -profile singularity</span>
+</pre></div>
+</div>
+<p>Output should look like this:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">N E X T F L O W   ~  version 25.04.7</span>
+
+<span class="go">NOTE: Your local project version looks outdated - a different revision is available in the remote repository [b0175102db]</span>
+<span class="go">Launching `https://github.com/labsyspharm/mcmicro` [scruffy_aryabhata] DSL2 - revision: 9122980d88 [master]</span>
+
+<span class="go">executor &gt;  local (3)</span>
+<span class="go">executor &gt;  local (4)</span>
+<span class="go">[-        ] staging:phenoimager2mc          -</span>
+<span class="go">[-        ] illumination                    -</span>
+<span class="go">[b3/8c40c6] registration:ashlar (1)         [100%] 1 of 1 ✔</span>
+<span class="go">[-        ] background:backsub              -</span>
+<span class="go">[-        ] dearray:coreograph              -</span>
+<span class="go">[-        ] segmentation:roadie:runTask     -</span>
+<span class="go">[fa/ee9f6f] segmentation:worker (unmicst-1) [100%] 1 of 1 ✔</span>
+<span class="go">[e6/07e148] segmentation:s3seg (1)          [100%] 1 of 1 ✔</span>
+<span class="go">[5c/8570c6] quantification:mcquant (1)      [100%] 1 of 1 ✔</span>
+<span class="go">[-        ] downstream:worker               -</span>
+<span class="go">[-        ] viz:autominerva                 -</span>
+<span class="go">Completed at: 12-Sep-2025 15:43:15</span>
+<span class="go">Duration    : 18m 3s</span>
+<span class="go">CPU hours   : 0.3</span>
+<span class="go">Succeeded   : 4</span>
+</pre></div>
+</div>
+<p>We can check the outputs of the pipeline:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">tree ~/work/test1/exemplar-001</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">.</span>
+<span class="err">└──</span> <span class="n">exemplar</span><span class="o">-</span><span class="mi">001</span>
+    <span class="err">├──</span> <span class="n">illumination</span>
+    <span class="err">│</span>   <span class="err">├──</span> <span class="n">exemplar</span><span class="o">-</span><span class="mi">001</span><span class="o">-</span><span class="n">cycle</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="n">dfp</span><span class="o">.</span><span class="n">tif</span>
+    <span class="err">│</span>   <span class="err">├──</span> <span class="n">exemplar</span><span class="o">-</span><span class="mi">001</span><span class="o">-</span><span class="n">cycle</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="n">ffp</span><span class="o">.</span><span class="n">tif</span>
+    <span class="err">│</span>   <span class="err">├──</span> <span class="n">exemplar</span><span class="o">-</span><span class="mi">001</span><span class="o">-</span><span class="n">cycle</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="n">dfp</span><span class="o">.</span><span class="n">tif</span>
+    <span class="err">│</span>   <span class="err">├──</span> <span class="n">exemplar</span><span class="o">-</span><span class="mi">001</span><span class="o">-</span><span class="n">cycle</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="n">ffp</span><span class="o">.</span><span class="n">tif</span>
+    <span class="err">│</span>   <span class="err">├──</span> <span class="n">exemplar</span><span class="o">-</span><span class="mi">001</span><span class="o">-</span><span class="n">cycle</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="n">dfp</span><span class="o">.</span><span class="n">tif</span>
+    <span class="err">│</span>   <span class="err">└──</span> <span class="n">exemplar</span><span class="o">-</span><span class="mi">001</span><span class="o">-</span><span class="n">cycle</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="n">ffp</span><span class="o">.</span><span class="n">tif</span>
+    <span class="err">├──</span> <span class="n">markers</span><span class="o">.</span><span class="n">csv</span>
+    <span class="err">├──</span> <span class="n">probability</span><span class="o">-</span><span class="n">maps</span>
+    <span class="err">│</span>   <span class="err">└──</span> <span class="n">unmicst</span>
+    <span class="err">│</span>       <span class="err">└──</span> <span class="n">exemplar</span><span class="o">-</span><span class="mi">001</span><span class="o">-</span><span class="n">pmap</span><span class="o">.</span><span class="n">tif</span>
+    <span class="err">├──</span> <span class="n">qc</span>
+    <span class="err">│</span>   <span class="err">├──</span> <span class="n">metadata</span><span class="o">.</span><span class="n">yml</span>
+    <span class="err">│</span>   <span class="err">├──</span> <span class="n">params</span><span class="o">.</span><span class="n">yml</span>
+    <span class="err">│</span>   <span class="err">├──</span> <span class="n">provenance</span>
+    <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="n">ashlar</span><span class="o">.</span><span class="n">log</span>
+    <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="n">ashlar</span><span class="o">.</span><span class="n">sh</span>
+    <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="n">mcquant</span><span class="o">-</span><span class="mf">1.</span><span class="n">log</span>
+    <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="n">mcquant</span><span class="o">-</span><span class="mf">1.</span><span class="n">sh</span>
+    <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="n">s3seg</span><span class="o">-</span><span class="mf">1.</span><span class="n">log</span>
+    <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="n">s3seg</span><span class="o">-</span><span class="mf">1.</span><span class="n">sh</span>
+    <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="n">unmicst</span><span class="o">-</span><span class="mf">1.</span><span class="n">log</span>
+    <span class="err">│</span>   <span class="err">│</span>   <span class="err">└──</span> <span class="n">unmicst</span><span class="o">-</span><span class="mf">1.</span><span class="n">sh</span>
+    <span class="err">│</span>   <span class="err">├──</span> <span class="n">s3seg</span>
+    <span class="err">│</span>   <span class="err">│</span>   <span class="err">└──</span> <span class="n">unmicst</span><span class="o">-</span><span class="n">exemplar</span><span class="o">-</span><span class="mi">001</span>
+    <span class="err">│</span>   <span class="err">│</span>       <span class="err">├──</span> <span class="n">cellOutlines</span><span class="o">.</span><span class="n">ome</span><span class="o">.</span><span class="n">tif</span>
+    <span class="err">│</span>   <span class="err">│</span>       <span class="err">└──</span> <span class="n">nucleiOutlines</span><span class="o">.</span><span class="n">ome</span><span class="o">.</span><span class="n">tif</span>
+    <span class="err">│</span>   <span class="err">└──</span> <span class="n">unmicst</span>
+    <span class="err">│</span>       <span class="err">└──</span> <span class="n">exemplar</span><span class="o">-</span><span class="mi">001</span><span class="n">_Preview_1</span><span class="o">.</span><span class="n">tif</span>
+    <span class="err">├──</span> <span class="n">quantification</span>
+    <span class="err">│</span>   <span class="err">└──</span> <span class="n">exemplar</span><span class="o">-</span><span class="mi">001</span><span class="o">--</span><span class="n">unmicst_cell</span><span class="o">.</span><span class="n">csv</span>
+    <span class="err">├──</span> <span class="n">raw</span>
+    <span class="err">│</span>   <span class="err">├──</span> <span class="n">exemplar</span><span class="o">-</span><span class="mi">001</span><span class="o">-</span><span class="n">cycle</span><span class="o">-</span><span class="mf">06.</span><span class="n">ome</span><span class="o">.</span><span class="n">tiff</span>
+    <span class="err">│</span>   <span class="err">├──</span> <span class="n">exemplar</span><span class="o">-</span><span class="mi">001</span><span class="o">-</span><span class="n">cycle</span><span class="o">-</span><span class="mf">07.</span><span class="n">ome</span><span class="o">.</span><span class="n">tiff</span>
+    <span class="err">│</span>   <span class="err">└──</span> <span class="n">exemplar</span><span class="o">-</span><span class="mi">001</span><span class="o">-</span><span class="n">cycle</span><span class="o">-</span><span class="mf">08.</span><span class="n">ome</span><span class="o">.</span><span class="n">tiff</span>
+    <span class="err">├──</span> <span class="n">registration</span>
+    <span class="err">│</span>   <span class="err">└──</span> <span class="n">exemplar</span><span class="o">-</span><span class="mf">001.</span><span class="n">ome</span><span class="o">.</span><span class="n">tif</span>
+    <span class="err">└──</span> <span class="n">segmentation</span>
+        <span class="err">└──</span> <span class="n">unmicst</span><span class="o">-</span><span class="n">exemplar</span><span class="o">-</span><span class="mi">001</span>
+            <span class="err">├──</span> <span class="n">cell</span><span class="o">.</span><span class="n">ome</span><span class="o">.</span><span class="n">tif</span>
+            <span class="err">└──</span> <span class="n">nuclei</span><span class="o">.</span><span class="n">ome</span><span class="o">.</span><span class="n">tif</span>
+</pre></div>
+</div>
+</details>
+</section>
+</section>
+</section>
+<section id="running-mcmicro-with-a-script-for-distributed-computing">
+<h2>Running MCMICRO with a script for distributed computing<a class="headerlink" href="#running-mcmicro-with-a-script-for-distributed-computing" title="Link to this heading">#</a></h2>
+<p>MCMICRO works best when we distribute all the tasks to the HPC.</p>
+<p>You will need:</p>
+<ul class="simple">
+<li><p>raw image files</p></li>
+<li><p>param.yml file</p></li>
+<li><p>script.sh file</p></li>
+</ul>
+</section>
+<section id="how-to-prepare-your-images-for-mcmicro">
+<h2>How to prepare your images for MCMICRO<a class="headerlink" href="#how-to-prepare-your-images-for-mcmicro" title="Link to this heading">#</a></h2>
+<p>Please familiarize yourself with <a class="reference external" href="https://mcmicro.org/io.html">MCMICRO’s Input/Output expectactions</a></p>
+<section id="project-organization">
+<h3>Project organization<a class="headerlink" href="#project-organization" title="Link to this heading">#</a></h3>
+<p>Minimum requirements are the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>myproject/
+├──<span class="w"> </span>markers.csv
+├──<span class="w"> </span>params.yml<span class="w"> </span><span class="c1"># actually not needed, but strongly recommended</span>
+└──<span class="w"> </span>raw/
+</pre></div>
+</div>
+<p>Important: if a run of mcmicro creates new directories, and you would like not to start from the first step, use the <code class="docutils literal notranslate"><span class="pre">--resume</span></code> option in your <code class="docutils literal notranslate"><span class="pre">nextflow</span> <span class="pre">run</span></code> command. Nextflow will check what has already been done, and carry on from the last step.</p>
+</section>
+<section id="markers-csv">
+<h3>markers.csv<a class="headerlink" href="#markers-csv" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>cannot</strong> be renamed.</p></li>
+<li><p>column names must be: <code class="docutils literal notranslate"><span class="pre">cycle_number</span></code>, <code class="docutils literal notranslate"><span class="pre">channel_number</span></code>, and <code class="docutils literal notranslate"><span class="pre">marker_name</span></code></p></li>
+<li><p>optional column names are: <code class="docutils literal notranslate"><span class="pre">background</span></code>, <code class="docutils literal notranslate"><span class="pre">exposure</span></code>, and <code class="docutils literal notranslate"><span class="pre">remove</span></code> (for backsub).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">marker_name</span></code> values must all be unique</p></li>
+<li><p>Separator <strong>must</strong> be a <em>comma</em> (,) – Be careful with excel and german defaults, use libreOffice if needed.</p></li>
+</ul>
+<p>markers.csv schema (without background subtraction):</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>cycle_number</p></th>
+<th class="head"><p>channel_number</p></th>
+<th class="head"><p>marker_name</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>CDH1</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>2</p></td>
+<td><p>IDO</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>3</p></td>
+<td><p>panCK</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>4</p></td>
+<td><p>CD20</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>5</p></td>
+<td><p>DAPI_1</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>6</p></td>
+<td><p>aSMA</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>7</p></td>
+<td><p>CD56</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>8</p></td>
+<td><p>FOXP3</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>9</p></td>
+<td><p>GranzymeB</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>markers.csv (with <a class="reference external" href="https://github.com/SchapiroLabor/Background_subtraction">background subtraction</a>):</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>cycle_number</p></th>
+<th class="head"><p>channel_number</p></th>
+<th class="head"><p>marker_name</p></th>
+<th class="head"><p>background</p></th>
+<th class="head"><p>exposure</p></th>
+<th class="head"><p>remove</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>750_bg</p></td>
+<td><p></p></td>
+<td><p>200</p></td>
+<td><p>TRUE</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>2</p></td>
+<td><p>647_bg</p></td>
+<td><p></p></td>
+<td><p>50</p></td>
+<td><p>TRUE</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>3</p></td>
+<td><p>555_bg</p></td>
+<td><p></p></td>
+<td><p>200</p></td>
+<td><p>TRUE</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>4</p></td>
+<td><p>488_bg</p></td>
+<td><p></p></td>
+<td><p>100</p></td>
+<td><p>TRUE</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>5</p></td>
+<td><p>DAPI_bg</p></td>
+<td><p></p></td>
+<td><p>3.5</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>6</p></td>
+<td><p>CDH1</p></td>
+<td><p>750_bg</p></td>
+<td><p>50</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>7</p></td>
+<td><p>PDL1</p></td>
+<td><p>647_bg</p></td>
+<td><p>12</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>8</p></td>
+<td><p>panCK</p></td>
+<td><p>555_bg</p></td>
+<td><p>15</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>9</p></td>
+<td><p>CD20</p></td>
+<td><p>488_bg</p></td>
+<td><p>15</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="params-yml">
+<h3>params.yml<a class="headerlink" href="#params-yml" title="Link to this heading">#</a></h3>
+<p>Familiarize yourself with the <a class="reference external" href="https://mcmicro.org/parameters/">official documentation</a></p>
+<ul class="simple">
+<li><p>holds all parameters, for the pipeline and for each module</p></li>
+<li><p>must be a <code class="docutils literal notranslate"><span class="pre">.yml</span></code> file</p></li>
+<li><p>must be passed with `nextflow run … –params params.yml</p></li>
+</ul>
+<p>Example params.yml for just <strong>stitching and registration</strong> of a <code class="docutils literal notranslate"><span class="pre">.czi</span></code> file:</p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>workflow:
+start-at: illumination
+stop-at: registration
+
+options:
+    ashlar: --flip-y --align-channel 1 -m 50 --filter-sigma 1
+</pre></div>
+</div>
+<p>Example params.yml including <strong>background subtraction</strong></p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>workflow:
+    start-at: illumination
+    stop-at: background
+    background: true
+    background-method: backsub
+
+options:
+    ashlar: --flip-y --align-channel 4 -m 50 --filter-sigma 1
+</pre></div>
+</div>
+</section>
+<section id="script-sh">
+<h3>script.sh<a class="headerlink" href="#script-sh" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">.sh</span></code> suffix denotes a script file.</p></li>
+<li><p>The script will tell the HPC how to process your images.</p></li>
+<li><p>I suggest you create a script in your preferred IDE, like VSCode, and then import it to the HPC when it is time to run your script.</p></li>
+</ul>
+<p>Demo script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --job-name=test_job         # Job name</span>
+<span class="c1">#SBATCH --time=16:00:00             # Time limit hrs:min:sec</span>
+<span class="c1">#SBATCH --mem=10G                   # Memory for orchestrating node</span>
+<span class="c1">#SBATCH --cpus-per-task=2           # Number of CPU cores for orchestrating node</span>
+
+<span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>conda<span class="w"> </span>shell.bash<span class="w"> </span>hook<span class="k">)</span><span class="s2">&quot;</span><span class="w">     </span><span class="c1"># This exposes conda hook to node</span>
+conda<span class="w"> </span>activate<span class="w"> </span>mcmicro<span class="w">              </span><span class="c1"># This activates environment in node</span>
+<span class="nv">PATH_TO_DATA</span><span class="o">=</span><span class="s2">&quot;/data/cephfs-1/home/users/&lt;USERNAME&gt;/work/test1/exemplar-001&quot;</span>
+<span class="nv">PATH_TO_PARAMS</span><span class="o">=</span><span class="s2">&quot;/data/cephfs-1/home/users/&lt;USERNAME&gt;/work/test1/exemplar001_params.yml&quot;</span>
+
+nextflow<span class="w"> </span>run<span class="w"> </span>labsyspharm/mcmicro<span class="w"> </span>--in<span class="w"> </span><span class="nv">$PATH_TO_DATA</span><span class="w"> </span>--params<span class="w"> </span><span class="nv">$PATH_TO_PARAMS</span><span class="w"> </span>-profile<span class="w"> </span>singularity
+</pre></div>
+</div>
+<p>Then run your script from the terminal</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sbatch demo_script.sh </span>
+</pre></div>
+</div>
+<p>Output will look something like this:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sbatch: routed your job to partition short</span>
+<span class="go">Submitted batch job 18622303</span>
+</pre></div>
+</div>
+<p>Conceptually:<br />
+This script will start an orchestrating job, which will manage all the other jobs that have to be created and managed.
+Every daughter job will be managed from it. If the orchestrating job runs out of time, everything collapses.
+There are also ways one can run a batch script that can run one script per dataset. In that way processing multiple datasets from a single script. This is excellent for reproducibility.</p>
+<p>Looking for details?
+This part can get very complex, and highly depends on your needs. So I refrain from overexplaining. Look at your HPC documentation on how to run scripts, and what are their recommended workflows. Asking your friendly bioinformatician is a great first point of help.</p>
+</section>
+<section id="considerations-ideas-and-tips">
+<h3>Considerations, ideas, and tips<a class="headerlink" href="#considerations-ideas-and-tips" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>You do not have to run everything all the time, sometimes I like to run MCMICRO just for (1) Illumination correction and (2) Stitching and registration and the move on to another software. Make use of the workflow options like <code class="docutils literal notranslate"><span class="pre">stop-at</span></code>.</p></li>
+<li><p>Inside the <a class="reference external" href="https://github.com/labsyspharm/mcmicro/blob/master/nextflow.config">nextflow.config</a> file, MCMICRO developers link the default computational requirements for each module. They have set <code class="docutils literal notranslate"><span class="pre">profiles</span></code>. For example here you can find the <a class="reference external" href="https://github.com/labsyspharm/mcmicro/blob/master/config/nf/wsi.config">WSI defaults</a> profile optimized for Whole slide imaging, and here the <code class="docutils literal notranslate"><span class="pre">profile</span></code> for  <a class="reference external" href="https://github.com/labsyspharm/mcmicro/blob/master/config/nf/tma.config">TMA defaults</a>. If you feel you need your own computational requirements, I suggest you fork the MCMICRO github repository, modify it, and then run mcmicro like this <code class="docutils literal notranslate"><span class="pre">nextflow</span> <span class="pre">run</span> <span class="pre">josenimo/mcmicro</span></code>. Nextflow is smart and will use that github repository instead.</p></li>
+<li><p>For MDC peeps, feel free to use <a class="reference external" href="https://github.com/josenimo/mcmicro/">josenimo/mcmicro</a> with <code class="docutils literal notranslate"><span class="pre">-profile</span> <span class="pre">singularity</span></code> in your <code class="docutils literal notranslate"><span class="pre">nextflow</span> <span class="pre">run</span></code> command.</p></li>
+<li><p>Nextflow has a nice <code class="docutils literal notranslate"><span class="pre">-resume</span></code> parameter to automatically check what already ran, and go on from there.</p></li>
+</ul>
+</section>
+<section id="checklist">
+<h3>Checklist<a class="headerlink" href="#checklist" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Ensure access to HPC</p></li>
+<li><p>Ensure you can move files into HPC environment (consider image sizes)</p></li>
+<li><p>Ensure enough storage space is available for your images and processing steps</p></li>
+<li><p>Ensure HPC can run <strong>java</strong></p></li>
+<li><p>Ensure HPC can run <strong>apptainer/singularity</strong> images</p></li>
+<li><p>Ensure HPC can run <strong>nextflow</strong></p></li>
+<li><p>Run <strong>MCMICRO</strong> <a class="reference external" href="https://mcmicro.org/datasets/">demo data</a> directly on interactive session</p></li>
+<li><p>Run <strong>MCMICRO</strong> <a class="reference external" href="https://mcmicro.org/datasets/">demo data</a> with a HPC script</p></li>
+</ul>
+<p>SUCCESS, you managed to install everything, now let’s dig into the biology!</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="InstallOpenDVP.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Install opendvp</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="GettingStartedWithSOPA.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Getting started with SOPA</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mcmicro">MCMICRO</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-expectations">Setting Expectations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-tips">General tips</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-setup-in-macos-linux-environment">How to setup in MacOS/Linux environment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-setup-in-the-bih-hpc">How to setup in the BIH HPC</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-ensure-you-can-access-the-cluster">Step 1: Ensure you can access the cluster</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-ensure-you-can-move-files-to-cluster">Step 2: Ensure you can move files to cluster</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#important-settings">Important Settings</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mdc-users-login-nodes">MDC Users login nodes</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-ensure-there-is-enough-space-in-your-directory">Step 3: Ensure there is enough space in your directory</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-create-environment-in-the-hpc-to-run-nextflow-pipelines">Step 4: Create environment in the HPC to run nextflow pipelines</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-1-activate-interactive-session">Step 4.1: Activate interactive session</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-2-download-miniforge">Step 4.2: Download miniforge</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-3-install-miniforge">Step 4.3: Install miniforge</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-4-make-conda-command-accesible">Step 4.4: Make conda command accesible</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-5-initialize-conda">Step 4.5: Initialize conda</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-6-change-conda-configuration">Step 4.6: Change conda configuration</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-7-install-the-necessary-packages">Step 4.7: Install the necessary packages</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-8-install-nextflow">Step 4.8: Install <strong>Nextflow</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-9-check-nextflow-is-working">Step 4.9: Check Nextflow is working</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-10-tell-nextflow-where-to-place-files">Step 4.10: Tell Nextflow where to place files</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-run-nextflow">Step 6: Run Nextflow</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-1-demo-pipeline">Step 6.1: Demo pipeline</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-2-download-demo-data-exemplar-001">Step 6.2: Download demo data (Exemplar-001)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-3-run-mcmicro-with-demo-data">Step 6.3: Run MCMICRO with demo data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-mcmicro-with-a-script-for-distributed-computing">Running MCMICRO with a script for distributed computing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-prepare-your-images-for-mcmicro">How to prepare your images for MCMICRO</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-organization">Project organization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#markers-csv">markers.csv</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#params-yml">params.yml</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#script-sh">script.sh</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#considerations-ideas-and-tips">Considerations, ideas, and tips</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checklist">Checklist</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jose Nimo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

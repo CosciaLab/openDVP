@@ -38,6 +38,8 @@ You can image with whatever technology suits your project best. In general most 
 
 ### Hematoxylin and Eosin
 
+
+
 ### Immunohistochemistry
 
 ### Immunofluorescence
@@ -58,4 +60,10 @@ Note: Here you should consider creating calibration points by etching the membra
 
 ### Select regions of interest with QuPath to LMD
 
-###
+```{toctree}
+:maxdepth: 2
+:hidden:
+
+Experimental_Imaging
+Experimental_Tissue_and_Slides
+```

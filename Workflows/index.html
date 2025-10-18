@@ -49,7 +49,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=7dd04bbd"></script>
+    <script src="../_static/documentation_options.js?v=6aa4cbdb"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -58,6 +58,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Workflows/index';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Experimental" href="Experimental/index.html" />
     <link rel="prev" title="T3: Proteomics Integration" href="../Tutorials/T3_ProteomicsIntegration.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -230,7 +231,21 @@
 <li class="toctree-l2"><a class="reference internal" href="../Tutorials/T3_ProteomicsIntegration.html">T3: Proteomics Integration</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">openDVP the framework</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">openDVP the framework</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="Experimental/index.html">Experimental</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="Experimental/Experimental_Imaging.html">Imaging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Experimental/Experimental_Tissue_and_Slides.html">Tissue and Slides</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="Computational/index.html">Computational</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="Computational/InstallOpenDVP.html">Install opendvp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Computational/GettingStartedWithMCMICRO.html">Getting started with MCMICRO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Computational/GettingStartedWithSOPA.html">Getting started with SOPA</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../ContributionGuide.html">Contribution Guide</a></li>
 </ul>
 
     </div>
@@ -439,6 +454,8 @@ document.write(`
 <p>openDVP highly recommends utilizing open-source image processing pipelines: MCMICRO and SOPA are wonderful examples, each with their tradeoffs.</p>
 <p>Image analysis can vary, but openDVP can help you filter common artefacts such as cells by morphological or intensity features. Filter dropped out cells by calculating the ratio of marker intensity between cycles. It also enables a easy back and forth between user-friendly annotation software like QuPath to easily integrate collaborators insights into the analysis. We use scimap for phenotyping, but we suggest you compare between the released approaches, and use what fits your problem best, that is the beauty of open source.</p>
 <p>We will release more details soon :)</p>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 </section>
 
@@ -461,6 +478,15 @@ document.write(`
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">T3: Proteomics Integration</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="Experimental/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Experimental</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>

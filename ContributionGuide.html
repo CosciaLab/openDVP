@@ -1,0 +1,642 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Contribution Guide" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="ContributionGuide.html" />
+<meta property="og:site_name" content="opendvp" />
+<meta property="og:description" content="First off, thank you for considering contributing to openDVP! It’s people like you that make open source so great. We welcome contributions of all kinds, from bug reports to new features. This guid..." />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="_images/social_previews/summary_ContributionGuide_92693af4.png" />
+<meta property="og:image:alt" content="First off, thank you for considering contributing to openDVP! It’s people like you that make open source so great. We welcome contributions of all kinds, from bug reports to new features. This guid..." />
+<meta name="description" content="First off, thank you for considering contributing to openDVP! It’s people like you that make open source so great. We welcome contributions of all kinds, from bug reports to new features. This guid..." />
+<meta name="twitter:card" content="summary_large_image" />
+
+    <title>Contribution Guide &#8212; opendvp</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=6aa4cbdb"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ContributionGuide';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Getting started with SOPA" href="Workflows/Computational/GettingStartedWithSOPA.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">opendvp</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="api/index.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="api/io.html">Input / Output</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.io.adata_to_qupath.html">opendvp.io.adata_to_qupath</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.io.adata_to_voronoi.html">opendvp.io.adata_to_voronoi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.io.import_thresholds.html">opendvp.io.import_thresholds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.io.quant_to_adata.html">opendvp.io.quant_to_adata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.io.segmask_to_qupath.html">opendvp.io.segmask_to_qupath</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.io.DIANN_to_adata.html">opendvp.io.DIANN_to_adata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.io.import_perseus.html">opendvp.io.import_perseus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.io.export_adata.html">opendvp.io.export_adata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.io.export_figure.html">opendvp.io.export_figure</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="api/metrics.html">Metrics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.metrics.coefficient_of_variation.html">opendvp.metrics.coefficient_of_variation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.metrics.nan_difference.html">opendvp.metrics.nan_difference</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="api/plotting.html">Plotting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.plot_graph_network.html">opendvp.plotting.plot_graph_network</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.stacked_barplot.html">opendvp.plotting.stacked_barplot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.abundance_histograms.html">opendvp.plotting.abundance_histograms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.correlation_heatmap.html">opendvp.plotting.correlation_heatmap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.coefficient_of_variation.html">opendvp.plotting.coefficient_of_variation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.density.html">opendvp.plotting.density</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.dual_axis_boxplots.html">opendvp.plotting.dual_axis_boxplots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.imputation_qc.html">opendvp.plotting.imputation_qc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.pca_loadings.html">opendvp.plotting.pca_loadings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.rankplot.html">opendvp.plotting.rankplot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.upset.html">opendvp.plotting.upset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.volcano.html">opendvp.plotting.volcano</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="api/pp.html">Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.pp.impute_marker_with_annotation.html">opendvp.pp.impute_marker_with_annotation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="api/tl.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.tl.filter_by_abs_value.html">opendvp.tl.filter_by_abs_value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.tl.filter_by_annotation.html">opendvp.tl.filter_by_annotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.tl.filter_by_ratio.html">opendvp.tl.filter_by_ratio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.tl.filter_features_byNaNs.html">opendvp.tl.filter_features_byNaNs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.tl.impute_gaussian.html">opendvp.tl.impute_gaussian</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.tl.spatial_autocorrelation.html">opendvp.tl.spatial_autocorrelation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.tl.spatial_hyperparameter_search.html">opendvp.tl.spatial_hyperparameter_search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.tl.stats_anova.html">opendvp.tl.stats_anova</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.tl.stats_average_samples.html">opendvp.tl.stats_average_samples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.tl.stats_bootstrap.html">opendvp.tl.stats_bootstrap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.tl.stats_ttest.html">opendvp.tl.stats_ttest</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="api/utils.html">Utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.utils.parse_color_for_qupath.html">opendvp.utils.parse_color_for_qupath</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="api/imaging.html">Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.imaging.mask_to_polygons.html">opendvp.imaging.mask_to_polygons</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Tutorials/T1_ImageAnalysis.html">T1: Image single-cell analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tutorials/T2_DownstreamProteomics.html">T2: Downstream Proteomics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tutorials/T3_ProteomicsIntegration.html">T3: Proteomics Integration</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Workflows/index.html">openDVP the framework</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="Workflows/Experimental/index.html">Experimental</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="Workflows/Experimental/Experimental_Imaging.html">Imaging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Workflows/Experimental/Experimental_Tissue_and_Slides.html">Tissue and Slides</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="Workflows/Computational/index.html">Computational</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="Workflows/Computational/InstallOpenDVP.html">Install opendvp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Workflows/Computational/GettingStartedWithMCMICRO.html">Getting started with MCMICRO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Workflows/Computational/GettingStartedWithSOPA.html">Getting started with SOPA</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Contribution Guide</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/ContributionGuide.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Contribution Guide</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#development-workflow-summary">Development workflow summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-fork-the-opendvp-repository-to-your-own-github-account">Step 1: Fork the opendvp repository to your own GitHub account</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-create-a-development-environment">Step 2: Create a development environment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-create-a-new-branch-for-your-pr">Step 3: Create a new branch for your PR</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-add-your-feature-or-bugfix-to-the-codebase">Step 4: Add your feature or bugfix to the codebase</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-make-sure-all-tests-are-passing">Step 5: Make sure all tests are passing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-code-style-check-documentation-check">Step 6: Code style check, documentation check</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manual-checks">Manual checks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-documentation">Building the Documentation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-open-a-pr-back-to-the-main-repository">Step 7: Open a PR back to the main repository</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="contribution-guide">
+<h1>Contribution Guide<a class="headerlink" href="#contribution-guide" title="Link to this heading">#</a></h1>
+<p>First off, thank you for considering contributing to openDVP! It’s people like you that make open source so great. We welcome contributions of all kinds, from bug reports to new features.</p>
+<p>This guide will walk you through the process of setting up your development environment and submitting your first contribution.</p>
+<section id="development-workflow-summary">
+<h2>Development workflow summary<a class="headerlink" href="#development-workflow-summary" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Fork the opendvp repository to your own GitHub account</p></li>
+<li><p>Create a development environment</p></li>
+<li><p>Create a new branch for your PR</p></li>
+<li><p>Add your feature or bugfix to the codebase</p></li>
+<li><p>Make sure all tests are passing</p></li>
+<li><p>Ensure code style, and/or ensure documentation looks good.</p></li>
+<li><p>Open a PR back to the main repository</p></li>
+</ol>
+</section>
+<section id="step-1-fork-the-opendvp-repository-to-your-own-github-account">
+<h2>Step 1: Fork the opendvp repository to your own GitHub account<a class="headerlink" href="#step-1-fork-the-opendvp-repository-to-your-own-github-account" title="Link to this heading">#</a></h2>
+<p>First, <a class="reference external" href="https://github.com/CosciaLab/openDVP/fork">fork the repository</a> to your own GitHub account.<br />
+For more context about what forking means check: <a class="reference external" href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo">Github Manual: Forking</a></p>
+</section>
+<section id="step-2-create-a-development-environment">
+<h2>Step 2: Create a development environment<a class="headerlink" href="#step-2-create-a-development-environment" title="Link to this heading">#</a></h2>
+<p>Clone your fork to your local machine:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/YOUR_USERNAME/openDVP.git
+<span class="nb">cd</span><span class="w"> </span>openDVP
+
+<span class="c1"># Add the main repository as a remote</span>
+git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>upstream<span class="w"> </span>https://github.com/CosciaLab/opendvp.git
+<span class="c1"># this allows you to easily update your opendvp copy if new changes come to the main opendvp</span>
+</pre></div>
+</div>
+<p>Now you must setup a tool that will check your code when you commit it. The tool is called <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code>, briefly, <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> will run a check based on rules found in <code class="docutils literal notranslate"><span class="pre">.pre-commit-config.yaml</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># run to install pre-commit</span>
+uv<span class="w"> </span>run<span class="w"> </span>pre-commit<span class="w"> </span>install
+</pre></div>
+</div>
+</section>
+<section id="step-3-create-a-new-branch-for-your-pr">
+<h2>Step 3: Create a new branch for your PR<a class="headerlink" href="#step-3-create-a-new-branch-for-your-pr" title="Link to this heading">#</a></h2>
+<p>All development should occur in branches of your forked opendvp,  each branch dedicated to a particular purpose: feature, bug, etc.<br />
+You can create a branch with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>main<span class="w">                 </span><span class="c1"># Starting from the main branch</span>
+$<span class="w"> </span>git<span class="w"> </span>pull<span class="w">                          </span><span class="c1"># Syncing with the repo</span>
+$<span class="w"> </span>git<span class="w"> </span>switch<span class="w"> </span>-c<span class="w"> </span><span class="o">{</span>your-branch-name<span class="o">}</span><span class="w">  </span><span class="c1"># Making and changing to the new branch</span>
+</pre></div>
+</div>
+<details>
+<summary>Detailed command explanation</summary>
+<p>The provided commands guide you through the process of creating a new branch to work on your feature or bug fix.</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">main</span></code><br />
+This command changes your current location in the repository to the main branch. You’re making sure you start from the most up-to-date, stable version of the code.</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">pull</span></code><br />
+This command downloads the latest changes from the remote repository to your local copy. This is a crucial step to ensure your local main branch is synchronized with the project’s main branch before you start your work. This prevents merge conflicts later.</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">switch</span> <span class="pre">-c</span> <span class="pre">{your-branch-name}</span></code><br />
+This is a shorthand command that does two things:
+switch -c: creates a new branch with the name you provide (in this case, {your-branch-name}).
+switch: immediately changes to that new branch.</p>
+</details>
+</section>
+<section id="step-4-add-your-feature-or-bugfix-to-the-codebase">
+<h2>Step 4: Add your feature or bugfix to the codebase<a class="headerlink" href="#step-4-add-your-feature-or-bugfix-to-the-codebase" title="Link to this heading">#</a></h2>
+<p>Code away!</p>
+</section>
+<section id="step-5-make-sure-all-tests-are-passing">
+<h2>Step 5: Make sure all tests are passing<a class="headerlink" href="#step-5-make-sure-all-tests-are-passing" title="Link to this heading">#</a></h2>
+<p>Testing is very important. To ensure that all the functions are working, and our users won’t be surprised by a nasty bug we program these tests. Look inside <code class="docutils literal notranslate"><span class="pre">opendvp/tests/</span></code> to see how it looks. We use <a class="reference external" href="https://docs.pytest.org/en/stable/">pytest</a> to test opendvp.</p>
+<p>After you have added your magnificient code, you should also add some tests in their respective directories. If you have never written tests before, don’t worry. I suggest you look at the other tests, look at the ideas in the dropdown, and perhaps ask your trusty LLM how to get started.</p>
+<details>
+<summary> What to test in a new feature </summary>
+<ul class="simple">
+<li><p>If you’re not sure what to tests about your function, some ideas include:</p></li>
+<li><p>Are there arguments which conflict with each other? Check that if they are both passed, the function throws an error (see pytest.raises docs).</p></li>
+<li><p>Are there input values which should cause your function to error?</p></li>
+<li><p>Did you add a helpful error message that recommends better outputs? Check that that error message is actually thrown.</p></li>
+<li><p>Can you place bounds on the values returned by your function?</p></li>
+<li><p>Are there different input values which should generate equivalent output (e.g. if an array is sparse or dense)?</p></li>
+<li><p>Do you have arguments which should have orthogonal effects on the output? Check that they are independent. For example, if there is a flag for extended output, the base output should remain the same either way.</p></li>
+<li><p>Are you optimizing a method? Check that it’s results are the same as a gold standard implementation.</p></li>
+</ul>
+</details>
+<p>Before pushing your efforts online you should run all tests, for quick function feedback you can run pytest for a single function:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># this runs all tests</span>
+uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>
+
+<span class="c1"># this runs tests for a particular function</span>
+uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>tests/io/test_DIANN_to_adata.py
+</pre></div>
+</div>
+</section>
+<section id="step-6-code-style-check-documentation-check">
+<h2>Step 6: Code style check, documentation check<a class="headerlink" href="#step-6-code-style-check-documentation-check" title="Link to this heading">#</a></h2>
+<p>Since you already installed <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> every time you have committed it should have ran <code class="docutils literal notranslate"><span class="pre">ruff</span></code>.
+We use <code class="docutils literal notranslate"><span class="pre">ruff</span></code> for code formatting and linting to ensure a consistent code style throughout the project.</p>
+<section id="manual-checks">
+<h3>Manual checks<a class="headerlink" href="#manual-checks" title="Link to this heading">#</a></h3>
+<p>You can also run the formatter and linter manually:</p>
+<p>To format your code:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>run<span class="w"> </span>ruff<span class="w"> </span>format<span class="w"> </span>.
+</pre></div>
+</div>
+<p>To check for linting errors:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>run<span class="w"> </span>ruff<span class="w"> </span>check<span class="w"> </span>.
+</pre></div>
+</div>
+<p>The settings for these checks live inside <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>.</p>
+</section>
+<section id="building-the-documentation">
+<h3>Building the Documentation<a class="headerlink" href="#building-the-documentation" title="Link to this heading">#</a></h3>
+<p>Our documentation is built using <a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a> and is located in the <code class="docutils literal notranslate"><span class="pre">docs/</span></code> directory.</p>
+<p>To build the documentation locally run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>run<span class="w"> </span>--group<span class="w"> </span>docs<span class="w"> </span>sphinx-build<span class="w"> </span>-b<span class="w"> </span>html<span class="w"> </span>docs/<span class="w"> </span>docs/_build/html/
+</pre></div>
+</div>
+<p>The generated HTML files will be in the <code class="docutils literal notranslate"><span class="pre">docs/_build/html</span></code> directory. You can open <code class="docutils literal notranslate"><span class="pre">index.html</span></code> in your browser to view the documentation.</p>
+</section>
+</section>
+<section id="step-7-open-a-pr-back-to-the-main-repository">
+<h2>Step 7: Open a PR back to the main repository<a class="headerlink" href="#step-7-open-a-pr-back-to-the-main-repository" title="Link to this heading">#</a></h2>
+<p>Once you’ve made your changes and are happy with them, you’re ready to submit a pull request.</p>
+<p>As of now, Jose will perform all the version bumping and releasing, do not worry about this.</p>
+<p>Go to your github branch website and click the big green button <code class="docutils literal notranslate"><span class="pre">Compare</span> <span class="pre">&amp;</span> <span class="pre">Pull</span> <span class="pre">Request</span></code></p>
+<p>Ensure that the <strong>pull request</strong>  is from your fork to the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch of the <code class="docutils literal notranslate"><span class="pre">CosciaLab/openDVP</span></code> repository.</p>
+<p>In your pull request description, please explain the changes you’ve made and why you’ve made them. If your pull request addresses an open issue, please link to it. Once you’ve submitted your pull request, our continuous integration (CI) system will automatically run the tests to make sure everything is working as expected. We will then review your contribution and provide feedback.</p>
+<p>Thank you for contributing to openDVP!!</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Workflows/Computational/GettingStartedWithSOPA.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Getting started with SOPA</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#development-workflow-summary">Development workflow summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-fork-the-opendvp-repository-to-your-own-github-account">Step 1: Fork the opendvp repository to your own GitHub account</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-create-a-development-environment">Step 2: Create a development environment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-create-a-new-branch-for-your-pr">Step 3: Create a new branch for your PR</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-add-your-feature-or-bugfix-to-the-codebase">Step 4: Add your feature or bugfix to the codebase</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-make-sure-all-tests-are-passing">Step 5: Make sure all tests are passing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-code-style-check-documentation-check">Step 6: Code style check, documentation check</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manual-checks">Manual checks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-documentation">Building the Documentation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-open-a-pr-back-to-the-main-repository">Step 7: Open a PR back to the main repository</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jose Nimo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

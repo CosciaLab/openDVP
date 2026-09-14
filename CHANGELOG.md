@@ -16,6 +16,10 @@ the version and date. See [`.github/RELEASING.md`](.github/RELEASING.md).
 - `.github/RELEASING.md` — maintainer guide to versioning, tags and releases
 
 ### Changed
+- **Relicensed from GPL-3.0 to MIT**, to reduce friction for other packages that want to
+  build on openDVP and to match the permissive licensing common across the scverse ecosystem
+- Declared the licence as an SPDX expression (`license = "MIT"`), so package metadata now
+  reports `License-Expression: MIT` instead of embedding the full licence text
 - Loosened the `napari-spatialdata` pin from `== 0.5.5` to `>= 0.5.5`
 - CI: adjusted triggers for the test, docs and publish workflows
 - Updated the README screenshot

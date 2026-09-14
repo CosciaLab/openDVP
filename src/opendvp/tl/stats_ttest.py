@@ -31,6 +31,9 @@ def stats_ttest(adata: ad.AnnData, grouping: str, group1: str, group2: str, FDR_
     None
         Results are saved to adata.var in-place.
     """
+    # use scipy.stats.ttest_ind (for vectorized performance)
+    # consider nan returns from ttest, could break multipletest
+    # either in place, or return adata.. fix docstring
     if group1 not in adata.obs[grouping].unique() or group2 not in adata.obs[grouping].unique():
         raise ValueError(f"Given groups not found in {grouping}")
 

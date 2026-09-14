@@ -51,6 +51,7 @@ def upset(
     ---------
     >>> upset(adata, groupby="condition", threshold=1000, min_presence_fraction=0.2)
     """
+    # TODO, optional removal of proteins not in any group (based on cutoff)
     # plotting logic
     fig = ax.figure if ax is not None else plt.figure()
 

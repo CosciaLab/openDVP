@@ -73,7 +73,10 @@ Open your PR against the `main` branch of `CosciaLab/openDVP`.
 - Make sure tests and linting pass locally first.
 - CI runs the test suite on Linux, macOS and Windows across Python 3.11–3.13.
 
+If your change is user-visible, add a line to the `## [Unreleased]` section of [CHANGELOG.md](CHANGELOG.md) in the same PR.
+
 Versioning and releases are handled by the maintainers — you do not need to bump any version numbers.
+Maintainers: see [.github/RELEASING.md](.github/RELEASING.md).
 
 ## Questions
 

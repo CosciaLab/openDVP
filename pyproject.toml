@@ -11,7 +11,7 @@ maintainers = [{ name = "Jose Nimo", email = "jose.nimo@mdc-berlin.de" }]
 dependencies = [
     "numpy >= 2.0.0",
     "spatialdata >= 0.4.0",
-    "napari-spatialdata == 0.5.5",
+    "napari-spatialdata >= 0.5.5", #consider bumping
     "spatialdata-plot ~= 0.2.9 ",
     "ipykernel ~= 6.25",
     "scanpy >=1.11, <1.14",

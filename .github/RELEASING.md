@@ -2,13 +2,25 @@
 
 Maintainer notes. Contributors do not need this — see [CONTRIBUTING.md](../CONTRIBUTING.md).
 
+## In short
+
+| Where | What you do |
+| --- | --- |
+| CLI, on a branch | Bump `version` in `pyproject.toml`. Rename `## [Unreleased]` in `CHANGELOG.md` to the version and date, leaving a fresh empty `[Unreleased]` above it. |
+| GitHub | Merge that PR into `main`. |
+| GitHub | Releases → Draft a new release → **type a new tag name** → Target `main` → Generate notes → trim → Publish. |
+| — | `publish.yml` builds and uploads to PyPI on its own. Nothing else to do. |
+
+The only two things to remember: **never `git tag` yourself**, and **the version that reaches
+PyPI is the one in `pyproject.toml`, not the tag name**. The rest of this file explains why.
+
 ## The three things that are easy to confuse
 
 They are separate, and nothing keeps them in sync automatically.
 
 | Thing | What it is | Created by |
 | --- | --- | --- |
-| **Tag** | A git label pointing at one commit. Inert — pushing a tag does nothing on its own. | `git tag` **or** the Release UI |
+| **Tag** | A git label pointing at one commit. Inert — pushing a tag does nothing on its own. | the Release UI (**not** `git tag`) |
 | **Release** | A GitHub object attached to a tag, with a title and notes. Creating one fires the `release: published` event. | GitHub UI or `gh release create` |
 | **PyPI version** | The `version = "..."` string in `pyproject.toml`. **The tag name has no effect on it.** | `publish.yml`, on `release: published` |
 
@@ -63,6 +75,21 @@ Then write the entry **by hand** in `CHANGELOG.md`. The generated list is PR tit
 reader what merged, not what changed for them. Three to five user-facing lines under
 `### Added` / `### Changed` / `### Fixed` is plenty.
 
+Most entries should already be there, added by the PRs that made the changes. So this step is
+usually just closing the section off:
+
+```diff
+-## [Unreleased]
++## [Unreleased]
++
++---
++
++## [0.8.0] - 2026-09-14
+```
+
+That is: rename `[Unreleased]` to the version and today's date, and leave a fresh empty
+`[Unreleased]` above it for the next cycle.
+
 Two habits that make the generated list actually useful: give PRs descriptive titles (`Dev` tells
 nobody anything), and squash-merge so one PR is one line.
 
@@ -72,11 +99,22 @@ Open a PR from your branch to `main`, let CI pass, merge it.
 
 ### 4. Publish the Release
 
-**Do this in the GitHub UI, and let it create the tag.** Do not `git tag` by hand — that is how
-tags end up pointing at the wrong commit.
+**Do this in the GitHub UI, and let it create the tag.**
+
+> [!IMPORTANT]
+> **Never run `git tag` for a release.** The tag must not exist before you start this step.
+>
+> The button is labelled *"Choose a tag"*, which makes it look like you pick an existing one.
+> You do not. You **type a tag name that does not exist yet**, and GitHub creates it — pointing
+> at the target branch — at the moment you publish.
+>
+> Creating the tag yourself beforehand is how `v0.7.4` ended up frozen at a commit six behind
+> `main`: the tag was made in the CLI, `main` moved on, and the tag stayed put.
 
 > Releases → **Draft a new release**
-> - **Choose a tag** → type `v0.8.0` → *"Create new tag: v0.8.0 on publish"*
+> - **Choose a tag** → type `v0.8.0` → a dropdown appears: click **"＋ Create new tag: v0.8.0 on publish"**
+>   - if it offers to *select* `v0.8.0` instead of *create* it, the tag already exists — stop and
+>     delete it first
 > - **Target** → `main`  ← confirm this, it is the whole point
 > - **Release title** → `v0.8.0`
 > - **Generate release notes** → gives you the PR list; replace or trim it with your changelog entry

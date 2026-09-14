@@ -36,3 +36,6 @@ notebooks
 
 # ruff
 .ruff_cache
+
+# local dev notes, decisions, scratch context (never published)
+.dev_notes/

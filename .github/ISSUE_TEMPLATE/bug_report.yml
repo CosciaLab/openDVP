@@ -1,0 +1,53 @@
+name: Bug report
+description: Something in openDVP does not work as expected
+labels: ["bug"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report this. A small, runnable example is the single most
+        useful thing you can give us — it usually turns a week of back-and-forth into an hour.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you expect, and what did you get instead?
+      placeholder: I called `tl.filter_by_abs_value` with ... and expected ..., but ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Minimal code to reproduce
+      description: >
+        The smallest snippet that shows the problem. If you can generate the data instead of
+        attaching it (e.g. `anndata.AnnData(numpy.random.default_rng(0).normal(size=(10, 3)))`),
+        that is ideal.
+      render: python
+    validations:
+      required: true
+
+  - type: textarea
+    id: traceback
+    attributes:
+      label: Error message / traceback
+      description: Paste the full traceback if there was one. Leave blank if it failed silently.
+      render: text
+    validations:
+      required: false
+
+  - type: textarea
+    id: versions
+    attributes:
+      label: Versions
+      description: |
+        Please paste the output of:
+        ```bash
+        python -c "import sys, opendvp, anndata; print('openDVP', opendvp.__version__); print('anndata', anndata.__version__); print(sys.version); print(sys.platform)"
+        ```
+      render: text
+    validations:
+      required: true

@@ -1,0 +1,9 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Question or discussion
+    url: https://github.com/CosciaLab/openDVP/discussions
+    about: >
+      Usage questions, "how do I ...", and general discussion belong here rather than in issues.
+  - name: Documentation and tutorials
+    url: https://coscialab.github.io/openDVP/
+    about: Check the API reference and the tutorials first — your answer may already be there.

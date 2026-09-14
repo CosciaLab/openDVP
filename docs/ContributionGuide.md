@@ -4,6 +4,8 @@ First off, thank you for considering contributing to openDVP! It's people like y
 
 This guide will walk you through the process of setting up your development environment and submitting your first contribution.
 
+By participating in this project you agree to abide by our [Code of Conduct](https://github.com/CosciaLab/openDVP/blob/main/CODE_OF_CONDUCT.md). For a short command reference rather than a walkthrough, see [CONTRIBUTING.md](https://github.com/CosciaLab/openDVP/blob/main/CONTRIBUTING.md).
+
 ## Development workflow summary
 
 1. Fork the opendvp repository to your own GitHub account

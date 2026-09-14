@@ -1,0 +1,33 @@
+name: Feature request
+description: Suggest a new function, or an improvement to an existing one
+labels: ["enhancement"]
+
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      description: >
+        Describe the analysis you are trying to do, not only the feature you have in mind.
+        Knowing the underlying goal often changes what we build.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What would you like openDVP to do?
+      description: If you have an idea of the API, sketch the call you would want to write.
+      render: python
+    validations:
+      required: false
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you have tried
+      description: >
+        Existing openDVP functions, other packages (scanpy, squidpy, spatialdata, scimap),
+        or manual workarounds. If something almost works, tell us where it falls short.
+    validations:
+      required: false

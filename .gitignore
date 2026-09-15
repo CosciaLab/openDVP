@@ -39,3 +39,6 @@ notebooks
 
 # local dev notes, decisions, scratch context (never published)
 .dev_notes/
+
+# sphinx autosummary output (regenerated on every build)
+docs/api/generated/

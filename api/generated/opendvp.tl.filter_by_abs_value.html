@@ -188,6 +188,7 @@
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.coefficient_of_variation.html">opendvp.plotting.coefficient_of_variation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.density.html">opendvp.plotting.density</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.dual_axis_boxplots.html">opendvp.plotting.dual_axis_boxplots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.feature_comparison_boxplot.html">opendvp.plotting.feature_comparison_boxplot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.imputation_qc.html">opendvp.plotting.imputation_qc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.pca_loadings.html">opendvp.plotting.pca_loadings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.rankplot.html">opendvp.plotting.rankplot</a></li>
@@ -197,6 +198,7 @@
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../pp.html">Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.pp.impute_marker_with_annotation.html">opendvp.pp.impute_marker_with_annotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.pp.scimap_rescale.html">opendvp.pp.scimap_rescale</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="../tl.html">Tools</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
@@ -211,9 +213,13 @@
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.stats_average_samples.html">opendvp.tl.stats_average_samples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.stats_bootstrap.html">opendvp.tl.stats_bootstrap</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.stats_ttest.html">opendvp.tl.stats_ttest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.scimap_phenotype.html">opendvp.tl.scimap_phenotype</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.scimap_spatial_cluster.html">opendvp.tl.scimap_spatial_cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.scimap_spatial_lda.html">opendvp.tl.scimap_spatial_lda</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../utils.html">Utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.utils.get_datetime.html">opendvp.utils.get_datetime</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.utils.parse_color_for_qupath.html">opendvp.utils.parse_color_for_qupath</a></li>
 </ul>
 </details></li>
@@ -416,50 +422,36 @@ be a marker from <code class="docutils literal notranslate"><span class="pre">ad
 Cells with feature values within the specified lower and upper bounds (inclusive)
 will pass the filter.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnnData</span></code></span></p>
-</dd>
-</dl>
-<section id="parameters">
-<h2>Parameters:<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h2>
-<dl class="simple">
-<dt>adata<span class="classifier">ad.AnnData</span></dt><dd><p>AnnData object containing the data matrix and metadata.</p>
-</dd>
-<dt>feature_name<span class="classifier">str</span></dt><dd><p>Name of the feature to filter on. The function will automatically determine
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>adata</strong> (<a class="reference external" href="https://anndata.readthedocs.io/en/stable/generated/anndata.AnnData.html#anndata.AnnData" title="(in anndata v0.13.3.post0)"><em>anndata.AnnData</em></a>) – AnnData object containing the data matrix and metadata.</p></li>
+<li><p><strong>feature_name</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Name of the feature to filter on. The function will automatically determine
 if this feature is a marker in <code class="docutils literal notranslate"><span class="pre">adata.var_names</span></code> or a continuous variable
-in <code class="docutils literal notranslate"><span class="pre">adata.obs</span></code>. If found in both, a ValueError will be raised.</p>
-</dd>
-<dt>lower_bound<span class="classifier">float, int, or None, default None</span></dt><dd><p>The lower threshold for filtering. If None, no lower bound is applied.
+in <code class="docutils literal notranslate"><span class="pre">adata.obs</span></code>. If found in both, a ValueError will be raised.</p></li>
+<li><p><strong>lower_bound</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>, or </em><em>None</em><em>, </em><em>default None</em>) – The lower threshold for filtering. If None, no lower bound is applied.
 If <code class="docutils literal notranslate"><span class="pre">mode</span></code> is ‘absolute’, this is the direct value.
-If <code class="docutils literal notranslate"><span class="pre">mode</span></code> is ‘quantile’, this is the quantile (0 &lt;= value &lt;= 1).</p>
-</dd>
-<dt>upper_bound<span class="classifier">float, int, or None, default None</span></dt><dd><p>The upper threshold for filtering. If None, no upper bound is applied.
+If <code class="docutils literal notranslate"><span class="pre">mode</span></code> is ‘quantile’, this is the quantile (0 &lt;= value &lt;= 1).</p></li>
+<li><p><strong>upper_bound</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>, or </em><em>None</em><em>, </em><em>default None</em>) – The upper threshold for filtering. If None, no upper bound is applied.
 If <code class="docutils literal notranslate"><span class="pre">mode</span></code> is ‘absolute’, this is the direct value.
-If <code class="docutils literal notranslate"><span class="pre">mode</span></code> is ‘quantile’, this is the quantile (0 &lt;= value &lt;= 1).</p>
-</dd>
-<dt>mode<span class="classifier">{‘absolute’, ‘quantile’}, default ‘absolute’</span></dt><dd><p>Determines how <code class="docutils literal notranslate"><span class="pre">lower_bound</span></code> and <code class="docutils literal notranslate"><span class="pre">upper_bound</span></code> are interpreted:
+If <code class="docutils literal notranslate"><span class="pre">mode</span></code> is ‘quantile’, this is the quantile (0 &lt;= value &lt;= 1).</p></li>
+<li><p><strong>mode</strong> (<em>{'absolute'</em><em>, </em><em>'quantile'}</em><em>, </em><em>default 'absolute'</em>) – Determines how <code class="docutils literal notranslate"><span class="pre">lower_bound</span></code> and <code class="docutils literal notranslate"><span class="pre">upper_bound</span></code> are interpreted:
 ‘absolute’: Bounds are direct numerical values.
-‘quantile’: Bounds are quantiles (e.g., 0.25 for 25th percentile).</p>
+‘quantile’: Bounds are quantiles (e.g., 0.25 for 25th percentile).</p></li>
+</ul>
 </dd>
-</dl>
-</section>
-<section id="returns">
-<h2>Returns:<a class="headerlink" href="#returns" title="Link to this heading">#</a></h2>
-<dl class="simple">
-<dt>ad.AnnData</dt><dd><p>A copy of the input AnnData with a new boolean column in <code class="docutils literal notranslate"><span class="pre">.obs</span></code> indicating which cells passed the filter.
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A copy of the input AnnData with a new boolean column in <code class="docutils literal notranslate"><span class="pre">.obs</span></code> indicating which cells passed the filter.
 The new column name will be <code class="docutils literal notranslate"><span class="pre">f&quot;{feature_name}_filtered_by_{mode}&quot;</span></code>.</p>
 </dd>
-</dl>
-</section>
-<section id="raises">
-<h2>Raises:<a class="headerlink" href="#raises" title="Link to this heading">#</a></h2>
-<dl class="simple">
-<dt>ValueError</dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">feature_name</span></code> is not found in <code class="docutils literal notranslate"><span class="pre">adata.var_names</span></code> or <code class="docutils literal notranslate"><span class="pre">adata.obs.columns</span></code>,
-if <code class="docutils literal notranslate"><span class="pre">feature_name</span></code> is found in both, if bounds are invalid,
-or if the <code class="docutils literal notranslate"><span class="pre">adata.obs</span></code> column is not numeric when used for filtering.</p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://anndata.readthedocs.io/en/stable/generated/anndata.AnnData.html#anndata.AnnData" title="(in anndata v0.13.3.post0)">anndata.AnnData</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">feature_name</span></code> is not found in <code class="docutils literal notranslate"><span class="pre">adata.var_names</span></code> or <code class="docutils literal notranslate"><span class="pre">adata.obs.columns</span></code>,
+    if <code class="docutils literal notranslate"><span class="pre">feature_name</span></code> is found in both, if bounds are invalid,
+    or if the <code class="docutils literal notranslate"><span class="pre">adata.obs</span></code> column is not numeric when used for filtering.</p>
 </dd>
 </dl>
-</section>
 </dd></dl>
 
 </section>

@@ -188,6 +188,7 @@
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.coefficient_of_variation.html">opendvp.plotting.coefficient_of_variation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.density.html">opendvp.plotting.density</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.dual_axis_boxplots.html">opendvp.plotting.dual_axis_boxplots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.feature_comparison_boxplot.html">opendvp.plotting.feature_comparison_boxplot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.imputation_qc.html">opendvp.plotting.imputation_qc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.pca_loadings.html">opendvp.plotting.pca_loadings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.rankplot.html">opendvp.plotting.rankplot</a></li>
@@ -197,6 +198,7 @@
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../pp.html">Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.pp.impute_marker_with_annotation.html">opendvp.pp.impute_marker_with_annotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.pp.scimap_rescale.html">opendvp.pp.scimap_rescale</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="../tl.html">Tools</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
@@ -211,9 +213,13 @@
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.stats_average_samples.html">opendvp.tl.stats_average_samples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.stats_bootstrap.html">opendvp.tl.stats_bootstrap</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.stats_ttest.html">opendvp.tl.stats_ttest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.scimap_phenotype.html">opendvp.tl.scimap_phenotype</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.scimap_spatial_cluster.html">opendvp.tl.scimap_spatial_cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.scimap_spatial_lda.html">opendvp.tl.scimap_spatial_lda</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../utils.html">Utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.utils.get_datetime.html">opendvp.utils.get_datetime</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.utils.parse_color_for_qupath.html">opendvp.utils.parse_color_for_qupath</a></li>
 </ul>
 </details></li>
@@ -411,43 +417,29 @@ document.write(`
 <span class="sig-name descname"><span class="pre">spatial_autocorrelation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'moran'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('x_centroid',</span> <span class="pre">'y_centroid')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">island_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#opendvp.tl.spatial_autocorrelation" title="Link to this definition">#</a></dt>
 <dd><p>Compute spatial autocorrelation statistics (Moran’s I or Geary’s C) for each gene in an AnnData object.</p>
 <dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>adata</strong> (<a class="reference external" href="https://anndata.readthedocs.io/en/stable/generated/anndata.AnnData.html#anndata.AnnData" title="(in anndata v0.13.3.post0)"><em>anndata.AnnData</em></a>) – Annotated data matrix where observations are cells and variables are genes.</p></li>
+<li><p><strong>method</strong> (<em>{'moran'</em><em>, </em><em>'geary'}</em><em>, </em><em>default 'moran'</em>) – Spatial statistic to compute: ‘moran’ or ‘geary’.</p></li>
+<li><p><strong>x_y</strong> (<em>Sequence</em><em>[</em><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>]</em><em>, </em><em>default</em><em> (</em><em>&quot;x_centroid&quot;</em><em>, </em><em>&quot;y_centroid&quot;</em><em>)</em>) – Names of columns in <code class="docutils literal notranslate"><span class="pre">adata.obs</span></code> containing spatial coordinates.</p></li>
+<li><p><strong>k</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>, </em><em>default 8</em>) – Number of neighbors for Moran’s I (ignored for Geary’s C).</p></li>
+<li><p><strong>threshold</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>, </em><em>default 10.0</em>) – Distance threshold for neighbors for Geary’s C (ignored for Moran’s I).</p></li>
+<li><p><strong>island_threshold</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>, </em><em>default 0.1</em><em> (</em><em>10%</em><em>)</em>) – If more than this fraction of samples are islands (no neighbors), raises error.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Results are added to adata.var in-place.</p>
+</dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If method is not ‘moran’ or ‘geary’.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#RuntimeError" title="(in Python v3.14)"><strong>RuntimeError</strong></a> – If too many islands are detected in Geary’s C mode.</p></li>
+</ul>
 </dd>
 </dl>
-<section id="parameters">
-<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h2>
-<dl class="simple">
-<dt>adata<span class="classifier">AnnData</span></dt><dd><p>Annotated data matrix where observations are cells and variables are genes.</p>
-</dd>
-<dt>method<span class="classifier">{‘moran’, ‘geary’}, default ‘moran’</span></dt><dd><p>Spatial statistic to compute: ‘moran’ or ‘geary’.</p>
-</dd>
-<dt>x_y<span class="classifier">Sequence[str], default (“x_centroid”, “y_centroid”)</span></dt><dd><p>Names of columns in <code class="docutils literal notranslate"><span class="pre">adata.obs</span></code> containing spatial coordinates.</p>
-</dd>
-<dt>k<span class="classifier">int, default 8</span></dt><dd><p>Number of neighbors for Moran’s I (ignored for Geary’s C).</p>
-</dd>
-<dt>threshold<span class="classifier">int or float, default 10.0</span></dt><dd><p>Distance threshold for neighbors for Geary’s C (ignored for Moran’s I).</p>
-</dd>
-<dt>island_threshold<span class="classifier">float, default 0.1 (10%)</span></dt><dd><p>If more than this fraction of samples are islands (no neighbors), raises error.</p>
-</dd>
-</dl>
-</section>
-<section id="returns">
-<h2>Returns:<a class="headerlink" href="#returns" title="Link to this heading">#</a></h2>
-<dl class="simple">
-<dt>None</dt><dd><p>Results are added to adata.var in-place.</p>
-</dd>
-</dl>
-</section>
-<section id="raises">
-<h2>Raises:<a class="headerlink" href="#raises" title="Link to this heading">#</a></h2>
-<dl class="simple">
-<dt>ValueError</dt><dd><p>If method is not ‘moran’ or ‘geary’.</p>
-</dd>
-<dt>RuntimeError</dt><dd><p>If too many islands are detected in Geary’s C mode.</p>
-</dd>
-</dl>
-</section>
 </dd></dl>
 
 </section>

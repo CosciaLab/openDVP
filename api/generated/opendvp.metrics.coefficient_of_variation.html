@@ -188,6 +188,7 @@
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.coefficient_of_variation.html">opendvp.plotting.coefficient_of_variation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.density.html">opendvp.plotting.density</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.dual_axis_boxplots.html">opendvp.plotting.dual_axis_boxplots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.feature_comparison_boxplot.html">opendvp.plotting.feature_comparison_boxplot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.imputation_qc.html">opendvp.plotting.imputation_qc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.pca_loadings.html">opendvp.plotting.pca_loadings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.rankplot.html">opendvp.plotting.rankplot</a></li>
@@ -197,6 +198,7 @@
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../pp.html">Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.pp.impute_marker_with_annotation.html">opendvp.pp.impute_marker_with_annotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.pp.scimap_rescale.html">opendvp.pp.scimap_rescale</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../tl.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -211,9 +213,13 @@
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.stats_average_samples.html">opendvp.tl.stats_average_samples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.stats_bootstrap.html">opendvp.tl.stats_bootstrap</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.stats_ttest.html">opendvp.tl.stats_ttest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.scimap_phenotype.html">opendvp.tl.scimap_phenotype</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.scimap_spatial_cluster.html">opendvp.tl.scimap_spatial_cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.scimap_spatial_lda.html">opendvp.tl.scimap_spatial_lda</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../utils.html">Utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.utils.get_datetime.html">opendvp.utils.get_datetime</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.utils.parse_color_for_qupath.html">opendvp.utils.parse_color_for_qupath</a></li>
 </ul>
 </details></li>
@@ -412,43 +418,31 @@ document.write(`
 <dd><p>Calculate the coefficient of variation.</p>
 <p>(CV = std / mean) along a specified axis of a DataFrame.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></span></p>
-</dd>
-</dl>
-<section id="parameters">
-<h2>Parameters:<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h2>
-<dl class="simple">
-<dt>df<span class="classifier">pandas.DataFrame</span></dt><dd><p>Input DataFrame.</p>
-</dd>
-<dt>axis<span class="classifier">int, default 0</span></dt><dd><p>0 for column-wise CV, 1 for row-wise CV.</p>
-</dd>
-<dt>nan_policy<span class="classifier">{‘propagate’, ‘raise’, ‘omit’}, default ‘propagate’</span></dt><dd><ul class="simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.5)"><em>pandas.DataFrame</em></a>) – Input DataFrame.</p></li>
+<li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>, </em><em>default 0</em>) – 0 for column-wise CV, 1 for row-wise CV.</p></li>
+<li><p><strong>nan_policy</strong> (<em>{'propagate'</em><em>, </em><em>'raise'</em><em>, </em><em>'omit'}</em><em>, </em><em>default 'propagate'</em>) – <ul>
 <li><p>‘propagate’: returns NaN if NaN is present</p></li>
-<li><p>‘raise’: raises ValueError if NaN is present</p></li>
-<li><p>‘omit’: ignores NaNs in the calculation</p></li>
+<li><p>’raise’: raises ValueError if NaN is present</p></li>
+<li><p>’omit’: ignores NaNs in the calculation</p></li>
+</ul>
+</p></li>
+<li><p><strong>ddof</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>, </em><em>default 1</em>) – Delta Degrees of Freedom used in the std calculation.
+The divisor used in calculations is N - ddof,
+default is 1</p></li>
 </ul>
 </dd>
-<dt>ddof<span class="classifier">int, default 1</span></dt><dd><p>Delta Degrees of Freedom used in the std calculation.
-The divisor used in calculations is N - ddof,
-default is 1</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>CV values for each row or column.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html#pandas.Series" title="(in pandas v3.0.5)">pandas.Series</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If nan_policy=’raise’ and NaNs are present</p>
 </dd>
 </dl>
-</section>
-<section id="returns">
-<h2>Returns:<a class="headerlink" href="#returns" title="Link to this heading">#</a></h2>
-<dl class="simple">
-<dt>pandas.Series</dt><dd><p>CV values for each row or column.</p>
-</dd>
-</dl>
-</section>
-<section id="raises">
-<h2>Raises:<a class="headerlink" href="#raises" title="Link to this heading">#</a></h2>
-<dl class="simple">
-<dt>ValueError</dt><dd><p>If nan_policy=’raise’ and NaNs are present</p>
-</dd>
-</dl>
-</section>
 </dd></dl>
 
 </section>

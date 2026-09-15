@@ -57,7 +57,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="opendvp.plotting.pca_loadings" href="opendvp.plotting.pca_loadings.html" />
-    <link rel="prev" title="opendvp.plotting.dual_axis_boxplots" href="opendvp.plotting.dual_axis_boxplots.html" />
+    <link rel="prev" title="opendvp.plotting.feature_comparison_boxplot" href="opendvp.plotting.feature_comparison_boxplot.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -188,6 +188,7 @@
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.coefficient_of_variation.html">opendvp.plotting.coefficient_of_variation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.density.html">opendvp.plotting.density</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.dual_axis_boxplots.html">opendvp.plotting.dual_axis_boxplots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.feature_comparison_boxplot.html">opendvp.plotting.feature_comparison_boxplot</a></li>
 <li class="toctree-l3 current active"><a class="current reference internal" href="#">opendvp.plotting.imputation_qc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.pca_loadings.html">opendvp.plotting.pca_loadings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.rankplot.html">opendvp.plotting.rankplot</a></li>
@@ -197,6 +198,7 @@
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../pp.html">Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.pp.impute_marker_with_annotation.html">opendvp.pp.impute_marker_with_annotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.pp.scimap_rescale.html">opendvp.pp.scimap_rescale</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../tl.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -211,9 +213,13 @@
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.stats_average_samples.html">opendvp.tl.stats_average_samples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.stats_bootstrap.html">opendvp.tl.stats_bootstrap</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.stats_ttest.html">opendvp.tl.stats_ttest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.scimap_phenotype.html">opendvp.tl.scimap_phenotype</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.scimap_spatial_cluster.html">opendvp.tl.scimap_spatial_cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.scimap_spatial_lda.html">opendvp.tl.scimap_spatial_lda</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../utils.html">Utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.utils.get_datetime.html">opendvp.utils.get_datetime</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.utils.parse_color_for_qupath.html">opendvp.utils.parse_color_for_qupath</a></li>
 </ul>
 </details></li>
@@ -417,38 +423,26 @@ mean. This helps to identify genes that were most affected by the imputation
 process. The plot also includes a 2D histogram and kernel density estimate to
 visualize the distribution of data points.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure" title="(in Matplotlib v3.11.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>adata</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnnData</span></code></span>) – An AnnData object containing the imputed data in <code class="docutils literal notranslate"><span class="pre">adata.X</span></code> and the
+unimputed data in a specified layer.</p></li>
+<li><p><strong>unimputed_layer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span> (default: <code class="docutils literal notranslate"><span class="pre">'unimputed'</span></code>)) – The name of the layer in <code class="docutils literal notranslate"><span class="pre">adata.layers</span></code> that contains the unimputed data.
+Defaults to “unimputed”.</p></li>
+<li><p><strong>return_fig</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span> (default: <code class="docutils literal notranslate"><span class="pre">False</span></code>)) – If True, returns the matplotlib Figure object. Defaults to False.</p></li>
+<li><p><strong>ax</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes" title="(in Matplotlib v3.11.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Axes</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span> (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)) – A matplotlib Axes object to plot on. If None, a new figure and axes
+are created. Defaults to None.</p></li>
+<li><p><strong>highlight_genes</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>] | <a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span> (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)) – A list of gene names to highlight in the plot. These genes will be
+plotted in a different color. Defaults to None.</p></li>
+<li><p><strong>show_highlighted_genes_names</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span> (default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)) – If True, displays the names of the highlighted genes on the plot.
+Defaults to True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>A matplotlib Figure object if <code class="docutils literal notranslate"><span class="pre">return_fig</span></code> is True, otherwise None.</p>
 </dd>
 </dl>
-<section id="parameters">
-<h2>Parameters:<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h2>
-<dl class="simple">
-<dt>adata</dt><dd><p>An AnnData object containing the imputed data in <code class="docutils literal notranslate"><span class="pre">adata.X</span></code> and the
-unimputed data in a specified layer.</p>
-</dd>
-<dt>unimputed_layer</dt><dd><p>The name of the layer in <code class="docutils literal notranslate"><span class="pre">adata.layers</span></code> that contains the unimputed data.
-Defaults to “unimputed”.</p>
-</dd>
-<dt>return_fig</dt><dd><p>If True, returns the matplotlib Figure object. Defaults to False.</p>
-</dd>
-<dt>ax</dt><dd><p>A matplotlib Axes object to plot on. If None, a new figure and axes
-are created. Defaults to None.</p>
-</dd>
-<dt>highlight_genes</dt><dd><p>A list of gene names to highlight in the plot. These genes will be
-plotted in a different color. Defaults to None.</p>
-</dd>
-<dt>show_highlighted_genes_names</dt><dd><p>If True, displays the names of the highlighted genes on the plot.
-Defaults to True.</p>
-</dd>
-</dl>
-</section>
-<section id="returns">
-<h2>Returns:<a class="headerlink" href="#returns" title="Link to this heading">#</a></h2>
-<p>A matplotlib Figure object if <code class="docutils literal notranslate"><span class="pre">return_fig</span></code> is True, otherwise None.</p>
-</section>
-<section id="example">
-<h2>Example:<a class="headerlink" href="#example" title="Link to this heading">#</a></h2>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">anndata</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -471,7 +465,6 @@ Defaults to True.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">imputation_qc</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">highlight_genes</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Gene_5&quot;</span><span class="p">,</span> <span class="s2">&quot;Gene_10&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 </section>
@@ -488,12 +481,12 @@ Defaults to True.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="opendvp.plotting.dual_axis_boxplots.html"
+       href="opendvp.plotting.feature_comparison_boxplot.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">opendvp.plotting.dual_axis_boxplots</p>
+        <p class="prev-next-title">opendvp.plotting.feature_comparison_boxplot</p>
       </div>
     </a>
     <a class="right-next"

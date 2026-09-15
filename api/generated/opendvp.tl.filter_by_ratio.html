@@ -188,6 +188,7 @@
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.coefficient_of_variation.html">opendvp.plotting.coefficient_of_variation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.density.html">opendvp.plotting.density</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.dual_axis_boxplots.html">opendvp.plotting.dual_axis_boxplots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.feature_comparison_boxplot.html">opendvp.plotting.feature_comparison_boxplot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.imputation_qc.html">opendvp.plotting.imputation_qc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.pca_loadings.html">opendvp.plotting.pca_loadings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.rankplot.html">opendvp.plotting.rankplot</a></li>
@@ -197,6 +198,7 @@
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../pp.html">Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.pp.impute_marker_with_annotation.html">opendvp.pp.impute_marker_with_annotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.pp.scimap_rescale.html">opendvp.pp.scimap_rescale</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="../tl.html">Tools</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
@@ -211,9 +213,13 @@
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.stats_average_samples.html">opendvp.tl.stats_average_samples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.stats_bootstrap.html">opendvp.tl.stats_bootstrap</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.stats_ttest.html">opendvp.tl.stats_ttest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.scimap_phenotype.html">opendvp.tl.scimap_phenotype</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.scimap_spatial_cluster.html">opendvp.tl.scimap_spatial_cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.scimap_spatial_lda.html">opendvp.tl.scimap_spatial_lda</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../utils.html">Utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.utils.get_datetime.html">opendvp.utils.get_datetime</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.utils.parse_color_for_qupath.html">opendvp.utils.parse_color_for_qupath</a></li>
 </ul>
 </details></li>
@@ -413,44 +419,28 @@ document.write(`
 <p>This function computes the ratio between two markers (columns) for each cell, and flags cells
 whose ratio falls within the specified range. The results are stored as new columns in <code class="docutils literal notranslate"><span class="pre">.obs</span></code>.</p>
 <dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>adata</strong> (<a class="reference external" href="https://anndata.readthedocs.io/en/stable/generated/anndata.AnnData.html#anndata.AnnData" title="(in anndata v0.13.3.post0)"><em>anndata.AnnData</em></a>) – AnnData object containing the data matrix and metadata.</p></li>
+<li><p><strong>end_cycle</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Name of the marker/column for the numerator of the ratio.</p></li>
+<li><p><strong>start_cycle</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Name of the marker/column for the denominator of the ratio.</p></li>
+<li><p><strong>label</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>default 'DAPI'</em>) – Label prefix for the new columns in <code class="docutils literal notranslate"><span class="pre">.obs</span></code>.</p></li>
+<li><p><strong>min_ratio</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>, </em><em>default 0.5</em>) – Minimum allowed ratio (exclusive).</p></li>
+<li><p><strong>max_ratio</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>, </em><em>default 1.05</em>) – Maximum allowed ratio (exclusive).</p></li>
+<li><p><strong>add_detailed_pass_fail</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>default False</em>) – If True, adds intermediate boolean columns indicating which cells passed the
+lower bound (<code class="docutils literal notranslate"><span class="pre">_pass_nottoolow</span></code>) and upper bound (<code class="docutils literal notranslate"><span class="pre">_pass_nottoohigh</span></code>).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new AnnData object with new columns in <code class="docutils literal notranslate"><span class="pre">.obs</span></code> for the ratio and pass/fail flags.</p>
+</dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnnData</span></code></span></p>
+<dd class="field-odd"><p><a class="reference external" href="https://anndata.readthedocs.io/en/stable/generated/anndata.AnnData.html#anndata.AnnData" title="(in anndata v0.13.3.post0)">anndata.AnnData</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If marker names are not found or if min_ratio &gt;= max_ratio.</p>
 </dd>
 </dl>
-<section id="parameters">
-<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h2>
-<dl class="simple">
-<dt>adata<span class="classifier">ad.AnnData</span></dt><dd><p>AnnData object containing the data matrix and metadata.</p>
-</dd>
-<dt>end_cycle<span class="classifier">str</span></dt><dd><p>Name of the marker/column for the numerator of the ratio.</p>
-</dd>
-<dt>start_cycle<span class="classifier">str</span></dt><dd><p>Name of the marker/column for the denominator of the ratio.</p>
-</dd>
-<dt>label<span class="classifier">str, default ‘DAPI’</span></dt><dd><p>Label prefix for the new columns in <code class="docutils literal notranslate"><span class="pre">.obs</span></code>.</p>
-</dd>
-<dt>min_ratio<span class="classifier">float, default 0.5</span></dt><dd><p>Minimum allowed ratio (exclusive).</p>
-</dd>
-<dt>max_ratio<span class="classifier">float, default 1.05</span></dt><dd><p>Maximum allowed ratio (exclusive).</p>
-</dd>
-<dt>add_detailed_pass_fail<span class="classifier">bool, default False</span></dt><dd><p>If True, adds intermediate boolean columns indicating which cells passed the
-lower bound (<code class="docutils literal notranslate"><span class="pre">_pass_nottoolow</span></code>) and upper bound (<code class="docutils literal notranslate"><span class="pre">_pass_nottoohigh</span></code>).</p>
-</dd>
-</dl>
-</section>
-<section id="returns">
-<h2>Returns:<a class="headerlink" href="#returns" title="Link to this heading">#</a></h2>
-<dl class="simple">
-<dt>ad.AnnData</dt><dd><p>A new AnnData object with new columns in <code class="docutils literal notranslate"><span class="pre">.obs</span></code> for the ratio and pass/fail flags.</p>
-</dd>
-</dl>
-</section>
-<section id="raises">
-<h2>Raises:<a class="headerlink" href="#raises" title="Link to this heading">#</a></h2>
-<dl class="simple">
-<dt>ValueError</dt><dd><p>If marker names are not found or if min_ratio &gt;= max_ratio.</p>
-</dd>
-</dl>
-</section>
 </dd></dl>
 
 </section>

@@ -188,6 +188,7 @@
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.coefficient_of_variation.html">opendvp.plotting.coefficient_of_variation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.density.html">opendvp.plotting.density</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.dual_axis_boxplots.html">opendvp.plotting.dual_axis_boxplots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.feature_comparison_boxplot.html">opendvp.plotting.feature_comparison_boxplot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.imputation_qc.html">opendvp.plotting.imputation_qc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.pca_loadings.html">opendvp.plotting.pca_loadings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.rankplot.html">opendvp.plotting.rankplot</a></li>
@@ -197,6 +198,7 @@
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../pp.html">Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.pp.impute_marker_with_annotation.html">opendvp.pp.impute_marker_with_annotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.pp.scimap_rescale.html">opendvp.pp.scimap_rescale</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="../tl.html">Tools</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
@@ -211,9 +213,13 @@
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.stats_average_samples.html">opendvp.tl.stats_average_samples</a></li>
 <li class="toctree-l3 current active"><a class="current reference internal" href="#">opendvp.tl.stats_bootstrap</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.stats_ttest.html">opendvp.tl.stats_ttest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.scimap_phenotype.html">opendvp.tl.scimap_phenotype</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.scimap_spatial_cluster.html">opendvp.tl.scimap_spatial_cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.scimap_spatial_lda.html">opendvp.tl.scimap_spatial_lda</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../utils.html">Utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.utils.get_datetime.html">opendvp.utils.get_datetime</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.utils.parse_color_for_qupath.html">opendvp.utils.parse_color_for_qupath</a></li>
 </ul>
 </details></li>
@@ -415,71 +421,50 @@ of each feature (column) for each bootstrap replication. For each subset size, t
 across bootstraps and then summarizes them with a user-specified statistic (e.g., mean, median). Optionally,
 the function can generate a violin plot of the summarized CVs across different subset sizes, and it returns the
 bootstrapped raw CVs and/or the summarized results.</p>
-<section id="parameters">
-<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h2>
-<dl class="simple">
-<dt>dataframe<span class="classifier">pandas.DataFrame</span></dt><dd><p>The input DataFrame containing the data (features in columns, samples in rows).</p>
-</dd>
-<dt>n_bootstrap<span class="classifier">int, optional (default=100)</span></dt><dd><p>Number of bootstrap replicates to perform for each subset size.</p>
-</dd>
-<dt>subset_sizes<span class="classifier">list of int, optional (default=[10, 50, 100])</span></dt><dd><p>List of subset sizes (number of rows to sample) to use during the bootstrapping.</p>
-</dd>
-<dt>summary_func<span class="classifier">callable or ‘count_above_threshold’, optional (default=np.mean)</span></dt><dd><p>Function to aggregate the per-feature CVs across bootstraps. For example, np.mean, np.median, etc.
-If set to “count_above_threshold”, counts the number of CVs above <code class="docutils literal notranslate"><span class="pre">cv_threshold</span></code> for each feature.</p>
-</dd>
-<dt>replace<span class="classifier">bool, optional (default=True)</span></dt><dd><p>Whether to sample with replacement (True, standard bootstrapping) or without (False, subsampling).</p>
-</dd>
-<dt>cv_threshold<span class="classifier">float, optional (default=None)</span></dt><dd><p>Threshold for counting CVs above this value when summary_func is “count_above_threshold”.</p>
-</dd>
-<dt>return_raw<span class="classifier">bool, optional (default=True)</span></dt><dd><p>If True, returns the raw bootstrapped CVs in long format.</p>
-</dd>
-<dt>return_summary<span class="classifier">bool, optional (default=True)</span></dt><dd><p>If True, returns a summary DataFrame where the per-feature bootstrapped CVs have been aggregated using
-<code class="docutils literal notranslate"><span class="pre">summary_func</span></code> for each subset size.</p>
-</dd>
-<dt>plot<span class="classifier">bool, optional (default=True)</span></dt><dd><p>If True, displays a violin plot of the summarized CVs (one aggregated value per feature) across subset sizes.</p>
-</dd>
-<dt>random_seed<span class="classifier">int or None, optional (default=42)</span></dt><dd><p>Seed for the random number generator, ensuring reproducibility.</p>
-</dd>
-<dt>nan_policy<span class="classifier">{‘omit’, ‘raise’, ‘propagate’}, optional (default=”omit”)</span></dt><dd><dl class="simple">
-<dt>How to handle NaN values. Options are:</dt><dd><ul class="simple">
-<li><p>“omit”: ignore NaNs during calculations,</p></li>
-<li><p>“raise”: raise an error if NaNs are encountered,</p></li>
-<li><p>“propagate”: allow NaNs to propagate in the output.</p></li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataframe</strong> (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.5)"><em>pandas.DataFrame</em></a>) – The input DataFrame containing the data (features in columns, samples in rows).</p></li>
+<li><p><strong>n_bootstrap</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>, </em><em>optional</em><em> (</em><em>default=100</em><em>)</em>) – Number of bootstrap replicates to perform for each subset size.</p></li>
+<li><p><strong>subset_sizes</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>, </em><em>optional</em><em> (</em><em>default=</em><em>[</em><em>10</em><em>, </em><em>50</em><em>, </em><em>100</em><em>]</em><em>)</em>) – List of subset sizes (number of rows to sample) to use during the bootstrapping.</p></li>
+<li><p><strong>summary_func</strong> (<em>callable</em><em> or </em><em>'count_above_threshold'</em><em>, </em><em>optional</em><em> (</em><em>default=np.mean</em><em>)</em>) – Function to aggregate the per-feature CVs across bootstraps. For example, np.mean, np.median, etc.
+If set to “count_above_threshold”, counts the number of CVs above <code class="docutils literal notranslate"><span class="pre">cv_threshold</span></code> for each feature.</p></li>
+<li><p><strong>replace</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em><em> (</em><em>default=True</em><em>)</em>) – Whether to sample with replacement (True, standard bootstrapping) or without (False, subsampling).</p></li>
+<li><p><strong>cv_threshold</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>, </em><em>optional</em><em> (</em><em>default=None</em><em>)</em>) – Threshold for counting CVs above this value when summary_func is “count_above_threshold”.</p></li>
+<li><p><strong>return_raw</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em><em> (</em><em>default=True</em><em>)</em>) – If True, returns the raw bootstrapped CVs in long format.</p></li>
+<li><p><strong>return_summary</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em><em> (</em><em>default=True</em><em>)</em>) – If True, returns a summary DataFrame where the per-feature bootstrapped CVs have been aggregated using
+<code class="docutils literal notranslate"><span class="pre">summary_func</span></code> for each subset size.</p></li>
+<li><p><strong>plot</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em><em> (</em><em>default=True</em><em>)</em>) – If True, displays a violin plot of the summarized CVs (one aggregated value per feature) across subset sizes.</p></li>
+<li><p><strong>random_seed</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em> or </em><em>None</em><em>, </em><em>optional</em><em> (</em><em>default=42</em><em>)</em>) – Seed for the random number generator, ensuring reproducibility.</p></li>
+<li><p><strong>nan_policy</strong> (<em>{'omit'</em><em>, </em><em>'raise'</em><em>, </em><em>'propagate'}</em><em>, </em><em>optional</em><em> (</em><em>default=&quot;omit&quot;</em><em>)</em>) – <p>How to handle NaN values. Options are:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;omit&quot;</span></code>: ignore NaNs during calculations,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;raise&quot;</span></code>: raise an error if NaNs are encountered,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;propagate&quot;</span></code>: allow NaNs to propagate in the output.</p></li>
+</ul>
+</p></li>
 </ul>
 </dd>
-</dl>
-</dd>
-</dl>
-</section>
-<section id="returns">
-<h2>Returns:<a class="headerlink" href="#returns" title="Link to this heading">#</a></h2>
-<dl>
-<dt>pandas.DataFrame or tuple of pandas.DataFrame</dt><dd><dl>
-<dt>Depending on the flags <code class="docutils literal notranslate"><span class="pre">return_raw</span></code> and <code class="docutils literal notranslate"><span class="pre">return_summary</span></code>, the function returns:</dt><dd><ul>
-<li><p>If both are True: a tuple (raw_df, summary_df)
-* raw_df: DataFrame in long format with columns “feature”, “cv”, “subset_size”, and “bootstrap_id”.
-* summary_df: DataFrame with the aggregated CV (using <code class="docutils literal notranslate"><span class="pre">summary_func</span></code>) per feature and subset size,</p>
-<blockquote>
-<div><p>with columns “subset_size”, “feature”, and “cv_summary”.</p>
-</div></blockquote>
-</li>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><p>Depending on the flags <code class="docutils literal notranslate"><span class="pre">return_raw</span></code> and <code class="docutils literal notranslate"><span class="pre">return_summary</span></code>, the function returns:</p>
+<ul class="simple">
+<li><p>If both are True, a tuple <code class="docutils literal notranslate"><span class="pre">(raw_df,</span> <span class="pre">summary_df)</span></code>, where <code class="docutils literal notranslate"><span class="pre">raw_df</span></code> is a DataFrame
+in long format with columns “feature”, “cv”, “subset_size” and “bootstrap_id”, and
+<code class="docutils literal notranslate"><span class="pre">summary_df</span></code> holds the aggregated CV (using <code class="docutils literal notranslate"><span class="pre">summary_func</span></code>) per feature and subset
+size, with columns “subset_size”, “feature” and “cv_summary”.</p></li>
 <li><p>If only one of the flags is True, only that DataFrame is returned.</p></li>
 <li><p>If neither is True, returns None.</p></li>
 </ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.5)">pandas.DataFrame</a> or <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.14)">tuple</a> of <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.5)">pandas.DataFrame</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If any of the specified subset sizes is larger than the number of rows in <code class="docutils literal notranslate"><span class="pre">dataframe</span></code>.</p>
 </dd>
 </dl>
-</dd>
-</dl>
-</section>
-<section id="raises">
-<h2>Raises:<a class="headerlink" href="#raises" title="Link to this heading">#</a></h2>
-<dl class="simple">
-<dt>ValueError</dt><dd><p>If any of the specified subset sizes is larger than the number of rows in <code class="docutils literal notranslate"><span class="pre">dataframe</span></code>.</p>
-</dd>
-</dl>
-</section>
-<section id="examples">
-<h2>Examples:<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>  <span class="c1"># 100 samples, 5 features</span>
@@ -493,7 +478,6 @@ If set to “count_above_threshold”, counts the number of CVs above <code clas
 <span class="go">4           50       A    0.095432</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 </section>

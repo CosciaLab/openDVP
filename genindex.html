@@ -178,6 +178,7 @@
 <li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.coefficient_of_variation.html">opendvp.plotting.coefficient_of_variation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.density.html">opendvp.plotting.density</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.dual_axis_boxplots.html">opendvp.plotting.dual_axis_boxplots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.feature_comparison_boxplot.html">opendvp.plotting.feature_comparison_boxplot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.imputation_qc.html">opendvp.plotting.imputation_qc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.pca_loadings.html">opendvp.plotting.pca_loadings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.plotting.rankplot.html">opendvp.plotting.rankplot</a></li>
@@ -187,6 +188,7 @@
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="api/pp.html">Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.pp.impute_marker_with_annotation.html">opendvp.pp.impute_marker_with_annotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.pp.scimap_rescale.html">opendvp.pp.scimap_rescale</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="api/tl.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -201,9 +203,13 @@
 <li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.tl.stats_average_samples.html">opendvp.tl.stats_average_samples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.tl.stats_bootstrap.html">opendvp.tl.stats_bootstrap</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.tl.stats_ttest.html">opendvp.tl.stats_ttest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.tl.scimap_phenotype.html">opendvp.tl.scimap_phenotype</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.tl.scimap_spatial_cluster.html">opendvp.tl.scimap_spatial_cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.tl.scimap_spatial_lda.html">opendvp.tl.scimap_spatial_lda</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="api/utils.html">Utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.utils.get_datetime.html">opendvp.utils.get_datetime</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/generated/opendvp.utils.parse_color_for_qupath.html">opendvp.utils.parse_color_for_qupath</a></li>
 </ul>
 </details></li>
@@ -345,6 +351,7 @@ document.write(`
  | <a href="#D"><strong>D</strong></a>
  | <a href="#E"><strong>E</strong></a>
  | <a href="#F"><strong>F</strong></a>
+ | <a href="#G"><strong>G</strong></a>
  | <a href="#I"><strong>I</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#N"><strong>N</strong></a>
@@ -416,15 +423,25 @@ document.write(`
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/generated/opendvp.tl.filter_by_abs_value.html#opendvp.tl.filter_by_abs_value">filter_by_abs_value() (in module opendvp.tl)</a>
+      <li><a href="api/generated/opendvp.plotting.feature_comparison_boxplot.html#opendvp.plotting.feature_comparison_boxplot">feature_comparison_boxplot() (in module opendvp.plotting)</a>
 </li>
-      <li><a href="api/generated/opendvp.tl.filter_by_annotation.html#opendvp.tl.filter_by_annotation">filter_by_annotation() (in module opendvp.tl)</a>
+      <li><a href="api/generated/opendvp.tl.filter_by_abs_value.html#opendvp.tl.filter_by_abs_value">filter_by_abs_value() (in module opendvp.tl)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/generated/opendvp.tl.filter_by_annotation.html#opendvp.tl.filter_by_annotation">filter_by_annotation() (in module opendvp.tl)</a>
+</li>
       <li><a href="api/generated/opendvp.tl.filter_by_ratio.html#opendvp.tl.filter_by_ratio">filter_by_ratio() (in module opendvp.tl)</a>
 </li>
       <li><a href="api/generated/opendvp.tl.filter_features_byNaNs.html#opendvp.tl.filter_features_byNaNs">filter_features_byNaNs() (in module opendvp.tl)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/generated/opendvp.utils.get_datetime.html#opendvp.utils.get_datetime">get_datetime() (in module opendvp.utils)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -572,16 +589,24 @@ document.write(`
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/generated/opendvp.tl.scimap_phenotype.html#opendvp.tl.scimap_phenotype">scimap_phenotype() (in module opendvp.tl)</a>
+</li>
+      <li><a href="api/generated/opendvp.pp.scimap_rescale.html#opendvp.pp.scimap_rescale">scimap_rescale() (in module opendvp.pp)</a>
+</li>
+      <li><a href="api/generated/opendvp.tl.scimap_spatial_cluster.html#opendvp.tl.scimap_spatial_cluster">scimap_spatial_cluster() (in module opendvp.tl)</a>
+</li>
+      <li><a href="api/generated/opendvp.tl.scimap_spatial_lda.html#opendvp.tl.scimap_spatial_lda">scimap_spatial_lda() (in module opendvp.tl)</a>
+</li>
       <li><a href="api/generated/opendvp.io.segmask_to_qupath.html#opendvp.io.segmask_to_qupath">segmask_to_qupath() (in module opendvp.io)</a>
 </li>
       <li><a href="api/generated/opendvp.tl.spatial_autocorrelation.html#opendvp.tl.spatial_autocorrelation">spatial_autocorrelation() (in module opendvp.tl)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/generated/opendvp.tl.spatial_hyperparameter_search.html#opendvp.tl.spatial_hyperparameter_search">spatial_hyperparameter_search() (in module opendvp.tl)</a>
 </li>
       <li><a href="api/generated/opendvp.plotting.stacked_barplot.html#opendvp.plotting.stacked_barplot">stacked_barplot() (in module opendvp.plotting)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/generated/opendvp.tl.stats_anova.html#opendvp.tl.stats_anova">stats_anova() (in module opendvp.tl)</a>
 </li>
       <li><a href="api/generated/opendvp.tl.stats_average_samples.html#opendvp.tl.stats_average_samples">stats_average_samples() (in module opendvp.tl)</a>

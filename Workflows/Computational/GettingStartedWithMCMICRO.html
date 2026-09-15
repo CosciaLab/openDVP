@@ -190,6 +190,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.coefficient_of_variation.html">opendvp.plotting.coefficient_of_variation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.density.html">opendvp.plotting.density</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.dual_axis_boxplots.html">opendvp.plotting.dual_axis_boxplots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.feature_comparison_boxplot.html">opendvp.plotting.feature_comparison_boxplot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.imputation_qc.html">opendvp.plotting.imputation_qc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.pca_loadings.html">opendvp.plotting.pca_loadings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.plotting.rankplot.html">opendvp.plotting.rankplot</a></li>
@@ -199,6 +200,7 @@
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../api/pp.html">Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.pp.impute_marker_with_annotation.html">opendvp.pp.impute_marker_with_annotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.pp.scimap_rescale.html">opendvp.pp.scimap_rescale</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../api/tl.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -213,9 +215,13 @@
 <li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.stats_average_samples.html">opendvp.tl.stats_average_samples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.stats_bootstrap.html">opendvp.tl.stats_bootstrap</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.stats_ttest.html">opendvp.tl.stats_ttest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.scimap_phenotype.html">opendvp.tl.scimap_phenotype</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.scimap_spatial_cluster.html">opendvp.tl.scimap_spatial_cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.tl.scimap_spatial_lda.html">opendvp.tl.scimap_spatial_lda</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../api/utils.html">Utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.utils.get_datetime.html">opendvp.utils.get_datetime</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api/generated/opendvp.utils.parse_color_for_qupath.html">opendvp.utils.parse_color_for_qupath</a></li>
 </ul>
 </details></li>
@@ -806,49 +812,49 @@ Windows users you will not be able to copy paste, please be careful with typos.<
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">tree ~/work/test1/exemplar-001</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">.</span>
-<span class="err">└──</span> <span class="n">exemplar</span><span class="o">-</span><span class="mi">001</span>
-    <span class="err">├──</span> <span class="n">illumination</span>
-    <span class="err">│</span>   <span class="err">├──</span> <span class="n">exemplar</span><span class="o">-</span><span class="mi">001</span><span class="o">-</span><span class="n">cycle</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="n">dfp</span><span class="o">.</span><span class="n">tif</span>
-    <span class="err">│</span>   <span class="err">├──</span> <span class="n">exemplar</span><span class="o">-</span><span class="mi">001</span><span class="o">-</span><span class="n">cycle</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="n">ffp</span><span class="o">.</span><span class="n">tif</span>
-    <span class="err">│</span>   <span class="err">├──</span> <span class="n">exemplar</span><span class="o">-</span><span class="mi">001</span><span class="o">-</span><span class="n">cycle</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="n">dfp</span><span class="o">.</span><span class="n">tif</span>
-    <span class="err">│</span>   <span class="err">├──</span> <span class="n">exemplar</span><span class="o">-</span><span class="mi">001</span><span class="o">-</span><span class="n">cycle</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="n">ffp</span><span class="o">.</span><span class="n">tif</span>
-    <span class="err">│</span>   <span class="err">├──</span> <span class="n">exemplar</span><span class="o">-</span><span class="mi">001</span><span class="o">-</span><span class="n">cycle</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="n">dfp</span><span class="o">.</span><span class="n">tif</span>
-    <span class="err">│</span>   <span class="err">└──</span> <span class="n">exemplar</span><span class="o">-</span><span class="mi">001</span><span class="o">-</span><span class="n">cycle</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="n">ffp</span><span class="o">.</span><span class="n">tif</span>
-    <span class="err">├──</span> <span class="n">markers</span><span class="o">.</span><span class="n">csv</span>
-    <span class="err">├──</span> <span class="n">probability</span><span class="o">-</span><span class="n">maps</span>
-    <span class="err">│</span>   <span class="err">└──</span> <span class="n">unmicst</span>
-    <span class="err">│</span>       <span class="err">└──</span> <span class="n">exemplar</span><span class="o">-</span><span class="mi">001</span><span class="o">-</span><span class="n">pmap</span><span class="o">.</span><span class="n">tif</span>
-    <span class="err">├──</span> <span class="n">qc</span>
-    <span class="err">│</span>   <span class="err">├──</span> <span class="n">metadata</span><span class="o">.</span><span class="n">yml</span>
-    <span class="err">│</span>   <span class="err">├──</span> <span class="n">params</span><span class="o">.</span><span class="n">yml</span>
-    <span class="err">│</span>   <span class="err">├──</span> <span class="n">provenance</span>
-    <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="n">ashlar</span><span class="o">.</span><span class="n">log</span>
-    <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="n">ashlar</span><span class="o">.</span><span class="n">sh</span>
-    <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="n">mcquant</span><span class="o">-</span><span class="mf">1.</span><span class="n">log</span>
-    <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="n">mcquant</span><span class="o">-</span><span class="mf">1.</span><span class="n">sh</span>
-    <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="n">s3seg</span><span class="o">-</span><span class="mf">1.</span><span class="n">log</span>
-    <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="n">s3seg</span><span class="o">-</span><span class="mf">1.</span><span class="n">sh</span>
-    <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="n">unmicst</span><span class="o">-</span><span class="mf">1.</span><span class="n">log</span>
-    <span class="err">│</span>   <span class="err">│</span>   <span class="err">└──</span> <span class="n">unmicst</span><span class="o">-</span><span class="mf">1.</span><span class="n">sh</span>
-    <span class="err">│</span>   <span class="err">├──</span> <span class="n">s3seg</span>
-    <span class="err">│</span>   <span class="err">│</span>   <span class="err">└──</span> <span class="n">unmicst</span><span class="o">-</span><span class="n">exemplar</span><span class="o">-</span><span class="mi">001</span>
-    <span class="err">│</span>   <span class="err">│</span>       <span class="err">├──</span> <span class="n">cellOutlines</span><span class="o">.</span><span class="n">ome</span><span class="o">.</span><span class="n">tif</span>
-    <span class="err">│</span>   <span class="err">│</span>       <span class="err">└──</span> <span class="n">nucleiOutlines</span><span class="o">.</span><span class="n">ome</span><span class="o">.</span><span class="n">tif</span>
-    <span class="err">│</span>   <span class="err">└──</span> <span class="n">unmicst</span>
-    <span class="err">│</span>       <span class="err">└──</span> <span class="n">exemplar</span><span class="o">-</span><span class="mi">001</span><span class="n">_Preview_1</span><span class="o">.</span><span class="n">tif</span>
-    <span class="err">├──</span> <span class="n">quantification</span>
-    <span class="err">│</span>   <span class="err">└──</span> <span class="n">exemplar</span><span class="o">-</span><span class="mi">001</span><span class="o">--</span><span class="n">unmicst_cell</span><span class="o">.</span><span class="n">csv</span>
-    <span class="err">├──</span> <span class="n">raw</span>
-    <span class="err">│</span>   <span class="err">├──</span> <span class="n">exemplar</span><span class="o">-</span><span class="mi">001</span><span class="o">-</span><span class="n">cycle</span><span class="o">-</span><span class="mf">06.</span><span class="n">ome</span><span class="o">.</span><span class="n">tiff</span>
-    <span class="err">│</span>   <span class="err">├──</span> <span class="n">exemplar</span><span class="o">-</span><span class="mi">001</span><span class="o">-</span><span class="n">cycle</span><span class="o">-</span><span class="mf">07.</span><span class="n">ome</span><span class="o">.</span><span class="n">tiff</span>
-    <span class="err">│</span>   <span class="err">└──</span> <span class="n">exemplar</span><span class="o">-</span><span class="mi">001</span><span class="o">-</span><span class="n">cycle</span><span class="o">-</span><span class="mf">08.</span><span class="n">ome</span><span class="o">.</span><span class="n">tiff</span>
-    <span class="err">├──</span> <span class="n">registration</span>
-    <span class="err">│</span>   <span class="err">└──</span> <span class="n">exemplar</span><span class="o">-</span><span class="mf">001.</span><span class="n">ome</span><span class="o">.</span><span class="n">tif</span>
-    <span class="err">└──</span> <span class="n">segmentation</span>
-        <span class="err">└──</span> <span class="n">unmicst</span><span class="o">-</span><span class="n">exemplar</span><span class="o">-</span><span class="mi">001</span>
-            <span class="err">├──</span> <span class="n">cell</span><span class="o">.</span><span class="n">ome</span><span class="o">.</span><span class="n">tif</span>
-            <span class="err">└──</span> <span class="n">nuclei</span><span class="o">.</span><span class="n">ome</span><span class="o">.</span><span class="n">tif</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>.
+└── exemplar-001
+    ├── illumination
+    │   ├── exemplar-001-cycle-06-dfp.tif
+    │   ├── exemplar-001-cycle-06-ffp.tif
+    │   ├── exemplar-001-cycle-07-dfp.tif
+    │   ├── exemplar-001-cycle-07-ffp.tif
+    │   ├── exemplar-001-cycle-08-dfp.tif
+    │   └── exemplar-001-cycle-08-ffp.tif
+    ├── markers.csv
+    ├── probability-maps
+    │   └── unmicst
+    │       └── exemplar-001-pmap.tif
+    ├── qc
+    │   ├── metadata.yml
+    │   ├── params.yml
+    │   ├── provenance
+    │   │   ├── ashlar.log
+    │   │   ├── ashlar.sh
+    │   │   ├── mcquant-1.log
+    │   │   ├── mcquant-1.sh
+    │   │   ├── s3seg-1.log
+    │   │   ├── s3seg-1.sh
+    │   │   ├── unmicst-1.log
+    │   │   └── unmicst-1.sh
+    │   ├── s3seg
+    │   │   └── unmicst-exemplar-001
+    │   │       ├── cellOutlines.ome.tif
+    │   │       └── nucleiOutlines.ome.tif
+    │   └── unmicst
+    │       └── exemplar-001_Preview_1.tif
+    ├── quantification
+    │   └── exemplar-001--unmicst_cell.csv
+    ├── raw
+    │   ├── exemplar-001-cycle-06.ome.tiff
+    │   ├── exemplar-001-cycle-07.ome.tiff
+    │   └── exemplar-001-cycle-08.ome.tiff
+    ├── registration
+    │   └── exemplar-001.ome.tif
+    └── segmentation
+        └── unmicst-exemplar-001
+            ├── cell.ome.tif
+            └── nuclei.ome.tif
 </pre></div>
 </div>
 </details>
@@ -1024,23 +1030,23 @@ Windows users you will not be able to copy paste, please be careful with typos.<
 <li><p>must be passed with `nextflow run … –params params.yml</p></li>
 </ul>
 <p>Example params.yml for just <strong>stitching and registration</strong> of a <code class="docutils literal notranslate"><span class="pre">.czi</span></code> file:</p>
-<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>workflow:
-start-at: illumination
-stop-at: registration
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">workflow</span><span class="p">:</span>
+<span class="nt">start-at</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">illumination</span>
+<span class="nt">stop-at</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">registration</span>
 
-options:
-    ashlar: --flip-y --align-channel 1 -m 50 --filter-sigma 1
+<span class="nt">options</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">ashlar</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--flip-y --align-channel 1 -m 50 --filter-sigma 1</span>
 </pre></div>
 </div>
 <p>Example params.yml including <strong>background subtraction</strong></p>
-<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>workflow:
-    start-at: illumination
-    stop-at: background
-    background: true
-    background-method: backsub
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">workflow</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">start-at</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">illumination</span>
+<span class="w">    </span><span class="nt">stop-at</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">background</span>
+<span class="w">    </span><span class="nt">background</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">background-method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">backsub</span>
 
-options:
-    ashlar: --flip-y --align-channel 4 -m 50 --filter-sigma 1
+<span class="nt">options</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">ashlar</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--flip-y --align-channel 4 -m 50 --filter-sigma 1</span>
 </pre></div>
 </div>
 </section>

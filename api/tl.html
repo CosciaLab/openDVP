@@ -11,12 +11,12 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="api/tl.html" />
 <meta property="og:site_name" content="opendvp" />
-<meta property="og:description" content="Filtering: Imputation: Spatial: Statistics: Utils:" />
+<meta property="og:description" content="Filtering: Imputation: Spatial: Statistics: Scimap:" />
 <meta property="og:image:width" content="1146" />
 <meta property="og:image:height" content="600" />
-<meta property="og:image" content="_images/social_previews/summary_api_tl_fa2530bf.png" />
-<meta property="og:image:alt" content="Filtering: Imputation: Spatial: Statistics: Utils:" />
-<meta name="description" content="Filtering: Imputation: Spatial: Statistics: Utils:" />
+<meta property="og:image" content="_images/social_previews/summary_api_tl_a405f503.png" />
+<meta property="og:image:alt" content="Filtering: Imputation: Spatial: Statistics: Scimap:" />
+<meta name="description" content="Filtering: Imputation: Spatial: Statistics: Scimap:" />
 <meta name="twitter:card" content="summary_large_image" />
 
     <title>Tools &#8212; opendvp</title>
@@ -59,7 +59,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="opendvp.tl.filter_by_abs_value" href="generated/opendvp.tl.filter_by_abs_value.html" />
-    <link rel="prev" title="opendvp.pp.impute_marker_with_annotation" href="generated/opendvp.pp.impute_marker_with_annotation.html" />
+    <link rel="prev" title="opendvp.pp.scimap_rescale" href="generated/opendvp.pp.scimap_rescale.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -190,6 +190,7 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.coefficient_of_variation.html">opendvp.plotting.coefficient_of_variation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.density.html">opendvp.plotting.density</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.dual_axis_boxplots.html">opendvp.plotting.dual_axis_boxplots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.feature_comparison_boxplot.html">opendvp.plotting.feature_comparison_boxplot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.imputation_qc.html">opendvp.plotting.imputation_qc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.pca_loadings.html">opendvp.plotting.pca_loadings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.rankplot.html">opendvp.plotting.rankplot</a></li>
@@ -199,6 +200,7 @@
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="pp.html">Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.pp.impute_marker_with_annotation.html">opendvp.pp.impute_marker_with_annotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/opendvp.pp.scimap_rescale.html">opendvp.pp.scimap_rescale</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">Tools</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -213,9 +215,13 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.tl.stats_average_samples.html">opendvp.tl.stats_average_samples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.tl.stats_bootstrap.html">opendvp.tl.stats_bootstrap</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.tl.stats_ttest.html">opendvp.tl.stats_ttest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/opendvp.tl.scimap_phenotype.html">opendvp.tl.scimap_phenotype</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/opendvp.tl.scimap_spatial_cluster.html">opendvp.tl.scimap_spatial_cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/opendvp.tl.scimap_spatial_lda.html">opendvp.tl.scimap_spatial_lda</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="utils.html">Utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/opendvp.utils.get_datetime.html">opendvp.utils.get_datetime</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.utils.parse_color_for_qupath.html">opendvp.utils.parse_color_for_qupath</a></li>
 </ul>
 </details></li>
@@ -398,7 +404,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imputation">Imputation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial">Spatial</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistics">Statistics</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utils">Utils</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scimap">Scimap</a></li>
 </ul>
             </nav>
         </div>
@@ -477,10 +483,19 @@ document.write(`
 </table>
 </div>
 </section>
-<section id="utils">
-<h2>Utils<a class="headerlink" href="#utils" title="Link to this heading">#</a></h2>
+<section id="scimap">
+<h2>Scimap<a class="headerlink" href="#scimap" title="Link to this heading">#</a></h2>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.tl.scimap_phenotype.html#opendvp.tl.scimap_phenotype" title="opendvp.tl.scimap_phenotype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tl.scimap_phenotype</span></code></a>(adata, phenotype[, ...])</p></td>
+<td><p>Annotate each cell with a phenotype based on scaled data and a phenotype workflow.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/opendvp.tl.scimap_spatial_cluster.html#opendvp.tl.scimap_spatial_cluster" title="opendvp.tl.scimap_spatial_cluster"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tl.scimap_spatial_cluster</span></code></a>(adata[, method, ...])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.tl.scimap_spatial_lda.html#opendvp.tl.scimap_spatial_lda" title="opendvp.tl.scimap_spatial_lda"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tl.scimap_spatial_lda</span></code></a>(adata[, x_coordinate, ...])</p></td>
+<td><p>Parameters:</p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -499,12 +514,12 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="generated/opendvp.pp.impute_marker_with_annotation.html"
+       href="generated/opendvp.pp.scimap_rescale.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">opendvp.pp.impute_marker_with_annotation</p>
+        <p class="prev-next-title">opendvp.pp.scimap_rescale</p>
       </div>
     </a>
     <a class="right-next"
@@ -536,7 +551,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imputation">Imputation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial">Spatial</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistics">Statistics</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utils">Utils</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scimap">Scimap</a></li>
 </ul>
   </nav></div>
 

@@ -188,6 +188,7 @@
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.coefficient_of_variation.html">opendvp.plotting.coefficient_of_variation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.density.html">opendvp.plotting.density</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.dual_axis_boxplots.html">opendvp.plotting.dual_axis_boxplots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.feature_comparison_boxplot.html">opendvp.plotting.feature_comparison_boxplot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.imputation_qc.html">opendvp.plotting.imputation_qc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.pca_loadings.html">opendvp.plotting.pca_loadings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.rankplot.html">opendvp.plotting.rankplot</a></li>
@@ -197,6 +198,7 @@
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../pp.html">Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.pp.impute_marker_with_annotation.html">opendvp.pp.impute_marker_with_annotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.pp.scimap_rescale.html">opendvp.pp.scimap_rescale</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../tl.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -211,9 +213,13 @@
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.stats_average_samples.html">opendvp.tl.stats_average_samples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.stats_bootstrap.html">opendvp.tl.stats_bootstrap</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.stats_ttest.html">opendvp.tl.stats_ttest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.scimap_phenotype.html">opendvp.tl.scimap_phenotype</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.scimap_spatial_cluster.html">opendvp.tl.scimap_spatial_cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.scimap_spatial_lda.html">opendvp.tl.scimap_spatial_lda</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../utils.html">Utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.utils.get_datetime.html">opendvp.utils.get_datetime</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.utils.parse_color_for_qupath.html">opendvp.utils.parse_color_for_qupath</a></li>
 </ul>
 </details></li>
@@ -412,42 +418,34 @@ document.write(`
 <dd><p>Export a GeoDataFrame with QuPath-compatible annotations, using AnnData for classification and color mapping.</p>
 <p>This function matches shapes in a GeoDataFrame to metadata in an AnnData object.
 Assigns class labels and colors for QuPath visualization, and optionally simplifies geometries.</p>
-<section id="parameters">
-<h2>Parameters:<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h2>
-<dl class="simple">
-<dt>adata: AnnData</dt><dd><p>AnnData object containing cell metadata (e.g., cell types, phenotypes).</p>
-</dd>
-<dt>geodataframe: GeoDataFrame</dt><dd><p>GeoDataFrame containing shapes (detections or annotations) to be exported.</p>
-</dd>
-<dt>adataobs_on: str, default “CellID”</dt><dd><p>Column in adata.obs to match with geodataframe.</p>
-</dd>
-<dt>gdf_on: str or None, default “CellID”</dt><dd><p>Column in geodataframe to match with adata.obs. If None and gdf_index is True, uses the index.</p>
-</dd>
-<dt>gdf_index: bool, default False</dt><dd><p>If True, uses the geodataframe index for matching instead of a column.</p>
-</dd>
-<dt>classify_by: str or None, optional</dt><dd><p>Column in adata.obs to use for classifying detections (e.g., cell type or phenotype).</p>
-</dd>
-<dt>color_dict: dict or None, optional</dt><dd><p>Dictionary mapping class/category names to RGB color lists (e.g., {‘Tcell’: [255, 0, 0]}).
-If not provided, a default color cycle will be generated.
-Hexcodes colors are acceptable as well.</p>
-</dd>
-<dt>simplify_value: float, default 1.0</dt><dd><p>Tolerance for geometry simplification. Set to None to disable simplification.</p>
-</dd>
-<dt>save_as_detection: bool, default True</dt><dd><p>If True, sets ‘objectType’ to ‘detection’ for QuPath.</p>
-</dd>
-</dl>
 <dl class="field-list simple">
-<dt class="field-odd">returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The resulting GeoDataFrame with QuPath-compatible columns.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>adata</strong> (<a class="reference external" href="https://anndata.readthedocs.io/en/stable/generated/anndata.AnnData.html#anndata.AnnData" title="(in anndata v0.13.3.post0)"><em>anndata.AnnData</em></a>) – AnnData object containing cell metadata (e.g., cell types, phenotypes).</p></li>
+<li><p><strong>geodataframe</strong> (<a class="reference external" href="https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.html#geopandas.GeoDataFrame" title="(in GeoPandas v1.1.4)"><em>geopandas.GeoDataFrame</em></a>) – GeoDataFrame containing shapes (detections or annotations) to be exported.</p></li>
+<li><p><strong>adataobs_on</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>default &quot;CellID&quot;</em>) – Column in adata.obs to match with geodataframe.</p></li>
+<li><p><strong>gdf_on</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> or </em><em>None</em><em>, </em><em>default &quot;CellID&quot;</em>) – Column in geodataframe to match with adata.obs. If None and gdf_index is True, uses the index.</p></li>
+<li><p><strong>gdf_index</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>default False</em>) – If True, uses the geodataframe index for matching instead of a column.</p></li>
+<li><p><strong>classify_by</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> or </em><em>None</em><em>, </em><em>optional</em>) – Column in adata.obs to use for classifying detections (e.g., cell type or phenotype).</p></li>
+<li><p><strong>color_dict</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a><em> or </em><em>None</em><em>, </em><em>optional</em>) – Dictionary mapping class/category names to RGB color lists (e.g., {‘Tcell’: [255, 0, 0]}).
+If not provided, a default color cycle will be generated.
+Hexcodes colors are acceptable as well.</p></li>
+<li><p><strong>simplify_value</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>, </em><em>default 1.0</em>) – Tolerance for geometry simplification. Set to None to disable simplification.</p></li>
+<li><p><strong>save_as_detection</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>default True</em>) – If True, sets ‘objectType’ to ‘detection’ for QuPath.</p></li>
+</ul>
 </dd>
-<dt class="field-even">rtype<span class="colon">:</span></dt>
-<dd class="field-even"><p>GeoDataFrame</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting GeoDataFrame with QuPath-compatible columns.</p>
 </dd>
-<dt class="field-odd">raises ValueError<span class="colon">:</span></dt>
-<dd class="field-odd"><p>If input types are incorrect, required columns are missing, or no matches are found between adata and geodataframe.</p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.html#geopandas.GeoDataFrame" title="(in GeoPandas v1.1.4)">geopandas.GeoDataFrame</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If input types are incorrect, required columns are missing, or no matches are found
+    between adata and geodataframe.</p>
 </dd>
 </dl>
-<p class="rubric">Example</p>
+<p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">anndata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ad</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">opendvp.io.adata_to_qupath</span><span class="w"> </span><span class="kn">import</span> <span class="n">adata_to_qupath</span>
@@ -472,7 +470,6 @@ Hexcodes colors are acceptable as well.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 </section>

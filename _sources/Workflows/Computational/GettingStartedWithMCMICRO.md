@@ -399,7 +399,7 @@ We can check the outputs of the pipeline:
 tree ~/work/test1/exemplar-001
 ```
 
-```python
+```text
 .
 └── exemplar-001
     ├── illumination
@@ -521,7 +521,7 @@ Familiarize yourself with the [official documentation](https://mcmicro.org/param
 
 Example params.yml for just **stitching and registration** of a `.czi` file:
 
-```yml
+```yaml
 workflow:
 start-at: illumination
 stop-at: registration
@@ -532,7 +532,7 @@ options:
 
 Example params.yml including **background subtraction**
 
-```yml
+```yaml
 workflow:
     start-at: illumination
     stop-at: background

@@ -11,10 +11,12 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="api/utils.html" />
 <meta property="og:site_name" content="opendvp" />
+<meta property="og:description" content="Logging: opendvp.utils.logger is a pre-configured loguru logger, writing to stdout at INFO level. Every openDVP function logs its steps through it, so adjusting it changes openDVP’s output:" />
 <meta property="og:image:width" content="1146" />
 <meta property="og:image:height" content="600" />
-<meta property="og:image" content="_images/social_previews/summary_api_utils_b726811e.png" />
-<meta property="og:image:alt" content="" />
+<meta property="og:image" content="_images/social_previews/summary_api_utils_a3c9eabc.png" />
+<meta property="og:image:alt" content="Logging: opendvp.utils.logger is a pre-configured loguru logger, writing to stdout at INFO level. Every openDVP function logs its steps through it, so adjusting it changes openDVP’s output:" />
+<meta name="description" content="Logging: opendvp.utils.logger is a pre-configured loguru logger, writing to stdout at INFO level. Every openDVP function logs its steps through it, so adjusting it changes openDVP’s output:" />
 <meta name="twitter:card" content="summary_large_image" />
 
     <title>Utils &#8212; opendvp</title>
@@ -56,8 +58,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/utils';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="opendvp.utils.parse_color_for_qupath" href="generated/opendvp.utils.parse_color_for_qupath.html" />
-    <link rel="prev" title="opendvp.tl.stats_ttest" href="generated/opendvp.tl.stats_ttest.html" />
+    <link rel="next" title="opendvp.utils.get_datetime" href="generated/opendvp.utils.get_datetime.html" />
+    <link rel="prev" title="opendvp.tl.scimap_spatial_lda" href="generated/opendvp.tl.scimap_spatial_lda.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -188,6 +190,7 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.coefficient_of_variation.html">opendvp.plotting.coefficient_of_variation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.density.html">opendvp.plotting.density</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.dual_axis_boxplots.html">opendvp.plotting.dual_axis_boxplots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.feature_comparison_boxplot.html">opendvp.plotting.feature_comparison_boxplot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.imputation_qc.html">opendvp.plotting.imputation_qc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.pca_loadings.html">opendvp.plotting.pca_loadings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.rankplot.html">opendvp.plotting.rankplot</a></li>
@@ -197,6 +200,7 @@
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="pp.html">Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.pp.impute_marker_with_annotation.html">opendvp.pp.impute_marker_with_annotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/opendvp.pp.scimap_rescale.html">opendvp.pp.scimap_rescale</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="tl.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -211,9 +215,13 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.tl.stats_average_samples.html">opendvp.tl.stats_average_samples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.tl.stats_bootstrap.html">opendvp.tl.stats_bootstrap</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.tl.stats_ttest.html">opendvp.tl.stats_ttest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/opendvp.tl.scimap_phenotype.html">opendvp.tl.scimap_phenotype</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/opendvp.tl.scimap_spatial_cluster.html">opendvp.tl.scimap_spatial_cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/opendvp.tl.scimap_spatial_lda.html">opendvp.tl.scimap_spatial_lda</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">Utils</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/opendvp.utils.get_datetime.html">opendvp.utils.get_datetime</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.utils.parse_color_for_qupath.html">opendvp.utils.parse_color_for_qupath</a></li>
 </ul>
 </details></li>
@@ -369,7 +377,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -385,6 +395,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logging">Logging</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -398,12 +416,28 @@ document.write(`
 <span id="utils"></span><h1>Utils<a class="headerlink" href="#module-opendvp.utils" title="Link to this heading">#</a></h1>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.utils.parse_color_for_qupath.html#opendvp.utils.parse_color_for_qupath" title="opendvp.utils.parse_color_for_qupath"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.parse_color_for_qupath</span></code></a>(color_dict, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.utils.get_datetime.html#opendvp.utils.get_datetime" title="opendvp.utils.get_datetime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.get_datetime</span></code></a>()</p></td>
+<td><p>get_datetime.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/opendvp.utils.parse_color_for_qupath.html#opendvp.utils.parse_color_for_qupath" title="opendvp.utils.parse_color_for_qupath"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.parse_color_for_qupath</span></code></a>(color_dict, ...)</p></td>
 <td><p>Parse and convert color definitions to a format compatible with QuPath.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
+<section id="logging">
+<h2>Logging<a class="headerlink" href="#logging" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">opendvp.utils.logger</span></code> is a pre-configured <a class="reference external" href="https://loguru.readthedocs.io/">loguru</a> logger,
+writing to <code class="docutils literal notranslate"><span class="pre">stdout</span></code> at <code class="docutils literal notranslate"><span class="pre">INFO</span></code> level. Every openDVP function logs its steps through it, so
+adjusting it changes openDVP’s output:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">opendvp.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">logger</span>
+
+<span class="n">logger</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>  <span class="c1"># drop the default openDVP handler</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s2">&quot;DEBUG&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -418,20 +452,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="generated/opendvp.tl.stats_ttest.html"
+       href="generated/opendvp.tl.scimap_spatial_lda.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">opendvp.tl.stats_ttest</p>
+        <p class="prev-next-title">opendvp.tl.scimap_spatial_lda</p>
       </div>
     </a>
     <a class="right-next"
-       href="generated/opendvp.utils.parse_color_for_qupath.html"
+       href="generated/opendvp.utils.get_datetime.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">opendvp.utils.parse_color_for_qupath</p>
+        <p class="prev-next-title">opendvp.utils.get_datetime</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -441,6 +475,21 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logging">Logging</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

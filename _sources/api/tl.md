@@ -44,10 +44,12 @@
 ```
 
 
-## Utils
+## Scimap
 ```{eval-rst}
 .. autosummary::
     :toctree: generated
 
-    tl.phenotype_cells
+    tl.scimap_phenotype
+    tl.scimap_spatial_cluster
+    tl.scimap_spatial_lda
 ```

@@ -190,6 +190,7 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.coefficient_of_variation.html">opendvp.plotting.coefficient_of_variation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.density.html">opendvp.plotting.density</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.dual_axis_boxplots.html">opendvp.plotting.dual_axis_boxplots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.feature_comparison_boxplot.html">opendvp.plotting.feature_comparison_boxplot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.imputation_qc.html">opendvp.plotting.imputation_qc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.pca_loadings.html">opendvp.plotting.pca_loadings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.plotting.rankplot.html">opendvp.plotting.rankplot</a></li>
@@ -199,6 +200,7 @@
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="pp.html">Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.pp.impute_marker_with_annotation.html">opendvp.pp.impute_marker_with_annotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/opendvp.pp.scimap_rescale.html">opendvp.pp.scimap_rescale</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="tl.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -213,9 +215,13 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.tl.stats_average_samples.html">opendvp.tl.stats_average_samples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.tl.stats_bootstrap.html">opendvp.tl.stats_bootstrap</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.tl.stats_ttest.html">opendvp.tl.stats_ttest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/opendvp.tl.scimap_phenotype.html">opendvp.tl.scimap_phenotype</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/opendvp.tl.scimap_spatial_cluster.html">opendvp.tl.scimap_spatial_cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/opendvp.tl.scimap_spatial_lda.html">opendvp.tl.scimap_spatial_lda</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="utils.html">Utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/opendvp.utils.get_datetime.html">opendvp.utils.get_datetime</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.utils.parse_color_for_qupath.html">opendvp.utils.parse_color_for_qupath</a></li>
 </ul>
 </details></li>
@@ -442,19 +448,22 @@ document.write(`
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.plotting.dual_axis_boxplots.html#opendvp.plotting.dual_axis_boxplots" title="opendvp.plotting.dual_axis_boxplots"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plotting.dual_axis_boxplots</span></code></a>(adata, ...[, ...])</p></td>
 <td><p>Generates a dual-axis plot with boxplots and stripplots for two features.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/opendvp.plotting.imputation_qc.html#opendvp.plotting.imputation_qc" title="opendvp.plotting.imputation_qc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plotting.imputation_qc</span></code></a>(adata[, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/opendvp.plotting.feature_comparison_boxplot.html#opendvp.plotting.feature_comparison_boxplot" title="opendvp.plotting.feature_comparison_boxplot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plotting.feature_comparison_boxplot</span></code></a>(adata, ...)</p></td>
+<td><p>Plots boxplots of feature expression from adata.X, comparing two groups.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.plotting.imputation_qc.html#opendvp.plotting.imputation_qc" title="opendvp.plotting.imputation_qc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plotting.imputation_qc</span></code></a>(adata[, ...])</p></td>
 <td><p>Generate a quality control plot to visualize the effect of imputation.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.plotting.pca_loadings.html#opendvp.plotting.pca_loadings" title="opendvp.plotting.pca_loadings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plotting.pca_loadings</span></code></a>(adata[, top, n_pcs, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/opendvp.plotting.pca_loadings.html#opendvp.plotting.pca_loadings" title="opendvp.plotting.pca_loadings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plotting.pca_loadings</span></code></a>(adata[, top, n_pcs, ...])</p></td>
 <td><p>Plot PCA protein loadings for the top features in the first two principal components.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/opendvp.plotting.rankplot.html#opendvp.plotting.rankplot" title="opendvp.plotting.rankplot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plotting.rankplot</span></code></a>(adata, adata_obs_key[, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.plotting.rankplot.html#opendvp.plotting.rankplot" title="opendvp.plotting.rankplot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plotting.rankplot</span></code></a>(adata, adata_obs_key[, ...])</p></td>
 <td><p>Plot a rank plot of average protein abundance in an AnnData object.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.plotting.upset.html#opendvp.plotting.upset" title="opendvp.plotting.upset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plotting.upset</span></code></a>(adata, groupby[, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/opendvp.plotting.upset.html#opendvp.plotting.upset" title="opendvp.plotting.upset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plotting.upset</span></code></a>(adata, groupby[, ...])</p></td>
 <td><p>Generate an UpSet plot from an AnnData object based on variable presence across groups.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/opendvp.plotting.volcano.html#opendvp.plotting.volcano" title="opendvp.plotting.volcano"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plotting.volcano</span></code></a>(adata[, x, y, significant, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.plotting.volcano.html#opendvp.plotting.volcano" title="opendvp.plotting.volcano"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plotting.volcano</span></code></a>(adata[, x, y, significant, ...])</p></td>
 <td><p>Plot a volcano plot from an AnnData object.</p></td>
 </tr>
 </tbody>

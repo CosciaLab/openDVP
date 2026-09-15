@@ -188,6 +188,7 @@
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.coefficient_of_variation.html">opendvp.plotting.coefficient_of_variation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.density.html">opendvp.plotting.density</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.dual_axis_boxplots.html">opendvp.plotting.dual_axis_boxplots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.feature_comparison_boxplot.html">opendvp.plotting.feature_comparison_boxplot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.imputation_qc.html">opendvp.plotting.imputation_qc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.pca_loadings.html">opendvp.plotting.pca_loadings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.plotting.rankplot.html">opendvp.plotting.rankplot</a></li>
@@ -197,6 +198,7 @@
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../pp.html">Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.pp.impute_marker_with_annotation.html">opendvp.pp.impute_marker_with_annotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.pp.scimap_rescale.html">opendvp.pp.scimap_rescale</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="../tl.html">Tools</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
@@ -211,9 +213,13 @@
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.stats_average_samples.html">opendvp.tl.stats_average_samples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.stats_bootstrap.html">opendvp.tl.stats_bootstrap</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.tl.stats_ttest.html">opendvp.tl.stats_ttest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.scimap_phenotype.html">opendvp.tl.scimap_phenotype</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.scimap_spatial_cluster.html">opendvp.tl.scimap_spatial_cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.tl.scimap_spatial_lda.html">opendvp.tl.scimap_spatial_lda</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../utils.html">Utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="opendvp.utils.get_datetime.html">opendvp.utils.get_datetime</a></li>
 <li class="toctree-l3"><a class="reference internal" href="opendvp.utils.parse_color_for_qupath.html">opendvp.utils.parse_color_for_qupath</a></li>
 </ul>
 </details></li>
@@ -417,35 +423,24 @@ A DataFrame with quality control metrics for the imputation is stored in <code c
 the number of imputed values, the mean and standard deviation used for imputation, and a numpy array of the
 imputed values themselves for each feature.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnnData</span></code></span></p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>adata</strong> (<a class="reference external" href="https://anndata.readthedocs.io/en/stable/generated/anndata.AnnData.html#anndata.AnnData" title="(in anndata v0.13.3.post0)"><em>anndata.AnnData</em></a>) – AnnData object with missing values to impute.</p></li>
+<li><p><strong>mean_shift</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>, </em><em>default -1.8</em>) – Number of standard deviations to shift the mean of the Gaussian distribution.</p></li>
+<li><p><strong>std_dev_shift</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>, </em><em>default 0.3</em>) – Factor to scale the standard deviation of the Gaussian distribution.</p></li>
+<li><p><strong>perSample</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>default False</em>) – If True, impute per sample (row); if False, impute per protein (column).</p></li>
+<li><p><strong>layer_key</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>default 'unimputed'</em>) – Key under which to store the original, un-imputed data matrix in <code class="docutils literal notranslate"><span class="pre">adata.layers</span></code>.</p></li>
+<li><p><strong>uns_key</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>default 'impute_gaussian_qc_metrics'</em>) – Key under which to store the imputation QC metrics DataFrame in <code class="docutils literal notranslate"><span class="pre">adata.uns</span></code>.</p></li>
+</ul>
 </dd>
-</dl>
-<section id="parameters">
-<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h2>
-<dl class="simple">
-<dt>adata<span class="classifier">ad.AnnData</span></dt><dd><p>AnnData object with missing values to impute.</p>
-</dd>
-<dt>mean_shift<span class="classifier">float, default -1.8</span></dt><dd><p>Number of standard deviations to shift the mean of the Gaussian distribution.</p>
-</dd>
-<dt>std_dev_shift<span class="classifier">float, default 0.3</span></dt><dd><p>Factor to scale the standard deviation of the Gaussian distribution.</p>
-</dd>
-<dt>perSample<span class="classifier">bool, default False</span></dt><dd><p>If True, impute per sample (row); if False, impute per protein (column).</p>
-</dd>
-<dt>layer_key<span class="classifier">str, default ‘unimputed’</span></dt><dd><p>Key under which to store the original, un-imputed data matrix in <code class="docutils literal notranslate"><span class="pre">adata.layers</span></code>.</p>
-</dd>
-<dt>uns_key<span class="classifier">str, default ‘impute_gaussian_qc_metrics’</span></dt><dd><p>Key under which to store the imputation QC metrics DataFrame in <code class="docutils literal notranslate"><span class="pre">adata.uns</span></code>.</p>
-</dd>
-</dl>
-</section>
-<section id="returns">
-<h2>Returns:<a class="headerlink" href="#returns" title="Link to this heading">#</a></h2>
-<dl class="simple">
-<dt>ad.AnnData</dt><dd><p>AnnData object with imputed values in <code class="docutils literal notranslate"><span class="pre">.X</span></code>, the original matrix in <code class="docutils literal notranslate"><span class="pre">.layers[layer_key]</span></code>,
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>AnnData object with imputed values in <code class="docutils literal notranslate"><span class="pre">.X</span></code>, the original matrix in <code class="docutils literal notranslate"><span class="pre">.layers[layer_key]</span></code>,
 and QC metrics in <code class="docutils literal notranslate"><span class="pre">.uns[uns_key]</span></code>.</p>
 </dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://anndata.readthedocs.io/en/stable/generated/anndata.AnnData.html#anndata.AnnData" title="(in anndata v0.13.3.post0)">anndata.AnnData</a></p>
+</dd>
 </dl>
-</section>
 </dd></dl>
 
 </section>

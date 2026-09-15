@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from opendvp.plotting import feature_comparison_boxplot
+from opendvp.pl import feature_comparison_boxplot
 
 
 @pytest.fixture

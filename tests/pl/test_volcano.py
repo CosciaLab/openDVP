@@ -5,7 +5,7 @@ import pandas as pd
 import pytest
 from matplotlib.figure import Figure
 
-from opendvp.plotting.volcano import volcano
+from opendvp.pl.volcano import volcano
 
 
 @pytest.fixture

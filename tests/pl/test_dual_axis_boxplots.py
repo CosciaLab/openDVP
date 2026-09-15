@@ -2,7 +2,7 @@ import anndata
 import pandas as pd
 import pytest
 
-from opendvp.plotting import dual_axis_boxplots
+from opendvp.pl import dual_axis_boxplots
 
 
 @pytest.fixture

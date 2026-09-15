@@ -20,27 +20,25 @@ def spatial_hyperparameter_search(
     To determine the number of connected nodes and average neighbors for different threshold values,
     and optionally plot the network of connected nodes at a given threshold.
 
-    Parameters:
-    ------------
-    adata : AnnData
+    Parameters
+    ----------
+    adata : anndata.AnnData
         Spatially indexed data.
     x_y : list of str, default ['x_centroid', 'y_centroid']
         Column names in adata.obs representing the spatial coordinates.
-    threshold_range : np.ndarray, default np.arange(1, 100, 1)
+    threshold_range : numpy.ndarray, default np.arange(1, 100, 1)
         Range of threshold values to test.
     return_df : bool, default False
         If True, return the DataFrame with threshold statistics along with the plot.
     plot_network_at : Optional[int], default None
         The threshold value at which to plot the network of connected nodes. If None, no plot is generated.
 
-    Returns:
-    ----------
-    If return_df is True:
-        tuple[pandas.DataFrame, tuple[matplotlib.figure.Figure, matplotlib.axes.Axes]]
-            DataFrame with threshold statistics and the plot (figure, axes).
-    Else:
-        tuple[matplotlib.figure.Figure, matplotlib.axes.Axes]
-            The plot (figure, axes).
+    Returns
+    -------
+    tuple
+        If `return_df` is True, a tuple of the threshold-statistics
+        :class:`~pandas.DataFrame` and the ``(figure, axes)`` pair. Otherwise, only the
+        ``(figure, axes)`` pair.
     """
     # Initialize a list to store the stats for each threshold
     if x_y is None:

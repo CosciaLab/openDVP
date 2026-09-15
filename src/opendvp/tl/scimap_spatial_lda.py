@@ -2,18 +2,16 @@
 # Created on Fri Feb 26 19:47:10 2021
 # @author: Ajit Johnson Nirmal
 
-"""!!! abstract "Short Description"
-    `sm.tl.spatial_lda`: This function constructs a neighborhood matrix based on
-    user-specified categorical variables, such as cell types,
-    and applies Latent Dirichlet Allocation (LDA) to model the latent space of
-    cellular distributions. It returns weights that describe the spatial
-    organization of cells, facilitating the identification of Recurrent Cellular Neighborhoods (RCNs).
+"""Model the latent space of cellular distributions with Latent Dirichlet Allocation.
 
-    The `sm.tl.spatial_cluster` function should be utilized to cluster these
-    latent vectors into RCNs, offering insights into the spatial dynamics
-    of cellular environments.
+Adapted from `scimap <https://github.com/labsyspharm/scimap>`_ (``sm.tl.spatial_lda``).
 
-## Function
+Constructs a neighborhood matrix based on user-specified categorical variables, such as cell
+types, and applies Latent Dirichlet Allocation (LDA) to model the latent space of cellular
+distributions. It returns weights describing the spatial organization of cells, which
+facilitates the identification of Recurrent Cellular Neighborhoods (RCNs).
+
+Use :func:`~opendvp.tl.scimap_spatial_cluster` to cluster these latent vectors into RCNs.
 """
 
 # Import
@@ -89,14 +87,17 @@ def scimap_spatial_lda(
         label (str, optional):
             Custom label for storing results in `adata.uns`.
 
-    Returns:
-        adata (anndata.AnnData):
-            The input `adata` object, updated with spatial LDA results in `adata.uns[label]`.
+    Returns
+    -------
+    anndata.AnnData
+        The input `adata` object, updated with spatial LDA results in `adata.uns[label]`.
 
-    Example:
-        ```python
+    Examples
+    --------
+    .. code-block:: python
+
         # Analyze spatial motifs using the radius method
-        adata = sm.tl.spatial_lda(
+        adata = dvp.tl.scimap_spatial_lda(
             adata,
             x_coordinate="X_centroid",
             y_coordinate="Y_centroid",
@@ -107,7 +108,7 @@ def scimap_spatial_lda(
         )
 
         # KNN method with specific image subset
-        adata = sm.tl.spatial_lda(
+        adata = dvp.tl.scimap_spatial_lda(
             adata,
             x_coordinate="X_centroid",
             y_coordinate="Y_centroid",
@@ -119,7 +120,7 @@ def scimap_spatial_lda(
         )
 
         # 3D spatial data analysis using the radius method
-        adata = am.tl.spatial_lda(
+        adata = dvp.tl.scimap_spatial_lda(
             adata,
             x_coordinate="X_centroid",
             y_coordinate="Y_centroid",
@@ -129,7 +130,6 @@ def scimap_spatial_lda(
             num_motifs=20,
             label="lda_3D_radius_100",
         )
-        ```
 
     """
 

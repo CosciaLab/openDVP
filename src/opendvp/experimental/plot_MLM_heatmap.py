@@ -19,11 +19,12 @@ def plot_MLM_heatmap(
 ):
     """Description:
         Perform an Over-Representation Analysis (ORA) using the Decoupler package and plot the results as a heatmap.
-    Parameters:
-        adata: AnnData object
-            Annotated data matrix.
-        msigdb: DataFrame
-            A DataFrame with the gene sets from the Molecular Signatures Database (MSigDB).
+    Parameters
+    ----------
+    adata : anndata.AnnData
+        Annotated data matrix.
+    msigdb : DataFrame
+        A DataFrame with the gene sets from the Molecular Signatures Database (MSigDB).
     """
     print("version 1.0.0")
 

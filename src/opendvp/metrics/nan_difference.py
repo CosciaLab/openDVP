@@ -6,14 +6,14 @@ def nan_difference(array1: np.ndarray, array2: np.ndarray) -> tuple[int, int]:
 
     Good quality control, since this can happen.
 
-    Parameters:
+    Parameters
     ----------
-    array1 : np.ndarray
+    array1 : numpy.ndarray
         First array to compare.
-    array2 : np.ndarray
+    array2 : numpy.ndarray
         Second array to compare. Must have the same shape as array1.
 
-    Returns:
+    Returns
     -------
     tuple[int, int]
         A tuple containing:

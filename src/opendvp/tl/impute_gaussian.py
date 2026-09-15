@@ -25,7 +25,7 @@ def impute_gaussian(
 
     Parameters
     ----------
-    adata : ad.AnnData
+    adata : anndata.AnnData
         AnnData object with missing values to impute.
     mean_shift : float, default -1.8
         Number of standard deviations to shift the mean of the Gaussian distribution.
@@ -38,9 +38,9 @@ def impute_gaussian(
     uns_key : str, default 'impute_gaussian_qc_metrics'
         Key under which to store the imputation QC metrics DataFrame in `adata.uns`.
 
-    Returns:
+    Returns
     -------
-    ad.AnnData
+    anndata.AnnData
         AnnData object with imputed values in `.X`, the original matrix in `.layers[layer_key]`,
         and QC metrics in `.uns[uns_key]`.
     """

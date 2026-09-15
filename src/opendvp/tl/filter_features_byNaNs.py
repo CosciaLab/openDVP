@@ -17,7 +17,7 @@ def filter_features_byNaNs(
 
     Parameters
     ----------
-    adata : AnnData
+    adata : anndata.AnnData
         AnnData object to filter.
     threshold : float, default 0.7
         Proportion of valid values above which a protein is considered valid (between 0 and 1).
@@ -28,9 +28,9 @@ def filter_features_byNaNs(
         'ANY' means that if a protein passes the threshold in any group it will be kept.
         'ALL' means that a protein must pass validity threshold for all groups to be kept (more stringent).
 
-    Returns:
+    Returns
     -------
-    AnnData
+    anndata.AnnData
         Filtered AnnData object.
         The quality control metrics (e.g., NaN counts, valid proportions) are added to `adata.var`.
         A complete QC matrix for all initial features is stored in `adata.uns['filter_features_byNaNs_qc_metrics']`.

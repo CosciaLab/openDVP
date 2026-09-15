@@ -1,24 +1,29 @@
 #!/usr/bin/env python3
 # Created on Mon Mar  2 19:56:08 2020
 # @author: Ajit Johnson Nirmal
-"""!!! abstract "Short Description"
-    `sm.tl.phenotype_cells`: This function annotates each cell in the dataset with a phenotype based on `scaled data` and a predefined `phenotype workflow`. Before using this function, ensure the data is scaled with the `sm.tl.rescale` function.
+"""Annotate cells with a phenotype from scaled data and a phenotype workflow.
 
-    *Description of the Phenotype Workflow File:*
-    Find an example `phenotype_workflow.csv` [here](https://github.com/ajitjohnson/scimap/blob/master/scimap/tests/_data/phenotype_workflow.csv).
+Adapted from `scimap <https://github.com/labsyspharm/scimap>`_ (``sm.tl.phenotype_cells``).
 
-    The `phenotype_workflow` file outlines six gating strategies for cell phenotyping:
+Annotates each cell in the dataset with a phenotype based on scaled data and a predefined
+phenotype workflow. Scale the data with :func:`~opendvp.pp.scimap_rescale` first.
 
-    - **allpos**: Requires all specified markers to be positive for a cell to be assigned the phenotype.
-    - **allneg**: Requires all specified markers to be negative for a cell to be assigned the phenotype.
-    - **anypos**: Requires at least one of the specified markers to be positive for a cell to be assigned the phenotype. For example, a macrophage could be identified if it is positive for any of the markers `CD68`, `CD163`, or `CD206`.
-    - **anyneg**: Requires at least one of the specified markers to be negative for a cell to be assigned the phenotype.
-    - **pos**: Specifies that a cell must be positive for the given marker(s) to be assigned the phenotype. If used for multiple markers, cells not meeting all criteria may still be classified as a potential phenotype, allowing for later refinement by the user. For instance, regulatory T cells could be defined as `CD4+` and `FOXP3+`; cells not fully meeting these criteria might be labeled as likely-regulatory T cells for further evaluation.
-    - **neg**: Specifies that a cell must be negative for the given marker(s) to be assigned the phenotype.
+**The phenotype workflow file.** See an
+`example phenotype_workflow.csv <https://github.com/labsyspharm/scimap/blob/master/scimap/tests/_data/phenotype_workflow.csv>`_.
+It defines six gating strategies:
 
-    *Recommendation*: Prioritize using positive markers to define phenotypes whenever possible.
+- **allpos**: all specified markers must be positive for a cell to be assigned the phenotype.
+- **allneg**: all specified markers must be negative for a cell to be assigned the phenotype.
+- **anypos**: at least one of the specified markers must be positive. For example, a macrophage
+  could be identified if it is positive for any of ``CD68``, ``CD163`` or ``CD206``.
+- **anyneg**: at least one of the specified markers must be negative.
+- **pos**: a cell must be positive for the given marker(s). If used for multiple markers, cells
+  not meeting all criteria may still be classified as a potential phenotype, allowing for later
+  refinement. For instance, regulatory T cells could be defined as ``CD4+`` and ``FOXP3+``;
+  cells not fully meeting these criteria might be labeled likely-regulatory T cells.
+- **neg**: a cell must be negative for the given marker(s).
 
-## Function
+Prioritize positive markers when defining phenotypes wherever possible.
 """
 
 # Library
@@ -38,43 +43,55 @@ def scimap_phenotype(
     pheno_threshold_abs=None,
     verbose=True,
 ):
-    """Parameters:
-    adata (anndata.AnnData):
+    """Annotate each cell with a phenotype based on scaled data and a phenotype workflow.
+
+    Parameters
+    ----------
+    adata : anndata.AnnData
         The input AnnData object containing single-cell data for phenotyping.
+    phenotype : pandas.DataFrame
+        A DataFrame specifying the gating strategy for cell phenotyping. It should outline the
+        workflow for phenotype classification based on marker expression levels. See an
+        `example workflow <https://github.com/labsyspharm/scimap/blob/master/scimap/tests/_data/phenotype_workflow.csv>`_.
+    gate : float, default 0.5
+        The threshold value for determining positive cell classification based on scaled data.
+        By convention, values above this threshold indicate positive cells.
+    label : str, default 'phenotype'
+        The name of the column in `adata.obs` where the final phenotype classifications will be
+        stored.
+    imageid : str, default 'imageid'
+        The name of the column in `adata.obs` that contains unique image identifiers. This is
+        crucial for analyses that require differentiation of data based on the source image,
+        especially when using `pheno_threshold_percent` or `pheno_threshold_abs`.
+    pheno_threshold_percent : float, optional
+        A threshold value (between 0 and 100) specifying the minimum percentage of cells that
+        must exhibit a particular phenotype for it to be considered valid. Phenotypes not
+        meeting this threshold are reclassified as 'unknown'. Useful for minimizing the impact
+        of low-frequency false positives.
+    pheno_threshold_abs : int, optional
+        Similar to `pheno_threshold_percent`, but uses an absolute cell count instead of a
+        percentage. Phenotypes with cell counts below this threshold are reclassified as
+        'unknown'. This can help address rare phenotype classifications that may not be
+        meaningful.
+    verbose : bool, default True
+        If True, print detailed messages about progress and the steps being executed.
 
-    phenotype (pd.DataFrame):
-        A DataFrame specifying the gating strategy for cell phenotyping. It should outline the workflow for phenotype classification based on marker expression levels. An example workflow is available at [this GitHub link](https://github.com/ajitjohnson/scimap/blob/master/scimap/tests/_data/phenotype_workflow.csv).
+    Returns
+    -------
+    anndata.AnnData
+        The input AnnData object, updated to include the phenotype classifications for each
+        cell. The phenotyping results can be found in `adata.obs[label]`, where `label` is the
+        name specified by the user for the phenotype column.
 
-    gate (float, optional):
-        The threshold value for determining positive cell classification based on scaled data. By convention, values above this threshold are considered to indicate positive cells.
+    Examples
+    --------
+    .. code-block:: python
 
-    label (str):
-        The name of the column in `adata.obs` where the final phenotype classifications will be stored. This label will be used to access the phenotyping results within the `AnnData` object.
+        # Load the phenotype workflow CSV file
+        phenotype = pd.read_csv("path/to/csv/file/")
 
-    imageid (str, optional):
-        The name of the column in `adata.obs` that contains unique image identifiers. This is crucial for analyses that require differentiation of data based on the source image, especially when using phenotype threshold parameters (`pheno_threshold_percent` or `pheno_threshold_abs`).
-
-    pheno_threshold_percent (float, optional):
-        A threshold value (between 0 and 100) specifying the minimum percentage of cells that must exhibit a particular phenotype for it to be considered valid. Phenotypes not meeting this threshold are reclassified as 'unknown'. This parameter is useful for minimizing the impact of low-frequency false positives.
-
-    pheno_threshold_abs (int, optional):
-        Similar to `pheno_threshold_percent`, but uses an absolute cell count instead of a percentage. Phenotypes with cell counts below this threshold are reclassified as 'unknown'. This can help in addressing rare phenotype classifications that may not be meaningful.
-
-    verbose (bool):
-        If set to `True`, the function will print detailed messages about its progress and the steps being executed.
-
-    Returns:
-    adata (anndata.AnnData):
-        The input AnnData object, updated to include the phenotype classifications for each cell. The phenotyping results can be found in `adata.obs[label]`, where `label` is the name specified by the user for the phenotype column.
-
-    Example:
-    ```python
-    # Load the phenotype workflow CSV file
-    phenotype = pd.read_csv("path/to/csv/file/")
-
-    # Apply phenotyping to cells based on the specified workflow
-    adata = sm.tl.phenotype_cells(adata, phenotype=phenotype, gate=0.5, label="phenotype")
-    ```
+        # Apply phenotyping to cells based on the specified workflow
+        adata = dvp.tl.scimap_phenotype(adata, phenotype=phenotype, gate=0.5, label="phenotype")
 
     """
     # Create a dataframe from the adata object

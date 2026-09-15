@@ -23,7 +23,7 @@ def dual_axis_boxplots(
 
     Parameters
     ----------
-    adata : AnnData
+    adata : anndata.AnnData
         AnnData object's observation metadata (adata.obs) is used.
     feature_1 : str
         Column name in `adata.obs` for the first feature to plot on the left y-axis.
@@ -42,7 +42,7 @@ def dual_axis_boxplots(
     **kwargs
         Additional keyword arguments passed to matplotlib boxplot/scatter.
 
-    Returns:
+    Returns
     -------
     fig : matplotlib.figure.Figure or None
         The figure object if return_fig is True, otherwise None.

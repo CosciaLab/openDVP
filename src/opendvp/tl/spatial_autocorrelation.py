@@ -22,7 +22,7 @@ def spatial_autocorrelation(
 
     Parameters
     ----------
-    adata : AnnData
+    adata : anndata.AnnData
         Annotated data matrix where observations are cells and variables are genes.
     method : {'moran', 'geary'}, default 'moran'
         Spatial statistic to compute: 'moran' or 'geary'.
@@ -35,12 +35,12 @@ def spatial_autocorrelation(
     island_threshold : float, default 0.1 (10%)
         If more than this fraction of samples are islands (no neighbors), raises error.
 
-    Returns:
+    Returns
     -------
     None
         Results are added to adata.var in-place.
 
-    Raises:
+    Raises
     ------
     ValueError
         If method is not 'moran' or 'geary'.

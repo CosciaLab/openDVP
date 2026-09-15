@@ -18,7 +18,7 @@ def stacked_barplot(
 
     Parameters
     ----------
-    df : pd.DataFrame
+    df : pandas.DataFrame
         Input dataframe containing phenotype and RCN columns.
     phenotype_col : str
         Column name for phenotypes.
@@ -35,8 +35,8 @@ def stacked_barplot(
     **bar_kwargs : dict
         Additional keyword arguments passed to `ax.bar`.
 
-    Returns:
-    --------
+    Returns
+    -------
     fig : matplotlib.figure.Figure
         The matplotlib Figure object.
     ax : matplotlib.axes.Axes

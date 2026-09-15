@@ -14,12 +14,12 @@ def parse_color_for_qupath(color_dict: dict | None, adata: ad.AnnData, adata_obs
     ----------
     color_dict : dict
         Dictionary mapping category names to color definitions (RGB tuples, lists, or hex strings).
-    adata : ad.AnnData
+    adata : anndata.AnnData
         AnnData object containing observation data.
     adata_obs_key : str
         Key in adata.obs specifying the categorical variable to assign colors to.
 
-    Returns:
+    Returns
     -------
     dict
         Dictionary mapping category names to [R, G, B] lists with values in the range 0-255.

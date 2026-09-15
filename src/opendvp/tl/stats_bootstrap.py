@@ -58,27 +58,29 @@ def stats_bootstrap(
         Seed for the random number generator, ensuring reproducibility.
     nan_policy : {'omit', 'raise', 'propagate'}, optional (default="omit")
         How to handle NaN values. Options are:
-            - "omit": ignore NaNs during calculations,
-            - "raise": raise an error if NaNs are encountered,
-            - "propagate": allow NaNs to propagate in the output.
 
-    Returns:
+        - ``"omit"``: ignore NaNs during calculations,
+        - ``"raise"``: raise an error if NaNs are encountered,
+        - ``"propagate"``: allow NaNs to propagate in the output.
+
+    Returns
     -------
     pandas.DataFrame or tuple of pandas.DataFrame
         Depending on the flags `return_raw` and `return_summary`, the function returns:
-            - If both are True: a tuple (raw_df, summary_df)
-              * raw_df: DataFrame in long format with columns "feature", "cv", "subset_size", and "bootstrap_id".
-              * summary_df: DataFrame with the aggregated CV (using `summary_func`) per feature and subset size,
-                with columns "subset_size", "feature", and "cv_summary".
-            - If only one of the flags is True, only that DataFrame is returned.
-            - If neither is True, returns None.
 
-    Raises:
+        - If both are True, a tuple ``(raw_df, summary_df)``, where ``raw_df`` is a DataFrame
+          in long format with columns "feature", "cv", "subset_size" and "bootstrap_id", and
+          ``summary_df`` holds the aggregated CV (using `summary_func`) per feature and subset
+          size, with columns "subset_size", "feature" and "cv_summary".
+        - If only one of the flags is True, only that DataFrame is returned.
+        - If neither is True, returns None.
+
+    Raises
     ------
     ValueError
         If any of the specified subset sizes is larger than the number of rows in `dataframe`.
 
-    Examples:
+    Examples
     --------
     >>> import pandas as pd
     >>> import numpy as np

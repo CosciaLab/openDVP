@@ -16,7 +16,7 @@ def mask_to_polygons(
 ) -> gpd.GeoDataFrame:
     """Convert a labeled segmentation mask (TIFF file) into a GeoDataFrame of polygons and/or multipolygons.
 
-    Parameters:
+    Parameters
     ----------
     mask_path : str
         Path to a 2D labeled segmentation mask TIFF. Pixel values represent cell IDs; background is 0.
@@ -25,12 +25,12 @@ def mask_to_polygons(
     max_memory_mb : int, optional
         Maximum memory (in MB) allowed to safely process the image (default: 16000).
 
-    Returns:
+    Returns
     -------
-    gpd.GeoDataFrame
+    geopandas.GeoDataFrame
         A GeoDataFrame containing polygons/multipolygons and their cell IDs.
 
-    Raises:
+    Raises
     ------
     ValueError
         If the estimated memory usage exceeds max_memory_mb or cell IDs exceed int32 range.

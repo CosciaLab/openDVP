@@ -17,7 +17,7 @@ def stats_anova(
 
     Parameters
     ----------
-    adata : AnnData
+    adata : anndata.AnnData
         AnnData object.
     grouping : str
         Column header in adata.obs, categorizing different groups to test.
@@ -27,9 +27,9 @@ def stats_anova(
         Post-hoc test to perform on significant features. Currently only 'pairwise_tukey' is supported.
         If None, no post-hoc test is run.
 
-    Returns:
+    Returns
     -------
-    ad.AnnData
+    anndata.AnnData
         A new AnnData object with ANOVA results in `.var` and post-hoc results for significant
         features in `.uns['anova_posthoc']`.
     """

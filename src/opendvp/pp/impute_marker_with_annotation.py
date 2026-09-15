@@ -11,9 +11,9 @@ def impute_marker_with_annotation(
 
     Using a specified quantile value from the variable's distribution.
 
-    Parameters:
+    Parameters
     ----------
-    adata : ad.AnnData
+    adata : anndata.AnnData
         The annotated data matrix.
     target_variable : str
         The variable (gene/feature) to impute.
@@ -22,9 +22,9 @@ def impute_marker_with_annotation(
     quantile_for_imputation : float, optional
         The quantile to use for imputation (default is 0.05).
 
-    Returns:
+    Returns
     -------
-    ad.AnnData
+    anndata.AnnData
         A copy of the AnnData object with imputed values.
     """
     if not (0 <= quantile_for_imputation <= 1):

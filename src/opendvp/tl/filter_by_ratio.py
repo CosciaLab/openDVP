@@ -21,7 +21,7 @@ def filter_by_ratio(
 
     Parameters
     ----------
-    adata : ad.AnnData
+    adata : anndata.AnnData
         AnnData object containing the data matrix and metadata.
     end_cycle : str
         Name of the marker/column for the numerator of the ratio.
@@ -37,12 +37,12 @@ def filter_by_ratio(
         If True, adds intermediate boolean columns indicating which cells passed the
         lower bound (`_pass_nottoolow`) and upper bound (`_pass_nottoohigh`).
 
-    Returns:
+    Returns
     -------
-    ad.AnnData
+    anndata.AnnData
         A new AnnData object with new columns in `.obs` for the ratio and pass/fail flags.
 
-    Raises:
+    Raises
     ------
     ValueError
         If marker names are not found or if min_ratio >= max_ratio.

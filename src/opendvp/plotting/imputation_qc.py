@@ -24,8 +24,8 @@ def imputation_qc(
     process. The plot also includes a 2D histogram and kernel density estimate to
     visualize the distribution of data points.
 
-    Parameters:
-    -------------
+    Parameters
+    ----------
     adata
         An AnnData object containing the imputed data in `adata.X` and the
         unimputed data in a specified layer.
@@ -44,12 +44,12 @@ def imputation_qc(
         If True, displays the names of the highlighted genes on the plot.
         Defaults to True.
 
-    Returns:
-    ---------
+    Returns
+    -------
     A matplotlib Figure object if `return_fig` is True, otherwise None.
 
-    Example:
-    ---------
+    Examples
+    --------
     >>> import anndata
     >>> import numpy as np
     >>> import pandas as pd

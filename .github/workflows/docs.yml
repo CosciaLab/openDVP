@@ -6,6 +6,10 @@ on:
       - main
     paths:
       - 'docs/**'
+      - 'src/**'
+      - 'pyproject.toml'
+      - '.github/workflows/docs.yml'
+  workflow_dispatch:
 
 jobs:
   build-docs:
@@ -32,7 +36,7 @@ jobs:
         run: "uv sync"
 
       - name: Build docs
-        run: uv run --group docs sphinx-build -b html docs docs/_build/html
+        run: uv run --group docs sphinx-build -b html -W docs docs/_build/html
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4

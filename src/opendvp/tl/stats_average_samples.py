@@ -18,18 +18,18 @@ def stats_average_samples(adata: ad.AnnData, categories: list[str]) -> ad.AnnDat
 
     Parameters
     ----------
-    adata : AnnData
+    adata : anndata.AnnData
         The annotated data matrix to be averaged.
     categories : list of str
         A list of column names in `adata.obs` to group by for averaging.
 
-    Returns:
+    Returns
     -------
-    AnnData
+    anndata.AnnData
         A new AnnData object where observations are the unique category combinations
         and variables are the averaged features.
 
-    Raises:
+    Raises
     ------
     ValueError
         If any of the specified categories are not in `adata.obs.columns`.

@@ -20,60 +20,64 @@ def adata_to_qupath(
     This function matches shapes in a GeoDataFrame to metadata in an AnnData object.
     Assigns class labels and colors for QuPath visualization, and optionally simplifies geometries.
 
-    Parameters:
+    Parameters
     ----------
-    adata: AnnData
+    adata : anndata.AnnData
         AnnData object containing cell metadata (e.g., cell types, phenotypes).
-    geodataframe: GeoDataFrame
+    geodataframe : geopandas.GeoDataFrame
         GeoDataFrame containing shapes (detections or annotations) to be exported.
-    adataobs_on: str, default "CellID"
+    adataobs_on : str, default "CellID"
         Column in adata.obs to match with geodataframe.
-    gdf_on: str or None, default "CellID"
+    gdf_on : str or None, default "CellID"
         Column in geodataframe to match with adata.obs. If None and gdf_index is True, uses the index.
-    gdf_index: bool, default False
+    gdf_index : bool, default False
         If True, uses the geodataframe index for matching instead of a column.
-    classify_by: str or None, optional
+    classify_by : str or None, optional
         Column in adata.obs to use for classifying detections (e.g., cell type or phenotype).
-    color_dict: dict or None, optional
+    color_dict : dict or None, optional
         Dictionary mapping class/category names to RGB color lists (e.g., {'Tcell': [255, 0, 0]}).
         If not provided, a default color cycle will be generated.
         Hexcodes colors are acceptable as well.
-    simplify_value: float, default 1.0
+    simplify_value : float, default 1.0
         Tolerance for geometry simplification. Set to None to disable simplification.
-    save_as_detection: bool, default True
+    save_as_detection : bool, default True
         If True, sets 'objectType' to 'detection' for QuPath.
 
-    Returns:
-        GeoDataFrame:
-            The resulting GeoDataFrame with QuPath-compatible columns.
+    Returns
+    -------
+    geopandas.GeoDataFrame
+        The resulting GeoDataFrame with QuPath-compatible columns.
 
-    Raises:
-        ValueError:
-            If input types are incorrect, required columns are missing, or no matches are found between adata and geodataframe.
+    Raises
+    ------
+    ValueError
+        If input types are incorrect, required columns are missing, or no matches are found
+        between adata and geodataframe.
 
-    Example:
-        >>> import anndata as ad
-        >>> import geopandas as gpd
-        >>> from opendvp.io.adata_to_qupath import adata_to_qupath
-        >>> # Create example AnnData
-        >>> import pandas as pd
-        >>> obs = pd.DataFrame({"CellID": [1, 2, 3], "celltype": ["A", "B", "A"]})
-        >>> adata = ad.AnnData(obs=obs)
-        >>> # Create example GeoDataFrame
-        >>> from shapely.geometry import Point
-        >>> gdf = gpd.GeoDataFrame({"CellID": [1, 2, 3]}, geometry=[Point(0, 0), Point(1, 1), Point(2, 2)])
-        >>> # Export with classification
-        >>> result = adata_to_qupath(
-        ...     adata=adata,
-        ...     geodataframe=gdf,
-        ...     adataobs_on="CellID",
-        ...     gdf_on="CellID",
-        ...     classify_by="celltype",
-        ...     color_dict={"A": [255, 0, 0], "B": [0, 255, 0]},
-        ...     simplify_value=0.5,
-        ...     save_as_detection=True,
-        ... )
-        >>> print(result.head())
+    Examples
+    --------
+    >>> import anndata as ad
+    >>> import geopandas as gpd
+    >>> from opendvp.io.adata_to_qupath import adata_to_qupath
+    >>> # Create example AnnData
+    >>> import pandas as pd
+    >>> obs = pd.DataFrame({"CellID": [1, 2, 3], "celltype": ["A", "B", "A"]})
+    >>> adata = ad.AnnData(obs=obs)
+    >>> # Create example GeoDataFrame
+    >>> from shapely.geometry import Point
+    >>> gdf = gpd.GeoDataFrame({"CellID": [1, 2, 3]}, geometry=[Point(0, 0), Point(1, 1), Point(2, 2)])
+    >>> # Export with classification
+    >>> result = adata_to_qupath(
+    ...     adata=adata,
+    ...     geodataframe=gdf,
+    ...     adataobs_on="CellID",
+    ...     gdf_on="CellID",
+    ...     classify_by="celltype",
+    ...     color_dict={"A": [255, 0, 0], "B": [0, 255, 0]},
+    ...     simplify_value=0.5,
+    ...     save_as_detection=True,
+    ... )
+    >>> print(result.head())
     """
     if not isinstance(adata, ad.AnnData):
         raise ValueError("adata must be an instance of anndata.AnnData")

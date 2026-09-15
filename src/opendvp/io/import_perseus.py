@@ -14,9 +14,9 @@ def import_perseus(path_to_perseus_txt: str, n_var_metadata_rows: int = 4) -> ad
     n_var_metadata_rows : int, default 4
         Number of metadata rows at the bottom of the columns to use as var headers.
 
-    Returns:
+    Returns
     -------
-    AnnData
+    anndata.AnnData
         AnnData object with imported data.
     """
     logger.info(f"Reading Perseus file from: {path_to_perseus_txt}")

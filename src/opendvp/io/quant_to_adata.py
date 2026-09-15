@@ -17,8 +17,8 @@ def quant_to_adata(
     Extract metadata and marker intensities, and return an AnnData object suitable for spatial omics workflows.
     The function expects specific metadata columns and parses marker columns by splitting their names into mathematical operation and marker name.
 
-    Parameters:
-    ------------
+    Parameters
+    ----------
     path : str
         Path to the CSV file containing cell quantification data.
     index_into_1_based : str | None
@@ -26,13 +26,13 @@ def quant_to_adata(
         This is done so that cell index matches segmentation mask values
         If None, no modifications will be performed
 
-    Returns:
-    ---------
-    ad.AnnData
+    Returns
+    -------
+    anndata.AnnData
         AnnData object with cell metadata in `.obs` and marker intensities in `.X` and `.var`.
 
-    Examples:
-    ----------
+    Examples
+    --------
     >>> from opendvp.io import quant_to_adata
     >>> adata = quant_to_adata("my_quantification.csv")
     >>> print(adata)
@@ -40,8 +40,8 @@ def quant_to_adata(
     >>> adata.obs.head()
     >>> adata.var.head()
 
-    Notes:
-    ------
+    Notes
+    -----
     - The CSV file must contain the following metadata columns: 'CellID', 'Y_centroid', 'X_centroid', 'Area', 'MajorAxisLength', 'MinorAxisLength', 'Eccentricity', 'Orientation', 'Extent', 'Solidity'.
     - All other columns are treated as marker intensities and are split into 'math' and 'marker' components for AnnData.var.
     - Raises ValueError if required metadata columns are missing or if the file is not a CSV.

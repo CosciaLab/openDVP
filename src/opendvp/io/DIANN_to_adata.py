@@ -30,15 +30,15 @@ def DIANN_to_adata(
     metadata_filepath_header : str, default 'File.Name'
         Name of the column in metadata file that contains the DIANN file paths.
     filter_contamination : bool, default True
-        If True, removes Protein.Names labelled with 'Cont_' as a prefix.
+        If True, removes Protein.Names labelled with a ``Cont_`` prefix.
     filter_nan_genes : bool, default True
         If True, removes variable rows that contain NaN in the 'Genes' column.
     n_of_protein_metadata_cols : int, default 4
         Number of protein metadata columns at the start of the DIANN file.
 
-    Returns:
+    Returns
     -------
-    AnnData
+    anndata.AnnData
         AnnData object with imported data.
     """
     diann_df = pd.read_csv(DIANN_path, sep=DIANN_sep)

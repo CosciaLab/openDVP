@@ -58,8 +58,8 @@ extensions = [
 autosummary_generate = True
 autodoc_member_order = "groupwise"
 default_role = "literal"
-napoleon_google_docstring = True  # changed this
-napoleon_numpy_docstring = False  # changed this
+napoleon_google_docstring = False
+napoleon_numpy_docstring = True
 napoleon_include_init_with_doc = False
 napoleon_use_rtype = True
 napoleon_use_param = True
@@ -93,9 +93,20 @@ intersphinx_mapping = {
     "numpy": ("https://numpy.org/doc/stable/", None),
     "matplotlib": ("https://matplotlib.org/stable/", None),
     "pandas": ("https://pandas.pydata.org/pandas-docs/stable/", None),
+    "geopandas": ("https://geopandas.org/en/stable/", None),
+    "scipy": ("https://docs.scipy.org/doc/scipy/", None),
+    "sklearn": ("https://scikit-learn.org/stable/", None),
 }
 
-exclude_patterns = ["_build", "Thumbs.db", ".DS_Store", "**.ipynb_checkpoints"]
+exclude_patterns = [
+    "_build",
+    "Thumbs.db",
+    ".DS_Store",
+    "**.ipynb_checkpoints",
+    # placeholder notebooks with no content yet
+    "Tutorials/T4_Segmask_to_shapes.ipynb",
+    "Tutorials/T5_Thresholding_tutorial.ipynb",
+]
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -109,3 +120,19 @@ html_title = project
 pygments_style = "default"
 
 nitpick_ignore = []
+
+# numpydoc type strings are prose, not just types: napoleon splits them on commas and sphinx
+# then tries to resolve each fragment as a class. Ignore the fragments that are never objects.
+nitpick_ignore_regex = [
+    ("py:class", r"^optional$"),
+    ("py:class", r"^default.*"),
+    ("py:class", r"^callable$"),
+    ("py:class", r"^array-like$"),
+    ("py:class", r"^[\d.]+%?$"),
+    ("py:class", r"^[\"'{].*"),
+    ("py:class", r".*[\"'}]$"),
+    # libpysal publishes no objects.inv to intersphinx against
+    ("py:class", r"^libpysal\..*"),
+    # private paths sphinx resolves annotations to; anndata only publishes anndata.AnnData
+    ("py:class", r"^anndata\._core\..*"),
+]

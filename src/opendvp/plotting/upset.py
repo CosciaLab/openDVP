@@ -26,9 +26,9 @@ def upset(
     e.g if 0.5, if only 40% of samples have a valid value that variable is not counted for that group.
     The final UpSet plot shows presence/absence of variables across the specified groups.
 
-    Parameters:
-    -----------
-    adata : AnnData
+    Parameters
+    ----------
+    adata : anndata.AnnData
         Annotated data matrix with observations (samples) as rows and variables as columns.
     groupby : str
         Column name in `adata.obs` used to group samples before computing presence.
@@ -42,13 +42,13 @@ def upset(
     **kwargs
         Additional keyword arguments passed to UpSet.
 
-    Returns:
-    ---------
+    Returns
+    -------
     matplotlib.figure.Figure or None
         The matplotlib Figure object containing the UpSet plot, or None if not requested.
 
-    Example:
-    ---------
+    Examples
+    --------
     >>> upset(adata, groupby="condition", threshold=1000, min_presence_fraction=0.2)
     """
     # TODO, optional removal of proteins not in any group (based on cutoff)

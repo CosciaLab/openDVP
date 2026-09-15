@@ -14,7 +14,7 @@ def pca_loadings(
 
     Parameters
     ----------
-    adata : AnnData
+    adata : anndata.AnnData
         Annotated data matrix with PCA results in adata.varm['PCs'] and adata.uns['pca']['variance_ratio'].
     top : int, optional
         Number of top features to label per PC.
@@ -27,7 +27,7 @@ def pca_loadings(
     **kwargs
         Additional keyword arguments passed to matplotlib scatter.
 
-    Returns:
+    Returns
     -------
     fig : matplotlib.figure.Figure or None
         The figure object if return_fig is True, otherwise None.

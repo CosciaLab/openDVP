@@ -1,14 +1,14 @@
 # Created on Fri Mar  6 12:13:22 2020
 # @author: Ajit Johnson Nirmal
 
-"""!!! abstract "Short Description"
-    `sm.pp.rescale`: The function allows users to rescale the data. This step is often performed to standardize the
-    the expression of all markers to a common scale. The rescaling can be either performed automatically or manually.
-    User defined gates can be passed to rescale the data manually, else the algorithm fits a GMM (gaussian mixed model) to
-    identify the cutoff point. The resultant data is between 0-1 where values below 0.5 are considered non-expressing while
-    above 0.5 is considered positive.
+"""Rescale marker expression onto a common 0-1 scale.
 
-## Function
+Adapted from `scimap <https://github.com/labsyspharm/scimap>`_ (``sm.pp.rescale``).
+
+Rescaling standardises the expression of all markers onto a common scale. It can be performed
+automatically, by fitting a Gaussian mixture model to identify the cutoff point, or manually
+from user-defined gates. The resulting values lie between 0 and 1, where values below 0.5 are
+considered non-expressing and values above 0.5 positive.
 """
 
 # Import library
@@ -71,23 +71,27 @@ def scimap_rescale(
             Must be at least 2. Gate will be placed between the highest two components.
             Default is 3.
 
-    Returns:
-        Modified AnnData Object (AnnData):
-            Returns the input `adata` object with updated expression data (`adata.X`) after rescaling. The gates applied, either provided manually or determined automatically, are stored within `adata.uns['gates']`.
+    Returns
+    -------
+    anndata.AnnData
+        The input `adata` object with updated expression data (`adata.X`) after rescaling.
+        The gates applied, either provided manually or determined automatically, are stored
+        within `adata.uns['gates']`.
 
-    Example:
-        ```python
+    Examples
+    --------
+    .. code-block:: python
+
         # Example with manual gates
         manual_gate = pd.DataFrame({"marker": ["CD3D", "KI67"], "gate": [7, 8]})
-        adata = sm.pp.rescale(adata, gate=manual_gate, failed_markers={"all": ["CD20", "CD21"]})
+        adata = dvp.pp.scimap_rescale(adata, gate=manual_gate, failed_markers={"all": ["CD20", "CD21"]})
 
         # Importing gates from a CSV
         manual_gate = pd.read_csv("manual_gates.csv")
-        adata = sm.pp.rescale(adata, gate=manual_gate, failed_markers={"all": ["CD20", "CD21"]})
+        adata = dvp.pp.scimap_rescale(adata, gate=manual_gate, failed_markers={"all": ["CD20", "CD21"]})
 
         # Running without manual gates to use GMM for automatic gate determination
-        adata = sm.pp.rescale(adata, gate=None, failed_markers={"all": ["CD20", "CD21"]})
-        ```
+        adata = dvp.pp.scimap_rescale(adata, gate=None, failed_markers={"all": ["CD20", "CD21"]})
 
     """
     # log=True; imageid='imageid'; failed_markers=None; method='all'; random_state=0
@@ -221,12 +225,16 @@ def scimap_rescale(
 
     # Find GMM based gates
     def gmm_gating(marker, data, gmm_components):
-        """Internal function to identify gates using GMM
+        """Identify gates using a Gaussian Mixture Model.
 
-        Parameters:
-            marker: marker name
-            data: expression data
-            gmm_components: number of components for GMM (minimum 2)
+        Parameters
+        ----------
+        marker : str
+            Marker name.
+        data : pandas.DataFrame
+            Expression data.
+        gmm_components : int
+            Number of components for the GMM (minimum 2).
         """
         # Ensure minimum of 2 components
         gmm_components = max(2, gmm_components)

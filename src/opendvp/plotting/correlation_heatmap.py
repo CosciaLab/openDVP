@@ -27,9 +27,9 @@ def correlation_heatmap(
     are grouped together. The heatmap is plotted with annotated values in the top-right triangle and colors only
     in the bottom-left triangle for clarity.
 
-    Parameters:
-    ------------
-    adata : AnnData
+    Parameters
+    ----------
+    adata : anndata.AnnData
         Annotated data matrix.
     correlation_method : {"pearson", "kendall", "spearman"}, optional
         Method to calculate the correlation (default = "spearman").
@@ -46,13 +46,13 @@ def correlation_heatmap(
     ax : matplotlib.axes.Axes, optional
         Axes object to plot on. If None, a new figure and axes are created.
 
-    Returns:
-    ---------
+    Returns
+    -------
     fig : matplotlib.figure.Figure or None
         The figure object if return_fig is True, otherwise None.
 
-    Notes:
-    -------
+    Notes
+    -----
     - The correlation matrix is clustered and reordered using hierarchical clustering (average linkage) on 1 - correlation distance.
     - Both rows and columns are reordered to group similar features/samples together.
     """

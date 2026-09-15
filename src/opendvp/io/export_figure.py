@@ -15,8 +15,8 @@ def export_figure(fig: matplotlib.figure.Figure, path_to_dir: str, suffix: str, 
     both PDF and SVG formats with the specified DPI. For SVG export, it ensures
     that text remains editable in vector graphics editors like Adobe Illustrator.
 
-    Parameters:
-    ------------
+    Parameters
+    ----------
     fig : matplotlib.figure.Figure
         The matplotlib figure object to be saved.
     path_to_dir : str
@@ -26,8 +26,8 @@ def export_figure(fig: matplotlib.figure.Figure, path_to_dir: str, suffix: str, 
     dpi : int, optional
         Resolution in dots per inch for the saved figure. Default is 300.
 
-    Returns:
-    ---------
+    Returns
+    -------
     None
 
     Prints:
@@ -35,7 +35,7 @@ def export_figure(fig: matplotlib.figure.Figure, path_to_dir: str, suffix: str, 
     str
         Confirmation message with the full paths to the saved PDF and SVG files.
 
-    Examples:
+    Examples
     --------
     >>> import matplotlib.pyplot as plt
     >>> fig, ax = plt.subplots()

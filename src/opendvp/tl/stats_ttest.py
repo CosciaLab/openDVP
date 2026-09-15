@@ -13,9 +13,9 @@ date = datetime.now().strftime("%Y%m%d")
 def stats_ttest(adata: ad.AnnData, grouping: str, group1: str, group2: str, FDR_threshold: float = 0.05) -> ad.AnnData:
     """Perform a t-test for all columns of an AnnData object between two groups.
 
-    Parameters:
-    -------------
-    adata : AnnData
+    Parameters
+    ----------
+    adata : anndata.AnnData
         AnnData object.
     grouping : str
         Column header in adata.obs, categorizing different groups to test.
@@ -26,8 +26,8 @@ def stats_ttest(adata: ad.AnnData, grouping: str, group1: str, group2: str, FDR_
     FDR_threshold : float, default 0.05
         The threshold for the FDR correction.
 
-    Returns:
-    ----------
+    Returns
+    -------
     None
         Results are saved to adata.var in-place.
     """

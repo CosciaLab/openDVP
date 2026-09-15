@@ -19,9 +19,9 @@ def density(
 ) -> Figure | None:
     """Plot density (KDE) plots of protein abundance grouped by a categorical variable in AnnData.obs.
 
-    Parameters:
-    -------------
-    adata : AnnData
+    Parameters
+    ----------
+    adata : anndata.AnnData
         Annotated data matrix.
     color_by : str
         Column in adata.obs to group/hue by.
@@ -34,8 +34,8 @@ def density(
     **kwargs
         Additional keyword arguments passed to seaborn.kdeplot.
 
-    Returns:
-    -----------
+    Returns
+    -------
     fig : matplotlib.figure.Figure or None
         The figure object if return_fig is True, otherwise None.
     """

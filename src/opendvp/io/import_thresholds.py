@@ -11,24 +11,31 @@ def import_thresholds(gates_csv_path: str, sample_id: str | int | None = None, s
     with gate values of 0.0 (assumed not gated), optionally selects gates for a specific sample, and can
     log1p-transform gate values for downstream analysis (e.g., scimap). Logs progress and summary information.
 
-    Args:
-        gates_csv_path (str):
-            Path to the CSV file containing gate thresholds. Must end with '.csv'.
-        sample_id (str or int, optional):
-            If provided, only gates for this sample will be returned and the output column will be named accordingly.
-        scimap (bool, default True):
-            If True, applies log1p transformation and column rename, returning formats output for scimap.
+    Parameters
+    ----------
+    gates_csv_path : str
+        Path to the CSV file containing gate thresholds. Must end with '.csv'.
+    sample_id : str or int, optional
+        If provided, only gates for this sample will be returned and the output column will be
+        named accordingly.
+    scimap : bool, default True
+        If True, applies log1p transformation and column rename, formatting the output for scimap.
 
-    Returns:
-        pd.DataFrame: Filtered DataFrame containing valid gates, with columns including 'markers' and the sample_id
-        (if log1p=True), or the original columns if log1p=False.
+    Returns
+    -------
+    pandas.DataFrame
+        Filtered DataFrame containing valid gates, with columns 'markers' and the sample_id
+        (if `scimap=True`), or the original columns if `scimap=False`.
 
-    Raises:
-        ValueError: If the file extension is not '.csv', or required columns are missing.
+    Raises
+    ------
+    ValueError
+        If the file extension is not '.csv', or required columns are missing.
 
-    Example:
-        >>> gates = read_and_process_gates("gates.csv", sample_id="sample1", log1p=True)
-        >>> print(gates.head())
+    Examples
+    --------
+    >>> gates = import_thresholds("gates.csv", sample_id="sample1", scimap=True)
+    >>> print(gates.head())
     """
     if not gates_csv_path.endswith(".csv"):
         raise ValueError("The file should be a csv file")

@@ -1,16 +1,21 @@
 #!/usr/bin/env python3
 # Created on Mon Oct 12 17:03:56 2020
 # @author: Ajit Johnson Nirmal
-"""!!! abstract "Short Description"
-    `sm.tl.cluster`: This function is designed for clustering cells within the dataset, facilitating the identification of distinct cell populations based on their expression profiles or other relevant features. It supports three popular clustering algorithms:
+"""Cluster cells by expression profile or other features.
 
-    - **kmeans**: A partitioning method that divides the dataset into `k` clusters, each represented by the centroid of the data points in the cluster. It is suitable for identifying spherical clusters in the feature space.
+Adapted from `scimap <https://github.com/labsyspharm/scimap>`_ (``sm.tl.cluster``).
 
-    - **leiden**: An algorithm that refines the cluster partitioning by optimizing a modularity score, leading to the detection of highly connected communities. It is known for its ability to uncover fine-grained and highly cohesive clusters.
+Clusters cells within the dataset to identify distinct cell populations based on their
+expression profiles or other relevant features. Two algorithms are supported:
 
-    Each algorithm has its own set of parameters and assumptions, making some more suitable than others for specific types of dataset characteristics. Users are encouraged to select the clustering algorithm that best matches their data's nature and their analytical goals.
+- **kmeans**: a partitioning method that divides the dataset into ``k`` clusters, each
+  represented by the centroid of the data points in the cluster. Suitable for identifying
+  spherical clusters in the feature space.
+- **leiden**: refines the cluster partitioning by optimizing a modularity score, detecting
+  highly connected communities. Known for uncovering fine-grained, highly cohesive clusters.
 
-## Function
+Each algorithm has its own parameters and assumptions, making some more suitable than others
+for particular dataset characteristics.
 """
 
 # Import library

@@ -9,7 +9,7 @@ def coefficient_of_variation(
 
     (CV = std / mean) along a specified axis of a DataFrame.
 
-    Parameters:
+    Parameters
     ----------
     df : pandas.DataFrame
         Input DataFrame.
@@ -25,12 +25,12 @@ def coefficient_of_variation(
         default is 1
 
 
-    Returns:
+    Returns
     -------
     pandas.Series
         CV values for each row or column.
 
-    Raises:
+    Raises
     ------
     ValueError
         If nan_policy='raise' and NaNs are present

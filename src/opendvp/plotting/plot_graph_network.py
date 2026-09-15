@@ -25,7 +25,7 @@ def plot_graph_network(
     **kwargs
         Additional keyword arguments passed to networkx.draw.
 
-    Returns:
+    Returns
     -------
     fig : matplotlib.figure.Figure or None
         The figure object if return_fig is True, otherwise None.

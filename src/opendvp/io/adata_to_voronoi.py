@@ -20,34 +20,34 @@ def adata_to_voronoi(
     This function computes Voronoi polygons from centroid coordinates in AnnData.obs
     Optionally annotates them with class labels and colors for QuPath, and returns a GeoDataFrame.
 
-    Parameters:
+    Parameters
     ----------
-    adata: AnnData
+    adata : anndata.AnnData
         AnnData object with cell metadata and centroid coordinates.
-    x_y: tuple, default ("X_centroid", "Y_centroid")
+    x_y : tuple, default ("X_centroid", "Y_centroid")
         Tuple of column names in adata.obs for X and Y coordinates.
-    classify_by: str or None, optional
+    classify_by : str or None, optional
         Column in adata.obs to use for classifying detections (e.g., cell type).
-    color_dict: dict or None, optional
+    color_dict : dict or None, optional
         Dictionary mapping class/category names to RGB color lists.
-    voronoi_area_quantile: float or None, default 0.98
+    voronoi_area_quantile : float or None, default 0.98
         Area quantile threshold for filtering large Voronoi polygons.
-    merge_adjacent_shapes: bool, default False
+    merge_adjacent_shapes : bool, default False
         If True, merges adjacent polygons of the same class.
-    save_as_detection: bool, default True
+    save_as_detection : bool, default True
         If True, sets 'objectType' to 'detection' for QuPath.
 
-    Returns:
+    Returns
     -------
-    GeoDataFrame:
+    geopandas.GeoDataFrame
         GeoDataFrame of Voronoi polygons with optional class/color annotation.
 
-    Raises:
-    -------
-    ValueError:
+    Raises
+    ------
+    ValueError
         If required columns are missing or input types are incorrect.
 
-    Examples:
+    Examples
     --------
     >>> import anndata as ad
     >>> import pandas as pd

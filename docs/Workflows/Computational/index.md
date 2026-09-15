@@ -2,7 +2,7 @@
 
 ## Introductory tutorials
 
-- [Get started with uv for python management](GettingStartedWithUV)
+- [Install openDVP](InstallOpenDVP)
 
 ## Image processing pipelines
 

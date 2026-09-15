@@ -20,9 +20,9 @@ def filter_by_annotation(
     This function assigns annotation classes to cells in an AnnData object by spatially joining cell centroids
     with polygons from a GeoJSON file. Each annotation class becomes a boolean column in `adata.obs`.
 
-    Parameters:
+    Parameters
     ----------
-    adata : ad.AnnData
+    adata : anndata.AnnData
         AnnData object with cell centroids in `adata.obs[['X_centroid', 'Y_centroid']]` and unique 'CellID'.
     path_to_geojson : str
         Path to the GeoJSON file containing polygon annotations with a 'classification' property.
@@ -36,12 +36,12 @@ def filter_by_annotation(
         If pathologist annotated tissue regions, call this: 'tissue_ann'
         If microscopist annotated imaging artefacts, call this: 'img_arts'
 
-    Returns:
+    Returns
     -------
-    ad.AnnData
+    anndata.AnnData
         The input AnnData with new boolean columns in `.obs` for each annotation class and a summary column.
 
-    Raises:
+    Raises
     ------
     ValueError
         If the GeoJSON is missing geometry, not polygons, or if required columns are missing.

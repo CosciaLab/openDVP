@@ -20,9 +20,9 @@ def export_adata(
 ) -> None:
     """Save an AnnData object as both .h5ad and optionally .parquet, .csv, or Perseus files in a checkpoint directory.
 
-    Parameters:
+    Parameters
     ----------
-    adata : AnnData
+    adata : anndata.AnnData
         AnnData object to save.
     path_to_dir : str
         Directory where the checkpoint folder will be created.
@@ -39,13 +39,13 @@ def export_adata(
     perseus : bool, optional
         If True, exports Perseus-compatible files in a subfolder. Default is False.
 
-    Returns:
+    Returns
     -------
     None
         This function saves files to disk and does not return a value.
 
-    Example:
-    -------
+    Examples
+    --------
     >>> from opendvp.io.export_adata import export_adata
     >>> import anndata as ad
     >>> import numpy as np

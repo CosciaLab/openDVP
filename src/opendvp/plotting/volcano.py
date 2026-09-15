@@ -29,7 +29,7 @@ def volcano(
 
     Parameters
     ----------
-    adata : AnnData
+    adata : anndata.AnnData
         An AnnData object with statistical test results stored in `adata.var`.
     x : str
         Column name in `adata.var` for the x-axis (e.g., log2 fold change).
@@ -56,7 +56,7 @@ def volcano(
     **kwargs
         Additional keyword arguments passed to matplotlib scatter.
 
-    Returns:
+    Returns
     -------
     fig : matplotlib.figure.Figure or None
         The `fig` object if `return_fig=True`, otherwise None.

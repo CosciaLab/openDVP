@@ -21,9 +21,9 @@ def filter_by_abs_value(
     Cells with feature values within the specified lower and upper bounds (inclusive)
     will pass the filter.
 
-    Parameters:
+    Parameters
     ----------
-    adata : ad.AnnData
+    adata : anndata.AnnData
         AnnData object containing the data matrix and metadata.
     feature_name : str
         Name of the feature to filter on. The function will automatically determine
@@ -42,13 +42,13 @@ def filter_by_abs_value(
         'absolute': Bounds are direct numerical values.
         'quantile': Bounds are quantiles (e.g., 0.25 for 25th percentile).
 
-    Returns:
+    Returns
     -------
-    ad.AnnData
+    anndata.AnnData
         A copy of the input AnnData with a new boolean column in `.obs` indicating which cells passed the filter.
         The new column name will be `f"{feature_name}_filtered_by_{mode}"`.
 
-    Raises:
+    Raises
     ------
     ValueError
         If `feature_name` is not found in `adata.var_names` or `adata.obs.columns`,

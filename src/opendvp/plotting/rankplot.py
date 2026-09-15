@@ -27,7 +27,7 @@ def rankplot(
 
     Parameters
     ----------
-    adata : AnnData
+    adata : anndata.AnnData
         Annotated data matrix.
     adata_obs_key : str
         Key in adata.obs indicating group labels.
@@ -46,7 +46,7 @@ def rankplot(
     **kwargs
         Additional keyword arguments passed to matplotlib plot.
 
-    Returns:
+    Returns
     -------
     fig : matplotlib.figure.Figure or None
         The figure object if return_fig is True, otherwise None.

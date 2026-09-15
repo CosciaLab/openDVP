@@ -28,9 +28,9 @@ def feature_comparison_boxplot(
 
     Features are sorted by the mean difference between the two groups.
 
-    Parameters:
-    ------------
-    adata : AnnData
+    Parameters
+    ----------
+    adata : anndata.AnnData
         An AnnData object containing the expression data and observation metadata.
     features : list[str]
         A list of feature names (from `adata.var_names`) to plot.
@@ -52,13 +52,13 @@ def feature_comparison_boxplot(
     **kwargs
         Additional keyword arguments passed to `seaborn.boxplot`.
 
-    Returns:
-    ---------
-    Figure | None
+    Returns
+    -------
+    matplotlib.figure.Figure | None
         The matplotlib Figure object if `return_fig` is True, otherwise None.
 
-    Raises:
-    --------
+    Raises
+    ------
     ValueError
         If validation of groups or features fails.
     """

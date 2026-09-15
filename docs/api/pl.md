@@ -2,14 +2,14 @@
 
 ## Imaging
 ```{eval-rst}
-.. module:: opendvp.plotting
+.. module:: opendvp.pl
 .. currentmodule:: opendvp
 
 .. autosummary::
     :toctree: generated
     
-    plotting.plot_graph_network
-    plotting.stacked_barplot
+    pl.plot_graph_network
+    pl.stacked_barplot
 ```
 
 ## Proteomics
@@ -17,15 +17,15 @@
 .. autosummary::
     :toctree: generated
 
-    plotting.abundance_histograms
-    plotting.correlation_heatmap
-    plotting.coefficient_of_variation
-    plotting.density
-    plotting.dual_axis_boxplots
-    plotting.feature_comparison_boxplot
-    plotting.imputation_qc
-    plotting.pca_loadings
-    plotting.rankplot
-    plotting.upset
-    plotting.volcano
+    pl.abundance_histograms
+    pl.correlation_heatmap
+    pl.coefficient_of_variation
+    pl.density
+    pl.dual_axis_boxplots
+    pl.feature_comparison_boxplot
+    pl.imputation_qc
+    pl.pca_loadings
+    pl.rankplot
+    pl.upset
+    pl.volcano
 ```

@@ -51,7 +51,7 @@ Ruff settings live in `pyproject.toml`.
 
 ## Adding a new function
 
-openDVP follows the [scverse](https://scverse.org/) layout: `io` for readers and writers, `pp` for preprocessing, `tl` for tools, `plotting` for figures, plus `imaging`, `metrics` and `utils`.
+openDVP follows the [scverse](https://scverse.org/) layout: `io` for readers and writers, `pp` for preprocessing, `tl` for tools, `pl` for figures, plus `imaging`, `metrics` and `utils`.
 
 One public function per file, and the file is named after the function.
 To add `my_function` to `tl`:

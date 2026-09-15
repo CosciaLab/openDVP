@@ -53,7 +53,7 @@ def imputation_qc(
     >>> import anndata
     >>> import numpy as np
     >>> import pandas as pd
-    >>> from opendvp.plotting import imputation_qc
+    >>> from opendvp.pl import imputation_qc
 
     >>> # Create a dummy AnnData object
     >>> n_obs, n_vars = 100, 50

@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 from libpysal.weights import DistanceBand
 
-from opendvp.plotting.plot_graph_network import plot_graph_network
+from opendvp.pl.plot_graph_network import plot_graph_network
 from opendvp.utils import logger
 
 

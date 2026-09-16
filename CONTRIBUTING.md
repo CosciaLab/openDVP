@@ -71,7 +71,7 @@ Open your PR against the `main` branch of `CosciaLab/openDVP`.
 - Keep it focused — one topic per PR is much easier to review than a large mixed change.
 - Explain what you changed and why, and link any issue it closes.
 - Make sure tests and linting pass locally first.
-- CI runs the test suite on Linux, macOS and Windows across Python 3.11–3.13.
+- CI runs the test suite on Linux, macOS and Windows across Python 3.12 and 3.13.
 
 If your change is user-visible, add a line to the `## [Unreleased]` section of [CHANGELOG.md](CHANGELOG.md) in the same PR.
 

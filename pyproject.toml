@@ -3,35 +3,49 @@ name = "openDVP"
 version = "0.7.4"
 description = "open-sourced Deep Visual Proteomics toolkit"
 readme = "README.md"
-requires-python = ">=3.11, <3.14"
+requires-python = ">=3.12, <3.14"
 license = "MIT"
 license-files = ["LICENSE"]
 authors = [{name = "Jose Nimo", email = "jose.nimo@mdc-berlin.de"}]
 maintainers = [{ name = "Jose Nimo", email = "jose.nimo@mdc-berlin.de" }]
 
 dependencies = [
-    "numpy >= 2.0.0",
-    "spatialdata >= 0.4.0",
-    "napari-spatialdata >= 0.5.5", #consider bumping
-    "spatialdata-plot ~= 0.2.9 ",
-    "ipykernel ~= 6.25",
-    "scanpy >=1.11, <1.14",
-    "loguru ~= 0.7.3",
-    "scipy ~= 1.13",
-    "statsmodels >=0.14.5",
     "adjusttext",
-    "pingouin >=0.5.5, <0.6",
-    "esda >=2.7, <2.8",
-    "upsetplot",
-    "perseuspy >=0.3.9,<0.4",
-    "gensim ~=4.4.0",
-    "pyqt6",
-    "tifffile     >= 2025.9.30",
+    "anndata >= 0.10",
+    "dask >= 2024.11",
+    "dask-image >= 2024.5",
+    "esda >= 2.7",
+    "gensim >= 4.4",
+    "geopandas >= 1.0",
+    "libpysal >= 4.9",
+    "loguru >= 0.7.3",
+    "matplotlib >= 3.8",
+    "networkx >= 3.0",
+    "numpy >= 2.0.0",
+    "pandas >= 2.0",
+    "perseuspy >= 0.3.9",
+    "pingouin >= 0.5.5",
+    "scanpy >= 1.11",
     "scikit-image >= 0.25.2",
     "scikit-learn >= 1.7.2",
-    "xarray       >= 2024.11.0",
-    "pyogrio      >= 0.11.1"
-    ]
+    "scipy >= 1.13",
+    "seaborn >= 0.13",
+    "shapely >= 2.0",
+    "spatialdata >= 0.8",
+    "statsmodels >= 0.14.5",
+    "tifffile >= 2025.9.30",
+    "tqdm >= 4.66",
+    "upsetplot",
+]
+
+# napari and its Qt binding are only needed for interactive viewing, which openDVP itself never
+# imports. pyqt6 in particular is GPL-3.0-only, so it does not belong in a core MIT install.
+[project.optional-dependencies]
+napari = [
+    "napari-spatialdata >= 0.7",
+    "spatialdata-plot >= 0.4",
+    "pyqt6",
+]
 
 [dependency-groups]
 dev = [
@@ -44,6 +58,7 @@ dev = [
   "twine"
 ]
 docs = [
+  "ipykernel ~= 6.25",
   "sphinx",
   "sphinx_copybutton",
   "sphinxcontrib-bibtex", 
@@ -66,11 +81,16 @@ docs = [
 requires = ["uv_build>=0.8.13,<0.9.0"]
 build-backend = "uv_build"
 
+# uv_build walks the source tree, so untracked local junk otherwise ends up in the artifacts
+[tool.uv.build-backend]
+source-exclude = ["**/.DS_Store"]
+wheel-exclude = ["**/.DS_Store"]
+
 ## FORMATTING AND LINTING ##
 
 [tool.ruff]
 line-length = 120
-target-version = "py311"
+target-version = "py312"
 
 [tool.ruff.lint]
 per-file-ignores."*/__init__.py" = [ "F401" ]

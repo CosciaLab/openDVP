@@ -49,9 +49,12 @@ def stats_ttest(adata: ad.AnnData, grouping: str, group1: str, group2: str, FDR_
         col_idx = adata_copy.var.index.get_loc(column)
         array_1 = X[mask1][:, col_idx].flatten()
         array_2 = X[mask2][:, col_idx].flatten()
-        result = pg.ttest(x=array_1, y=array_2, paired=False, alternative="two-sided")
-        t_values.append(result.iloc[0, 0])
-        p_values.append(result.iloc[0, 3])
+        # pingouin 0.6 renamed its hyphenated result columns ("p-val" -> "p_val")
+        result = pg.ttest(x=array_1, y=array_2, paired=False, alternative="two-sided").rename(
+            columns=lambda c: c.replace("-", "_")
+        )
+        t_values.append(result["T"].to_numpy()[0])
+        p_values.append(result["p_val"].to_numpy()[0])
         diffs.append(np.mean(array_1) - np.mean(array_2))
 
     # Add results to adata object

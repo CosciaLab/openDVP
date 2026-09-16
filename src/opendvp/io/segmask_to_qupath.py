@@ -47,7 +47,10 @@ def segmask_to_qupath(
         import dask_image.imread  # type: ignore
         import spatialdata  # type: ignore
     except ImportError as e:
-        raise ImportError("The 'spatialdata' package is required. Use 'pip install opendvp[spatialdata]'.") from e
+        raise ImportError(
+            "segmask_to_qupath needs dask, dask-image and spatialdata. All three are openDVP "
+            "dependencies, so this usually means a broken environment: try `pip install -U opendvp`."
+        ) from e
 
     # checks
     if not isinstance(path_to_mask, str):

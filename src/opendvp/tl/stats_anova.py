@@ -57,12 +57,16 @@ def stats_anova(
             continue
 
         try:
-            result = pg.anova(data=df_feature, dv="value", between="group", detailed=False)
-            F_vals.append(result["F"].to_numpy()[0])
-            p_vals.append(result["p-unc"].to_numpy()[0])
+            # pingouin 0.6 renamed its hyphenated result columns ("p-unc" -> "p_unc")
+            result = pg.anova(data=df_feature, dv="value", between="group", detailed=False).rename(
+                columns=lambda c: c.replace("-", "_")
+            )
+            F_val = result["F"].to_numpy()[0]
+            p_val = result["p_unc"].to_numpy()[0]
         except (ValueError, KeyError):
-            F_vals.append(np.nan)
-            p_vals.append(np.nan)
+            F_val = p_val = np.nan
+        F_vals.append(F_val)
+        p_vals.append(p_val)
 
     # --- 2. Add ANOVA results and perform multiple testing correction ---
     adata_copy.var["anova_F"] = F_vals
@@ -96,7 +100,9 @@ def stats_anova(
             col_idx = adata_copy.var.index.get_loc(feature_name)
             values = X[:, col_idx].flatten()
             df_feature = pd.DataFrame({"group": group_labels.to_numpy(), "value": values})
-            results_posthoc = pg.pairwise_tukey(data=df_feature, dv="value", between="group", effsize="hedges")
+            results_posthoc = pg.pairwise_tukey(data=df_feature, dv="value", between="group", effsize="hedges").rename(
+                columns=lambda c: c.replace("-", "_")
+            )
             results_posthoc.insert(0, "feature", feature_name)
             posthoc_results.append(results_posthoc)
 

@@ -2447,18 +2447,14 @@ dependencies = [
     { name = "esda" },
     { name = "gensim" },
     { name = "geopandas" },
-    { name = "ipykernel" },
     { name = "libpysal" },
     { name = "loguru" },
     { name = "matplotlib" },
-    { name = "napari-spatialdata" },
     { name = "networkx" },
     { name = "numpy" },
     { name = "pandas" },
     { name = "perseuspy" },
     { name = "pingouin" },
-    { name = "pyogrio" },
-    { name = "pyqt6" },
     { name = "scanpy" },
     { name = "scikit-image" },
     { name = "scikit-learn" },
@@ -2466,12 +2462,17 @@ dependencies = [
     { name = "seaborn" },
     { name = "shapely" },
     { name = "spatialdata" },
-    { name = "spatialdata-plot" },
     { name = "statsmodels" },
     { name = "tifffile" },
     { name = "tqdm" },
     { name = "upsetplot" },
-    { name = "xarray" },
+]
+
+[package.optional-dependencies]
+napari = [
+    { name = "napari-spatialdata" },
+    { name = "pyqt6" },
+    { name = "spatialdata-plot" },
 ]
 
 [package.dev-dependencies]
@@ -2485,6 +2486,7 @@ dev = [
     { name = "twine" },
 ]
 docs = [
+    { name = "ipykernel" },
     { name = "myst-nb" },
     { name = "myst-parser" },
     { name = "nbsphinx" },
@@ -2507,18 +2509,16 @@ requires-dist = [
     { name = "esda", specifier = ">=2.7,<2.8" },
     { name = "gensim", specifier = "~=4.4.0" },
     { name = "geopandas", specifier = ">=1.0" },
-    { name = "ipykernel", specifier = "~=6.25" },
     { name = "libpysal", specifier = ">=4.9" },
     { name = "loguru", specifier = "~=0.7.3" },
     { name = "matplotlib", specifier = ">=3.8" },
-    { name = "napari-spatialdata", specifier = ">=0.5.5" },
+    { name = "napari-spatialdata", marker = "extra == 'napari'", specifier = ">=0.5.5" },
     { name = "networkx", specifier = ">=3.0" },
     { name = "numpy", specifier = ">=2.0.0" },
     { name = "pandas", specifier = ">=2.0" },
     { name = "perseuspy", specifier = ">=0.3.9,<0.4" },
     { name = "pingouin", specifier = ">=0.5.5,<0.6" },
-    { name = "pyogrio", specifier = ">=0.11.1" },
-    { name = "pyqt6" },
+    { name = "pyqt6", marker = "extra == 'napari'" },
     { name = "scanpy", specifier = ">=1.11,<1.14" },
     { name = "scikit-image", specifier = ">=0.25.2" },
     { name = "scikit-learn", specifier = ">=1.7.2" },
@@ -2526,13 +2526,13 @@ requires-dist = [
     { name = "seaborn", specifier = ">=0.13" },
     { name = "shapely", specifier = ">=2.0" },
     { name = "spatialdata", specifier = ">=0.4.0" },
-    { name = "spatialdata-plot", specifier = "~=0.2.9" },
+    { name = "spatialdata-plot", marker = "extra == 'napari'", specifier = "~=0.2.9" },
     { name = "statsmodels", specifier = ">=0.14.5" },
     { name = "tifffile", specifier = ">=2025.9.30" },
     { name = "tqdm", specifier = ">=4.66" },
     { name = "upsetplot" },
-    { name = "xarray", specifier = ">=2024.11.0" },
 ]
+provides-extras = ["napari"]
 
 [package.metadata.requires-dev]
 dev = [
@@ -2545,6 +2545,7 @@ dev = [
     { name = "twine" },
 ]
 docs = [
+    { name = "ipykernel", specifier = "~=6.25" },
     { name = "myst-nb" },
     { name = "myst-parser" },
     { name = "nbsphinx" },

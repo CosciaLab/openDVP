@@ -33,6 +33,13 @@ conda create --name opendvp -y python=3.12
 pip install opendvp
 ```
 
+The interactive napari viewer is an optional extra, because it pulls in `PyQt6`, which is
+GPL-3.0-only:
+
+```bash
+pip install "opendvp[napari]"
+```
+
 To install the latest version:
 
 ```bash

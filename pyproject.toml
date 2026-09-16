@@ -12,9 +12,6 @@ maintainers = [{ name = "Jose Nimo", email = "jose.nimo@mdc-berlin.de" }]
 dependencies = [
     "numpy >= 2.0.0",
     "spatialdata >= 0.4.0",
-    "napari-spatialdata >= 0.5.5", #consider bumping
-    "spatialdata-plot ~= 0.2.9 ",
-    "ipykernel ~= 6.25",
     "scanpy >=1.11, <1.14",
     "loguru ~= 0.7.3",
     "scipy ~= 1.13",
@@ -25,12 +22,9 @@ dependencies = [
     "upsetplot",
     "perseuspy >=0.3.9,<0.4",
     "gensim ~=4.4.0",
-    "pyqt6",
     "tifffile     >= 2025.9.30",
     "scikit-image >= 0.25.2",
     "scikit-learn >= 1.7.2",
-    "xarray       >= 2024.11.0",
-    "pyogrio      >= 0.11.1",
     # imported directly by opendvp; previously arrived only transitively
     "anndata >= 0.10",
     "pandas >= 2.0",
@@ -45,6 +39,15 @@ dependencies = [
     "dask-image >= 2024.5",
     ]
 
+# napari and its Qt binding are only needed for interactive viewing, which openDVP itself never
+# imports. pyqt6 in particular is GPL-3.0-only, so it does not belong in a core MIT install.
+[project.optional-dependencies]
+napari = [
+    "napari-spatialdata >= 0.5.5",
+    "spatialdata-plot ~= 0.2.9",
+    "pyqt6",
+]
+
 [dependency-groups]
 dev = [
   "ruff",
@@ -56,6 +59,7 @@ dev = [
   "twine"
 ]
 docs = [
+  "ipykernel ~= 6.25",
   "sphinx",
   "sphinx_copybutton",
   "sphinxcontrib-bibtex", 

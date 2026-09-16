@@ -295,11 +295,18 @@ def scimap_phenotype(
 
     # Rearrange the rows back to original
     phenotype_labels = phenotype_labels.reindex(data.index)
-    phenotype_labels = phenotype_labels.replace("-rest", np.nan, regex=True)
+    # A cell that failed refinement is labelled "<parent>-rest"; drop those to NaN so the
+    # consolidation below falls through to the parent call. `where` rather than `replace`, because
+    # replace silently downcasts an all-NaN column, which pandas deprecated.
+    is_rest = phenotype_labels.apply(lambda column: column.astype("string").str.contains("-rest", na=False))
+    phenotype_labels = phenotype_labels.where(~is_rest)
 
     if verbose:
         print("Consolidating the phenotypes across all groups")
-    phenotype_labels_Consolidated = phenotype_labels.fillna(method="ffill", axis=1)
+    # Groups that matched nothing arrive as an all-NaN float column, and filling across a mixed
+    # object/float frame relies on downcasting that pandas deprecated. These are all labels, so
+    # normalise to a string dtype first and the fill is well defined.
+    phenotype_labels_Consolidated = phenotype_labels.astype("string").ffill(axis=1)
     phenotype_labels[label] = phenotype_labels_Consolidated.iloc[:, -1].values
 
     # replace nan to 'other cells'

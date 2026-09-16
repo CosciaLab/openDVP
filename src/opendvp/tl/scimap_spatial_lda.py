@@ -132,6 +132,10 @@ def scimap_spatial_lda(
         )
 
     """
+    # Only 'knn' and 'radius' build a neighbourhood below; anything else used to fall through to
+    # an UnboundLocalError on `ind`, several frames deep.
+    if method not in ("knn", "radius"):
+        raise ValueError(f"method must be 'knn' or 'radius', got {method!r}")
 
     # Function
     def spatial_lda_internal(

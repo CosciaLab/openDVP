@@ -26,6 +26,13 @@ the version and date. See [`.github/RELEASING.md`](.github/RELEASING.md).
 - `scripts/check_tutorials.py`, which executes the three tutorials in order and fails on any
   erroring cell. Nothing else ran them: the docs build renders their committed outputs without
   executing them. It is now a step in `.github/RELEASING.md`.
+- Tests for the ten public functions that had none: `rankplot`, `abundance_histograms`,
+  `pca_loadings`, `stacked_barplot`, `scimap_phenotype`, `scimap_spatial_cluster`,
+  `scimap_spatial_lda`, and the three `utils` exports. Every public function is now covered
+  (342 tests, up from 227 before this release).
+- `[tool.pytest.ini_options]`, which pins the test paths and turns a `FutureWarning` raised from
+  openDVP's own code into a test failure, so dependency deprecations get fixed while they are
+  still warnings
 
 ### Changed
 - **Relicensed from GPL-3.0 to MIT**, to reduce friction for other packages that want to
@@ -65,6 +72,24 @@ the version and date. See [`.github/RELEASING.md`](.github/RELEASING.md).
 - `segmask_to_qupath` raised an `ImportError` directing users to `pip install
   opendvp[spatialdata]`, an extra that has never existed
 - Untracked local files such as `.DS_Store` could be picked up into the built wheel and sdist
+- The CI badge in `README.md` and `docs/index.md` pointed at `workflows/testing.yml`; the file is
+  `test.yml`, so the badge had never rendered a status
+- `README.md` showed `conda create` under a "you can install openDVP via pip" heading, and never
+  activated the environment it created
+- Running the test suite opened real plot windows, because `pl` functions call `plt.show()` and
+  nothing forced a non-interactive matplotlib backend
+- `abundance_histograms` titled each panel using `adata.obs.raw_file_id[i]`, which indexes by
+  label rather than position. With a non-default `obs` index every panel was mislabelled.
+- `rankplot` used `matplotlib.cm.get_cmap`, which is deprecated and scheduled for removal
+- `scimap_phenotype` used `fillna(method="ffill")`, which pandas will remove, and relied on
+  `replace` downcasting an all-NaN column, which pandas has deprecated
+- `scimap_rescale` wrote gate values into a DataFrame slice rather than a copy
+- `stats_bootstrap` passed a numpy callable to `.agg`, which pandas is about to stop translating
+  to its own implementation
+- `impute_gaussian` emitted a bare numpy `RuntimeWarning` for a protein with no measured values
+  at all, and then imputed nothing for it without saying so; it now logs a warning
+- `scimap_spatial_lda` failed with `UnboundLocalError` several frames deep when given a `method`
+  other than `knn` or `radius`; it now raises a clear `ValueError`
 - Tutorial 1 downloaded the 133 MB dataset with raw `requests` and then never extracted it, so
   every later cell failed on a fresh machine
 - Tutorial 3 called `sdata.pl.render_images()` without importing `spatialdata_plot`, which is what

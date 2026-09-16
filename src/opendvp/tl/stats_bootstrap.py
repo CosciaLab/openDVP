@@ -144,9 +144,12 @@ def stats_bootstrap(
             .rename(columns={"cv": "cv_count_above_threshold"})
         )
     else:
+        # pandas is dropping its translation of numpy callables onto its own optimised
+        # implementations, so pass the equivalent string and keep today's behaviour
+        numpy_aliases = {np.mean: "mean", np.median: "median", np.std: "std", np.sum: "sum"}
         summary_df = (
             results_df.groupby(["subset_size", "feature"])["cv"]
-            .agg(summary_func)
+            .agg(numpy_aliases.get(summary_func, summary_func))
             .reset_index()
             .rename(columns={"cv": "cv_summary"})
         )
@@ -159,7 +162,7 @@ def stats_bootstrap(
             plt.ylabel(f"Count of CV > {cv_threshold} per feature")
         else:
             sns.violinplot(data=summary_df, x="subset_size", y="cv_summary")
-            plt.ylabel(f"Aggregated CV per feature ({summary_func.__name__})")
+            plt.ylabel(f"Aggregated CV per feature ({getattr(summary_func, '__name__', summary_func)})")
         plt.title("Bootstrap variability across subset sizes")
         plt.xlabel("Subset size")
         plt.tight_layout()

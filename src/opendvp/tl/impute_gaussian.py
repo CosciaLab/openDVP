@@ -74,8 +74,14 @@ def impute_gaussian(
     )
 
     for col in impute_df.columns:
-        col_mean = np.nanmean(impute_df[col])
-        col_stddev = np.nanstd(impute_df[col], ddof=1)
+        if impute_df[col].isna().all():
+            # numpy warns on an all-NaN slice, and there is nothing to draw an imputation from,
+            # so the column stays NaN. Say so rather than letting it pass silently.
+            logger.warning(f"'{col}' has no measured values, so it cannot be imputed and stays NaN")
+            col_mean = col_stddev = np.nan
+        else:
+            col_mean = np.nanmean(impute_df[col])
+            col_stddev = np.nanstd(impute_df[col], ddof=1)
         nan_mask = impute_df[col].isna()
         num_nans = nan_mask.sum()
 

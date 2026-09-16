@@ -87,6 +87,22 @@ build-backend = "uv_build"
 source-exclude = ["**/.DS_Store"]
 wheel-exclude = ["**/.DS_Store"]
 
+## TESTING ##
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# A FutureWarning raised from openDVP's own code is a change that will break us on some later
+# release of a dependency, so fail on those while they are still only warnings. Third-party
+# warnings, including ones openDVP cannot do anything about, stay warnings.
+#
+# The last field is the module the warning is *attributed* to, which for a pandas deprecation is
+# whichever openDVP module called pandas. It is matched anchored, so this catches `opendvp` and
+# everything under it and nothing else.
+filterwarnings = [
+    "default",
+    "error::FutureWarning:opendvp.*",
+]
+
 ## FORMATTING AND LINTING ##
 
 [tool.ruff]

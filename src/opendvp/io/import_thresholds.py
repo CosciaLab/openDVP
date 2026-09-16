@@ -1,10 +1,14 @@
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
 
 from opendvp.utils import logger
 
 
-def import_thresholds(gates_csv_path: str, sample_id: str | int | None = None, scimap: bool = True) -> pd.DataFrame:
+def import_thresholds(
+    gates_csv_path: str | Path, sample_id: str | int | None = None, scimap: bool = True
+) -> pd.DataFrame:
     """Read gate thresholds from a CSV file, filter, and optionally log1p-transform for scimap compatibility.
 
     This function loads a CSV file containing gate thresholds, validates required columns, filters out rows
@@ -13,7 +17,7 @@ def import_thresholds(gates_csv_path: str, sample_id: str | int | None = None, s
 
     Parameters
     ----------
-    gates_csv_path : str
+    gates_csv_path : str or pathlib.Path
         Path to the CSV file containing gate thresholds. Must end with '.csv'.
     sample_id : str or int, optional
         If provided, only gates for this sample will be returned and the output column will be
@@ -37,7 +41,7 @@ def import_thresholds(gates_csv_path: str, sample_id: str | int | None = None, s
     >>> gates = import_thresholds("gates.csv", sample_id="sample1", scimap=True)
     >>> print(gates.head())
     """
-    if not gates_csv_path.endswith(".csv"):
+    if Path(gates_csv_path).suffix != ".csv":
         raise ValueError("The file should be a csv file")
     gates = pd.read_csv(gates_csv_path)
     if "gate_value" not in gates.columns:

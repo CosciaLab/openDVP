@@ -1,10 +1,12 @@
+from pathlib import Path
+
 import geopandas
 
 from opendvp.utils import logger
 
 
 def segmask_to_qupath(
-    path_to_mask: str,
+    path_to_mask: str | Path,
     simplify_value: float = 1.0,
     save_as_detection: bool = True,
 ) -> geopandas.GeoDataFrame | None:
@@ -16,7 +18,7 @@ def segmask_to_qupath(
 
     Parameters
     ----------
-    path_to_mask : str
+    path_to_mask : str or pathlib.Path
         Path to the segmentation mask image (must be a .tif file).
     simplify_value : float, default 1
         Tolerance for geometry simplification. Set to None to disable simplification.
@@ -53,9 +55,9 @@ def segmask_to_qupath(
         ) from e
 
     # checks
-    if not isinstance(path_to_mask, str):
-        raise ValueError("path_to_mask must be a string")
-    if not path_to_mask.endswith(".tif"):
+    if not isinstance(path_to_mask, str | Path):
+        raise ValueError("path_to_mask must be a string or a Path")
+    if Path(path_to_mask).suffix != ".tif":
         raise ValueError("path_to_mask must end with .tif")
 
     # create empty sdata

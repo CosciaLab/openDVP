@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import anndata as ad
 import pandas as pd
 
@@ -7,7 +9,7 @@ from opendvp.utils import logger
 
 
 def quant_to_adata(
-    path: str,
+    path: str | Path,
     index_into_1_based: str | None = "CellID",
     meta_columns: list | None = None,
 ) -> ad.AnnData:
@@ -19,7 +21,7 @@ def quant_to_adata(
 
     Parameters
     ----------
-    path : str
+    path : str or pathlib.Path
         Path to the CSV file containing cell quantification data.
     index_into_1_based : str | None
         Column name to which to check if 0 exists, and if so add 1 to all values
@@ -47,7 +49,7 @@ def quant_to_adata(
     - Raises ValueError if required metadata columns are missing or if the file is not a CSV.
     - The function logs the number of cells and variables loaded, and the time taken for the operation.
     """
-    if not path.endswith(".csv"):
+    if Path(path).suffix != ".csv":
         raise ValueError("The file should be a csv file")
     quant_data = pd.read_csv(path)
     quant_data.index = quant_data.index.astype(str)

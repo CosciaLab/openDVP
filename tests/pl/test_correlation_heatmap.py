@@ -5,7 +5,7 @@ import pytest
 from anndata import AnnData
 
 matplotlib.use("Agg")  # Use non-interactive backend for tests
-from opendvp.plotting import correlation_heatmap
+from opendvp.pl import correlation_heatmap
 
 
 @pytest.fixture

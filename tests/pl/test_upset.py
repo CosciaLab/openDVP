@@ -4,7 +4,7 @@ import pandas as pd
 import pytest
 from anndata import AnnData
 
-from opendvp.plotting.upset import upset
+from opendvp.pl.upset import upset
 
 
 @pytest.fixture

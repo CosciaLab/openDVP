@@ -5,7 +5,7 @@
 
 io
 metrics
-plotting
+pl
 pp
 tl
 utils

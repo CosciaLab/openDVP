@@ -5,7 +5,7 @@ import pytest
 from anndata import AnnData
 
 matplotlib.use("Agg")  # For headless testing2
-from opendvp.plotting.density import density
+from opendvp.pl.density import density
 
 
 @pytest.fixture

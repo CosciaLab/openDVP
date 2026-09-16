@@ -45,7 +45,7 @@ def test_invalid_column_raises(simple_adata):
 #     def fake_plot_graph_network(w, coords, threshold):
 #         called['called'] = True
 #         called['threshold'] = threshold
-#     monkeypatch.setattr('opendvp.plotting.plot_graph_network.plot_graph_network', fake_plot_graph_network)
+#     monkeypatch.setattr('opendvp.pl.plot_graph_network.plot_graph_network', fake_plot_graph_network)
 #     spatial_hyperparameter_search(simple_adata, threshold_range=[5, 10], plot_network_at=5)
 #     assert called.get('called') is True
 #     assert called.get('threshold') == 5

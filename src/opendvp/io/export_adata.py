@@ -10,7 +10,7 @@ from opendvp.utils.utils import get_datetime
 
 def export_adata(
     adata: ad.AnnData,
-    path_to_dir: str,
+    path_to_dir: str | Path,
     checkpoint_name: str,
     export_as_cvs: bool = False,
     metadata_cols: list | None = None,
@@ -24,7 +24,7 @@ def export_adata(
     ----------
     adata : anndata.AnnData
         AnnData object to save.
-    path_to_dir : str
+    path_to_dir : str or pathlib.Path
         Directory where the checkpoint folder will be created.
     checkpoint_name : str
         Name for the checkpoint folder and file prefix.

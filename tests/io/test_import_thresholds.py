@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
 import pytest
@@ -62,3 +64,8 @@ def test_filter_by_sample(gates_csv):
     df = import_thresholds(gates_csv, sample_id="sample1")
     assert "sample1" in df.columns
     assert df.shape[0] == 2  # Two valid gates for sample1
+
+
+def test_accepts_a_path_object(gates_csv):
+    gates = import_thresholds(Path(gates_csv), sample_id="sample1")
+    assert isinstance(gates, pd.DataFrame)

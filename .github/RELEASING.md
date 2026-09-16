@@ -7,6 +7,7 @@ Maintainer notes. Contributors do not need this — see [CONTRIBUTING.md](../CON
 | Where | What you do |
 | --- | --- |
 | CLI, on a branch | Bump `version` in `pyproject.toml`. Rename `## [Unreleased]` in `CHANGELOG.md` to the version and date, leaving a fresh empty `[Unreleased]` above it. |
+| CLI | `uv run --all-extras --group docs python scripts/check_tutorials.py` — nothing else executes the notebooks. |
 | GitHub | Merge that PR into `main`. |
 | GitHub | Releases → Draft a new release → **type a new tag name** → Target `main` → Generate notes → trim → Publish. |
 | — | `publish.yml` builds and uploads to PyPI on its own. Nothing else to do. |
@@ -93,11 +94,29 @@ That is: rename `[Unreleased]` to the version and today's date, and leave a fres
 Two habits that make the generated list actually useful: give PRs descriptive titles (`Dev` tells
 nobody anything), and squash-merge so one PR is one line.
 
-### 3. Merge to `main`
+### 3. Check the tutorials still run
+
+Nothing else does. `nb_execution_mode` is `"off"`, so the docs build renders the notebooks'
+committed outputs without executing a line of them, and the test suite does not touch them.
+
+```bash
+uv run --all-extras --group docs python scripts/check_tutorials.py
+```
+
+It runs T1, T2 and T3 in order — T3 reads a checkpoint T2 writes — and exits non-zero on any
+failing cell. The two interactive napari cells are tagged `skip-execution` and reported as
+skipped; they need a real display. Expect 10-20 minutes and a 133 MB download on first run; set
+`OPENDVP_DATA_DIR` to reuse a cache.
+
+This checks that the *code* still runs. It does not refresh the *outputs* the docs site shows —
+for that, run the notebooks in Jupyter with the viewer cells live and commit the result. Worth
+doing whenever their output has visibly drifted from the code.
+
+### 4. Merge to `main`
 
 Open a PR from your branch to `main`, let CI pass, merge it.
 
-### 4. Publish the Release
+### 5. Publish the Release
 
 **Do this in the GitHub UI, and let it create the tag.**
 
@@ -127,7 +146,7 @@ gh release create v0.8.0 --repo CosciaLab/openDVP --target main \
   --title "v0.8.0" --notes-file <(sed -n '/## \[0.8.0\]/,/^---$/p' CHANGELOG.md)
 ```
 
-### 5. Verify
+### 6. Verify
 
 ```bash
 # did the publish workflow succeed?

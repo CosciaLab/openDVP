@@ -1,12 +1,13 @@
 from importlib.metadata import version as _version
 
-from . import imaging, io, metrics, pl, pp, tl, utils
+from . import datasets, imaging, io, metrics, pl, pp, tl, utils
 from ._deprecated import register_module_alias as _register_module_alias
 from ._deprecated import warn_renamed as _warn_renamed
 
 __version__ = _version("openDVP")
 
 __all__ = [
+    "datasets",
     "io",
     "tl",
     "pl",

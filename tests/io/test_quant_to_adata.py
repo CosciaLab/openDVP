@@ -79,3 +79,8 @@ def test_exemplar001_mcmicro():
     assert adata.shape == (9711, 12)
     assert adata.var.shape == (12, 0)
     assert adata.obs.shape == (9711, 10)
+
+
+def test_accepts_a_path_object(sample_csv):
+    adata = quant_to_adata(Path(sample_csv))
+    assert isinstance(adata, AnnData)

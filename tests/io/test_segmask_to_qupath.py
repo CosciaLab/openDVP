@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import geopandas as gpd
 import numpy as np
 import pytest
@@ -35,7 +37,7 @@ def test_disable_simplification(dummy_mask):
 
 
 def test_invalid_path_type_raises():
-    with pytest.raises(ValueError, match="path_to_mask must be a string"):
+    with pytest.raises(ValueError, match="path_to_mask must be a string or a Path"):
         segmask_to_qupath(path_to_mask=123)
 
 
@@ -50,3 +52,8 @@ def test_missing_dependency(monkeypatch, dummy_mask):
     monkeypatch.setitem(__import__("sys").modules, "spatialdata", None)
     with pytest.raises(ImportError, match="spatialdata"):
         segmask_to_qupath(path_to_mask=dummy_mask)
+
+
+def test_accepts_a_path_object(dummy_mask):
+    gdf = segmask_to_qupath(path_to_mask=Path(dummy_mask))
+    assert isinstance(gdf, gpd.GeoDataFrame)

@@ -11,7 +11,7 @@ maintainers = [{ name = "Jose Nimo", email = "jose.nimo@mdc-berlin.de" }]
 
 dependencies = [
     "numpy >= 2.0.0",
-    "spatialdata >= 0.7.3",
+    "spatialdata >= 0.8",
     "scanpy >= 1.11",
     "loguru >= 0.7.3",
     "scipy >= 1.13",
@@ -43,8 +43,8 @@ dependencies = [
 # imports. pyqt6 in particular is GPL-3.0-only, so it does not belong in a core MIT install.
 [project.optional-dependencies]
 napari = [
-    "napari-spatialdata >= 0.5.5",
-    "spatialdata-plot >= 0.2.9",
+    "napari-spatialdata >= 0.7",
+    "spatialdata-plot >= 0.4",
     "pyqt6",
 ]
 

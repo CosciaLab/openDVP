@@ -23,6 +23,9 @@ the version and date. See [`.github/RELEASING.md`](.github/RELEASING.md).
 - **`opendvp.datasets.tutorial_data()`** — downloads the tutorial dataset from Zenodo, verifies it
   against a known MD5, extracts it, caches it per user, and returns a dict of paths. Honours the
   `OPENDVP_DATA_DIR` environment variable.
+- `scripts/check_tutorials.py`, which executes the three tutorials in order and fails on any
+  erroring cell. Nothing else ran them: the docs build renders their committed outputs without
+  executing them. It is now a step in `.github/RELEASING.md`.
 
 ### Changed
 - **Relicensed from GPL-3.0 to MIT**, to reduce friction for other packages that want to
@@ -64,6 +67,10 @@ the version and date. See [`.github/RELEASING.md`](.github/RELEASING.md).
 - Untracked local files such as `.DS_Store` could be picked up into the built wheel and sdist
 - Tutorial 1 downloaded the 133 MB dataset with raw `requests` and then never extracted it, so
   every later cell failed on a fresh machine
+- Tutorial 3 called `sdata.pl.render_images()` without importing `spatialdata_plot`, which is what
+  registers the `.pl` accessor, so every plotting cell raised `AttributeError`
+- Tutorial 3 failed on any second run, because `sdata.write()` refuses to overwrite an existing
+  zarr store
 - Tutorial 3 read a checkpoint by its exact filename
   (`20250709_1322_5_DAP_adata.h5ad`). That name is stamped with the minute tutorial 2 was run, so
   it could never exist for anyone else; it now picks up the most recent checkpoint

@@ -30,7 +30,19 @@ dependencies = [
     "scikit-image >= 0.25.2",
     "scikit-learn >= 1.7.2",
     "xarray       >= 2024.11.0",
-    "pyogrio      >= 0.11.1"
+    "pyogrio      >= 0.11.1",
+    # imported directly by opendvp; previously arrived only transitively
+    "anndata >= 0.10",
+    "pandas >= 2.0",
+    "matplotlib >= 3.8",
+    "seaborn >= 0.13",
+    "geopandas >= 1.0",
+    "shapely >= 2.0",
+    "libpysal >= 4.9",
+    "networkx >= 3.0",
+    "tqdm >= 4.66",
+    "dask >= 2024.11",
+    "dask-image >= 2024.5",
     ]
 
 [dependency-groups]

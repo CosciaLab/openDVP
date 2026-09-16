@@ -2367,7 +2367,7 @@ wheels = [
 
 [[package]]
 name = "opendvp"
-version = "0.7.4"
+version = "0.8.0"
 source = { editable = "." }
 dependencies = [
     { name = "adjusttext" },
@@ -2401,6 +2401,7 @@ dependencies = [
 
 [package.optional-dependencies]
 napari = [
+    { name = "napari" },
     { name = "napari-spatialdata" },
     { name = "pyqt6" },
     { name = "spatialdata-plot" },
@@ -2443,6 +2444,7 @@ requires-dist = [
     { name = "libpysal", specifier = ">=4.9" },
     { name = "loguru", specifier = ">=0.7.3" },
     { name = "matplotlib", specifier = ">=3.8" },
+    { name = "napari", marker = "extra == 'napari'", specifier = ">=0.6.2" },
     { name = "napari-spatialdata", marker = "extra == 'napari'", specifier = ">=0.7" },
     { name = "networkx", specifier = ">=3.0" },
     { name = "numpy", specifier = ">=2.0.0" },

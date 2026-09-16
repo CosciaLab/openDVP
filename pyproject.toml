@@ -1,6 +1,6 @@
 [project]
 name = "openDVP"
-version = "0.7.4"
+version = "0.8.0"
 description = "open-sourced Deep Visual Proteomics toolkit"
 readme = "README.md"
 requires-python = ">=3.12, <3.14"
@@ -43,6 +43,8 @@ dependencies = [
 # imports. pyqt6 in particular is GPL-3.0-only, so it does not belong in a core MIT install.
 [project.optional-dependencies]
 napari = [
+    # napari itself, because the tutorials import it directly rather than only through the plugin
+    "napari >= 0.6.2",
     "napari-spatialdata >= 0.7",
     "spatialdata-plot >= 0.4",
     "pyqt6",

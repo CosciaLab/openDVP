@@ -10,7 +10,10 @@ the version and date. See [`.github/RELEASING.md`](.github/RELEASING.md).
 
 ## [Unreleased]
 
+## [0.8.0] - 2026-09-16
+
 ### Added
+
 - Issue templates for bug reports and feature requests
 - `CONTRIBUTING.md` and `CODE_OF_CONDUCT.md` (adapted from scverse)
 - `.github/RELEASING.md` — maintainer guide to versioning, tags and releases
@@ -35,6 +38,7 @@ the version and date. See [`.github/RELEASING.md`](.github/RELEASING.md).
   still warnings
 
 ### Changed
+
 - **Relicensed from GPL-3.0 to MIT**, to reduce friction for other packages that want to
   build on openDVP and to match the permissive licensing common across the scverse ecosystem
 - Declared the licence as an SPDX expression (`license = "MIT"`), so package metadata now
@@ -65,6 +69,7 @@ the version and date. See [`.github/RELEASING.md`](.github/RELEASING.md).
   `pathlib.Path` as well as `str`. The first three previously raised on a `Path`.
 
 ### Fixed
+
 - `stats_anova` raised `ValueError: Length of values does not match length of index` under
   pingouin 0.6, which renamed its result columns (`p-unc` → `p_unc`). Both 0.5 and 0.6 now work.
 - `stats_anova` could append an F value without its matching p value when reading pingouin's

@@ -147,4 +147,4 @@ print(dvp.__version__)
 
 ## Troubleshooting
 
-- Python version cannot yet be >=3.13 ; this will cause install to fail. Use python 3.11 or 3.12.
+- openDVP requires Python 3.12 or 3.13. Any other version will fail to install.

@@ -2,7 +2,7 @@
 
 [![Docs](https://img.shields.io/badge/docs-online-blue.svg)](https://coscialab.github.io/openDVP/)
 [![CI](https://github.com/CosciaLab/openDVP/actions/workflows/testing.yml/badge.svg)](https://github.com/CosciaLab/openDVP/actions/workflows/testing.yml)
-[![Python versions](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-blue.svg)](https://www.python.org/)
+[![Python versions](https://img.shields.io/badge/python-3.12%20%7C%203.13-blue.svg)](https://www.python.org/)
 [![Platforms](https://img.shields.io/badge/platform-linux%20%7C%20windows%20%7C%20macos-lightgrey.svg)](https://github.com/CosciaLab/openDVP/actions/workflows/testing.yml)
 [![PyPI version](https://img.shields.io/pypi/v/openDVP.svg)](https://pypi.org/project/openDVP/)
 [![License](https://img.shields.io/github/license/CosciaLab/openDVP.svg)](https://github.com/CosciaLab/opendvp/blob/main/LICENSE)
@@ -20,7 +20,7 @@ Please refer to the [**documentation**](https://coscialab.github.io/openDVP/), p
 
 ## Installation
 
-You will need Python 3.11 or 3.12 installed on your system.
+You will need Python 3.12 or 3.13 installed on your system.
 If you are new to creating Python environments, we suggest you use [uv](https://docs.astral.sh/uv/) or [pixi](https://pixi.sh/latest/).
 
 You can install openDVP via pip:

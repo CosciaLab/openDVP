@@ -122,7 +122,9 @@ def scimap_rescale(
             # Case 1: No matching images and single value column - apply globally
             gate = gate.reset_index()  # Convert index to column
             gate_mapping = m.copy()
-            gate_mapping.gate = gate_mapping.gate.fillna(
+            # gates are numeric; make that explicit before filling so pandas does not have to
+            # downcast an object column, which it has deprecated
+            gate_mapping.gate = gate_mapping.gate.astype("float64").fillna(
                 gate_mapping.markers.map(
                     dict(zip(gate["markers"], gate["gates"], strict=False))  # these columns are hardcoded in CSV
                 )
@@ -139,7 +141,7 @@ def scimap_rescale(
                 left_on=["markers", "imageid"],
                 right_on=["markers", "imageid"],
             )
-            gate_mapping["gate"] = gate_mapping["gate"].fillna(gate_mapping["m_gate"])
+            gate_mapping["gate"] = gate_mapping["gate"].astype("float64").fillna(gate_mapping["m_gate"])
             gate_mapping = gate_mapping.drop(columns="m_gate")
 
     # Addressing failed markers
@@ -285,7 +287,7 @@ def scimap_rescale(
         r_gmm_gating = lambda x: gmm_gating(marker=x, data=data_subset_clipped, gmm_components=gmm_components)
         gates = list(map(r_gmm_gating, marker_to_gate))
         # create a df with results
-        result = image_specific[image_specific.gate.isnull()]
+        result = image_specific[image_specific.gate.isnull()].copy()
         mapping = dict(zip(marker_to_gate, gates, strict=False))
         for i in result.index:
             result.loc[i, "gate"] = mapping[result.loc[i, "markers"]]
@@ -313,7 +315,7 @@ def scimap_rescale(
             result.append(all_gates[i])
         result = pd.concat(result, join="outer")
         # use this to merge with gate_mapping
-        gate_mapping.gate = gate_mapping.gate.fillna(
+        gate_mapping.gate = gate_mapping.gate.astype("float64").fillna(
             gate_mapping.markers.map(dict(zip(result.markers, result.gate, strict=False)))
         )
 

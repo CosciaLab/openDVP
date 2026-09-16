@@ -133,3 +133,39 @@ def test_rescale_invalid_failed_markers_input(rescale_adata: ad.AnnData):
     """Test that non-dict input for failed_markers raises ValueError."""
     with pytest.raises(ValueError, match="`failed_markers` should be a python dictionary"):
         scimap_rescale(rescale_adata, failed_markers=["marker_C"])
+
+
+def test_rescale_with_per_image_gates(rescale_adata: ad.AnnData):
+    """Gates given as one column per image, which is the shape `import_thresholds` produces.
+
+    This is a different branch from `test_rescale_with_manual_gates`, which passes a single
+    `gates` column applied globally.
+    """
+    adata = rescale_adata.copy()
+    per_image_gates = pd.DataFrame({"markers": ["marker_A", "marker_B"], "image1": [5.0, 9.0], "image2": [5.5, 9.5]})
+
+    adata_rescaled = scimap_rescale(adata, gate=per_image_gates, log=False, verbose=False)
+
+    gates_df = adata_rescaled.uns["gates"]
+    assert gates_df.loc["marker_A", "image1"] == 5.0
+    assert gates_df.loc["marker_A", "image2"] == 5.5
+    assert gates_df.loc["marker_B", "image2"] == 9.5
+    assert np.all(adata.X >= 0) and np.all(adata.X <= 1)
+
+
+def test_rescale_with_gates_for_only_one_image(rescale_adata: ad.AnnData):
+    """A gate column for one image only; the other image falls back to GMM.
+
+    This path fills an all-NaN gate column, which is where pandas used to warn about downcasting.
+    """
+    adata = rescale_adata.copy()
+    partial_gates = pd.DataFrame({"markers": ["marker_A", "marker_B"], "image1": [5.0, 9.0]})
+
+    adata_rescaled = scimap_rescale(adata, gate=partial_gates, log=False, verbose=False)
+
+    gates_df = adata_rescaled.uns["gates"]
+    assert gates_df.loc["marker_A", "image1"] == 5.0
+    # image2 got no manual gate, so it must have been derived rather than left empty
+    assert not pd.isna(gates_df.loc["marker_A", "image2"])
+    assert gates_df.loc["marker_A", "image2"] != 5.0
+    assert np.all(adata.X >= 0) and np.all(adata.X <= 1)

@@ -8,9 +8,10 @@ the version and date. See [`.github/RELEASING.md`](.github/RELEASING.md).
 
 ---
 
-## [Unreleased]
+## [0.8.0] - 2026-09-16
 
 ### Added
+
 - Issue templates for bug reports and feature requests
 - `CONTRIBUTING.md` and `CODE_OF_CONDUCT.md` (adapted from scverse)
 - `.github/RELEASING.md` — maintainer guide to versioning, tags and releases
@@ -26,8 +27,16 @@ the version and date. See [`.github/RELEASING.md`](.github/RELEASING.md).
 - `scripts/check_tutorials.py`, which executes the three tutorials in order and fails on any
   erroring cell. Nothing else ran them: the docs build renders their committed outputs without
   executing them. It is now a step in `.github/RELEASING.md`.
+- Tests for the ten public functions that had none: `rankplot`, `abundance_histograms`,
+  `pca_loadings`, `stacked_barplot`, `scimap_phenotype`, `scimap_spatial_cluster`,
+  `scimap_spatial_lda`, and the three `utils` exports. Every public function is now covered
+  (342 tests, up from 227 before this release).
+- `[tool.pytest.ini_options]`, which pins the test paths and turns a `FutureWarning` raised from
+  openDVP's own code into a test failure, so dependency deprecations get fixed while they are
+  still warnings
 
 ### Changed
+
 - **Relicensed from GPL-3.0 to MIT**, to reduce friction for other packages that want to
   build on openDVP and to match the permissive licensing common across the scverse ecosystem
 - Declared the licence as an SPDX expression (`license = "MIT"`), so package metadata now
@@ -58,6 +67,7 @@ the version and date. See [`.github/RELEASING.md`](.github/RELEASING.md).
   `pathlib.Path` as well as `str`. The first three previously raised on a `Path`.
 
 ### Fixed
+
 - `stats_anova` raised `ValueError: Length of values does not match length of index` under
   pingouin 0.6, which renamed its result columns (`p-unc` → `p_unc`). Both 0.5 and 0.6 now work.
 - `stats_anova` could append an F value without its matching p value when reading pingouin's
@@ -65,6 +75,27 @@ the version and date. See [`.github/RELEASING.md`](.github/RELEASING.md).
 - `segmask_to_qupath` raised an `ImportError` directing users to `pip install
   opendvp[spatialdata]`, an extra that has never existed
 - Untracked local files such as `.DS_Store` could be picked up into the built wheel and sdist
+- The CI badge in `README.md` and `docs/index.md` pointed at `workflows/testing.yml`; the file is
+  `test.yml`, so the badge had never rendered a status
+- `README.md` showed `conda create` under a "you can install openDVP via pip" heading, and never
+  activated the environment it created
+- Running the test suite opened real plot windows, because `pl` functions call `plt.show()` and
+  nothing forced a non-interactive matplotlib backend
+- `abundance_histograms` titled each panel using `adata.obs.raw_file_id[i]`, which indexes by
+  label rather than position. With a non-default `obs` index every panel was mislabelled.
+- `rankplot` used `matplotlib.cm.get_cmap`, which is deprecated and scheduled for removal
+- `scimap_phenotype` used `fillna(method="ffill")`, which pandas will remove, and relied on
+  `replace` downcasting an all-NaN column, which pandas has deprecated
+- `scimap_rescale` wrote gate values into a DataFrame slice rather than a copy
+- `stats_bootstrap` passed a numpy callable to `.agg`, which pandas is about to stop translating
+  to its own implementation
+- `impute_gaussian` emitted a bare numpy `RuntimeWarning` for a protein with no measured values
+  at all, and then imputed nothing for it without saying so; it now logs a warning
+- `scimap_spatial_lda` failed with `UnboundLocalError` several frames deep when given a `method`
+  other than `knn` or `radius`; it now raises a clear `ValueError`
+- Tutorial 1 called `skimage.io.imshow`, which scikit-image removes in 0.27 — and openDVP places
+  no upper bound on scikit-image, so the tutorial would have broken. It now uses matplotlib,
+  which is what scikit-image's own deprecation message recommends.
 - Tutorial 1 downloaded the 133 MB dataset with raw `requests` and then never extracted it, so
   every later cell failed on a fresh machine
 - Tutorial 3 called `sdata.pl.render_images()` without importing `spatialdata_plot`, which is what

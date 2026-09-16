@@ -56,7 +56,7 @@ def abundance_histograms(
             va="center",
             bbox={"facecolor": "white", "alpha": 0.8},
         )
-        ax.set_title(f"file_id: {adata.obs.raw_file_id[i]}")
+        ax.set_title(f"file_id: {adata.obs['raw_file_id'].iloc[i]}")
         ax.grid(False)
     fig.tight_layout()
     if return_fig:

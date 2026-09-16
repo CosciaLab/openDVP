@@ -68,10 +68,10 @@ def rankplot(
     if min_presence_fraction < 0.01 or min_presence_fraction > 1.0:
         raise ValueError("min_presence_fraction should be between 0.01 and 1.0 (inclusive).")
     if group_colors is None:
-        tab10 = matplotlib.cm.get_cmap("tab10")
+        tab10 = matplotlib.colormaps["tab10"]
         group_colors = {g: matplotlib.colors.to_hex(tab10(i % 10)) for i, g in enumerate(groups)}
 
-    df_sns = pd.DataFrame(columns=["group", "rank", "mean", "protein"])
+    group_frames = []
 
     for group in groups:
         # Use numpy array for boolean mask
@@ -97,10 +97,11 @@ def rankplot(
             {"group": group, "rank": ranks, "mean": mean_vals, "protein": filtered_var_names}
         ).sort_values("rank")
 
-        df_sns = pd.concat([df_sns, group_df])
+        group_frames.append(group_df)
 
-    if df_sns.shape[0] < 1:
+    if not group_frames:
         raise ValueError("it seems filtering too strict, nothing to plot")
+    df_sns = pd.concat(group_frames, ignore_index=True)
 
     sns.scatterplot(
         data=df_sns, x="rank", y="mean", hue="group", palette=group_colors, ax=ax, s=40, linewidth=0, **kwargs

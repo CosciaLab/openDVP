@@ -1,9 +1,9 @@
 # openDVP - community empowered Deep Visual Proteomics
 
 [![Docs](https://img.shields.io/badge/docs-online-blue.svg)](https://coscialab.github.io/openDVP/)
-[![CI](https://github.com/CosciaLab/openDVP/actions/workflows/testing.yml/badge.svg)](https://github.com/CosciaLab/openDVP/actions/workflows/testing.yml)
+[![CI](https://github.com/CosciaLab/openDVP/actions/workflows/test.yml/badge.svg)](https://github.com/CosciaLab/openDVP/actions/workflows/test.yml)
 [![Python versions](https://img.shields.io/badge/python-3.12%20%7C%203.13-blue.svg)](https://www.python.org/)
-[![Platforms](https://img.shields.io/badge/platform-linux%20%7C%20windows%20%7C%20macos-lightgrey.svg)](https://github.com/CosciaLab/openDVP/actions/workflows/testing.yml)
+[![Platforms](https://img.shields.io/badge/platform-linux%20%7C%20windows%20%7C%20macos-lightgrey.svg)](https://github.com/CosciaLab/openDVP/actions/workflows/test.yml)
 [![PyPI version](https://img.shields.io/pypi/v/openDVP.svg)](https://pypi.org/project/openDVP/)
 [![License](https://img.shields.io/github/license/CosciaLab/openDVP.svg)](https://github.com/CosciaLab/opendvp/blob/main/LICENSE)
 

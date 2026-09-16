@@ -29,6 +29,13 @@ uv sync                     # create the environment
 uv run pre-commit install   # install the ruff hooks
 ```
 
+`uv sync` installs the core dependencies only. The interactive viewer lives in an optional extra,
+so add it if you are running the tutorials or anything that touches napari:
+
+```bash
+uv sync --extra napari
+```
+
 Work on a branch, never on `main`:
 
 ```bash

@@ -90,6 +90,9 @@ the version and date. See [`.github/RELEASING.md`](.github/RELEASING.md).
   at all, and then imputed nothing for it without saying so; it now logs a warning
 - `scimap_spatial_lda` failed with `UnboundLocalError` several frames deep when given a `method`
   other than `knn` or `radius`; it now raises a clear `ValueError`
+- Tutorial 1 called `skimage.io.imshow`, which scikit-image removes in 0.27 — and openDVP places
+  no upper bound on scikit-image, so the tutorial would have broken. It now uses matplotlib,
+  which is what scikit-image's own deprecation message recommends.
 - Tutorial 1 downloaded the 133 MB dataset with raw `requests` and then never extracted it, so
   every later cell failed on a fresh machine
 - Tutorial 3 called `sdata.pl.render_images()` without importing `spatialdata_plot`, which is what

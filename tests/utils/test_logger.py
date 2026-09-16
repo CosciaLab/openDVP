@@ -45,7 +45,9 @@ def test_info_goes_to_stdout_not_stderr():
     result = _run("logger.info('from a subprocess')")
     assert "from a subprocess" in result.stdout
     assert "INFO" in result.stdout
-    assert result.stderr == ""
+    # not `stderr == ""`: importing opendvp pulls in a lot, and a third-party import-time warning
+    # on some other platform would fail a test that is only about where the logger writes
+    assert "from a subprocess" not in result.stderr
 
 
 def test_debug_is_suppressed_at_the_default_level():

@@ -7,19 +7,19 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta property="og:title" content="Tools" />
+<meta property="og:title" content="Datasets" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="api/tl.html" />
+<meta property="og:url" content="api/datasets.html" />
 <meta property="og:site_name" content="opendvp" />
-<meta property="og:description" content="Filtering: Imputation: Spatial: Statistics: Scimap:" />
+<meta property="og:description" content="Where the data lives: tutorial_data() downloads a single archive from Zenodo( 10.5281/zenodo.15830141), checks it against a known MD5, extracts it, and returns a dict of paths. The download happens..." />
 <meta property="og:image:width" content="1146" />
 <meta property="og:image:height" content="600" />
-<meta property="og:image" content="_images/social_previews/summary_api_tl_a405f503.png" />
-<meta property="og:image:alt" content="Filtering: Imputation: Spatial: Statistics: Scimap:" />
-<meta name="description" content="Filtering: Imputation: Spatial: Statistics: Scimap:" />
+<meta property="og:image" content="_images/social_previews/summary_api_datasets_14db71b7.png" />
+<meta property="og:image:alt" content="Where the data lives: tutorial_data() downloads a single archive from Zenodo( 10.5281/zenodo.15830141), checks it against a known MD5, extracts it, and returns a dict of paths. The download happens..." />
+<meta name="description" content="Where the data lives: tutorial_data() downloads a single archive from Zenodo( 10.5281/zenodo.15830141), checks it against a known MD5, extracts it, and returns a dict of paths. The download happens..." />
 <meta name="twitter:card" content="summary_large_image" />
 
-    <title>Tools &#8212; opendvp</title>
+    <title>Datasets &#8212; opendvp</title>
   
   
   
@@ -55,11 +55,11 @@
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'api/tl';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/datasets';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="opendvp.tl.filter_by_abs_value" href="generated/opendvp.tl.filter_by_abs_value.html" />
-    <link rel="prev" title="opendvp.pp.scimap_rescale" href="generated/opendvp.pp.scimap_rescale.html" />
+    <link rel="next" title="opendvp.datasets.tutorial_data" href="generated/opendvp.datasets.tutorial_data.html" />
+    <link rel="prev" title="API Reference" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -165,7 +165,7 @@
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">API Reference</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 has-children"><a class="reference internal" href="datasets.html">Datasets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">Datasets</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.datasets.tutorial_data.html">opendvp.datasets.tutorial_data</a></li>
 </ul>
 </details></li>
@@ -207,7 +207,7 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.pp.scimap_rescale.html">opendvp.pp.scimap_rescale</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">Tools</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="tl.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.tl.filter_by_abs_value.html">opendvp.tl.filter_by_abs_value</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.tl.filter_by_annotation.html">opendvp.tl.filter_by_annotation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/opendvp.tl.filter_by_ratio.html">opendvp.tl.filter_by_ratio</a></li>
@@ -310,7 +310,7 @@
       
       
       
-      <li><a href="../_sources/api/tl.md" target="_blank"
+      <li><a href="../_sources/api/datasets.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -394,7 +394,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Tools</h1>
+    <h1>Datasets</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -404,11 +404,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-opendvp.tl">Filtering</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imputation">Imputation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial">Spatial</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistics">Statistics</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scimap">Scimap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-the-data-lives">Where the data lives</a></li>
 </ul>
             </nav>
         </div>
@@ -420,89 +416,34 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="tools">
-<h1>Tools<a class="headerlink" href="#tools" title="Link to this heading">#</a></h1>
-<section id="module-opendvp.tl">
-<span id="filtering"></span><h2>Filtering<a class="headerlink" href="#module-opendvp.tl" title="Link to this heading">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="module-opendvp.datasets">
+<span id="datasets"></span><h1>Datasets<a class="headerlink" href="#module-opendvp.datasets" title="Link to this heading">#</a></h1>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.tl.filter_by_abs_value.html#opendvp.tl.filter_by_abs_value" title="opendvp.tl.filter_by_abs_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tl.filter_by_abs_value</span></code></a>(adata, feature_name)</p></td>
-<td><p>Filter cells in an AnnData object by a range of values for a specified feature.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/opendvp.tl.filter_by_annotation.html#opendvp.tl.filter_by_annotation" title="opendvp.tl.filter_by_annotation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tl.filter_by_annotation</span></code></a>(adata, path_to_geojson)</p></td>
-<td><p>Filter cells by annotation in a geojson file using spatial indexing.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.tl.filter_by_ratio.html#opendvp.tl.filter_by_ratio" title="opendvp.tl.filter_by_ratio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tl.filter_by_ratio</span></code></a>(adata, end_cycle, start_cycle)</p></td>
-<td><p>Filter cells by the ratio of two markers in an AnnData object.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/opendvp.tl.filter_features_byNaNs.html#opendvp.tl.filter_features_byNaNs" title="opendvp.tl.filter_features_byNaNs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tl.filter_features_byNaNs</span></code></a>(adata[, ...])</p></td>
-<td><p>Filter out proteins that have a NaN proportion above the threshold, for each group in the grouping variable.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.datasets.tutorial_data.html#opendvp.datasets.tutorial_data" title="opendvp.datasets.tutorial_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">datasets.tutorial_data</span></code></a>([path])</p></td>
+<td><p>Download, verify and cache the openDVP tutorial dataset.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-</section>
-<section id="imputation">
-<h2>Imputation<a class="headerlink" href="#imputation" title="Link to this heading">#</a></h2>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.tl.impute_gaussian.html#opendvp.tl.impute_gaussian" title="opendvp.tl.impute_gaussian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tl.impute_gaussian</span></code></a>(adata[, mean_shift, ...])</p></td>
-<td><p>Impute missing values in an AnnData object using a Gaussian distribution.</p></td>
-</tr>
-</tbody>
-</table>
+<section id="where-the-data-lives">
+<h2>Where the data lives<a class="headerlink" href="#where-the-data-lives" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">tutorial_data()</span></code> downloads a single archive from Zenodo
+(<a class="reference external" href="https://doi.org/10.5281/zenodo.15830141">10.5281/zenodo.15830141</a>), checks it against a known
+MD5, extracts it, and returns a dict of paths. The download happens once and is then cached
+per-user, so the tutorials are re-runnable offline.</p>
+<p>The cache location defaults to your platform’s user cache directory — <code class="docutils literal notranslate"><span class="pre">~/Library/Caches/opendvp</span></code>
+on macOS, <code class="docutils literal notranslate"><span class="pre">~/.cache/opendvp</span></code> on Linux. Override it either per-call or for the whole environment:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">opendvp</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dvp</span>
+
+<span class="n">paths</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">tutorial_data</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;/scratch/opendvp-data&quot;</span><span class="p">)</span>
+</pre></div>
 </div>
-</section>
-<section id="spatial">
-<h2>Spatial<a class="headerlink" href="#spatial" title="Link to this heading">#</a></h2>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.tl.spatial_autocorrelation.html#opendvp.tl.spatial_autocorrelation" title="opendvp.tl.spatial_autocorrelation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tl.spatial_autocorrelation</span></code></a>(adata[, method, ...])</p></td>
-<td><p>Compute spatial autocorrelation statistics (Moran's I or Geary's C) for each gene in an AnnData object.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/opendvp.tl.spatial_hyperparameter_search.html#opendvp.tl.spatial_hyperparameter_search" title="opendvp.tl.spatial_hyperparameter_search"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tl.spatial_hyperparameter_search</span></code></a>(adata[, ...])</p></td>
-<td><p>Perform a hyperparameter search over a range of threshold values.</p></td>
-</tr>
-</tbody>
-</table>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">OPENDVP_DATA_DIR</span><span class="o">=</span>/scratch/opendvp-data
+</pre></div>
 </div>
-</section>
-<section id="statistics">
-<h2>Statistics<a class="headerlink" href="#statistics" title="Link to this heading">#</a></h2>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.tl.stats_anova.html#opendvp.tl.stats_anova" title="opendvp.tl.stats_anova"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tl.stats_anova</span></code></a>(adata, grouping[, ...])</p></td>
-<td><p>Perform one-way ANOVA for all columns of an AnnData object across all groups in a categorical column.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/opendvp.tl.stats_average_samples.html#opendvp.tl.stats_average_samples" title="opendvp.tl.stats_average_samples"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tl.stats_average_samples</span></code></a>(adata, categories)</p></td>
-<td><p>Average samples based on specified categories in adata.obs.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.tl.stats_bootstrap.html#opendvp.tl.stats_bootstrap" title="opendvp.tl.stats_bootstrap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tl.stats_bootstrap</span></code></a>(dataframe[, n_bootstrap, ...])</p></td>
-<td><p>Evaluate the variability of feature-level coefficient of variation (CV) via bootstrapping.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/opendvp.tl.stats_ttest.html#opendvp.tl.stats_ttest" title="opendvp.tl.stats_ttest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tl.stats_ttest</span></code></a>(adata, grouping, group1, group2)</p></td>
-<td><p>Perform a t-test for all columns of an AnnData object between two groups.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section id="scimap">
-<h2>Scimap<a class="headerlink" href="#scimap" title="Link to this heading">#</a></h2>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.tl.scimap_phenotype.html#opendvp.tl.scimap_phenotype" title="opendvp.tl.scimap_phenotype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tl.scimap_phenotype</span></code></a>(adata, phenotype[, ...])</p></td>
-<td><p>Annotate each cell with a phenotype based on scaled data and a phenotype workflow.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/opendvp.tl.scimap_spatial_cluster.html#opendvp.tl.scimap_spatial_cluster" title="opendvp.tl.scimap_spatial_cluster"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tl.scimap_spatial_cluster</span></code></a>(adata[, method, ...])</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/opendvp.tl.scimap_spatial_lda.html#opendvp.tl.scimap_spatial_lda" title="opendvp.tl.scimap_spatial_lda"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tl.scimap_spatial_lda</span></code></a>(adata[, x_coordinate, ...])</p></td>
-<td><p>Parameters:</p></td>
-</tr>
-</tbody>
-</table>
-</div>
+<p>The archive is 133 MB compressed and roughly 1 GB extracted, almost all of it the
+multiplexed image.</p>
 </section>
 </section>
 
@@ -518,20 +459,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="generated/opendvp.pp.scimap_rescale.html"
+       href="index.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">opendvp.pp.scimap_rescale</p>
+        <p class="prev-next-title">API Reference</p>
       </div>
     </a>
     <a class="right-next"
-       href="generated/opendvp.tl.filter_by_abs_value.html"
+       href="generated/opendvp.datasets.tutorial_data.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">opendvp.tl.filter_by_abs_value</p>
+        <p class="prev-next-title">opendvp.datasets.tutorial_data</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -551,11 +492,7 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-opendvp.tl">Filtering</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imputation">Imputation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial">Spatial</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistics">Statistics</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scimap">Scimap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-the-data-lives">Where the data lives</a></li>
 </ul>
   </nav></div>
 

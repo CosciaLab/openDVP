@@ -11,12 +11,12 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="Tutorials/index.html" />
 <meta property="og:site_name" content="opendvp" />
-<meta property="og:description" content="This section provides hands-on tutorials to guide you through the core workflows of openDVP. Each tutorial uses our demo dataset and covers a key aspect of a Deep Visual Proteomics analysis. Tutori..." />
+<meta property="og:description" content="This section provides hands-on tutorials to guide you through the core workflows of openDVP. Each tutorial uses our demo dataset and covers a key aspect of a Deep Visual Proteomics analysis. The de..." />
 <meta property="og:image:width" content="1146" />
 <meta property="og:image:height" content="600" />
 <meta property="og:image" content="_images/social_previews/summary_Tutorials_index_d13762ee.png" />
-<meta property="og:image:alt" content="This section provides hands-on tutorials to guide you through the core workflows of openDVP. Each tutorial uses our demo dataset and covers a key aspect of a Deep Visual Proteomics analysis. Tutori..." />
-<meta name="description" content="This section provides hands-on tutorials to guide you through the core workflows of openDVP. Each tutorial uses our demo dataset and covers a key aspect of a Deep Visual Proteomics analysis. Tutori..." />
+<meta property="og:image:alt" content="This section provides hands-on tutorials to guide you through the core workflows of openDVP. Each tutorial uses our demo dataset and covers a key aspect of a Deep Visual Proteomics analysis. The de..." />
+<meta name="description" content="This section provides hands-on tutorials to guide you through the core workflows of openDVP. Each tutorial uses our demo dataset and covers a key aspect of a Deep Visual Proteomics analysis. The de..." />
 <meta name="twitter:card" content="summary_large_image" />
 
     <title>Tutorials &#8212; opendvp</title>
@@ -165,6 +165,10 @@
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../api/index.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/datasets.html">Datasets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.datasets.tutorial_data.html">opendvp.datasets.tutorial_data</a></li>
+</ul>
+</details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../api/io.html">Input / Output</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.io.adata_to_qupath.html">opendvp.io.adata_to_qupath</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.io.adata_to_voronoi.html">opendvp.io.adata_to_voronoi</a></li>
@@ -400,6 +404,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-demo-dataset">The demo dataset</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-1-image-analysis">Tutorial 1: Image Analysis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-2-downstream-proteomics-analysis">Tutorial 2: Downstream Proteomics Analysis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-3-integration-of-imaging-with-proteomics">Tutorial 3: Integration of Imaging with Proteomics</a></li>
@@ -418,6 +423,13 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="tutorials">
 <h1>Tutorials<a class="headerlink" href="#tutorials" title="Link to this heading">#</a></h1>
 <p>This section provides hands-on tutorials to guide you through the core workflows of <code class="docutils literal notranslate"><span class="pre">openDVP</span></code>. Each tutorial uses our demo dataset and covers a key aspect of a Deep Visual Proteomics analysis.</p>
+<section id="the-demo-dataset">
+<h2>The demo dataset<a class="headerlink" href="#the-demo-dataset" title="Link to this heading">#</a></h2>
+<p>Every tutorial starts by calling <a class="reference internal" href="../api/generated/opendvp.datasets.tutorial_data.html#opendvp.datasets.tutorial_data" title="opendvp.datasets.tutorial_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendvp.datasets.tutorial_data()</span></code></a>, which downloads the demo
+dataset from Zenodo, verifies it, extracts it and caches it per user. The first call fetches
+133 MB; after that it is instant and works offline. Run the tutorials in order — tutorial 3 picks
+up a checkpoint that tutorial 2 writes.</p>
+</section>
 <section id="tutorial-1-image-analysis">
 <h2>Tutorial 1: Image Analysis<a class="headerlink" href="#tutorial-1-image-analysis" title="Link to this heading">#</a></h2>
 <p>Learn the fundamentals of processing and analyzing high-plex immunofluorescence images. This tutorial covers essential steps like quality control, cell segmentation, and feature extraction to prepare your imaging data for integration.</p>
@@ -487,6 +499,7 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-demo-dataset">The demo dataset</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-1-image-analysis">Tutorial 1: Image Analysis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-2-downstream-proteomics-analysis">Tutorial 2: Downstream Proteomics Analysis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-3-integration-of-imaging-with-proteomics">Tutorial 3: Integration of Imaging with Proteomics</a></li>

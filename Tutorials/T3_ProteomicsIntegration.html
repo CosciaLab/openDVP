@@ -11,12 +11,12 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="Tutorials/T3_ProteomicsIntegration.html" />
 <meta property="og:site_name" content="opendvp" />
-<meta property="og:description" content="Import necessary packages: Load adata from DIANN or precious tutorial: for more details of this step go to tutorial 2. If you processed and stored a copy of the adata from tutorial 2, load it here ..." />
+<meta property="og:description" content="Import necessary packages: This tutorial uses the interactive viewer and spatialdata ’s plotting accessor, both of which live in an optional extra: pip install &quot;opendvp[napari]&quot;. Load ada..." />
 <meta property="og:image:width" content="1146" />
 <meta property="og:image:height" content="600" />
-<meta property="og:image" content="_images/social_previews/summary_Tutorials_T3_ProteomicsIntegration_bfde203d.png" />
-<meta property="og:image:alt" content="Import necessary packages: Load adata from DIANN or precious tutorial: for more details of this step go to tutorial 2. If you processed and stored a copy of the adata from tutorial 2, load it here ..." />
-<meta name="description" content="Import necessary packages: Load adata from DIANN or precious tutorial: for more details of this step go to tutorial 2. If you processed and stored a copy of the adata from tutorial 2, load it here ..." />
+<meta property="og:image" content="_images/social_previews/summary_Tutorials_T3_ProteomicsIntegration_4e1b2224.png" />
+<meta property="og:image:alt" content="Import necessary packages: This tutorial uses the interactive viewer and spatialdata ’s plotting accessor, both of which live in an optional extra: pip install &quot;opendvp[napari]&quot;. Load ada..." />
+<meta name="description" content="Import necessary packages: This tutorial uses the interactive viewer and spatialdata ’s plotting accessor, both of which live in an optional extra: pip install &quot;opendvp[napari]&quot;. Load ada..." />
 <meta name="twitter:card" content="summary_large_image" />
 
     <title>T3: Proteomics Integration &#8212; opendvp</title>
@@ -165,6 +165,10 @@
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../api/index.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/datasets.html">Datasets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.datasets.tutorial_data.html">opendvp.datasets.tutorial_data</a></li>
+</ul>
+</details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../api/io.html">Input / Output</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.io.adata_to_qupath.html">opendvp.io.adata_to_qupath</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.io.adata_to_voronoi.html">opendvp.io.adata_to_voronoi</a></li>
@@ -426,18 +430,31 @@ document.write(`
 <h1>T3: Proteomics Integration<a class="headerlink" href="#t3-proteomics-integration" title="Link to this heading">#</a></h1>
 <section id="import-necessary-packages">
 <h2>Import necessary packages<a class="headerlink" href="#import-necessary-packages" title="Link to this heading">#</a></h2>
+<p>This tutorial uses the interactive viewer and <code class="docutils literal notranslate"><span class="pre">spatialdata</span></code>’s plotting accessor, both of which
+live in an optional extra: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&quot;opendvp[napari]&quot;</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">opendvp</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dvp</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">opendvp</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dvp</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">anndata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ad</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">ast</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">spatialdata</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">napari_spatialdata</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">spatialdata_plot</span>  <span class="c1"># noqa: F401 - imported for its side effect: registers sdata.pl</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.colors</span><span class="w"> </span><span class="kn">import</span> <span class="n">Normalize</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">dask_image</span><span class="w"> </span><span class="kn">import</span> <span class="n">imread</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;openDVP version </span><span class="si">{</span><span class="n">dvp</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Downloads the dataset from Zenodo, checks it against a known MD5, and extracts it.</span>
+<span class="c1"># Cached per user, so re-running this cell is instant and works offline.</span>
+<span class="n">paths</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">tutorial_data</span><span class="p">()</span>
+
+<span class="c1"># everything this notebook writes goes here</span>
+<span class="n">outputs</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;../outputs&quot;</span><span class="p">)</span>
+<span class="n">outputs</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -454,9 +471,9 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span> <span class="o">=</span> <span class="n">dvp</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">DIANN_to_adata</span><span class="p">(</span>
-    <span class="n">DIANN_path</span><span class="o">=</span><span class="s2">&quot;../data/proteomics/DIANN_pg_matrix.csv&quot;</span><span class="p">,</span>
+    <span class="n">DIANN_path</span><span class="o">=</span><span class="n">paths</span><span class="p">[</span><span class="s2">&quot;proteomics&quot;</span><span class="p">],</span>
     <span class="n">DIANN_sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span>
-    <span class="n">metadata_path</span><span class="o">=</span><span class="s2">&quot;../data/proteomics/DIANN_metadata.csv&quot;</span><span class="p">,</span>
+    <span class="n">metadata_path</span><span class="o">=</span><span class="n">paths</span><span class="p">[</span><span class="s2">&quot;proteomics_metadata&quot;</span><span class="p">],</span>
     <span class="n">metadata_sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">,</span>
     <span class="n">n_of_protein_metadata_cols</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
 <span class="p">)</span>
@@ -475,10 +492,15 @@ document.write(`
 </div>
 </div>
 </div>
-<p>If you processed and stored a copy of the adata from tutorial 2, load it here like this</p>
+<p>If you ran tutorial 2, it saved a <code class="docutils literal notranslate"><span class="pre">5_DAP</span></code> checkpoint under <code class="docutils literal notranslate"><span class="pre">../outputs/checkpoints</span></code>. The file
+name carries the time of that run, so pick up the most recent one rather than naming it:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span> <span class="o">=</span> <span class="n">ad</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="s2">&quot;../data/checkpoints/5_DAP/20250709_1322_5_DAP_adata.h5ad&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">checkpoints</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">((</span><span class="n">outputs</span> <span class="o">/</span> <span class="s2">&quot;checkpoints&quot;</span> <span class="o">/</span> <span class="s2">&quot;5_DAP&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*_5_DAP_adata.h5ad&quot;</span><span class="p">))</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">checkpoints</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s2">&quot;No 5_DAP checkpoint found - run tutorial 2 first, or skip this cell.&quot;</span><span class="p">)</span>
+
+<span class="n">adata</span> <span class="o">=</span> <span class="n">ad</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="n">checkpoints</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -511,7 +533,7 @@ This allows to create spatialdata objects that would be larger than available me
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># first load as array using dask-image</span>
-<span class="n">image_array</span> <span class="o">=</span> <span class="n">imread</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">&quot;../data/image/mIF.ome.tif&quot;</span><span class="p">)</span>
+<span class="n">image_array</span> <span class="o">=</span> <span class="n">imread</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">paths</span><span class="p">[</span><span class="s2">&quot;image&quot;</span><span class="p">])</span>
 <span class="n">image_array</span>
 </pre></div>
 </div>
@@ -732,7 +754,7 @@ with coordinate systems:
 <h3>Load the geodataframe with shapes that match proteomic samples (aka LMD annotations)<a class="headerlink" href="#load-the-geodataframe-with-shapes-that-match-proteomic-samples-aka-lmd-annotations" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;../data/proteomics/collection_shapes.geojson&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">paths</span><span class="p">[</span><span class="s2">&quot;collection_shapes&quot;</span><span class="p">])</span>
 <span class="n">gdf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1012,19 +1034,14 @@ with coordinate systems:
 <h3>Write spatialdata object for future use<a class="headerlink" href="#write-spatialdata-object-for-future-use" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sdata</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;../outputs/spatialdata.zarr&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Blue">INFO    </span> The Zarr backing store has been changed from <span class=" -Color -Color-Magenta">None</span> the new file path: ..<span class=" -Color -Color-Magenta">/outputs/</span>spatialdata.zarr
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sdata</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">outputs</span> <span class="o">/</span> <span class="s2">&quot;spatialdata.zarr&quot;</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sdata</span> <span class="o">=</span> <span class="n">spatialdata</span><span class="o">.</span><span class="n">read_zarr</span><span class="p">(</span><span class="s2">&quot;../outputs/spatialdata.zarr&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sdata</span> <span class="o">=</span> <span class="n">spatialdata</span><span class="o">.</span><span class="n">read_zarr</span><span class="p">(</span><span class="n">outputs</span> <span class="o">/</span> <span class="s2">&quot;spatialdata.zarr&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1036,7 +1053,7 @@ with coordinate systems:
 <section id="visualize-data-interactively">
 <h2>Visualize data interactively<a class="headerlink" href="#visualize-data-interactively" title="Link to this heading">#</a></h2>
 <p>This should open a napari instance</p>
-<div class="cell docutils container">
+<div class="cell tag_skip-execution docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">napari_spatialdata</span><span class="o">.</span><span class="n">Interactive</span><span class="p">(</span><span class="n">sdata</span><span class="p">)</span>
 </pre></div>

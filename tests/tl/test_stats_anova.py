@@ -99,9 +99,9 @@ def test_posthoc_results_storage_and_content(sample_anova_adata: ad.AnnData) -> 
 
     # Check the specific comparisons (A vs B/C should be significant, B vs C not)
     posthoc_df = posthoc_df.set_index(["A", "B"])
-    assert posthoc_df.loc[("A", "B"), "p-tukey"] < 0.05
-    assert posthoc_df.loc[("A", "C"), "p-tukey"] < 0.05
-    assert posthoc_df.loc[("B", "C"), "p-tukey"] > 0.05
+    assert posthoc_df.loc[("A", "B"), "p_tukey"] < 0.05
+    assert posthoc_df.loc[("A", "C"), "p_tukey"] < 0.05
+    assert posthoc_df.loc[("B", "C"), "p_tukey"] > 0.05
 
 
 def test_posthoc_disabled(sample_anova_adata: ad.AnnData) -> None:

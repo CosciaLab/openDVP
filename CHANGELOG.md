@@ -8,8 +8,6 @@ the version and date. See [`.github/RELEASING.md`](.github/RELEASING.md).
 
 ---
 
-## [Unreleased]
-
 ## [0.8.0] - 2026-09-16
 
 ### Added

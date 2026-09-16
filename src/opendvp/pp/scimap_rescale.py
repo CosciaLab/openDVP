@@ -141,7 +141,7 @@ def scimap_rescale(
                 left_on=["markers", "imageid"],
                 right_on=["markers", "imageid"],
             )
-            gate_mapping["gate"] = gate_mapping["gate"].fillna(gate_mapping["m_gate"])
+            gate_mapping["gate"] = gate_mapping["gate"].astype("float64").fillna(gate_mapping["m_gate"])
             gate_mapping = gate_mapping.drop(columns="m_gate")
 
     # Addressing failed markers

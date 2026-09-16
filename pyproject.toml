@@ -82,6 +82,11 @@ docs = [
 requires = ["uv_build>=0.8.13,<0.9.0"]
 build-backend = "uv_build"
 
+# uv_build walks the source tree, so untracked local junk otherwise ends up in the artifacts
+[tool.uv.build-backend]
+source-exclude = ["**/.DS_Store"]
+wheel-exclude = ["**/.DS_Store"]
+
 ## FORMATTING AND LINTING ##
 
 [tool.ruff]

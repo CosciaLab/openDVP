@@ -8,6 +8,19 @@ the version and date. See [`.github/RELEASING.md`](.github/RELEASING.md).
 
 ---
 
+## [Unreleased]
+
+### Fixed
+
+- GitHub reported the licence as "Other", and the README licence badge read "not identifiable by
+  github", because the copyright notice in `LICENSE` wrapped onto a second line. GitHub's
+  `licensee` strips only the line beginning with `Copyright`, so the remainder counted as foreign
+  text and pushed the match below its threshold. The notice is now a single line. The licence
+  text is otherwise unchanged, and package metadata already reported `License-Expression: MIT`
+  correctly.
+
+---
+
 ## [0.8.0] - 2026-09-16
 
 ### Added

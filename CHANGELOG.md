@@ -20,6 +20,9 @@ the version and date. See [`.github/RELEASING.md`](.github/RELEASING.md).
   `dask-image`. They previously arrived only transitively, so any upstream change could have
   broken installs.
 - Tests covering the `opendvp.plotting` deprecation shim
+- **`opendvp.datasets.tutorial_data()`** — downloads the tutorial dataset from Zenodo, verifies it
+  against a known MD5, extracts it, caches it per user, and returns a dict of paths. Honours the
+  `OPENDVP_DATA_DIR` environment variable.
 
 ### Changed
 - **Relicensed from GPL-3.0 to MIT**, to reduce friction for other packages that want to
@@ -46,6 +49,10 @@ the version and date. See [`.github/RELEASING.md`](.github/RELEASING.md).
 - CI: adjusted triggers for the test, docs and publish workflows; the docs build now fails on
   warnings and reruns when `src/` changes
 - Updated the README screenshot
+- All three tutorials load their inputs through `datasets.tutorial_data()` rather than hardcoded
+  `../data/...` paths, and write their outputs under `../outputs/`, which they now create
+- `quant_to_adata`, `import_thresholds`, `segmask_to_qupath` and `export_adata` accept
+  `pathlib.Path` as well as `str`. The first three previously raised on a `Path`.
 
 ### Fixed
 - `stats_anova` raised `ValueError: Length of values does not match length of index` under
@@ -55,6 +62,11 @@ the version and date. See [`.github/RELEASING.md`](.github/RELEASING.md).
 - `segmask_to_qupath` raised an `ImportError` directing users to `pip install
   opendvp[spatialdata]`, an extra that has never existed
 - Untracked local files such as `.DS_Store` could be picked up into the built wheel and sdist
+- Tutorial 1 downloaded the 133 MB dataset with raw `requests` and then never extracted it, so
+  every later cell failed on a fresh machine
+- Tutorial 3 read a checkpoint by its exact filename
+  (`20250709_1322_5_DAP_adata.h5ad`). That name is stamped with the minute tutorial 2 was run, so
+  it could never exist for anyone else; it now picks up the most recent checkpoint
 
 ### Removed
 - `xarray` and `pyogrio` from the declared dependencies — neither is imported, and both arrive

@@ -182,20 +182,20 @@
 <li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.metrics.nan_difference.html">opendvp.metrics.nan_difference</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../api/plotting.html">Plotting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.plot_graph_network.html">opendvp.plotting.plot_graph_network</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.stacked_barplot.html">opendvp.plotting.stacked_barplot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.abundance_histograms.html">opendvp.plotting.abundance_histograms</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.correlation_heatmap.html">opendvp.plotting.correlation_heatmap</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.coefficient_of_variation.html">opendvp.plotting.coefficient_of_variation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.density.html">opendvp.plotting.density</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.dual_axis_boxplots.html">opendvp.plotting.dual_axis_boxplots</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.feature_comparison_boxplot.html">opendvp.plotting.feature_comparison_boxplot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.imputation_qc.html">opendvp.plotting.imputation_qc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.pca_loadings.html">opendvp.plotting.pca_loadings</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.rankplot.html">opendvp.plotting.rankplot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.upset.html">opendvp.plotting.upset</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.plotting.volcano.html">opendvp.plotting.volcano</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/pl.html">Plotting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.pl.plot_graph_network.html">opendvp.pl.plot_graph_network</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.pl.stacked_barplot.html">opendvp.pl.stacked_barplot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.pl.abundance_histograms.html">opendvp.pl.abundance_histograms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.pl.correlation_heatmap.html">opendvp.pl.correlation_heatmap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.pl.coefficient_of_variation.html">opendvp.pl.coefficient_of_variation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.pl.density.html">opendvp.pl.density</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.pl.dual_axis_boxplots.html">opendvp.pl.dual_axis_boxplots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.pl.feature_comparison_boxplot.html">opendvp.pl.feature_comparison_boxplot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.pl.imputation_qc.html">opendvp.pl.imputation_qc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.pl.pca_loadings.html">opendvp.pl.pca_loadings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.pl.rankplot.html">opendvp.pl.rankplot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.pl.upset.html">opendvp.pl.upset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/opendvp.pl.volcano.html">opendvp.pl.volcano</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../api/pp.html">Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -742,7 +742,7 @@ Here we explore how their proteomes differ.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s see how many proteins and precursors were measured per sample</span>
-<span class="n">dvp</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">dual_axis_boxplots</span><span class="p">(</span>
+<span class="n">dvp</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">dual_axis_boxplots</span><span class="p">(</span>
     <span class="n">adata</span><span class="o">=</span><span class="n">adata</span><span class="p">,</span> <span class="n">feature_1</span><span class="o">=</span><span class="s2">&quot;Proteins.Identified&quot;</span><span class="p">,</span> <span class="n">feature_2</span><span class="o">=</span><span class="s2">&quot;Precursors.Identified&quot;</span><span class="p">,</span> <span class="n">group_by</span><span class="o">=</span><span class="s2">&quot;RCN_long&quot;</span>
 <span class="p">)</span>
 </pre></div>
@@ -795,8 +795,8 @@ Minimum value: 7.976105824909396
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="n">dvp</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">density</span><span class="p">(</span><span class="n">adata</span><span class="o">=</span><span class="n">adata</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="s2">&quot;RCN_long&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">dvp</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">density</span><span class="p">(</span><span class="n">adata</span><span class="o">=</span><span class="n">adata</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="s2">&quot;QuPath_class&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">dvp</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">density</span><span class="p">(</span><span class="n">adata</span><span class="o">=</span><span class="n">adata</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="s2">&quot;RCN_long&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">dvp</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">density</span><span class="p">(</span><span class="n">adata</span><span class="o">=</span><span class="n">adata</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="s2">&quot;QuPath_class&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -808,9 +808,7 @@ Minimum value: 7.976105824909396
 <p>These density graphs already show us little difference between samples, in terms of overall quantifications.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dvp</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">rankplot</span><span class="p">(</span>
-    <span class="n">adata</span><span class="o">=</span><span class="n">adata</span><span class="p">,</span> <span class="n">adata_obs_key</span><span class="o">=</span><span class="s2">&quot;RCN_long&quot;</span><span class="p">,</span> <span class="n">min_presence_fraction</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">proteins_to_label</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;VIM&quot;</span><span class="p">,</span> <span class="s2">&quot;PYCR2&quot;</span><span class="p">]</span>
-<span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dvp</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">rankplot</span><span class="p">(</span><span class="n">adata</span><span class="o">=</span><span class="n">adata</span><span class="p">,</span> <span class="n">adata_obs_key</span><span class="o">=</span><span class="s2">&quot;RCN_long&quot;</span><span class="p">,</span> <span class="n">min_presence_fraction</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">proteins_to_label</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;VIM&quot;</span><span class="p">,</span> <span class="s2">&quot;PYCR2&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1310,7 +1308,7 @@ Beware of using Scanpy for proteomics datasets, assumptions will vary.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># let&#39;s plot the contribution of each protein to the PC1 and PC2</span>
-<span class="n">dvp</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">pca_loadings</span><span class="p">(</span><span class="n">adata_imputed</span><span class="p">)</span>
+<span class="n">dvp</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">pca_loadings</span><span class="p">(</span><span class="n">adata_imputed</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1410,7 +1408,7 @@ Beware of using Scanpy for proteomics datasets, assumptions will vary.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
-<span class="n">dvp</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">volcano</span><span class="p">(</span>
+<span class="n">dvp</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">volcano</span><span class="p">(</span>
     <span class="n">adata</span><span class="o">=</span><span class="n">adata_DAP</span><span class="p">,</span>
     <span class="n">x</span><span class="o">=</span><span class="s2">&quot;mean_diff&quot;</span><span class="p">,</span>
     <span class="n">y</span><span class="o">=</span><span class="s2">&quot;-log10_p_corr&quot;</span><span class="p">,</span>
